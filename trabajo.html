@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análisis de Interesados — Roma Bag's</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:     #0B1F3A;
+      --navy-2:   #132845;
+      --navy-3:   #1A3460;
+      --blue:     #2563EB;
+      --blue-lt:  #3B82F6;
+      --gold:     #D4A843;
+      --gold-lt:  #F0C96A;
+      --cream:    #F9F7F3;
+      --muted:    #8B96A8;
+      --border:   rgba(255,255,255,0.07);
+      --card-bg:  rgba(255,255,255,0.04);
+      --success:  #22C55E;
+      --warn:     #F59E0B;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--navy);
+      color: #E2E8F0;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-3) 60%, #1e3a6e 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 40px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 800px 500px at 80% 40%, rgba(37,99,235,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(212,168,67,0.35);
+      border-radius: 100px;
+      padding: 4px 14px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: #fff;
+      max-width: 700px;
+      margin-bottom: 16px;
+    }
+    .hero h1 em {
+      color: var(--gold-lt);
+      font-style: italic;
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 28px;
+    }
+    .hero-sub span { display: flex; align-items: center; gap: 6px; }
+    .hero-sub svg { opacity: 0.6; }
+
+    /* ── CONTAINER ── */
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── SECTION LAYOUT ── */
+    section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue-lt);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .section-lead {
+      font-size: 14px;
+      color: #94A3B8;
+      max-width: 640px;
+      margin-bottom: 40px;
+      line-height: 1.75;
+    }
+
+    /* ── CARDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .card:hover {
+      border-color: rgba(37,99,235,0.4);
+      background: rgba(37,99,235,0.06);
+    }
+    .card-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+      font-size: 18px;
+    }
+    .card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .card p, .card li {
+      font-size: 13.5px;
+      color: #94A3B8;
+      line-height: 1.7;
+    }
+    .card ul { padding-left: 16px; }
+    .card li { margin-bottom: 6px; }
+    .card li strong { color: #CBD5E1; }
+
+    /* ── HIGHLIGHT BAND ── */
+    .callout {
+      background: rgba(212,168,67,0.08);
+      border: 1px solid rgba(212,168,67,0.25);
+      border-left: 3px solid var(--gold);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin: 24px 0;
+      font-size: 13.5px;
+      color: #CBD5E1;
+      line-height: 1.75;
+    }
+    .callout strong { color: var(--gold-lt); }
+
+    /* ── EVIDENCE PLACEHOLDER ── */
+    .evidence-box {
+      border: 1.5px dashed rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .evidence-box .icon { font-size: 28px; margin-bottom: 10px; opacity: 0.5; }
+    .evidence-box p { font-size: 13px; color: var(--muted); }
+    .evidence-box .btn-link {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue-lt);
+      border: 1px solid rgba(59,130,246,0.4);
+      border-radius: 100px;
+      padding: 6px 18px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .evidence-box .btn-link:hover { background: rgba(59,130,246,0.1); }
+
+    /* ── PILLS ── */
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 100px;
+      padding: 3px 10px;
+      letter-spacing: 0.05em;
+    }
+    .pill-blue  { background: rgba(37,99,235,0.2);  color: #93C5FD; }
+    .pill-gold  { background: rgba(212,168,67,0.2); color: var(--gold-lt); }
+    .pill-green { background: rgba(34,197,94,0.15); color: #86EFAC; }
+    .pill-gray  { background: rgba(255,255,255,0.07); color: #94A3B8; }
+
+    /* ── FINDINGS GRID ── */
+    .finding {
+      display: flex;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .finding:last-child { border-bottom: none; }
+    .finding-num {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(37,99,235,0.2);
+      color: var(--blue-lt);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .finding h4 { font-size: 14px; font-weight: 600; color: #E2E8F0; margin-bottom: 6px; }
+    .finding p  { font-size: 13px; color: #94A3B8; line-height: 1.7; }
+    .finding p em { color: #CBD5E1; font-style: normal; border-bottom: 1px dashed rgba(255,255,255,0.2); }
+
+    /* ── MATRIX ── */
+    .matrix-wrap {
+      display: grid;
+      grid-template-columns: 40px 1fr 1fr;
+      grid-template-rows: 1fr 1fr 36px;
+      gap: 10px;
+      margin: 8px 0 32px;
+    }
+    .m-axis-y {
+      grid-row: 1 / 3;
+      display: flex; align-items: center; justify-content: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .m-axis-x {
+      grid-column: 2 / 4;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .m-cell {
+      border-radius: 12px;
+      padding: 22px 20px;
+      border: 1px solid var(--border);
+      min-height: 160px;
+    }
+    .m-cell .m-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .m-amber  { background: rgba(212,168,67,0.07);  border-color: rgba(212,168,67,0.2); }
+    .m-amber  .m-label { color: var(--gold); }
+    .m-red    { background: rgba(239,68,68,0.07);   border-color: rgba(239,68,68,0.25); }
+    .m-red    .m-label { color: #FCA5A5; }
+    .m-teal   { background: rgba(20,184,166,0.07);  border-color: rgba(20,184,166,0.2); }
+    .m-teal   .m-label { color: #5EEAD4; }
+    .m-blue   { background: rgba(37,99,235,0.07);   border-color: rgba(37,99,235,0.3); }
+    .m-blue   .m-label { color: #93C5FD; }
+
+    .m-empty { display: flex; align-items: center; justify-content: center; }
+    .m-empty p { font-size: 12px; color: rgba(255,255,255,0.2); font-style: italic; text-align: center; }
+
+    .sh-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+    }
+    .sh-card:last-child { margin-bottom: 0; }
+    .sh-name { font-size: 13px; font-weight: 600; color: #fff; }
+    .sh-role { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* ── STAKEHOLDER TABLE ── */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+    }
+    thead tr {
+      background: rgba(11,31,58,0.9);
+    }
+    thead th {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(37,99,235,0.07); }
+    td {
+      padding: 20px 20px;
+      font-size: 13px;
+      color: #94A3B8;
+      vertical-align: top;
+    }
+    td.name-cell { min-width: 160px; }
+    .td-name { font-size: 14px; font-weight: 600; color: #E2E8F0; margin-bottom: 4px; }
+    .td-role { font-size: 12px; color: var(--muted); }
+    td ul { padding-left: 14px; }
+    td li { margin-bottom: 5px; line-height: 1.6; }
+    td li strong { color: #CBD5E1; }
+    .strategy-text { font-size: 13px; color: #94A3B8; line-height: 1.65; }
+    .strategy-text strong { color: #E2E8F0; display: block; margin-bottom: 4px; }
+
+    /* ── FOOTER NOTE ── */
+    .footer-note {
+      padding: 48px 28px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-tag">Evaluación y Formulación de Proyectos de SI</div>
+    <h1>Arquitectura de <em>Inteligencia de Negocios</em> para Roma Bag's</h1>
+    <div class="hero-sub">
+      <span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+        Universidad Nacional Tecnológica de Lima Sur
+      </span>
+      <span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        Mauricio · Jean · Jesus · Abel · Jostink
+      </span>
+      <span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        Documento PMBOK — Inicio del Proyecto
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- BLOQUE 1 -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Bloque 1</div>
+    <h2 class="section-title">Entradas — Contexto del Proyecto</h2>
+    <p class="section-lead">Diagnóstico inicial que fundamenta la necesidad del proyecto: el caso de negocio, los factores ambientales y los activos organizacionales de Roma Bag's.</p>
+
+    <!-- 1.1 Caso de negocio -->
+    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:16px;">1.1 — Caso de Negocio (Business Case)</h3>
+
+    <div class="callout">
+      <strong>Problema identificado:</strong> Roma Bag's, empresa de confección de carteras con alcance nacional, enfrenta un <strong>cuello de botella administrativo crítico</strong>: la consolidación de ventas y el análisis de rentabilidad se realizan de forma manual y desconectada de la operación diaria. La gerencia invierte horas a fin de mes cruzando datos en hojas de cálculo y cuadernos para identificar modelos más vendidos y el comportamiento de clientes mayoristas.
+    </div>
+
+    <div class="callout" style="border-left-color: var(--blue-lt); background: rgba(37,99,235,0.07); border-color: rgba(37,99,235,0.25);">
+      <strong style="color:#93C5FD;">Solución propuesta:</strong> Implementar una <strong>Arquitectura de Inteligencia de Negocios (Dashboard Gerencial)</strong> que automatice la visualización de métricas en tiempo real mediante integración de datos (Python / SQL). La meta estratégica es liberar carga operativa de la dirección para alcanzar un <strong>incremento del 50% en ventas</strong> a mediano plazo.
+    </div>
+
+    <!-- 1.2 EEFs -->
+    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin:36px 0 16px;">1.2 — Factores Ambientales de la Empresa (EEFs)</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon" style="background:rgba(37,99,235,0.15);">💻</div>
+        <h3>Infraestructura Tecnológica</h3>
+        <p>La empresa opera con <strong style="color:#CBD5E1;">3 computadoras</strong> y <strong style="color:#CBD5E1;">6 dispositivos móviles</strong>. Esta limitación justifica directamente el enfoque <em style="color:var(--gold-lt);">Mobile-first</em> de la solución: la gerencia prefiere consultar métricas desde el celular por la agilidad que esto representa vs. encender la PC.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(212,168,67,0.15);">👥</div>
+        <h3>Cultura y Recursos Humanos</h3>
+        <p>Equipo de <strong style="color:#CBD5E1;">18 personas</strong>. Se identifica una <strong style="color:#CBD5E1;">curva de aprendizaje tecnológico moderado-baja</strong> y resistencia al cambio, asociada al ritmo operativo acelerado del taller de producción. Requiere una interfaz simple e intuitiva.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(239,68,68,0.12);">⚠️</div>
+        <h3>Riesgos y Miedos Identificados</h3>
+        <p>El principal freno tecnológico no es el costo, sino el <strong style="color:#FCA5A5;">miedo a la pérdida de información</strong>. Este hallazgo obliga a proponer una solución de <em style="color:var(--gold-lt);">"solo lectura"</em> que no altere bajo ningún concepto los archivos fuente (Excel original).</p>
+      </div>
+    </div>
+
+    <!-- 1.3 OPAs -->
+    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin:36px 0 16px;">1.3 — Activos de los Procesos de la Organización (OPAs)</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon" style="background:rgba(34,197,94,0.12);">📊</div>
+        <h3>Control de Ventas en Excel</h3>
+        <p>Hoja de cálculo con información comercial centralizada mensualmente. Constituye la <strong style="color:#86EFAC;">fuente de datos primaria</strong> para el modelado en SQL/Python y el dashboard gerencial.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(212,168,67,0.12);">📒</div>
+        <h3>Registros de Producción (Cuadernos)</h3>
+        <p>Control manual de stock y gastos de materiales anotados diariamente. Aunque no está digitalizado, es la <strong style="color:#FDE68A;">base de conocimiento</strong> sobre la cual se estructurarán las alertas de inventario.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(37,99,235,0.15);">📱</div>
+        <h3>Protocolos de Registro Móvil</h3>
+        <p>El personal operativo ya tiene el hábito de registrar datos desde sus teléfonos. Este activo <strong style="color:#93C5FD;">facilita directamente la adopción</strong> de la herramienta digital y reduce la resistencia al cambio.</p>
+      </div>
+    </div>
+
+    <div class="evidence-box">
+      <div class="icon">📸</div>
+      <p><strong style="color:#CBD5E1;">Evidencia Visual</strong><br>Insertar aquí capturas de pantalla de la reunión de coordinación y levantamiento de información con la Gerencia de Roma Bag's</p>
+      <a href="#" class="btn-link">+ Adjuntar evidencia desde Google Drive</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOQUE 2 -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Bloque 2</div>
+    <h2 class="section-title">Herramientas y Técnicas — Procesamiento de Datos</h2>
+    <p class="section-lead">Selección de una herramienta por categoría según PMBOK, basada en datos primarios y reales obtenidos directamente de la gerencia de Roma Bag's.</p>
+
+    <!-- 2.1 Entrevista -->
+    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:20px;">2.1 — Recopilación de Datos: La Entrevista</h3>
+    <div class="card" style="max-width:100%;margin-bottom:24px;">
+      <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:240px;">
+          <h3 style="margin-bottom:10px;">Entrevista Semiestructurada — Uno a Uno</h3>
+          <p style="margin-bottom:14px;">Se descartaron cuestionarios masivos. La entrevista semiestructurada directa se eligió por brindar información más veraz y profunda sobre el negocio real.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="pill pill-blue">15 preguntas</span>
+            <span class="pill pill-gold">4 dimensiones</span>
+            <span class="pill pill-green">Natalie — Gerente General</span>
+          </div>
+        </div>
+        <div style="flex-shrink:0;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:16px 20px;min-width:200px;">
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Dimensiones evaluadas</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:13px;color:#CBD5E1;">🏭 Entorno operativo</div>
+            <div style="font-size:13px;color:#CBD5E1;">💰 Valor de negocio</div>
+            <div style="font-size:13px;color:#CBD5E1;">⚙️ Expectativas técnicas</div>
+            <div style="font-size:13px;color:#CBD5E1;">🧠 Cultura organizacional</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="evidence-box">
+      <div class="icon">📎</div>
+      <p><strong style="color:#CBD5E1;">Instrumento de Entrevista</strong><br>Guía de preguntas de validación del Caso de Negocio (15 preguntas completas)</p>
+      <a href="#" class="btn-link">Ver documento completo en Google Drive</a>
+    </div>
+
+    <!-- 2.2 Análisis -->
+    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin:44px 0 20px;">2.2 — Análisis de Datos: Hallazgos del Levantamiento</h3>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:28px;">
+      <div class="finding">
+        <div class="finding-num">1</div>
+        <div>
+          <h4>Centralización absoluta del poder y la necesidad</h4>
+          <p>Natalie concentra todas las decisiones operativas y financieras. Sufre el mayor estrés: <em>"Yo hago el inventario en cuadernos y cruzo el Excel a fin de mes."</em> Su criterio de éxito es un crecimiento del 50% en ventas. Exige Mobile-first: <em>"la computadora es más tiempo, estás sentada, hay que prenderla."</em></p>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-num">2</div>
+        <div>
+          <h4>Descubrimiento del riesgo principal: miedo a perder información</h4>
+          <p>El freno tecnológico no es el costo. Es el miedo a que el sistema altere o borre los datos existentes. Esto exige que la solución BI sea estrictamente un <em>visor gráfico de solo lectura</em>, sin modificar el Excel original bajo ningún concepto.</p>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-num">3</div>
+        <div>
+          <h4>Segmentación de usuarios: Ventas vs. Empaque</h4>
+          <p>Los gráficos de rendimiento no serán públicos para todos. El <em>personal de empaque queda excluido</em> por política de confidencialidad comercial. Al <em>personal de ventas/atención</em> sí se le mostrarán métricas para incentivar productividad y esfuerzo diario.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.3 Matriz -->
+    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin:44px 0 20px;">2.3 — Representación de Datos: Matriz de Poder / Interés</h3>
+
+    <div class="matrix-wrap">
+      <!-- Eje Y -->
+      <div class="m-axis-y">Poder (Influencia) ↑</div>
+
+      <!-- Fila 1 -->
+      <div class="m-cell m-amber m-empty">
+        <p>Sin actores<br>identificados<br>en este cuadrante</p>
+      </div>
+      <div class="m-cell m-red">
+        <span class="m-label">Gestionar cuidadosamente</span>
+        <div class="sh-card">
+          <div class="sh-name">SH-01 — Natalie</div>
+          <div class="sh-role">Gerente General / Sponsor</div>
+        </div>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="m-cell m-teal">
+        <span class="m-label">Monitorear</span>
+        <div class="sh-card">
+          <div class="sh-name">SH-03 — Personal de Empaque</div>
+          <div class="sh-role">Staff operativo · Sin acceso</div>
+        </div>
+      </div>
+      <div class="m-cell m-blue">
+        <span class="m-label">Mantener informados</span>
+        <div class="sh-card">
+          <div class="sh-name">SH-02 — Personal de Ventas</div>
+          <div class="sh-role">Usuarios de visualización</div>
+        </div>
+        <div class="sh-card">
+          <div class="sh-name">SH-04 — Clientes Mayoristas</div>
+          <div class="sh-role">Externo · Valor indirecto</div>
+        </div>
+      </div>
+
+      <!-- Eje X -->
+      <div class="m-axis-x">→ Interés (Preocupación)</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOQUE 3 -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Bloque 3</div>
+    <h2 class="section-title">Salidas — Registro de Interesados</h2>
+    <p class="section-lead">Documento principal de la fase de inicio. Consolida la identificación, evaluación y clasificación de todos los stakeholders, y define los permisos de acceso y estrategias de comunicación del proyecto.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Stakeholder / Rol</th>
+            <th>Categoría</th>
+            <th>Expectativas y Requisitos</th>
+            <th>Poder</th>
+            <th>Interés</th>
+            <th>Estrategia de Gestión</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name-cell">
+              <div class="td-name">Natalie</div>
+              <div class="td-role">Gerente General / Sponsor</div>
+              <div style="margin-top:8px;"><span class="pill pill-gold">SH-01</span></div>
+            </td>
+            <td><span class="pill pill-gray">Interno</span></td>
+            <td>
+              <ul>
+                <li>Aumentar ventas en un <strong>50%</strong></li>
+                <li>Dashboard <strong>Mobile-first</strong></li>
+                <li>Métricas de producción diaria (20+ carteras)</li>
+                <li>Proyecciones interanuales de ganancias</li>
+                <li><strong>Solo lectura</strong> — no alterar el Excel fuente</li>
+              </ul>
+            </td>
+            <td><span class="pill pill-gold">Alto</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Definitivo</div></td>
+            <td><span class="pill pill-gold">Alto</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Usuario final</div></td>
+            <td>
+              <div class="strategy-text">
+                <strong>Gestionar Cuidadosamente</strong>
+                Involucrarla en la validación de cada prototipo gráfico antes de programar. Capacitación en modelo "solo lectura" para reducir resistencia y miedo a pérdida de datos.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="name-cell">
+              <div class="td-name">Personal de Ventas</div>
+              <div class="td-role">Usuarios de visualización</div>
+              <div style="margin-top:8px;"><span class="pill pill-blue">SH-02</span></div>
+            </td>
+            <td><span class="pill pill-gray">Interno</span></td>
+            <td>
+              <ul>
+                <li>Visualizar metas de ventas mensuales</li>
+                <li>Métricas como <strong>incentivo productivo</strong> diario</li>
+                <li>Interfaz simple por resistencia tecnológica inicial</li>
+              </ul>
+            </td>
+            <td><span class="pill pill-gray">Bajo</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Sin decisión</div></td>
+            <td><span class="pill pill-blue">Alto</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Afectados directos</div></td>
+            <td>
+              <div class="strategy-text">
+                <strong>Mantener Informados</strong>
+                Capacitación básica una vez que el dashboard sea aprobado por gerencia. Comunicar beneficios para evitar resistencia al cambio.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="name-cell">
+              <div class="td-name">Personal de Empaque</div>
+              <div class="td-role">Staff operativo / Manufactura</div>
+              <div style="margin-top:8px;"><span class="pill pill-gray">SH-03</span></div>
+            </td>
+            <td><span class="pill pill-gray">Interno</span></td>
+            <td>
+              <ul>
+                <li>N/A — Por política estricta de gerencia, la información comercial es <strong>confidencial</strong> para este grupo</li>
+              </ul>
+            </td>
+            <td><span class="pill pill-gray">Nulo</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Rol operativo</div></td>
+            <td><span class="pill pill-gray">Bajo</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Sin interacción</div></td>
+            <td>
+              <div class="strategy-text">
+                <strong>Monitorear</strong>
+                Aislar del alcance del software. Observar si en el futuro su flujo requiere algún tipo de visualización básica de producción.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="name-cell">
+              <div class="td-name">Clientes Mayoristas</div>
+              <div class="td-role">Top 2 — Compradores B2B</div>
+              <div style="margin-top:8px;"><span class="pill pill-green">SH-04</span></div>
+            </td>
+            <td><span class="pill pill-gray">Externo</span></td>
+            <td>
+              <ul>
+                <li>Mejores tiempos de respuesta en pedidos masivos</li>
+                <li>Mayor disponibilidad de modelos estrella</li>
+                <li>Beneficio <strong>indirecto</strong> por automatización de inventario</li>
+              </ul>
+            </td>
+            <td><span class="pill pill-gray">Bajo</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">No intervienen</div></td>
+            <td><span class="pill pill-green">Medio</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Valor indirecto</div></td>
+            <td>
+              <div class="strategy-text">
+                <strong>Mantener Informados</strong>
+                Solo a nivel de servicio al cliente. No se comunica el desarrollo interno del software; reciben el valor generado por la eficiencia operativa.
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:12px;color:var(--muted);margin-top:16px;padding-left:4px;">
+      ✦ Esta matriz es la base para definir los permisos de acceso al software y las estrategias de comunicación durante todo el proyecto.
+    </p>
+  </div>
+</section>
+
+<div class="footer-note">
+  Formulación y Evaluación de Proyectos de Sistemas de Información &nbsp;·&nbsp; Documento estructurado PMBOK &nbsp;·&nbsp; Roma Bag's &copy; 2025
+</div>
+
+</body>
+</html>
