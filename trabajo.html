@@ -1,680 +1,671 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Análisis de Interesados — Roma Bag's</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --navy:     #0B1F3A;
-      --navy-2:   #132845;
-      --navy-3:   #1A3460;
-      --blue:     #2563EB;
-      --blue-lt:  #3B82F6;
-      --gold:     #D4A843;
-      --gold-lt:  #F0C96A;
-      --cream:    #F9F7F3;
-      --muted:    #8B96A8;
-      --border:   rgba(255,255,255,0.07);
-      --card-bg:  rgba(255,255,255,0.04);
-      --success:  #22C55E;
-      --warn:     #F59E0B;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Sora', sans-serif;
-      background: var(--navy);
-      color: #E2E8F0;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-3) 60%, #1e3a6e 100%);
-      border-bottom: 1px solid var(--border);
-      padding: 64px 40px 56px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 800px 500px at 80% 40%, rgba(37,99,235,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(212,168,67,0.35);
-      border-radius: 100px;
-      padding: 4px 14px;
-      margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 400;
-      line-height: 1.15;
-      color: #fff;
-      max-width: 700px;
-      margin-bottom: 16px;
-    }
-    .hero h1 em {
-      color: var(--gold-lt);
-      font-style: italic;
-    }
-    .hero-sub {
-      font-size: 14px;
-      color: var(--muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      margin-top: 28px;
-    }
-    .hero-sub span { display: flex; align-items: center; gap: 6px; }
-    .hero-sub svg { opacity: 0.6; }
-
-    /* ── CONTAINER ── */
-    .wrap {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 28px;
-    }
-
-    /* ── SECTION LAYOUT ── */
-    section { padding: 64px 0; border-bottom: 1px solid var(--border); }
-    section:last-child { border-bottom: none; }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--blue-lt);
-      margin-bottom: 8px;
-    }
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 400;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-    .section-lead {
-      font-size: 14px;
-      color: #94A3B8;
-      max-width: 640px;
-      margin-bottom: 40px;
-      line-height: 1.75;
-    }
-
-    /* ── CARDS ── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 16px;
-    }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
-      transition: border-color 0.25s, background 0.25s;
-    }
-    .card:hover {
-      border-color: rgba(37,99,235,0.4);
-      background: rgba(37,99,235,0.06);
-    }
-    .card-icon {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 18px;
-      font-size: 18px;
-    }
-    .card h3 {
-      font-size: 15px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-    .card p, .card li {
-      font-size: 13.5px;
-      color: #94A3B8;
-      line-height: 1.7;
-    }
-    .card ul { padding-left: 16px; }
-    .card li { margin-bottom: 6px; }
-    .card li strong { color: #CBD5E1; }
-
-    /* ── HIGHLIGHT BAND ── */
-    .callout {
-      background: rgba(212,168,67,0.08);
-      border: 1px solid rgba(212,168,67,0.25);
-      border-left: 3px solid var(--gold);
-      border-radius: 8px;
-      padding: 18px 22px;
-      margin: 24px 0;
-      font-size: 13.5px;
-      color: #CBD5E1;
-      line-height: 1.75;
-    }
-    .callout strong { color: var(--gold-lt); }
-
-    /* ── EVIDENCE PLACEHOLDER ── */
-    .evidence-box {
-      border: 1.5px dashed rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 32px;
-      text-align: center;
-      margin-top: 32px;
-    }
-    .evidence-box .icon { font-size: 28px; margin-bottom: 10px; opacity: 0.5; }
-    .evidence-box p { font-size: 13px; color: var(--muted); }
-    .evidence-box .btn-link {
-      display: inline-block;
-      margin-top: 14px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--blue-lt);
-      border: 1px solid rgba(59,130,246,0.4);
-      border-radius: 100px;
-      padding: 6px 18px;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .evidence-box .btn-link:hover { background: rgba(59,130,246,0.1); }
-
-    /* ── PILLS ── */
-    .pill {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 600;
-      border-radius: 100px;
-      padding: 3px 10px;
-      letter-spacing: 0.05em;
-    }
-    .pill-blue  { background: rgba(37,99,235,0.2);  color: #93C5FD; }
-    .pill-gold  { background: rgba(212,168,67,0.2); color: var(--gold-lt); }
-    .pill-green { background: rgba(34,197,94,0.15); color: #86EFAC; }
-    .pill-gray  { background: rgba(255,255,255,0.07); color: #94A3B8; }
-
-    /* ── FINDINGS GRID ── */
-    .finding {
-      display: flex;
-      gap: 16px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .finding:last-child { border-bottom: none; }
-    .finding-num {
-      flex-shrink: 0;
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: rgba(37,99,235,0.2);
-      color: var(--blue-lt);
-      font-size: 12px;
-      font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      margin-top: 2px;
-    }
-    .finding h4 { font-size: 14px; font-weight: 600; color: #E2E8F0; margin-bottom: 6px; }
-    .finding p  { font-size: 13px; color: #94A3B8; line-height: 1.7; }
-    .finding p em { color: #CBD5E1; font-style: normal; border-bottom: 1px dashed rgba(255,255,255,0.2); }
-
-    /* ── MATRIX ── */
-    .matrix-wrap {
-      display: grid;
-      grid-template-columns: 40px 1fr 1fr;
-      grid-template-rows: 1fr 1fr 36px;
-      gap: 10px;
-      margin: 8px 0 32px;
-    }
-    .m-axis-y {
-      grid-row: 1 / 3;
-      display: flex; align-items: center; justify-content: center;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .m-axis-x {
-      grid-column: 2 / 4;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .m-cell {
-      border-radius: 12px;
-      padding: 22px 20px;
-      border: 1px solid var(--border);
-      min-height: 160px;
-    }
-    .m-cell .m-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-      display: block;
-    }
-    .m-amber  { background: rgba(212,168,67,0.07);  border-color: rgba(212,168,67,0.2); }
-    .m-amber  .m-label { color: var(--gold); }
-    .m-red    { background: rgba(239,68,68,0.07);   border-color: rgba(239,68,68,0.25); }
-    .m-red    .m-label { color: #FCA5A5; }
-    .m-teal   { background: rgba(20,184,166,0.07);  border-color: rgba(20,184,166,0.2); }
-    .m-teal   .m-label { color: #5EEAD4; }
-    .m-blue   { background: rgba(37,99,235,0.07);   border-color: rgba(37,99,235,0.3); }
-    .m-blue   .m-label { color: #93C5FD; }
-
-    .m-empty { display: flex; align-items: center; justify-content: center; }
-    .m-empty p { font-size: 12px; color: rgba(255,255,255,0.2); font-style: italic; text-align: center; }
-
-    .sh-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 10px 14px;
-      margin-bottom: 8px;
-    }
-    .sh-card:last-child { margin-bottom: 0; }
-    .sh-name { font-size: 13px; font-weight: 600; color: #fff; }
-    .sh-role { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-    /* ── STAKEHOLDER TABLE ── */
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 800px;
-    }
-    thead tr {
-      background: rgba(11,31,58,0.9);
-    }
-    thead th {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 16px 20px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-    }
-    tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.2s;
-    }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: rgba(37,99,235,0.07); }
-    td {
-      padding: 20px 20px;
-      font-size: 13px;
-      color: #94A3B8;
-      vertical-align: top;
-    }
-    td.name-cell { min-width: 160px; }
-    .td-name { font-size: 14px; font-weight: 600; color: #E2E8F0; margin-bottom: 4px; }
-    .td-role { font-size: 12px; color: var(--muted); }
-    td ul { padding-left: 14px; }
-    td li { margin-bottom: 5px; line-height: 1.6; }
-    td li strong { color: #CBD5E1; }
-    .strategy-text { font-size: 13px; color: #94A3B8; line-height: 1.65; }
-    .strategy-text strong { color: #E2E8F0; display: block; margin-bottom: 4px; }
-
-    /* ── FOOTER NOTE ── */
-    .footer-note {
-      padding: 48px 28px;
-      text-align: center;
-      font-size: 12px;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.05em;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roma Bag's — Proyecto de Sistemas de Información | UNTELS</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f0f4f8;--side:#0b1120;--side2:#94a3b8;--txt:#334155;--head:#0f172a;--ac:#0d9488;--ac2:#ccfbf1;--bd:#e2e8f0;--w:#fff;--r-bg:#fee2e2;--r:#b91c1c;--g-bg:#dcfce7;--g:#15803d;--y-bg:#fef9c3;--y:#a16207;--b-bg:#dbeafe;--b:#1d4ed8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);display:flex;line-height:1.7}
+#prog{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--ac),#2dd4bf);width:0%;z-index:999;transition:width .15s}
+.side{width:300px;background:var(--side);color:var(--w);height:100vh;position:fixed;overflow-y:auto;padding:2rem 1.5rem;display:flex;flex-direction:column;z-index:10}
+.side h2{font-family:'Playfair Display',serif;font-size:1.25rem;line-height:1.3;margin-bottom:.3rem}
+.side .sub{font-size:.7rem;color:var(--side2);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:1.8rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.nm{list-style:none;margin-bottom:1.5rem}
+.nm li{margin-bottom:.3rem}
+.nm a{color:var(--side2);text-decoration:none;font-size:.82rem;font-weight:500;display:block;padding:.55rem .8rem;border-radius:6px;transition:.3s;border-left:3px solid transparent}
+.nm a:hover,.nm a.on{background:rgba(255,255,255,.06);color:var(--w);border-left-color:var(--ac)}
+.nm .sub-link{padding-left:1.6rem;font-size:.76rem}
+.tb{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:1.2rem;margin-top:auto}
+.tb h3{font-size:.65rem;text-transform:uppercase;color:var(--side2);letter-spacing:1.5px;margin-bottom:.8rem}
+.tl{list-style:none;font-size:.78rem}
+.tl li{margin-bottom:.5rem;color:#cbd5e1;display:flex;align-items:center;gap:6px}
+.tl li::before{content:'';width:5px;height:5px;background:var(--ac);border-radius:50%;flex-shrink:0}
+.mc{margin-left:300px;padding:3rem 4rem;width:calc(100% - 300px);max-width:1100px}
+h1{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--head);line-height:1.15;margin-bottom:.8rem}
+.mc h2{font-family:'Inter',sans-serif;font-size:1.3rem;color:var(--ac);margin:2.5rem 0 1.2rem;padding-bottom:.5rem;border-bottom:2px solid var(--bd);text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+h3{font-size:1.05rem;color:var(--head);margin:1.8rem 0 .8rem;font-weight:600}
+h4{font-size:.95rem;color:var(--head);margin:1.5rem 0 .6rem}
+p{margin-bottom:1rem;font-size:.95rem}
+.cd{background:var(--w);border:1px solid var(--bd);border-radius:8px;padding:1.3rem;margin-bottom:.8rem;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s}
+.cd:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.cd strong{display:block;color:var(--head);margin-bottom:.2rem;font-size:.98rem}
+.hl{background:var(--ac2);border-left:4px solid var(--ac);padding:1.3rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.tr{width:100%;overflow-x:auto;margin:1.5rem 0;background:var(--w);border-radius:8px;border:1px solid var(--bd);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+table{width:100%;border-collapse:collapse;text-align:left;font-size:.88rem}
+th{background:#f1f5f9;padding:.85rem 1.2rem;font-weight:600;font-size:.78rem;text-transform:uppercase;color:#64748b;border-bottom:2px solid var(--bd)}
+td{padding:.85rem 1.2rem;border-bottom:1px solid var(--bd);vertical-align:top}
+tr:hover td{background:#f8fafc}
+tr:last-child td{border-bottom:none}
+.bg{display:inline-block;padding:.2em .7em;font-size:.72rem;font-weight:700;border-radius:999px}
+.br{background:var(--r-bg);color:var(--r)}.bgr{background:var(--g-bg);color:var(--g)}.bb{background:var(--b-bg);color:var(--b)}.by{background:var(--y-bg);color:var(--y)}
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem}
+.fx{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.fx>.cd{flex:1;min-width:240px}
+footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-size:.82rem;color:#64748b;text-align:center}
+.ki{font-size:.85rem;color:var(--ac);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.sec{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}.sec.vis{opacity:1;transform:none}
+/* Chat transcript styles */
+.chat-box{background:var(--w);border:1px solid var(--bd);border-radius:12px;padding:1.5rem;margin:1rem 0;max-height:600px;overflow-y:auto}
+.chat-msg{display:flex;gap:.8rem;margin-bottom:1rem;padding:.8rem;border-radius:8px;transition:background .2s}
+.chat-msg:hover{background:#f8fafc}
+.chat-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff;flex-shrink:0}
+.chat-avatar.lider{background:#6366f1}.chat-avatar.ent2{background:#0d9488}.chat-avatar.ent3{background:#f59e0b}.chat-avatar.gerente{background:#ec4899}
+.chat-name{font-weight:600;font-size:.82rem;margin-bottom:.2rem}
+.chat-text{font-size:.88rem;color:var(--txt);line-height:1.6}
+/* Ficha técnica */
+.ficha{background:linear-gradient(135deg,#f8fafc,#eef2ff);border:1px solid var(--bd);border-radius:10px;padding:1.5rem;margin:1rem 0}
+.ficha h4{margin:0 0 1rem;color:var(--ac)}
+.ficha-row{display:flex;padding:.5rem 0;border-bottom:1px solid var(--bd);font-size:.88rem}
+.ficha-row:last-child{border-bottom:none}
+.ficha-label{font-weight:600;color:var(--head);width:200px;flex-shrink:0}
+.ficha-val{color:var(--txt)}
+/* SVG cube container */
+.cube-wrap{display:flex;flex-direction:column;align-items:center;margin:1.5rem 0}
+.cube-wrap svg{max-width:100%}
+/* Guion preguntas */
+.pregunta-block{background:var(--w);border:1px solid var(--bd);border-radius:8px;padding:1rem 1.3rem;margin:.6rem 0}
+.pregunta-block .num{font-weight:700;color:var(--ac);margin-right:.5rem}
+.pregunta-block .resp{display:block;margin-top:.4rem;padding:.5rem;background:#f8fafc;border:1px dashed var(--bd);border-radius:4px;font-size:.85rem;color:#94a3b8;font-style:italic}
+@media(max-width:900px){.side{display:none}.mc{margin-left:0;width:100%;padding:2rem 1.5rem}}
+</style>
 </head>
 <body>
+<div id="prog"></div>
+<aside class="side">
+<h2>Universidad Nacional Tecnológica de Lima Sur</h2>
+<span class="sub">Ingeniería de Sistemas · Ciclo VIII</span>
+<nav><ul class="nm">
+<li><a href="#ctx" class="nl on">Contexto Organizacional</a></li>
+<li><a href="#c1" class="nl">Cap. 01: Entradas</a></li>
+<li><a href="#c2" class="nl">Cap. 02: Metodología</a></li>
+<li><a href="#c3" class="nl">Cap. 03: Interesados</a></li>
+<li><a href="#c4" class="nl">Cap. 04: Análisis Profundo</a></li>
+<li><a href="#anx" class="nl">Anexos</a></li>
+<li><a href="#anx1" class="nl sub-link">Anexo 1: Instrumentos</a></li>
+<li><a href="#anx2" class="nl sub-link">Anexo 2: Evidencias</a></li>
+<li><a href="#anx3" class="nl sub-link">Anexo 3: Transcripciones</a></li>
+<li><a href="#ref" class="nl">Referencias</a></li>
+</ul></nav>
+<div class="tb">
+<h3>Equipo del Proyecto</h3>
+<ul class="tl">
+<li>Alaluna Godinez, Mauricio Antonio</li>
+<li>Camargo Rojas, Maria del Cielo</li>
+<li>Estrada Ruiz, Luis Augusto</li>
+<li>Portalanza Hurtado, Fiorella</li>
+</ul>
+</div>
+</aside>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="wrap">
-    <div class="hero-tag">Evaluación y Formulación de Proyectos de SI</div>
-    <h1>Arquitectura de <em>Inteligencia de Negocios</em> para Roma Bag's</h1>
-    <div class="hero-sub">
-      <span>
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
-        Universidad Nacional Tecnológica de Lima Sur
-      </span>
-      <span>
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        Mauricio · Jean · Jesus · Abel · Jostink
-      </span>
-      <span>
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        Documento PMBOK — Inicio del Proyecto
-      </span>
-    </div>
-  </div>
+<main class="mc">
+
+<!-- CONTEXTO -->
+<header class="sec" id="ctx">
+<span class="ki">Proyecto de Sistemas de Información</span>
+<h1>Contexto Organizacional de la Empresa</h1>
+<p class="hl">La presente investigación se centra en la microempresa "Roma Bag's", dedicada a la producción artesanal y comercialización de bolsos y carteras. El modelo de negocio opera bajo un enfoque dual: ventas al por mayor (con picos de demanda estacionales entre septiembre y enero) y ventas al por menor. La toma de decisiones está altamente centralizada en la gerencia, la cual no solo asume roles administrativos, sino que también absorbe la carga operativa de marketing, control de almacén y logística de entregas.</p>
+</header>
+
+<!-- CAP 01 -->
+<section class="sec" id="c1">
+<h2>CAPÍTULO 01: Entradas (Factores Ambientales y Activos del Negocio)</h2>
+<p>El objetivo de esta sección es establecer una línea base que permita comprender el entorno operativo y las limitaciones tecnológicas que rodean a la organización.</p>
+
+<h3>1.1. Estructura Organizacional</h3>
+<p>Al tratarse de una microempresa conformada por un equipo de diecinueve personas (18 trabajadores internos en el taller y 1 contratado para logística), la estructura jerárquica es horizontal y altamente dependiente de sus fundadores. Las áreas de trabajo se dividen de la siguiente manera:</p>
+<div class="gr">
+<div class="cd"><strong>Gerencia General (Natalie)</strong>Centraliza la toma de decisiones financieras. Ejerce múltiples roles simultáneos asumiendo las funciones de Marketing, Administración de Almacén y Coordinación de Logística.</div>
+<div class="cd"><strong>Área de Producción</strong>Liderada por el socio cofundador, quien tiene autoridad directa sobre las operaciones de corte, costura y ensamblaje. Cuenta con el apoyo de personal adicional de mano de obra y opera actualmente con una capacidad instalada de tres (3) máquinas de producción.</div>
+<div class="cd"><strong>Área de Ventas</strong>Conformada por personal joven (entre 18 y 35 años) encargado de la atención al cliente, quienes operan principalmente a través de dispositivos móviles.</div>
+<div class="cd"><strong>Logística y Entregas</strong>Tercerizada a través de personal motorizado contratado específicamente para la distribución de los paquetes a los clientes finales.</div>
 </div>
 
-<!-- BLOQUE 1 -->
-<section>
-  <div class="wrap">
-    <div class="section-label">Bloque 1</div>
-    <h2 class="section-title">Entradas — Contexto del Proyecto</h2>
-    <p class="section-lead">Diagnóstico inicial que fundamenta la necesidad del proyecto: el caso de negocio, los factores ambientales y los activos organizacionales de Roma Bag's.</p>
-
-    <!-- 1.1 Caso de negocio -->
-    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:16px;">1.1 — Caso de Negocio (Business Case)</h3>
-
-    <div class="callout">
-      <strong>Problema identificado:</strong> Roma Bag's, empresa de confección de carteras con alcance nacional, enfrenta un <strong>cuello de botella administrativo crítico</strong>: la consolidación de ventas y el análisis de rentabilidad se realizan de forma manual y desconectada de la operación diaria. La gerencia invierte horas a fin de mes cruzando datos en hojas de cálculo y cuadernos para identificar modelos más vendidos y el comportamiento de clientes mayoristas.
-    </div>
-
-    <div class="callout" style="border-left-color: var(--blue-lt); background: rgba(37,99,235,0.07); border-color: rgba(37,99,235,0.25);">
-      <strong style="color:#93C5FD;">Solución propuesta:</strong> Implementar una <strong>Arquitectura de Inteligencia de Negocios (Dashboard Gerencial)</strong> que automatice la visualización de métricas en tiempo real mediante integración de datos (Python / SQL). La meta estratégica es liberar carga operativa de la dirección para alcanzar un <strong>incremento del 50% en ventas</strong> a mediano plazo.
-    </div>
-
-    <!-- 1.2 EEFs -->
-    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin:36px 0 16px;">1.2 — Factores Ambientales de la Empresa (EEFs)</h3>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-icon" style="background:rgba(37,99,235,0.15);">💻</div>
-        <h3>Infraestructura Tecnológica</h3>
-        <p>La empresa opera con <strong style="color:#CBD5E1;">3 computadoras</strong> y <strong style="color:#CBD5E1;">6 dispositivos móviles</strong>. Esta limitación justifica directamente el enfoque <em style="color:var(--gold-lt);">Mobile-first</em> de la solución: la gerencia prefiere consultar métricas desde el celular por la agilidad que esto representa vs. encender la PC.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon" style="background:rgba(212,168,67,0.15);">👥</div>
-        <h3>Cultura y Recursos Humanos</h3>
-        <p>Equipo de <strong style="color:#CBD5E1;">18 personas</strong>. Se identifica una <strong style="color:#CBD5E1;">curva de aprendizaje tecnológico moderado-baja</strong> y resistencia al cambio, asociada al ritmo operativo acelerado del taller de producción. Requiere una interfaz simple e intuitiva.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon" style="background:rgba(239,68,68,0.12);">⚠️</div>
-        <h3>Riesgos y Miedos Identificados</h3>
-        <p>El principal freno tecnológico no es el costo, sino el <strong style="color:#FCA5A5;">miedo a la pérdida de información</strong>. Este hallazgo obliga a proponer una solución de <em style="color:var(--gold-lt);">"solo lectura"</em> que no altere bajo ningún concepto los archivos fuente (Excel original).</p>
-      </div>
-    </div>
-
-    <!-- 1.3 OPAs -->
-    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin:36px 0 16px;">1.3 — Activos de los Procesos de la Organización (OPAs)</h3>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-icon" style="background:rgba(34,197,94,0.12);">📊</div>
-        <h3>Control de Ventas en Excel</h3>
-        <p>Hoja de cálculo con información comercial centralizada mensualmente. Constituye la <strong style="color:#86EFAC;">fuente de datos primaria</strong> para el modelado en SQL/Python y el dashboard gerencial.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon" style="background:rgba(212,168,67,0.12);">📒</div>
-        <h3>Registros de Producción (Cuadernos)</h3>
-        <p>Control manual de stock y gastos de materiales anotados diariamente. Aunque no está digitalizado, es la <strong style="color:#FDE68A;">base de conocimiento</strong> sobre la cual se estructurarán las alertas de inventario.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon" style="background:rgba(37,99,235,0.15);">📱</div>
-        <h3>Protocolos de Registro Móvil</h3>
-        <p>El personal operativo ya tiene el hábito de registrar datos desde sus teléfonos. Este activo <strong style="color:#93C5FD;">facilita directamente la adopción</strong> de la herramienta digital y reduce la resistencia al cambio.</p>
-      </div>
-    </div>
-
-    <div class="evidence-box">
-      <div class="icon">📸</div>
-      <p><strong style="color:#CBD5E1;">Evidencia Visual</strong><br>Insertar aquí capturas de pantalla de la reunión de coordinación y levantamiento de información con la Gerencia de Roma Bag's</p>
-      <a href="#" class="btn-link">+ Adjuntar evidencia desde Google Drive</a>
-    </div>
-  </div>
-</section>
-
-<!-- BLOQUE 2 -->
-<section>
-  <div class="wrap">
-    <div class="section-label">Bloque 2</div>
-    <h2 class="section-title">Herramientas y Técnicas — Procesamiento de Datos</h2>
-    <p class="section-lead">Selección de una herramienta por categoría según PMBOK, basada en datos primarios y reales obtenidos directamente de la gerencia de Roma Bag's.</p>
-
-    <!-- 2.1 Entrevista -->
-    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:20px;">2.1 — Recopilación de Datos: La Entrevista</h3>
-    <div class="card" style="max-width:100%;margin-bottom:24px;">
-      <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
-        <div style="flex:1;min-width:240px;">
-          <h3 style="margin-bottom:10px;">Entrevista Semiestructurada — Uno a Uno</h3>
-          <p style="margin-bottom:14px;">Se descartaron cuestionarios masivos. La entrevista semiestructurada directa se eligió por brindar información más veraz y profunda sobre el negocio real.</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <span class="pill pill-blue">15 preguntas</span>
-            <span class="pill pill-gold">4 dimensiones</span>
-            <span class="pill pill-green">Natalie — Gerente General</span>
-          </div>
-        </div>
-        <div style="flex-shrink:0;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:16px 20px;min-width:200px;">
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Dimensiones evaluadas</div>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="font-size:13px;color:#CBD5E1;">🏭 Entorno operativo</div>
-            <div style="font-size:13px;color:#CBD5E1;">💰 Valor de negocio</div>
-            <div style="font-size:13px;color:#CBD5E1;">⚙️ Expectativas técnicas</div>
-            <div style="font-size:13px;color:#CBD5E1;">🧠 Cultura organizacional</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="evidence-box">
-      <div class="icon">📎</div>
-      <p><strong style="color:#CBD5E1;">Instrumento de Entrevista</strong><br>Guía de preguntas de validación del Caso de Negocio (15 preguntas completas)</p>
-      <a href="#" class="btn-link">Ver documento completo en Google Drive</a>
-    </div>
-
-    <!-- 2.2 Análisis -->
-    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin:44px 0 20px;">2.2 — Análisis de Datos: Hallazgos del Levantamiento</h3>
-    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:28px;">
-      <div class="finding">
-        <div class="finding-num">1</div>
-        <div>
-          <h4>Centralización absoluta del poder y la necesidad</h4>
-          <p>Natalie concentra todas las decisiones operativas y financieras. Sufre el mayor estrés: <em>"Yo hago el inventario en cuadernos y cruzo el Excel a fin de mes."</em> Su criterio de éxito es un crecimiento del 50% en ventas. Exige Mobile-first: <em>"la computadora es más tiempo, estás sentada, hay que prenderla."</em></p>
-        </div>
-      </div>
-      <div class="finding">
-        <div class="finding-num">2</div>
-        <div>
-          <h4>Descubrimiento del riesgo principal: miedo a perder información</h4>
-          <p>El freno tecnológico no es el costo. Es el miedo a que el sistema altere o borre los datos existentes. Esto exige que la solución BI sea estrictamente un <em>visor gráfico de solo lectura</em>, sin modificar el Excel original bajo ningún concepto.</p>
-        </div>
-      </div>
-      <div class="finding">
-        <div class="finding-num">3</div>
-        <div>
-          <h4>Segmentación de usuarios: Ventas vs. Empaque</h4>
-          <p>Los gráficos de rendimiento no serán públicos para todos. El <em>personal de empaque queda excluido</em> por política de confidencialidad comercial. Al <em>personal de ventas/atención</em> sí se le mostrarán métricas para incentivar productividad y esfuerzo diario.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2.3 Matriz -->
-    <h3 style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-lt);margin:44px 0 20px;">2.3 — Representación de Datos: Matriz de Poder / Interés</h3>
-
-    <div class="matrix-wrap">
-      <!-- Eje Y -->
-      <div class="m-axis-y">Poder (Influencia) ↑</div>
-
-      <!-- Fila 1 -->
-      <div class="m-cell m-amber m-empty">
-        <p>Sin actores<br>identificados<br>en este cuadrante</p>
-      </div>
-      <div class="m-cell m-red">
-        <span class="m-label">Gestionar cuidadosamente</span>
-        <div class="sh-card">
-          <div class="sh-name">SH-01 — Natalie</div>
-          <div class="sh-role">Gerente General / Sponsor</div>
-        </div>
-      </div>
-
-      <!-- Fila 2 -->
-      <div class="m-cell m-teal">
-        <span class="m-label">Monitorear</span>
-        <div class="sh-card">
-          <div class="sh-name">SH-03 — Personal de Empaque</div>
-          <div class="sh-role">Staff operativo · Sin acceso</div>
-        </div>
-      </div>
-      <div class="m-cell m-blue">
-        <span class="m-label">Mantener informados</span>
-        <div class="sh-card">
-          <div class="sh-name">SH-02 — Personal de Ventas</div>
-          <div class="sh-role">Usuarios de visualización</div>
-        </div>
-        <div class="sh-card">
-          <div class="sh-name">SH-04 — Clientes Mayoristas</div>
-          <div class="sh-role">Externo · Valor indirecto</div>
-        </div>
-      </div>
-
-      <!-- Eje X -->
-      <div class="m-axis-x">→ Interés (Preocupación)</div>
-    </div>
-  </div>
-</section>
-
-<!-- BLOQUE 3 -->
-<section>
-  <div class="wrap">
-    <div class="section-label">Bloque 3</div>
-    <h2 class="section-title">Salidas — Registro de Interesados</h2>
-    <p class="section-lead">Documento principal de la fase de inicio. Consolida la identificación, evaluación y clasificación de todos los stakeholders, y define los permisos de acceso y estrategias de comunicación del proyecto.</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Stakeholder / Rol</th>
-            <th>Categoría</th>
-            <th>Expectativas y Requisitos</th>
-            <th>Poder</th>
-            <th>Interés</th>
-            <th>Estrategia de Gestión</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="name-cell">
-              <div class="td-name">Natalie</div>
-              <div class="td-role">Gerente General / Sponsor</div>
-              <div style="margin-top:8px;"><span class="pill pill-gold">SH-01</span></div>
-            </td>
-            <td><span class="pill pill-gray">Interno</span></td>
-            <td>
-              <ul>
-                <li>Aumentar ventas en un <strong>50%</strong></li>
-                <li>Dashboard <strong>Mobile-first</strong></li>
-                <li>Métricas de producción diaria (20+ carteras)</li>
-                <li>Proyecciones interanuales de ganancias</li>
-                <li><strong>Solo lectura</strong> — no alterar el Excel fuente</li>
-              </ul>
-            </td>
-            <td><span class="pill pill-gold">Alto</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Definitivo</div></td>
-            <td><span class="pill pill-gold">Alto</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Usuario final</div></td>
-            <td>
-              <div class="strategy-text">
-                <strong>Gestionar Cuidadosamente</strong>
-                Involucrarla en la validación de cada prototipo gráfico antes de programar. Capacitación en modelo "solo lectura" para reducir resistencia y miedo a pérdida de datos.
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="name-cell">
-              <div class="td-name">Personal de Ventas</div>
-              <div class="td-role">Usuarios de visualización</div>
-              <div style="margin-top:8px;"><span class="pill pill-blue">SH-02</span></div>
-            </td>
-            <td><span class="pill pill-gray">Interno</span></td>
-            <td>
-              <ul>
-                <li>Visualizar metas de ventas mensuales</li>
-                <li>Métricas como <strong>incentivo productivo</strong> diario</li>
-                <li>Interfaz simple por resistencia tecnológica inicial</li>
-              </ul>
-            </td>
-            <td><span class="pill pill-gray">Bajo</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Sin decisión</div></td>
-            <td><span class="pill pill-blue">Alto</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Afectados directos</div></td>
-            <td>
-              <div class="strategy-text">
-                <strong>Mantener Informados</strong>
-                Capacitación básica una vez que el dashboard sea aprobado por gerencia. Comunicar beneficios para evitar resistencia al cambio.
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="name-cell">
-              <div class="td-name">Personal de Empaque</div>
-              <div class="td-role">Staff operativo / Manufactura</div>
-              <div style="margin-top:8px;"><span class="pill pill-gray">SH-03</span></div>
-            </td>
-            <td><span class="pill pill-gray">Interno</span></td>
-            <td>
-              <ul>
-                <li>N/A — Por política estricta de gerencia, la información comercial es <strong>confidencial</strong> para este grupo</li>
-              </ul>
-            </td>
-            <td><span class="pill pill-gray">Nulo</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Rol operativo</div></td>
-            <td><span class="pill pill-gray">Bajo</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Sin interacción</div></td>
-            <td>
-              <div class="strategy-text">
-                <strong>Monitorear</strong>
-                Aislar del alcance del software. Observar si en el futuro su flujo requiere algún tipo de visualización básica de producción.
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="name-cell">
-              <div class="td-name">Clientes Mayoristas</div>
-              <div class="td-role">Top 2 — Compradores B2B</div>
-              <div style="margin-top:8px;"><span class="pill pill-green">SH-04</span></div>
-            </td>
-            <td><span class="pill pill-gray">Externo</span></td>
-            <td>
-              <ul>
-                <li>Mejores tiempos de respuesta en pedidos masivos</li>
-                <li>Mayor disponibilidad de modelos estrella</li>
-                <li>Beneficio <strong>indirecto</strong> por automatización de inventario</li>
-              </ul>
-            </td>
-            <td><span class="pill pill-gray">Bajo</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">No intervienen</div></td>
-            <td><span class="pill pill-green">Medio</span><div style="font-size:11px;color:var(--muted);margin-top:4px;">Valor indirecto</div></td>
-            <td>
-              <div class="strategy-text">
-                <strong>Mantener Informados</strong>
-                Solo a nivel de servicio al cliente. No se comunica el desarrollo interno del software; reciben el valor generado por la eficiencia operativa.
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p style="font-size:12px;color:var(--muted);margin-top:16px;padding-left:4px;">
-      ✦ Esta matriz es la base para definir los permisos de acceso al software y las estrategias de comunicación durante todo el proyecto.
-    </p>
-  </div>
-</section>
-
-<div class="footer-note">
-  Formulación y Evaluación de Proyectos de Sistemas de Información &nbsp;·&nbsp; Documento estructurado PMBOK &nbsp;·&nbsp; Roma Bag's &copy; 2025
+<h3>1.2. Infraestructura y Factores Ambientales (EEFs)</h3>
+<p>De acuerdo con la teoría de gestión de proyectos, los Factores Ambientales de la Empresa (EEFs) se refieren a aquellas condiciones que no están bajo el control del equipo del proyecto, pero que influyen, restringen o dirigen el desarrollo del mismo, abarcando desde la cultura organizacional hasta la infraestructura tecnológica existente (Institute, 2017). En Roma Bag's, estos factores internos se configuran de la siguiente manera:</p>
+<div class="gr">
+<div class="cd"><strong>Hardware y equipos disponibles</strong>La empresa opera con una infraestructura de hardware sumamente básica. Disponen de tres (3) computadoras portátiles para uso administrativo, mientras que la operación de campo y registro de los vendedores se realiza netamente a través de seis (6) dispositivos móviles (celulares).</div>
+<div class="cd"><strong>Redes y conectividad</strong>Cuentan con un servicio de internet de fibra óptica provisto por Movistar. Sin embargo, la topología de red es deficiente; operan con un único router que no cubre todas las áreas de trabajo, generando "zonas muertas" de conectividad (específicamente en el área de transmisiones en vivo o lives de ventas), lo que obliga al personal a depender de sus planes de datos móviles personales.</div>
+<div class="cd"><strong>Software y herramientas de registro actuales</strong>Existe una fragmentación en el manejo de la información. El control de insumos y materia prima se realiza de forma manual mediante cuadernos físicos. Por otro lado, la consolidación de ventas se lleva en hojas de cálculo (Excel) con autoguardado en la nube (Google Drive), las cuales son operadas de forma local sin un sistema transaccional integrado.</div>
+<div class="cd"><strong>Ausencia de personal/área de TI</strong>La empresa no cuenta con un departamento de soporte técnico, administrador de redes o un contador externo formalizado. Las incidencias técnicas (como la pérdida de conexión o la caída de archivos) son manejadas de forma empírica por la misma gerencia, lo que incrementa el riesgo operativo frente a la implementación de nuevas tecnologías.</div>
 </div>
 
+<h3>1.3. Caso de Negocio (Estado Actual y el "Dolor")</h3>
+<p>La necesidad de optimización en Roma Bag's nace de un cuello de botella crítico en la gestión de la información, el cual genera latencia operativa y pérdidas económicas directas.</p>
+<p>Actualmente, existe un desfase entre el mundo físico (producción y stock real) y el mundo digital (registros en Excel). La Gerencia General invierte un mínimo de dos horas cada sábado, de forma manual, intentando cuadrar la información de los cuadernos de consumo con los registros de venta de los trabajadores.</p>
+<p>El principal "dolor" del negocio radica en la vulnerabilidad de estos datos y la falta de información en tiempo real. Debido a las intermitencias en la red Wi-Fi del taller, los archivos de Excel fallan en su proceso de autoguardado, resultando en la pérdida de registros de ventas diarios. Asimismo, el registro manual y desfasado del inventario genera constantes errores de stock ("falsos positivos"); se asume que existe mercadería que en realidad ya fue despachada. Estos errores operativos impactan financieramente a la microempresa, ya que los pedidos se envían incompletos, obligando a la gerencia a asumir el costo de pagar un segundo servicio de motorizado para cumplir con el cliente, además de limitar el tiempo gerencial que podría invertirse en la captación de nuevos clientes mayoristas.</p>
+</section>
+
+<!-- CAP 02 -->
+<section class="sec" id="c2">
+<h2>CAPÍTULO 02: Metodología y Recopilación de Datos</h2>
+
+<h3>2.1. Marco Metodológico de Recopilación</h3>
+<p>De acuerdo con las buenas prácticas de la Guía de los Fundamentos para la Dirección de Proyectos (PMBOK® 6ta Edición), la fase de diagnóstico exige un acercamiento directo y estructurado con los interesados clave. Para asegurar la fidelidad de los datos en "Roma Bag's" y evitar basar el diseño de la arquitectura de Inteligencia de Negocios en supuestos, el equipo de ingeniería seleccionó dos técnicas formales.</p>
+
+<h4>2.1.1. Justificación de la Técnica: Entrevista Semiestructurada (PMBOK® 6.1.2.2)</h4>
+<div class="cd"><span class="bg bb" style="margin-bottom:.5rem">Técnica Formal</span><strong>Entrevista Semiestructurada</strong><p style="margin:0">Según el PMBOK®, las entrevistas son un enfoque formal para obtener información directa. Se optó por la modalidad semiestructurada porque permite utilizar un guion base, pero otorga la flexibilidad para profundizar en los "dolores" operativos que el interesado revele. Esta técnica se aplicó en dos modalidades: virtual (para el enfoque gerencial y financiero) y presencial (para evaluar la actitud frente a la tecnología de otros miembros del taller).</p></div>
+
+<h4>2.1.2. Justificación de la Técnica: Observación (PMBOK® 6.1.2.3)</h4>
+<div class="cd"><span class="bg by" style="margin-bottom:.5rem">Técnica Complementaria</span><strong>Observación Directa (Job Shadowing)</strong><p style="margin:0">Definida como la técnica que proporciona una manera directa de ver a las personas en su ambiente. Su uso fue metodológicamente imperativo durante la visita presencial para validar empíricamente la línea base declarada por la gerencia: auditar el hardware real disponible, mapear las "zonas muertas" de red Wi-Fi y verificar físicamente el uso de los cuadernos de inventario que generan el desfase de información.</p></div>
+
+<h3>2.2. Diseño y Validación de Instrumentos</h3>
+<p>Para estandarizar la recolección, evitar sesgos y guiar las sesiones, se diseñaron herramientas de medición específicas, separando claramente la "técnica" (acción) del "instrumento" (documento).</p>
+
+<h4>2.2.1. Estructura del Guion de Entrevista (Ejes Temáticos)</h4>
+<p>El cuestionario principal (Ver Anexo 1.1 y 1.2) fue construido bajo un enfoque modular, dividiendo las preguntas en ejes estratégicos orientados al diagnóstico técnico:</p>
+<div class="gr">
+<div class="cd"><strong>Bloque 1</strong>Entorno y Procesos (Factores Ambientales / EEFs).</div>
+<div class="cd"><strong>Bloque 2</strong>El Dolor y el Valor (Caso de Negocio e ineficiencias).</div>
+<div class="cd"><strong>Bloque 3</strong>Expectativas Técnicas y Usabilidad (Requisitos).</div>
+<div class="cd"><strong>Bloque 4</strong>Stakeholders y Cultura Organizacional (Cubo de Interesados).</div>
+<div class="cd"><strong>Bloque 5</strong>Viabilidad Operativa.</div>
+</div>
+
+<h4>2.2.2. Diseño de la Ficha de Registro de Campo</h4>
+<p>Herramienta tipo checklist y registro visual utilizada exclusivamente para la técnica de observación in situ. Orientada a levantar el inventario de equipos (PC y terminales móviles) y documentar el entorno físico del taller de producción.</p>
+
+<h4>2.2.3. Protocolo de Validación (Juicio de Expertos / Prueba Piloto)</h4>
+<p>Previo a su ejecución, los instrumentos fueron sometidos a una revisión interna por el equipo de proyecto (Camargo, Estrada, Alaluna y Portalanza) para garantizar que las interrogantes posean el nivel técnico exigido para un análisis de Sistemas de Información, asegurando la captura de datos duros (tiempo, dinero, stock) aplicables a modelos de Inteligencia de Negocios y predicción, tomando en consideración las directrices académicas del curso.</p>
+
+<h3>2.3. Bitácora de Ejecución y Levantamiento de Información</h3>
+<p>El levantamiento de requisitos se ejecutó de manera escalonada para contrastar la versión administrativa con la realidad operativa del taller. Las evidencias completas, fichas técnicas y transcripciones de estas sesiones se encuentran documentadas en la sección de Anexos del presente informe.</p>
+
+<h4>2.3.1. Sesión 01: Diagnóstico de Entorno (Virtual - Google Meet)</h4>
+<div class="cd"><strong>Participante:</strong> Natalie (Gerencia Operativa).<br><strong>Enfoque:</strong> Entrevista administrativa orientada a descubrir el modelo de negocio, flujo de ventas, gestión actual en Excel y cuantificación de pérdidas de tiempo operativo.<br><strong>Referencia:</strong> Detalles técnicos y transcripción en Anexos 2.1 y 3.1.</div>
+
+<h4>2.3.2. Sesión 02: Validación de Infraestructura y Stakeholders (Presencial - In Situ)</h4>
+<div class="cd"><strong>Fecha de ejecución:</strong> 4 de mayo de 2026 (11:20 am - 12:00 pm).<br><strong>Ubicación:</strong> Taller de Producción "Roma Bag's".<br><strong>Participante Principal:</strong> Natalie (Gerencia), con observación indirecta del socio de producción y entorno de trabajo.<br><strong>Enfoque:</strong> Auditoría de hardware, mapeo de red de fibra óptica, validación de cuadernos físicos y perfilamiento de resistencia al cambio (Influyente Bloqueador). La sesión fue liderada por Camargo Rojas (Entrevista), Estrada Ruiz (Auditoría de Hardware), Alaluna Godinez (Apoyo Metodológico) y Portalanza Hurtado (Registro).<br><strong>Referencia:</strong> Ficha técnica, panel fotográfico y transcripción en Anexos 2.3, 2.4 y 3.1.</div>
+
+<h4>2.3.3. Sesión 03</h4>
+<div class="cd" style="border-left:4px solid var(--y)"><strong>[Espacio reservado para futuras entrevistas o levantamiento de requisitos con personal operativo]</strong></div>
+
+<h3>2.4. Registro de Evidencias de Campo</h3>
+<p>El proceso de validación operativa y diagnóstico se encuentra sustentado en material audiovisual y documental, asegurando la trazabilidad de los requisitos del proyecto.</p>
+
+<h4>2.4.1. Panel de Evidencias Fotográficas y Capturas de Pantalla</h4>
+<div class="hl">
+<strong>Evidencia Virtual:</strong> Capturas de sesión de la entrevista gerencial vía Google Meet (Ver Anexo 2.2).<br>
+<strong>Evidencia Presencial:</strong> Panel fotográfico del entorno operativo, infraestructura tecnológica (tres laptops y seis dispositivos móviles celulares) y registro manual (cuadernos de inventario) en el taller de Roma Bag's (Ver Anexo 2.4).
+</div>
+
+<h4>2.4.2. Repositorio de Documentación (Enlaces a Transcripciones y Audios)</h4>
+<div class="cd">
+<strong>Transcripción Meet:</strong> Ver Anexo 3.1.<br>
+<strong>Transcripción Presencial:</strong> Ver Anexo 3.1 (Fase 2).<br>
+<em>(Nota: Se adjuntan hipervínculos a los repositorios en la nube en las fichas técnicas de los Anexos 2.1 y 2.3).</em>
+</div>
+
+<h3>2.5. Procesamiento y Análisis de Hallazgos por Sesión</h3>
+<p>El análisis de la recolección de datos no se basa en la transcripción literal, sino en la extracción de "datos duros" (métricas de tiempo, dinero, recursos e infraestructura) que validan el caso de negocio y justifican la necesidad de la arquitectura de Inteligencia de Negocios.</p>
+
+<h4>2.5.1. Análisis de Resultados: Sesión 01 (Virtual - Google Meet)</h4>
+<p>Enfocada en el modelo de negocio y control gerencial. Los principales hallazgos fueron:</p>
+<div class="gr">
+<div class="cd"><strong>Procesos Diarios</strong>No existe un control automatizado de insumos; se registran en cuadernos físicos, y el stock general se revisa diariamente sin histórico fijo.</div>
+<div class="cd"><strong>Métricas de Ineficiencia</strong>La gerencia admitió invertir "fácilmente 2 horas al día" verificando que los saldos coincidan debido a errores de fórmulas manuales en Excel.</div>
+<div class="cd"><strong>KPI Estratégico</strong>Se determinó como expectativa de éxito un incremento significativo de las ventas (estimado en un mínimo del 50%) si se optimiza el tiempo administrativo, enfocando la producción en una meta inicial de 20 unidades diarias.</div>
+<div class="cd"><strong>Restricción Tecnológica</strong>Existe un miedo latente y explícito a la pérdida de información en plataformas en la nube, lo que condiciona la propuesta a un sistema de alta redundancia o visualización en modo lectura.</div>
+</div>
+
+<h4>2.5.2. Análisis de Resultados: Sesión 02 (Presencial - In Situ)</h4>
+<p>Enfocada en infraestructura, validación de procesos físicos y perfilamiento de stakeholders. Los hallazgos confirmaron las hipótesis del proyecto:</p>
+<div class="gr">
+<div class="cd"><strong>Infraestructura de Red Ineficiente</strong>Se comprobó la existencia de conexión de fibra óptica, pero con deficiencias de cobertura (zonas muertas) durante la operación de ventas online, forzando la dependencia de planes de datos móviles.</div>
+<div class="cd"><strong>Pérdida Económica Directa</strong>Se evidenció un sobrecosto operativo real ("pagar otra vez motorizado para que llegue") ocasionado por errores de transcripción entre el cuaderno físico y el Excel.</div>
+<div class="cd"><strong>Limitación Analítica de Datos</strong>Se confirmó la eliminación de registros históricos (año 2024 borrado), contando actualmente con una base de datos reducida a 8 meses, lo cual limita temporalmente el alcance del modelo predictivo interanual.</div>
+<div class="cd"><strong>Cultura y Resistencia (Stakeholders)</strong>Se identificó al Socio de Producción como un potencial "Influyente Bloqueador", ya que posee autoridad para vetar la herramienta frente a una primera falla. Contrastando, el personal joven (17-35 años) muestra una actitud "Promotora" ante la visualización de metas vía móvil.</div>
+</div>
+
+<h4>2.5.3. Matriz Comparativa de Hallazgos Consolidados</h4>
+<p>Para orientar las fases posteriores del proyecto, se consolida la problemática (el "Dolor") con su respectivo impacto métrico extraído de ambas sesiones.</p>
+<div class="tr"><table>
+<thead><tr><th>Categoría</th><th>Hallazgo Operativo / Dolor Identificado</th><th>Impacto / Métrica</th></tr></thead>
+<tbody>
+<tr><td><span class="bg by">Tiempo</span></td><td>Consolidación y cuadre manual (cuaderno vs Excel).</td><td>Pérdida de 2 horas semanales exclusivamente en cuadrar cuentas.</td></tr>
+<tr><td><span class="bg br">Costo</span></td><td>Errores de "falsos positivos" en inventario y despachos incompletos.</td><td>Sobrecosto logístico directo (doble pago de delivery por errores de anotación).</td></tr>
+<tr><td><span class="bg bb">Datos</span></td><td>Volatilidad y pérdida de bases de datos por interrupciones de red o borrado manual.</td><td>Riesgo alto de integridad; solo 8 meses de dataset histórico seguro.</td></tr>
+<tr><td><span class="bg bgr">Recursos</span></td><td>Dependencia de infraestructura móvil personal ante la baja cobertura Wi-Fi.</td><td>Equipo "Mobile-First" forzado; gestión fragmentada entre tres (3) laptops y seis (6) dispositivos móviles (celulares).</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- CAP 03 -->
+<section class="sec" id="c3">
+<h2>CAPÍTULO 03: Identificación y Registro de Interesados</h2>
+<p>En alineación con la Guía de los Fundamentos para la Dirección de Proyectos (PMBOK® 6ta Edición), el proceso de Identificar a los Interesados es fundamental para reconocer a todas las personas u organizaciones que pueden afectar, verse afectados o percibirse a sí mismos como afectados por una decisión, actividad o resultado del proyecto.</p>
+<p>El presente capítulo formaliza el inicio del análisis de stakeholders para "Roma Bag's", separando a los actores según su ubicación respecto a los límites de la organización y documentando sus expectativas operativas actuales (su día a día), estableciendo así la línea base antes de introducir cualquier propuesta tecnológica.</p>
+
+<h3>3.1. Interesados Internos</h3>
+<p>Son aquellos actores que operan dentro de la estructura de la microempresa y cuyas labores cotidianas están directamente vinculadas al flujo de valor, desde la confección hasta la salida del producto.</p>
+<div class="gr">
+<div class="cd"><strong>Gerencia General (Natalie)</strong>Actor central del negocio. Centraliza las decisiones financieras, la administración del almacén, el cruce de cuentas y el marketing. Es la principal responsable de absorber la carga operativa manual.</div>
+<div class="cd"><strong>Socio / Jefe de Producción</strong>Cofundador del taller. Lidera físicamente los procesos de corte, costura y ensamblaje, garantizando una producción promedio de 30 a 40 carteras diarias. Posee una visión netamente operativa y pragmática del negocio.</div>
+<div class="cd"><strong>Personal de Ventas</strong>Equipo operativo conformado por jóvenes (rango de edad entre 17 y 35 años). Son la fuerza de primera línea en la atención al cliente, interactuando constantemente a través de dispositivos móviles y redes sociales (ej. transmisiones en vivo).</div>
+<div class="cd"><strong>Personal de Empaque</strong>Operarios encargados de embalar las carteras una vez confirmada la venta, preparándolas para su despacho físico.</div>
+</div>
+
+<h3>3.2. Interesados Externos</h3>
+<p>Agrupa a las entidades o individuos que no forman parte de la planilla directa del taller, pero que interactúan comercialmente con Roma Bag's y se ven impactados por la eficiencia (o ineficiencia) de sus procesos internos.</p>
+<div class="gr">
+<div class="cd"><strong>Clientes Mayoristas</strong>Representan el núcleo de rentabilidad, especialmente en la temporada de febrero a mayo. Compran en volumen y exigen respuestas inmediatas sobre la disponibilidad del stock real para abastecer sus propios negocios.</div>
+<div class="cd"><strong>Clientes Minoristas</strong>Compradores unitarios, con alta presencia en campañas específicas (septiembre a enero por festividades).</div>
+<div class="cd"><strong>Logística Tercerizada (Motorizados)</strong>Personal externo subcontratado (o enviado directamente por los clientes mayoristas) encargado exclusivamente del recojo y entrega (delivery) de los paquetes.</div>
+<div class="cd"><strong>Proveedores de Insumos / Taller Alterno</strong>Incluye a los proveedores de materia prima y al taller de apoyo (gestionado por la hermana de la Gerencia), el cual provee carteras adicionales en momentos de alta demanda para evitar quiebres de stock.</div>
+</div>
+
+<h3>3.3. Registro Base de Interesados</h3>
+<p>A continuación, se presenta el documento formal del proyecto (Stakeholder Register). De acuerdo con el rigor metodológico exigido, esta matriz documenta las expectativas frente a su labor actual, aislando temporalmente la solución de software propuesta para entender qué buscan realmente en su entorno de trabajo.</p>
+<div class="tr"><table>
+<thead><tr><th>ID</th><th>Interesado (Rol)</th><th>Tipo</th><th>Expectativas y Requisitos de su Labor Actual (Día a Día)</th></tr></thead>
+<tbody>
+<tr><td><strong>SH-01</strong></td><td>Gerencia General (Natalie)</td><td><span class="bg bb">Interno</span></td><td>- Conocer el monto exacto de ganancia neta mensual (actualmente reinvierte el flujo de caja en compras sin calcular la utilidad real).<br>- Reducir las 2 horas operativas que invierte cada sábado cruzando cuentas y stock.<br>- Evitar quiebres de stock o despachos incompletos por errores de anotación manual.</td></tr>
+<tr><td><strong>SH-02</strong></td><td>Jefe de Producción (Socio)</td><td><span class="bg bb">Interno</span></td><td>- Mantener un ritmo de trabajo fluido en costura y corte (30 a 40 unidades diarias) sin interrupciones por tareas administrativas.<br>- Procesos de trabajo estables que no presenten errores o fallos que retrasen la operación física.</td></tr>
+<tr><td><strong>SH-03</strong></td><td>Personal de Ventas</td><td><span class="bg bb">Interno</span></td><td>- Conocer el inventario exacto en tiempo real para cerrar ventas rápidamente con los clientes mediante dispositivos móviles (usando planes de datos propios).<br>- Recibir motivación o reconocimiento visual por el cumplimiento de sus metas comerciales.</td></tr>
+<tr><td><strong>SH-04</strong></td><td>Personal de Habilitado y Empaque</td><td><span class="bg bb">Interno</span></td><td>- Recibir órdenes claras y precisas sobre qué modelos separar y ensamblar, sin confusiones que generen reprocesos en el taller.</td></tr>
+<tr><td><strong>SH-05</strong></td><td>Clientes Mayoristas</td><td><span class="bg by">Externo</span></td><td>- Que la mercadería solicitada esté completa al 100% y sea entregada a tiempo, especialmente en la temporada alta (febrero a mayo).<br>- Transparencia y rapidez cuando consultan por la disponibilidad de nuevo stock.</td></tr>
+<tr><td><strong>SH-06</strong></td><td>Logística (Motorizado)</td><td><span class="bg by">Externo</span></td><td>- Recoger paquetes completos en un solo viaje para no asumir traslados dobles no remunerados (o pagados extra por la tienda a causa de errores de inventario).</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- CAP 04 -->
+<section class="sec" id="c4">
+<h2>CAPÍTULO 04: Análisis Profundo de Interesados</h2>
+<p>En concordancia con los lineamientos del PMBOK® (6ta Edición), la simple identificación de los interesados es insuficiente para garantizar el éxito de un proyecto. Este capítulo profundiza en la evaluación analítica de los actores de "Roma Bag's", aplicando herramientas de clasificación avanzadas para determinar su capacidad de influencia, urgencia operativa y, fundamentalmente, su actitud frente a la introducción de cambios tecnológicos.</p>
+
+<h3>4.1. Cubo de Interesados (Stakeholder Cube)</h3>
+<p>Para evaluar la complejidad del factor humano en la microempresa, se aplica el modelo tridimensional del Cubo de Interesados, el cual clasifica a los actores en 8 categorías según sus vectores de: Poder (+/-), Interés (+/-) y Actitud (+/-).</p>
+
+<div class="cube-wrap">
+<svg width="350" height="350" viewBox="0 0 350 350" xmlns="http://www.w3.org/2000/svg">
+<polygon style="stroke:#000;stroke-width:1.5" fill="#bda89b" points="90,90 130,50 210,50 170,90" />
+<polygon style="stroke:#000;stroke-width:1.5" fill="#ff0000" points="170,90 210,50 290,50 250,90" />
+<polygon style="stroke:#000;stroke-width:1.5" fill="#ffc000" points="50,130 90,90 170,90 130,130" />
+<polygon style="stroke:#000;stroke-width:1.5" fill="#4a86e8" points="130,130 170,90 250,90 210,130" />
+<polygon style="stroke:#000;stroke-width:1.5" fill="#cc0000" points="250,90 290,50 290,130 250,170" />
+<polygon style="stroke:#000;stroke-width:1.5" fill="#c27ba0" points="250,170 290,130 290,210 250,250" />
+<polygon style="stroke:#000;stroke-width:1.5" fill="#3c78d8" points="210,130 250,90 250,170 210,210" />
+<polygon style="stroke:#000;stroke-width:1.5" fill="#6aa84f" points="210,210 250,170 250,250 210,290" />
+<polygon style="stroke:#000;stroke-width:1.5" fill="#ffc000" points="50,130 130,130 130,210 50,210" />
+<polygon style="stroke:#000;stroke-width:1.5" fill="#4a86e8" points="130,130 210,130 210,210 130,210" />
+<polygon style="stroke:#000;stroke-width:1.5" fill="#4a3c61" points="50,210 130,210 130,290 50,290" />
+<polygon style="stroke:#000;stroke-width:1.5" fill="#92d050" points="130,210 210,210 210,290 130,290" />
+<text x="90" y="170" style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">1</text>
+<text x="170" y="170" style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">2</text>
+<text x="90" y="250" style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">3</text>
+<text x="170" y="250" style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">4</text>
+<text x="150" y="70" style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">5</text>
+<text x="270" y="110" style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">6</text>
+<text x="270" y="190" style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">7</text>
+<text x="30" y="210" style="font-family:Arial;font-size:16px;font-weight:bold;fill:#333" transform="rotate(-90 30 210)" text-anchor="middle">- Poder +</text>
+<text x="130" y="320" style="font-family:Arial;font-size:16px;font-weight:bold;fill:#333" text-anchor="middle">- Interés +</text>
+<text x="260" y="280" style="font-family:Arial;font-size:16px;font-weight:bold;fill:#333" transform="rotate(-45 260 280)" text-anchor="middle">- Actitud +</text>
+</svg>
+</div>
+
+<p>Con base en la información extraída de la entrevista (Capítulo 2), se clasifica a los actores clave:</p>
+<div class="tr"><table>
+<thead><tr><th>Interesado</th><th>Cubo</th><th>Poder</th><th>Interés</th><th>Actitud</th><th>Categoría PMBOK</th><th>Análisis Estratégico</th></tr></thead>
+<tbody>
+<tr><td><strong>Gerencia (Natalie)</strong></td><td style="text-align:center;font-weight:bold;background:#ff0000;color:white">6</td><td style="text-align:center">+</td><td style="text-align:center">+</td><td style="text-align:center">+</td><td>Influyente activo partidario</td><td>Desea fervientemente la organización de datos para vender más, aunque posee un temor latente a la pérdida de información.</td></tr>
+<tr><td><strong>Socio (Producción)</strong></td><td style="text-align:center;font-weight:bold;background:#4a86e8;color:white">2</td><td style="text-align:center">+</td><td style="text-align:center">+</td><td style="text-align:center">-</td><td>Influyente activo bloqueador</td><td><span style="font-weight:bold;color:#c0392b">Hallazgo Crítico:</span> Tiene autoridad compartida en el taller. Según la entrevista: "Basta que vea un error, ya no lo usaría". Su intolerancia a las fallas tecnológicas lo convierte en un alto riesgo.</td></tr>
+<tr><td><strong>Personal de Ventas</strong></td><td style="text-align:center;font-weight:bold;background:#d5a6bd;color:black">7</td><td style="text-align:center">-</td><td style="text-align:center">+</td><td style="text-align:center">+</td><td>Insignificante activo partidario</td><td>Son jóvenes (17 a 35 años) muy familiarizados con dispositivos móviles. Mostrarles gráficos y metas les resulta motivador.</td></tr>
+</tbody></table></div>
+
+<h3>4.2. Modelo de Prominencia (Salience Model)</h3>
+<p>Este modelo clasifica a los interesados según su Poder (autoridad para influir), Legitimidad (relación adecuada y justificada con el proyecto) y Urgencia (necesidad de atención inmediata). Esta priorización dictará a quién se debe atender primero durante el diseño de la solución.</p>
+<div class="tr"><table>
+<thead><tr><th>Interesado</th><th>Poder</th><th>Legitimidad</th><th>Urgencia</th><th>Categoría</th><th>Justificación del Nivel de Prioridad</th></tr></thead>
+<tbody>
+<tr><td><strong>Gerencia General</strong></td><td>SÍ</td><td>SÍ</td><td>SÍ</td><td><span class="bg br">Crítico (7)</span></td><td>Posee el presupuesto, es la dueña legítima y sufre una urgencia operativa severa (pierde horas y dinero por errores). Exige atención inmediata.</td></tr>
+<tr><td><strong>Socio (Producción)</strong></td><td>SÍ</td><td>SÍ</td><td>NO</td><td><span class="bg bb">Dominante (4)</span></td><td>Tiene poder y legitimidad como dueño, pero no tiene urgencia por cambiar el sistema, ya que su enfoque es netamente físico (confección).</td></tr>
+<tr><td><strong>Personal de Ventas</strong></td><td>NO</td><td>SÍ</td><td>SÍ</td><td><span class="bg by">Dependiente (6)</span></td><td>Tienen la urgencia de conocer el stock real para cerrar ventas, pero carecen de poder para imponer el uso de un software.</td></tr>
+<tr><td><strong>Mayoristas</strong></td><td>NO</td><td>SÍ</td><td>SÍ</td><td><span class="bg by">Dependiente (6)</span></td><td>Tienen urgencia por recibir su mercadería sin errores de stock, dependiendo de la gerencia para obtenerla.</td></tr>
+</tbody></table></div>
+
+<h3>4.3. Dirección de la Influencia</h3>
+<p>Este mapeo clasifica a los interesados según el flujo de autoridad y comunicación dentro de la estructura de Roma Bag's, permitiendo al equipo del proyecto saber cómo canalizar los requerimientos.</p>
+<div class="gr">
+<div class="cd"><strong>Ascendente (Hacia la alta dirección)</strong>Gerencia General (Natalie) y el Socio de Producción. A ellos se les presentarán las propuestas de viabilidad, los mockups (prototipos visuales) y de ellos emanará la aprobación final.</div>
+<div class="cd"><strong>Descendente (Hacia el equipo)</strong>Personal de Ventas y de Empaque. Son los receptores del impacto del proyecto. La influencia fluye hacia ellos en forma de capacitaciones (estimadas en 30-40 minutos) y directrices de adopción.</div>
+<div class="cd"><strong>Hacia Afuera (Externos)</strong>Clientes Mayoristas y Personal Logístico (Motorizados). Se beneficiarán de forma tangencial (indirecta) por la exactitud de los despachos y la reducción de viajes dobles.</div>
+<div class="cd"><strong>Lateral (Colaboradores externos)</strong>Taller alterno (Hermana de la dueña), que provee stock de respaldo. Se debe mantener comunicación para estandarizar la entrega de productos.</div>
+</div>
+
+<h3>4.4. Análisis de Riesgos y Expectativas (Mapeo de Resistencia)</h3>
+<p>El levantamiento de datos evidenció barreras culturales y operativas que podrían hacer fracasar la implementación de cualquier sistema tecnológico. Se han identificado dos focos de riesgo principal ligados a la resistencia al cambio:</p>
+<div class="cd" style="border-left:4px solid var(--y)">
+<strong>Riesgo por "Miedo Operativo" (Riesgo del Sponsor)</strong>
+<p><strong>La Expectativa:</strong> La gerencia desea ver analítica predictiva interanual.</p>
+<p><strong>La Resistencia:</strong> Existe un trauma previo documentado ("el Excel del año pasado lo borré y a veces falla el autoguardado"). El temor absoluto es corromper su archivo actual.</p>
+<p style="margin:0"><strong>Impacto en el Proyecto:</strong> Cualquier solución transaccional que reemplace bruscamente su Excel será rechazada.</p>
+</div>
+<div class="cd" style="border-left:4px solid var(--r)">
+<strong>Riesgo por Intolerancia a la Falla (Riesgo del Socio)</strong>
+<p><strong>La Expectativa:</strong> El socio exige que la producción no se detenga por tareas administrativas.</p>
+<p><strong>La Resistencia:</strong> Clasificado como "Influyente Bloqueador". Su resistencia es condicional; adoptará el sistema si funciona a la primera, pero lo saboteará pasivamente (dejando de usarlo) ante el más mínimo fallo de red o error de interfaz.</p>
+<p style="margin:0"><strong>Impacto en el Proyecto:</strong> Exige que la etapa de pruebas (testing) sea exhaustiva antes del despliegue en taller, ya que no habrá una "segunda oportunidad" para generar confianza en esta área.</p>
+</div>
+</section>
+
+<!-- ANEXOS -->
+<section class="sec" id="anx">
+<h2>ANEXOS</h2>
+
+<!-- ANEXO 1 -->
+<div id="anx1">
+<h3>ANEXO 1: Instrumentos de Recolección de Datos</h3>
+
+<h4>Anexo 1.1. Guion de Entrevista Semiestructurada (Gerencia - Virtual)</h4>
+<div class="ficha">
+<h4>UNIVERSIDAD NACIONAL TECNOLÓGICA DE LIMA SUR (UNTELS)</h4>
+<div class="ficha-row"><span class="ficha-label">Carrera:</span><span class="ficha-val">Ingeniería de Sistemas</span></div>
+<div class="ficha-row"><span class="ficha-label">Proyecto:</span><span class="ficha-val">Sistemas de Información "Roma Bag's"</span></div>
+<div class="ficha-row"><span class="ficha-label">Equipo:</span><span class="ficha-val">Alaluna Godinez, Mauricio A. · Camargo Rojas, Maria del Cielo · Estrada Ruiz, Luis A. · Portalanza Hurtado, Fiorella</span></div>
+<div class="ficha-row"><span class="ficha-label">Objetivo:</span><span class="ficha-val">Diagnosticar los factores ambientales, el dolor del negocio y los requisitos operativos de la microempresa para la propuesta de una arquitectura de Inteligencia de Negocios.</span></div>
+</div>
+
+<p><strong>Bloque 1: Entorno y Procesos (Factores Ambientales)</strong></p>
+<div class="pregunta-block"><span class="num">1.</span> ¿El Excel de ventas e insumos lo actualizan en tiempo real cada vez que venden, o juntan todo y hacen un vaciado al final del día/semana?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">2.</span> ¿A nivel de dispositivos, el personal usa sus propios celulares o la empresa les da equipos para registrar la información?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">3.</span> ¿Tienen un control numérico exacto en el Excel de cuántos insumos les quedan?<span class="resp">Respuesta: [___]</span></div>
+
+<p><strong>Bloque 2: El Dolor y el Valor (Caso de Negocio)</strong></p>
+<div class="pregunta-block"><span class="num">4.</span> ¿Cuánto tiempo te toma a fin de mes cruzar la información para saber qué modelo se vendió más o qué cliente compró más?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">5.</span> ¿Si te ahorraras esas horas de trabajo en Excel, en qué área invertirías ese tiempo?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">6.</span> ¿Esperas que esta herramienta te ayude más a vender o a organizarte?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">7.</span> ¿Sabes con exactitud qué modelo de cartera te deja mayor ganancia?<span class="resp">Respuesta: [___]</span></div>
+
+<p><strong>Bloque 3: Expectativas Técnicas y Usabilidad (Requisitos)</strong></p>
+<div class="pregunta-block"><span class="num">8.</span> ¿Qué tendría que pasar en tres meses para considerar que el proyecto valió la pena?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">9.</span> ¿Qué dato revisarías cada mañana en el sistema?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">10.</span> ¿Esperas que la herramienta reemplace completamente el Excel?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">11.</span> ¿Prefieres visualizar los gráficos desde una laptop o desde el celular?<span class="resp">Respuesta: [___]</span></div>
+
+<p><strong>Bloque 4: Stakeholders y Cultura Organizacional</strong></p>
+<div class="pregunta-block"><span class="num">12.</span> ¿Quién toma las decisiones y quién se estresa más llenando datos?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">13.</span> ¿Cuánto tiempo esperas que tu personal dedique a aprender estas herramientas?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">14.</span> ¿Los empleados podrán visualizar los gráficos y resultados?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">15.</span> ¿Cuál sería tu mayor preocupación al usar una nueva plataforma?<span class="resp">Respuesta: [___]</span></div>
+
+<h4 style="margin-top:2.5rem">Anexo 1.2. Guion de Entrevista de Campo (Visita Presencial)</h4>
+<div class="ficha">
+<h4>UNIVERSIDAD NACIONAL TECNOLÓGICA DE LIMA SUR (UNTELS)</h4>
+<div class="ficha-row"><span class="ficha-label">Tipo de Instrumento:</span><span class="ficha-val">Guion Semiestructurado In Situ (Filtrado según interacción real)</span></div>
+<div class="ficha-row"><span class="ficha-label">Objetivo:</span><span class="ficha-val">Auditar la infraestructura física, validar el flujo de trabajo en el taller y perfilar a los interesados según las dimensiones de Poder, Interés y Actitud (Cubo de Interesados).</span></div>
+</div>
+
+<p><strong>Bloque 1: Entorno, Infraestructura y Organigrama (EEFs)</strong></p>
+<div class="pregunta-block"><span class="num">1.</span> Para detallar el organigrama, ¿cuáles son las áreas exactas de trabajo y cuántas personas conforman la empresa contando al personal logístico?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">2.</span> Aparte de ti, ¿hay algún socio o encargado que tome decisiones cuando no estás presente en el taller?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">3.</span> En el taller, ¿qué proveedor de internet tienen y el router cubre bien todas las áreas de trabajo o te quedas sin señal?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">4.</span> ¿Has tenido fallas perdiendo información en Excel cuando se corta el internet y falla el autoguardado?<span class="resp">Respuesta: [___]</span></div>
+
+<p><strong>Bloque 2: Cuantificación del Dolor Operativo</strong></p>
+<div class="pregunta-block"><span class="num">5.</span> ¿Cuántas horas mínimas utilizas para llenar el Excel y cuadrar cuentas, y qué día de la semana lo haces?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">6.</span> De los errores de desfase que tienes entre tu cuaderno físico y el Excel, ¿sientes que pierdes dinero o asumes sobrecostos operativos (como pagar doble motorizado)?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">7.</span> En el proceso diario, ¿cuántas carteras logran producir por día y cuántos modelos manejan en el taller?<span class="resp">Respuesta: [___]</span></div>
+
+<p><strong>Bloque 3: Análisis de Datos y Expectativas Estratégicas</strong></p>
+<div class="pregunta-block"><span class="num">8.</span> Para alimentar un modelo de predicción, ¿cuántos años o meses de registro histórico de ventas tienes guardados actualmente?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">9.</span> No tienes un cálculo mensual exacto, pero ¿cuál es tu promedio de ventas semanal aproximado?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">10.</span> Si la plataforma te ahorrara el trabajo manual de fin de mes, ¿qué acciones estratégicas implementarías con ese tiempo libre?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">11.</span> Aparte del autoguardado, ¿tienes alguna política de copia de seguridad (Google Drive) para no perder tu información?<span class="resp">Respuesta: [___]</span></div>
+
+<p><strong>Bloque 4: Gestión de Interesados y Resistencia al Cambio (Stakeholders)</strong></p>
+<div class="pregunta-block"><span class="num">12.</span> Si un día el tablero visual falla y no muestra datos, ¿quién sería la persona dentro del taller que se vería más afectada o retrasada en su trabajo urgente?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">13.</span> ¿Cuál es la edad promedio de tus vendedores y cómo tomarían ver sus metas diarias en el celular (como motivación o se sentirían vigilados)?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">14.</span> Analizando la resistencia al cambio, si mañana implementamos el sistema, ¿quién crees que sería el primero en quejarse o dejar de usarlo si ve un error?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">15.</span> Si el sistema expone que un trabajador comete errores, ¿crees que el equipo trataría de boicotear la plataforma por miedo a sanciones?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">16.</span> A nivel personal, ¿te genera entusiasmo ver tu negocio modernizado y con gráficos de tus ganancias reales por mes?<span class="resp">Respuesta: [___]</span></div>
+
+<p><strong>Bloque 5: Viabilidad Operativa</strong></p>
+<div class="pregunta-block"><span class="num">17.</span> Al diseñar esta herramienta para celulares, ¿el personal utilizaría su plan de datos móviles o el WiFi del taller?<span class="resp">Respuesta: [___]</span></div>
+<div class="pregunta-block"><span class="num">18.</span> En el futuro, cuando los datos crezcan, ¿estarías dispuesta a asumir el costo mínimo de un servicio de nube privada?<span class="resp">Respuesta: [___]</span></div>
+</div>
+
+<!-- ANEXO 2 -->
+<div id="anx2">
+<h3>ANEXO 2: Evidencias de Ejecución y Registro Técnico</h3>
+
+<h4>Anexo 2.1. Ficha Técnica de la Entrevista Virtual</h4>
+<div class="ficha">
+<div class="ficha-row"><span class="ficha-label">Fecha de Ejecución:</span><span class="ficha-val">[ Día ] de [ Mes ] de 2026</span></div>
+<div class="ficha-row"><span class="ficha-label">Hora de Inicio / Fin:</span><span class="ficha-val">[ 00:00 ] – [ 00:00 ]</span></div>
+<div class="ficha-row"><span class="ficha-label">Plataforma / Modalidad:</span><span class="ficha-val">Google Meet (Virtual)</span></div>
+<div class="ficha-row"><span class="ficha-label">Entrevistada:</span><span class="ficha-val">Natalie (Gerencia Operativa - Roma Bag's)</span></div>
+<div class="ficha-row"><span class="ficha-label">Panel de Entrevistadores:</span><span class="ficha-val"><strong>Líder de Entrevista:</strong> Camargo Rojas, Maria del Cielo.<br><strong>Apoyo Técnico:</strong> Alaluna Godinez, Mauricio Antonio.<br><strong>Apoyo Técnico:</strong> Estrada Ruiz, Luis Augusto.</span></div>
+<div class="ficha-row"><span class="ficha-label">Enlace de Grabación:</span><span class="ficha-val">[ Insertar enlace de Drive o código QR ]</span></div>
+</div>
+
+<h4>Anexo 2.2. Evidencia Visual (Capturas de Pantalla - Virtual)</h4>
+<div class="hl">
+<em>Figura X: Sesión de levantamiento de información con la Gerencia General de Roma Bag's vía Google Meet.</em><br>
+(Insertar captura de pantalla de la reunión donde se vea la interfaz de Google Meet, la cámara de Natalie y a los integrantes del equipo).
+</div>
+
+<h4 style="margin-top:2rem">Anexo 2.3. Ficha Técnica de la Visita de Campo (Presencial)</h4>
+<div class="ficha">
+<div class="ficha-row"><span class="ficha-label">Fecha de Ejecución:</span><span class="ficha-val">4 de Mayo de 2026</span></div>
+<div class="ficha-row"><span class="ficha-label">Hora de Inicio / Fin:</span><span class="ficha-val">11:20 – 12:00</span></div>
+<div class="ficha-row"><span class="ficha-label">Modalidad:</span><span class="ficha-val">Presencial (Visita de Campo / Job Shadowing)</span></div>
+<div class="ficha-row"><span class="ficha-label">Ubicación:</span><span class="ficha-val">Taller de Producción "Roma Bag's"</span></div>
+<div class="ficha-row"><span class="ficha-label">Entrevistada Principal:</span><span class="ficha-val">Natalie (Gerencia Operativa y Propietaria)</span></div>
+<div class="ficha-row"><span class="ficha-label">Panel de Investigadores:</span><span class="ficha-val"><strong>Líder de Entrevista (Speaker 0):</strong> Camargo Rojas, Maria del Cielo.<br><strong>Auditor de Hardware (Speaker 2):</strong> Estrada Ruiz, Luis Augusto.<br><strong>Apoyo Metodológico (Speaker 3):</strong> Alaluna Godinez, Mauricio Antonio.<br><strong>Observadora / Registro:</strong> Portalanza Hurtado, Fiorella.</span></div>
+<div class="ficha-row"><span class="ficha-label">Objetivo de la Visita:</span><span class="ficha-val">Validar la línea base de infraestructura (hardware/redes), realizar observación directa del manejo de cuadernos físicos y evaluar las dimensiones del Cubo de Interesados (resistencia al cambio).</span></div>
+<div class="ficha-row"><span class="ficha-label">Enlace de Respaldo:</span><span class="ficha-val">[ Insertar enlace de Drive al audio original ]</span></div>
+</div>
+
+<h4>Anexo 2.4. Evidencia Visual de la Visita Presencial</h4>
+<div class="hl">
+<strong>Figura X:</strong> Fachada / Interior del área de producción de Roma Bag's.<br>
+<em>Leyenda: Vista general del entorno operativo donde laboran los 18 miembros del equipo interno.</em><br><br>
+<strong>Figura Y:</strong> Infraestructura Tecnológica (PC y Terminal Móvil).<br>
+<em>Leyenda: Vista de las 3 laptops y los 6 dispositivos móviles celulares utilizados para registrar los cuadres de almacén y ventas.</em><br><br>
+<strong>Figura Z:</strong> Registro Manual de Inventario (El "Dolor" Operativo).<br>
+<em>Leyenda: Cuaderno físico utilizado actualmente para el control de insumos y mercadería despachada, principal fuente de los desfases de stock documentados en el informe.</em>
+</div>
+</div>
+
+<!-- ANEXO 3 -->
+<div id="anx3">
+<h3>ANEXO 3: Transcripción de Hallazgos y Diálogo Crítico</h3>
+
+<h4>Anexo 3.1. Transcripción de la Entrevista Virtual (Google Meet)</h4>
+<div class="chat-box">
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Ya está. A ver, Natalie, te vamos a hacer unas preguntas, ¿ya? El proyecto básicamente consiste en formular e implementar una arquitectura de inteligencia de negocios que más o menos son tableros de control donde vas a poder interactuar tú misma con lo que es, por ejemplo, las ventas que haces de forma anual, mensual o por diario y también las ganancias que tú tienes, ¿no? Eso es lo que se busca hacer. Son en total algunas preguntitas divididas por tres bloques. La primera pregunta es: ¿tú manejas tus ventas en un Excel, ¿no?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sí, en un Excel.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">¿Tú sueles actualizar esto a tiempo real?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">No, a diario estoy siempre haciendo stock. No tengo un stock fijo como que semanal ni nada, sino a diario. (Pausa) Un ratito, un ratito, abuelo, estoy en una llamada... Ya.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent2">LE</div><div><div class="chat-name">Luis (Entrevistador 2)</div><div class="chat-text">Bien, Natalie, la segunda pregunta sería: el personal que usas para manejar el tema de inventario y poder ver lo que fabrican durante el día, ¿hace un registro de información desde su propio celular o lo hacen por un cuaderno?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">No, desde el celular.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent2">LE</div><div><div class="chat-name">Luis (Entrevistador 2)</div><div class="chat-text">¿Solamente manejan una computadora y celulares, ¿no?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sí, manejamos tres (3) laptops y seis (6) dispositivos móviles celulares.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent2">LE</div><div><div class="chat-name">Luis (Entrevistador 2)</div><div class="chat-text">Entiendo. Y sobre los insumos, ¿tienes algún control exacto en Excel o lo anotas en un cuaderno para calcular?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Todo, todo lo anoto en un cuaderno en cuanto a gasto de consumo.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent3">MA</div><div><div class="chat-name">Mauricio (Entrevistador 3)</div><div class="chat-text">Natalie, pasando al tema del tiempo, ¿cuánto tiempo te toma a fin de mes ver la información de los modelos? Es decir, saber qué modelo de cartera se vendió más y quién es el cliente que te compró más. ¿Sueles cuadrar eso a fin de mes?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sí, a fin de mes. Más que nada los dos clientes a los que le vendo por mayor, ¿no? Que es lo que se llevan más. Los por menor son ocasionales, casi siempre son nuevos clientes que se llevan una o dos carteras al mes.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent3">MA</div><div><div class="chat-name">Mauricio (Entrevistador 3)</div><div class="chat-text">Con lo que te hemos explicado, ¿esperas que esta herramienta te ayude a vender más, a tener más clientes, o a organizarte mejor?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Claro, si me organiza mejor, podría tener más tiempo para buscar más clientes.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent3">MA</div><div><div class="chat-name">Mauricio (Entrevistador 3)</div><div class="chat-text">Actualmente, ¿sabes con exactitud cuál es el modelo que te da mayor ganancia?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sí, el modelo obvio. Es lo que más me piden.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Perfecto. Si nos sentamos en tres meses a revisar el proyecto con la herramienta ya lista, ¿qué tiene que haber pasado en Roma Bag's para que nos digas que valió la pena el proyecto?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Lo que yo más quiero es ventas, ¿no? Tendría que ver un cambio significativo de más del, por ejemplo, 50% de avance en cuanto a ventas. Es algo mínimo que esperaría.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Imagina que ya tienes el sistema funcionando, ¿cuál es el número o dato que esperas revisar cada mañana al iniciar tu día? ¿La cantidad que vas a producir o repartir?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sería más como que diario, ¿no? Diario algo de 20 carteras.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">¿Y te gustaría producir más?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sí, producir más.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent2">LE</div><div><div class="chat-name">Luis (Entrevistador 2)</div><div class="chat-text">¿Y esperas que esta herramienta reemplace completamente tu Excel para ver gráficos organizados?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Claro, claro, sí. Porque aparte lo tienen todo organizado automáticamente sin necesidad de que yo lo vea semanalmente.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent2">LE</div><div><div class="chat-name">Luis (Entrevistador 2)</div><div class="chat-text">¿Prefieres verlo desde tu computadora o se te facilitaría desde tu celular?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Facilitar verlo desde el celular, porque la computadora es más tiempo, estás sentada, esperar a que se prenda.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent3">MA</div><div><div class="chat-name">Mauricio (Entrevistador 3)</div><div class="chat-text">Tenemos entendido que tienes dieciocho trabajadores. ¿Quién toma la decisión final sobre el presupuesto y quién es la persona que más sufre o se estresa llenando los datos a mano en el Excel?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">El que me hace el inventario... Yo, yo, ajá, yo lo veo.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent3">MA</div><div><div class="chat-name">Mauricio (Entrevistador 3)</div><div class="chat-text">Siendo realistas con el ritmo de tu taller, ¿cuánto tiempo esperas que tu personal dedique a aprender a usar nuevas herramientas?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">No esperaría tanto, porque es un poco difícil acostumbrarse al inicio.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent3">MA</div><div><div class="chat-name">Mauricio (Entrevistador 3)</div><div class="chat-text">¿Tú serías capaz de mostrarles esta información de metas a tus empleados de empaque y producción, o solo a los vendedores?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Para los que empacan, no creo. Sería más para los que están en atención. Para vendedores, hasta posiblemente la mano de obra, ¿no? Para que también se esfuercen en mejorar la calidad.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Para cerrar, Natalie. Digamos que integramos la plataforma, ¿cuál es la mayor preocupación que podrías tener? ¿Miedo a perder la información?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sí, no, perder la información. Claro, sí, sí.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Esas son las 15 preguntas. Según esto se va a desarrollar el tablero de control. Si deseas que añadamos algún otro atributo, podemos implementarlo.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Ah, ya. ¿Es como un software?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">No tanto como un software transaccional, sino algo visual. Los datos ya van a estar cargados y la información se va a cuadrar para darte un resultado final, como el producto que más vendes.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Ah, ya. Ya entendí. Sí, está bien.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Igual, si tienes cualquier consulta nos avisas.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Ah, ya, pues me muestran cómo queda. Chao.</div></div></div>
+
+</div><!-- fin chat-box virtual -->
+
+<h4 style="margin-top:2.5rem">Anexo 3.1 (Fase 2). Transcripción de la Entrevista Presencial y Observación</h4>
+<div class="chat-box">
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder de Entrevista)</div><div class="chat-text">Nosotros hemos analizado tu experiencia y las áreas que manejas. El objetivo es hacer un organigrama desde la gerencia, que eres tú, hasta las diferentes áreas. Para detallar: ¿tienes algún subgerente o se divide directamente en áreas técnicas como producción, ventas y logística?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente Operativa)</div><div class="chat-text">Básicamente, ventas es marketing en mi caso, no me mezclo. Yo me ocuparía de esa misma chamba.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">¿Hay alguien que tome las decisiones por ti cuando tú no estás?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sí, él. Mi socio, que se encarga de la producción.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent2">LE</div><div><div class="chat-name">Luis (Auditor de Hardware)</div><div class="chat-text">Observando los equipos que usan, ¿cuánto de memoria RAM tiene la computadora principal?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Las especificaciones de la laptop se las puedo mandar después.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Perfecto. Sobre la conectividad, tu proveedor de internet es Movistar, ¿tiene fibra óptica?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sí, es fibra óptica.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent3">MA</div><div><div class="chat-name">Mauricio (Apoyo Metodológico)</div><div class="chat-text">¿El router cubre todas las áreas de tu trabajo o a veces te quedas sin señal?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">No, me quedo sin señal en el punto donde hago ventas en live (transmisiones en vivo). Ahí me quedo sin señal y hago uso de mis datos móviles.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">¿Alguna vez has tenido fallas con el Excel cuando se va el internet o problemas al guardar datos?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sí, al guardar sí. A veces se me va el internet y como tengo el autoguardado, no se guarda lo que hice, y cuando me doy cuenta ya perdí la actualización de cuentas.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Usualmente, ¿cuántas horas utilizas en llenar el Excel o cuánto te tardas en cuadrar?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Mínimo 2 horas, porque tengo que cuadrar cuentas con mis proveedoras. Lo hago por semana, cada sábado.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">De los desfases que tienes entre el cuaderno físico y el Excel, ¿sientes que pierdes dinero o asumes sobrecostos operativos?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sí, ya me ha pasado. A veces me confío y no anoto cuando ya se fue la mercadería. El pedido se va incompleto y tengo que pagar otra vez el motorizado para que llegue al cliente.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Para predecir ganancias en el futuro, ¿cuántos años de registro histórico de ventas tienes guardados en tu Excel?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Hasta el momento, un año y medio. Lo de 2024 creo que ya lo borré. Está registrado por ahí unos 8 meses.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent2">LE</div><div><div class="chat-name">Luis (Auditor)</div><div class="chat-text">¿Te acuerdas de que el profesor Cantu nos habló de un programa para recuperar archivos perdidos? Se puede recuperar desde el historial de Google Sheets, es de mucha ayuda.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Voy a ver si lo recupero más tarde. De igual forma, tengo a mi amiga a la que le vendo mercadería, ella también saca su cuenta en Excel y guarda registros de cuando fui netamente mayorista.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Entendido. Y sobre el volumen, ¿cuál es el promedio de ventas que tienes?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">No tengo un dato mensual exacto, pero tengo un semanal que es mínimo 4 mil, aunque ahí está junto el costo del producto con la ganancia.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Si la plataforma te ahorrara ese trabajo manual de los sábados, ¿qué acciones estratégicas podrías implementar con ese tiempo libre?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Conseguir clientes que me lleven al por mayor, para tener más volumen y trabajar más fácil, o tal vez mejorar la marca.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">Pasando a tu equipo. Si un día el tablero falla y no muestra las ventas del día, ¿quién sería la persona dentro del taller que se vería más afectada?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">El costurero (mi socio). Porque no sabría qué producir para el día.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">¿Cuál es la edad promedio de tus vendedores? Si se les muestra un gráfico de sus metas diarias en el celular, ¿lo verían como una motivación o sentirían vigilancia?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Tienen entre 17 y 35 años. Lo verían como una motivación, yo también he trabajado así. Además, utilizarían su plan de datos móviles para revisarlo.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent2">LE</div><div><div class="chat-name">Luis (Auditor)</div><div class="chat-text">Analizando la resistencia al cambio, si mañana tuvieras listo el sistema, ¿alguien se quejaría o habría negación a usarlo?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Por ejemplo, mi socio. Posiblemente, si algo no le cuadra y es la primera vez que ve que no va bien, ya no lo quiere usar. Prácticamente él tiene autoridad en el taller (costura). Si él pone resistencia o no le gusta, se dejaría de lado.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar lider">ML</div><div><div class="chat-name">María (Líder)</div><div class="chat-text">A nivel personal, ¿te genera estrés aprender algo nuevo o te entusiasma modernizarte con gráficos?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sí me gustaría. Me gustaría tener un monto exacto por mes de cuánto gano netamente, porque normalmente lo que entra lo reinvierto en otras compras y no calculo mi ganancia real.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent2">LE</div><div><div class="chat-name">Luis (Auditor)</div><div class="chat-text">Para formalizar el organigrama, ¿cómo defines tus áreas de trabajo?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">Sería Producción (costura, habilitado, corte), Ventas (marketing del que me encargo yo), Delivery (motorizado contratado) y Almacén (yo misma).</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent2">LE</div><div><div class="chat-name">Luis (Auditor)</div><div class="chat-text">¿Cómo varían tus ventas por temporada y cuánto produces por día?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">De septiembre a enero es bastante full la venta minorista por festividades. Desde febrero a mayo priorizo ventas mayoristas. En el taller manejamos 3 modelos, actualmente operamos con 1 máquina y podemos hacer de 30 a 40 carteras en un día. Adicionalmente, mi hermana me apoya con otra producción paralela.</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar ent2">LE</div><div><div class="chat-name">Luis (Auditor)</div><div class="chat-text">¿Cuántos trabajadores son en total para considerarlos en los usuarios del sistema?</div></div></div>
+
+<div class="chat-msg"><div class="chat-avatar gerente">NG</div><div><div class="chat-name">Natalie (Gerente)</div><div class="chat-text">En el taller somos 18 conmigo. Sumando al motorizado contratado para logística, somos 19 en la operación.</div></div></div>
+
+</div><!-- fin chat-box presencial -->
+
+<h4>Anexo 3.2. Registro de Observación Indirecta</h4>
+<div class="gr">
+<div class="cd"><strong>Observación 1</strong>Se percibe una alta carga de estrés en la gerencia al hablar del cruce de cuentas de los sábados.</div>
+<div class="cd"><strong>Observación 2</strong>La entrevistada menciona que el "autoguardado" de Drive es su única medida de seguridad actual.</div>
+</div>
+<p style="text-align:center;font-style:italic;color:#94a3b8;margin-top:1rem">(Fin de la grabación técnica y cierre de la visita de campo).</p>
+</div>
+</section>
+
+<!-- REFERENCIAS -->
+<section class="sec" id="ref">
+<h2>Referencias Bibliográficas</h2>
+<div class="cd">
+<p>Institute, P. M. (2017). <em>Guía de los Fundamentos Para la Dirección de Proyectos (Guía del PMBOK®)-Sexta Edición (SPANISH)</em>. Project Management Institute.</p>
+</div>
+</section>
+
+<footer>
+<p>Universidad Nacional Tecnológica de Lima Sur · Proyecto Roma Bag's · Lima, 2026</p>
+<p>Referencia: Institute, P. M. (2017). Guía del PMBOK®-Sexta Edición.</p>
+</footer>
+</main>
+
+<script>
+window.addEventListener('scroll',()=>{const e=document.documentElement;const p=(e.scrollTop/(e.scrollHeight-e.clientHeight))*100;document.getElementById('prog').style.width=p+'%'});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.sec').forEach(s=>obs.observe(s));
+window.addEventListener('scroll',()=>{let secs=document.querySelectorAll('.sec,header');let links=document.querySelectorAll('.nl');let t=window.scrollY+120;secs.forEach(s=>{if(s.id&&t>=s.offsetTop&&t<s.offsetTop+s.offsetHeight){links.forEach(l=>{l.classList.remove('on');if(l.getAttribute('href')=='#'+s.id)l.classList.add('on')})}})});
+</script>
 </body>
 </html>
