@@ -78,10 +78,8 @@ footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-si
   body{display:block}
   .side{position:static;width:100%;height:auto;padding:1.5rem 1.5rem 0.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
   .side .sub{border-bottom:none;padding-bottom:0.5rem;margin-bottom:0.5rem}
-  .nm{display:flex;overflow-x:auto;gap:.5rem;padding-bottom:.8rem;margin-bottom:0;-webkit-overflow-scrolling:touch}
-  .nm::-webkit-scrollbar{height:4px}
-  .nm::-webkit-scrollbar-thumb{background:var(--side2);border-radius:4px}
-  .nm li{flex-shrink:0;margin-bottom:0}
+  .nm{display:flex;flex-wrap:wrap;gap:.5rem;padding-bottom:.8rem;margin-bottom:0}
+  .nm li{margin-bottom:0}
   .nm a{border-left:none;border-bottom:3px solid transparent;padding:.5rem .7rem;border-radius:4px 4px 0 0}
   .nm a:hover,.nm a.on{border-left-color:transparent;border-bottom-color:var(--ac);background:rgba(255,255,255,.04)}
   .nm .sub-link{padding-left:.7rem}
@@ -701,7 +699,7 @@ footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-si
 
 <script>
 window.addEventListener('scroll',()=>{const e=document.documentElement;const p=(e.scrollTop/(e.scrollHeight-e.clientHeight))*100;document.getElementById('prog').style.width=p+'%'});
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.08});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:0,rootMargin:"0px 0px -50px 0px"});
 document.querySelectorAll('.sec').forEach(s=>obs.observe(s));
 window.addEventListener('scroll',()=>{let secs=document.querySelectorAll('.sec,header');let links=document.querySelectorAll('.nl');let t=window.scrollY+120;secs.forEach(s=>{if(s.id&&t>=s.offsetTop&&t<s.offsetTop+s.offsetHeight){links.forEach(l=>{l.classList.remove('on');if(l.getAttribute('href')=='#'+s.id)l.classList.add('on')})}})});
 </script>
