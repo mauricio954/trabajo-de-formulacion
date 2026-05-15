@@ -46,7 +46,22 @@ tr:last-child td{border-bottom:none}
 .fx>.cd{flex:1;min-width:240px}
 footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-size:.82rem;color:#64748b;text-align:center}
 .ki{font-size:.85rem;color:var(--ac);font-weight:700;letter-spacing:1px;text-transform:uppercase}
-.sec{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}.sec.vis{opacity:1;transform:none}
+/* --- Sistema de Páginas (SPA) --- */
+.sec {
+  display: none;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInPage 0.4s ease forwards;
+}
+.sec.active {
+  display: block;
+}
+@keyframes fadeInPage {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /* Chat transcript styles */
 .chat-box{background:var(--w);border:1px solid var(--bd);border-radius:12px;padding:1.5rem;margin:1rem 0;max-height:600px;overflow-y:auto}
 .chat-msg{display:flex;gap:.8rem;margin-bottom:1rem;padding:.8rem;border-radius:8px;transition:background .2s}
@@ -70,21 +85,30 @@ footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-si
 .pregunta-block .num{font-weight:700;color:var(--ac);margin-right:.5rem}
 .pregunta-block .resp{display:block;margin-top:.4rem;padding:.5rem;background:#f8fafc;border:1px dashed var(--bd);border-radius:4px;font-size:.85rem;color:#94a3b8;font-style:italic}
 
+/* Accordion Menu */
+.acc-btn { width: 100%; text-align: left; background: none; border: none; color: var(--side2); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; padding: 0.8rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,.08); font-family: 'Inter', sans-serif;}
+.acc-btn:hover { color: var(--w); }
+.acc-content { list-style: none; display: none; margin-bottom: 0.5rem; }
+.acc-content.open { display: block; }
+.acc-btn .arr { font-size: 0.6rem; transition: transform 0.3s; }
+.acc-btn.open .arr { transform: rotate(180deg); }
+#mobile-menu-btn { box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+
 /* --- Media Queries for Responsiveness --- */
 @media(max-width:1200px){
   .mc{padding:2.5rem 3rem}
 }
 @media(max-width:900px){
   body{display:block}
-  .side{position:static;width:100%;height:auto;padding:1.5rem 1.5rem 0.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
-  .side .sub{border-bottom:none;padding-bottom:0.5rem;margin-bottom:0.5rem}
-  .nm{display:flex;flex-wrap:wrap;gap:.5rem;padding-bottom:.8rem;margin-bottom:0}
+  #mobile-menu-btn { display: block !important; }
+  .side{position:fixed; top:0; left:-320px; width:300px; height:100vh; z-index:1001; transition:left 0.3s ease; display:flex; flex-direction:column; box-shadow: 4px 0 15px rgba(0,0,0,0.5);}
+  .side.open { left: 0; }
+  .nm{display:block; padding-bottom:.8rem; margin-bottom:0}
   .nm li{margin-bottom:0}
-  .nm a{border-left:none;border-bottom:3px solid transparent;padding:.5rem .7rem;border-radius:4px 4px 0 0}
-  .nm a:hover,.nm a.on{border-left-color:transparent;border-bottom-color:var(--ac);background:rgba(255,255,255,.04)}
-  .nm .sub-link{padding-left:.7rem}
+  .nm a{border-left:3px solid transparent; border-bottom:none; padding:.5rem .7rem; border-radius:6px}
+  .nm a:hover,.nm a.on{border-left-color:var(--ac); border-bottom-color:transparent; background:rgba(255,255,255,.06)}
   .tb{display:none}
-  .mc{margin-left:0;width:100%;padding:2rem 1.5rem}
+  .mc{margin-left:0; width:100%; padding:4rem 1.5rem 2rem;}
 }
 @media(max-width:600px){
   .mc{padding:1.5rem 1rem}
@@ -97,21 +121,49 @@ footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-si
 </style>
 </head>
 <body>
+<button id="mobile-menu-btn" style="position: fixed; top: 1rem; right: 1.5rem; z-index: 1000; background: var(--ac); color: white; border: none; padding: 0.5rem 0.8rem; border-radius: 6px; font-size: 1.2rem; cursor: pointer; display: none;">☰</button>
 <div id="prog"></div>
 <aside class="side">
 <h2>Universidad Nacional Tecnológica de Lima Sur</h2>
 <span class="sub">Ingeniería de Sistemas · Ciclo VIII</span>
 <nav><ul class="nm">
-<li><a href="#ctx" class="nl on">Contexto Organizacional</a></li>
-<li><a href="#c1" class="nl">Cap. 01: Entradas</a></li>
-<li><a href="#c2" class="nl">Cap. 02: Metodología</a></li>
-<li><a href="#c3" class="nl">Cap. 03: Interesados</a></li>
-<li><a href="#c4" class="nl">Cap. 04: Análisis Profundo</a></li>
-<li><a href="#anx" class="nl">Anexos</a></li>
-<li><a href="#anx1" class="nl sub-link">Anexo 1: Instrumentos</a></li>
-<li><a href="#anx2" class="nl sub-link">Anexo 2: Evidencias</a></li>
-<li><a href="#anx3" class="nl sub-link">Anexo 3: Transcripciones</a></li>
-<li><a href="#ref" class="nl">Referencias</a></li>
+<li><a href="#ctx" class="nl on" style="margin-bottom: 1rem;">Contexto Organizacional</a></li>
+
+<li class="acc-item">
+    <button class="acc-btn">Cap. 01: Interesados <span class="arr">▼</span></button>
+    <ul class="acc-content">
+        <li><a href="#c1" class="nl sub-link">Entradas</a></li>
+        <li><a href="#c2" class="nl sub-link">Metodología</a></li>
+        <li><a href="#c3" class="nl sub-link">Análisis Profundo</a></li>
+    </ul>
+</li>
+
+<li class="acc-item">
+    <button class="acc-btn">Cap. 02: Plan Involucramiento <span class="arr">▼</span></button>
+    <ul class="acc-content">
+        <li><a href="#c5-1" class="nl sub-link">Entradas</a></li>
+        <li><a href="#c5-2" class="nl sub-link">Herramientas y Técnicas</a></li>
+        <li><a href="#c5-3" class="nl sub-link">Salidas</a></li>
+    </ul>
+</li>
+
+<li class="acc-item">
+    <button class="acc-btn">Cap. 03: Árboles del Proyecto <span class="arr">▼</span></button>
+    <ul class="acc-content">
+        <li><a href="#c6-1" class="nl sub-link">Árbol de Problemas</a></li>
+        <li><a href="#c6-2" class="nl sub-link">Árbol de Objetivos</a></li>
+    </ul>
+</li>
+
+<li class="acc-item">
+    <button class="acc-btn">Anexos y Referencias <span class="arr">▼</span></button>
+    <ul class="acc-content">
+        <li><a href="#anx1" class="nl sub-link">Anexo 1: Instrumentos</a></li>
+        <li><a href="#anx2" class="nl sub-link">Anexo 2: Evidencias</a></li>
+        <li><a href="#anx3" class="nl sub-link">Anexo 3: Transcripciones</a></li>
+        <li><a href="#ref" class="nl sub-link">Referencias</a></li>
+    </ul>
+</li>
 </ul></nav>
 <div class="tb">
 <h3>Equipo del Proyecto</h3>
@@ -294,10 +346,8 @@ footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-si
 <tr><td><strong>SH-05</strong></td><td>Clientes Mayoristas</td><td><span class="bg by">Externo</span></td><td>- Que la mercadería solicitada esté completa al 100% y sea entregada a tiempo, especialmente en la temporada alta (febrero a mayo).<br>- Transparencia y rapidez cuando consultan por la disponibilidad de nuevo stock.</td></tr>
 <tr><td><strong>SH-06</strong></td><td>Logística (Motorizado)</td><td><span class="bg by">Externo</span></td><td>- Recoger paquetes completos en un solo viaje para no asumir traslados dobles no remunerados (o pagados extra por la tienda a causa de errores de inventario).</td></tr>
 </tbody></table></div>
-</section>
 
 <!-- CAP 04 -->
-<section class="sec" id="c4">
 <h2>CAPÍTULO 04: Análisis Profundo de Interesados</h2>
 <p>En concordancia con los lineamientos del PMBOK® (6ta Edición), la simple identificación de los interesados es insuficiente para garantizar el éxito de un proyecto. Este capítulo profundiza en la evaluación analítica de los actores de "Roma Bag's", aplicando herramientas de clasificación avanzadas para determinar su capacidad de influencia, urgencia operativa y, fundamentalmente, su actitud frente a la introducción de cambios tecnológicos.</p>
 
@@ -376,12 +426,109 @@ footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-si
 </div>
 </section>
 
+<!-- CAP 05 -->
+<section class="sec" id="c5-1">
+<h2>CAPÍTULO 05: Planificación del Involucramiento de los Interesados</h2>
+<p>Siguiendo la metodología del PMBOK® (Sexta Edición), una vez identificados y analizados los interesados, es imperativo desarrollar enfoques para involucrarlos en el proyecto basándose en sus necesidades, expectativas e impacto potencial. Este proceso se desglosa en Entradas, Herramientas y Salidas.</p>
+
+<h3>5.1. Entradas (Inputs)</h3>
+<p>Para formular el plan, se toman como base los artefactos y condiciones analizadas previamente en la organización "Roma Bag's":</p>
+<div class="gr">
+<div class="cd"><strong>Registro de Interesados</strong>Documento que contiene la información, clasificación (Cubo de Interesados) y expectativas de los 6 stakeholders clave (SH-01 a SH-06).</div>
+<div class="cd"><strong>Factores Ambientales (EEFs)</strong>La cultura organizacional actual, marcada por la resistencia al uso de la nube (por pérdida previa de Excel) y la dependencia de dispositivos móviles.</div>
+<div class="cd"><strong>Activos de los Procesos (OPAs)</strong>Los procedimientos informales actuales: cuadernos de registro manual y el Excel de gerencia gestionado los sábados.</div>
+</div>
+</section>
+
+<section class="sec" id="c5-2">
+<h3>5.2. Herramientas y Técnicas: Matriz de Evaluación del Nivel de Participación</h3>
+<p>Esta herramienta compara el nivel de participación <strong>Actual (A)</strong> de los interesados con el nivel <strong>Deseado (D)</strong> requerido para el éxito de la arquitectura de Inteligencia de Negocios. Los niveles se clasifican en: Desconocedor, Reticente, Neutral, Partidario y Líder.</p>
+
+<div class="tr"><table>
+<thead><tr><th>Interesado</th><th>Desconocedor</th><th>Reticente</th><th>Neutral</th><th>Partidario</th><th>Líder</th></tr></thead>
+<tbody>
+<tr><td>Gerencia (Natalie)</td><td></td><td></td><td></td><td><strong>A</strong></td><td><strong>D</strong></td></tr>
+<tr><td>Socio (Producción)</td><td></td><td><strong>A</strong></td><td><strong>D</strong></td><td></td><td></td></tr>
+<tr><td>Personal de Ventas</td><td></td><td></td><td></td><td><strong>A / D</strong></td><td></td></tr>
+<tr><td>Logística (Motorizado)</td><td><strong>A</strong></td><td></td><td><strong>D</strong></td><td></td><td></td></tr>
+</tbody></table></div>
+<p style="font-size: .85rem; color: #64748b; margin-top: 0.5rem;"><em>Leyenda: <strong>A</strong> = Nivel Actual | <strong>D</strong> = Nivel Deseado. El objetivo estratégico es desplazar la "A" hacia la "D" en cada actor.</em></p>
+</section>
+
+<section class="sec" id="c5-3">
+<h3>5.3. Salidas: Plan de Involucramiento (Estrategias)</h3>
+<p>A partir de la matriz, se definen las acciones de mitigación para cerrar las brechas entre el estado actual y el deseado, enfocándose en los riesgos detectados.</p>
+<div class="gr">
+<div class="cd" style="border-left: 4px solid var(--r)"><strong>Estrategia para el Socio (Reticente a Neutral)</strong><br><em>Objetivo:</em> Evitar el boicot técnico.<br><em>Acción:</em> Implementar el sistema en paralelo ("Shadow Run"). El taller no abandonará sus cuadernos físicos hasta que el software demuestre cero fallas operativas durante una semana de prueba.</div>
+<div class="cd" style="border-left: 4px solid var(--ac)"><strong>Estrategia para la Gerencia (Partidaria a Líder)</strong><br><em>Objetivo:</em> Vencer el miedo a la nube.<br><em>Acción:</em> Capacitación en protocolos de redundancia. Se le mostrará cómo el tablero de control solo lee los datos (modo lectura), garantizando que es imposible que el sistema borre su base original.</div>
+<div class="cd" style="border-left: 4px solid var(--y)"><strong>Estrategia para Ventas (Mantener Partidarios)</strong><br><em>Objetivo:</em> Adopción rápida de la herramienta.<br><em>Acción:</em> Despliegue de una interfaz "Mobile-First" limpia, enfocada netamente en disponibilidad de stock y cumplimiento de metas, respetando el uso de sus dispositivos móviles actuales.</div>
+</div>
+</section>
+
+<!-- CAP 06 -->
+<section class="sec" id="c6-1">
+<h2>CAPÍTULO 06: Árbol de Problemas y Árbol de Objetivos</h2>
+<p>Para estructurar la solución de Inteligencia de Negocios, es necesario modelar lógicamente la relación de causa-efecto del negocio mediante la metodología del Marco Lógico. Esto permite traducir los "dolores" operativos de Roma Bag's en requerimientos técnicos viables.</p>
+
+<h3>6.1. Árbol de Problemas (Diagnóstico de la Situación Actual)</h3>
+<p>El problema central radica en la ineficiencia operativa que se traslada a la gerencia y a la logística del negocio.</p>
+
+<div class="hl" style="background: var(--r-bg); border-left-color: var(--r); border-radius: 8px; margin-bottom: 2rem;">
+<h4 style="color: var(--r); margin-top: 0; text-align: center; font-weight: 700;">EFECTOS (Impacto en el negocio)</h4>
+<div class="fx" style="gap: 0.5rem; justify-content: center; margin-top: 1rem;">
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Pérdida de 2 horas semanales gerenciales cruzando datos.</div>
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Sobrecostos logísticos (doble pago de delivery por despachos incompletos).</div>
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Toma de decisiones financieras a ciegas sin cálculo de ganancia neta.</div>
+</div>
+
+<div style="text-align: center; color: var(--r); font-size: 1.5rem; margin: 1rem 0;">↑</div>
+
+<h4 style="color: var(--r); text-align: center; font-weight: 800; background: white; padding: 1rem; border-radius: 8px; border: 2px solid var(--r); box-shadow: 0 4px 6px rgba(0,0,0,0.1);">PROBLEMA CENTRAL:<br>Gestión deficiente, fragmentada y manual de la información transaccional y de inventario en "Roma Bag's".</h4>
+
+<div style="text-align: center; color: var(--r); font-size: 1.5rem; margin: 1rem 0;">↑</div>
+
+<h4 style="color: var(--r); text-align: center; font-weight: 700; margin-bottom: 1rem;">CAUSAS (Origen del problema)</h4>
+<div class="fx" style="gap: 0.5rem; justify-content: center;">
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Registro en cuadernos físicos desfasados de la nube.</div>
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Zonas muertas de conectividad Wi-Fi en el taller.</div>
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Uso fragmentado de dispositivos (Excel autoguardado que falla en laptops vs 6 celulares de ventas).</div>
+</div>
+</div>
+</section>
+
+<section class="sec" id="c6-2">
+<h3>6.2. Árbol de Objetivos (Estrategia de Solución)</h3>
+<p>Se invierten las condiciones negativas del Árbol de Problemas hacia estados positivos alcanzables mediante la implementación del proyecto de Sistemas de Información.</p>
+
+<div class="hl" style="background: var(--g-bg); border-left-color: var(--g); border-radius: 8px;">
+<h4 style="color: var(--g); margin-top: 0; text-align: center; font-weight: 700;">FINES (Beneficios Esperados)</h4>
+<div class="fx" style="gap: 0.5rem; justify-content: center; margin-top: 1rem;">
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Recuperación del tiempo gerencial para buscar nuevos clientes (Aumento de ventas).</div>
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Eliminación de sobrecostos logísticos por errores ("Falsos Positivos" a cero).</div>
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Visibilidad en tiempo real de la ganancia neta mensual.</div>
+</div>
+
+<div style="text-align: center; color: var(--g); font-size: 1.5rem; margin: 1rem 0;">↑</div>
+
+<h4 style="color: var(--g); text-align: center; font-weight: 800; background: white; padding: 1rem; border-radius: 8px; border: 2px solid var(--g); box-shadow: 0 4px 6px rgba(0,0,0,0.1);">OBJETIVO CENTRAL:<br>Implementar una Arquitectura de Inteligencia de Negocios para centralizar y automatizar la información transaccional de "Roma Bag's".</h4>
+
+<div style="text-align: center; color: var(--g); font-size: 1.5rem; margin: 1rem 0;">↑</div>
+
+<h4 style="color: var(--g); text-align: center; font-weight: 700; margin-bottom: 1rem;">MEDIOS (Soluciones Tecnológicas)</h4>
+<div class="fx" style="gap: 0.5rem; justify-content: center;">
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Diseño de tableros de control visuales orientados a dispositivos móviles.</div>
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Optimización de la captura de datos mitigando las fallas de red del taller.</div>
+<div class="cd" style="margin: 0; text-align: center; flex: 1; min-width: 150px; font-size: .85rem;">Capacitación en uso de herramientas y respaldo de bases de datos.</div>
+</div>
+</div>
+
+</section>
+
 <!-- ANEXOS -->
-<section class="sec" id="anx">
+<!-- ANEXO 1 -->
+<section class="sec" id="anx1">
 <h2>ANEXOS</h2>
 
-<!-- ANEXO 1 -->
-<div id="anx1">
 <h3>ANEXO 1: Instrumentos de Recolección de Datos</h3>
 
 <h4>Anexo 1.1. Guion de Entrevista Semiestructurada (Gerencia - Virtual)</h4>
@@ -450,10 +597,10 @@ footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-si
 <p><strong>Bloque 5: Viabilidad Operativa</strong></p>
 <div class="pregunta-block"><span class="num">17.</span> Al diseñar esta herramienta para celulares, ¿el personal utilizaría su plan de datos móviles o el WiFi del taller?<span class="resp">Respuesta: [___]</span></div>
 <div class="pregunta-block"><span class="num">18.</span> En el futuro, cuando los datos crezcan, ¿estarías dispuesta a asumir el costo mínimo de un servicio de nube privada?<span class="resp">Respuesta: [___]</span></div>
-</div>
+</section>
 
 <!-- ANEXO 2 -->
-<div id="anx2">
+<section class="sec" id="anx2">
 <h3>ANEXO 2: Evidencias de Ejecución y Registro Técnico</h3>
 
 <h4>Anexo 2.1. Ficha Técnica de la Entrevista Virtual</h4>
@@ -502,10 +649,10 @@ footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-si
     <br>
 
 </div>
-</div>
+</section>
 
 <!-- ANEXO 3 -->
-<div id="anx3">
+<section class="sec" id="anx3">
 <h3>ANEXO 3: Transcripción de Hallazgos y Diálogo Crítico</h3>
 
 <h4>Anexo 3.1. Transcripción de la Entrevista Virtual (Google Meet)</h4>
@@ -680,7 +827,6 @@ footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-si
 <div class="cd"><strong>Observación 2</strong>La entrevistada menciona que el "autoguardado" de Drive es su única medida de seguridad actual.</div>
 </div>
 <p style="text-align:center;font-style:italic;color:#94a3b8;margin-top:1rem">(Fin de la grabación técnica y cierre de la visita de campo).</p>
-</div>
 </section>
 
 <!-- REFERENCIAS -->
@@ -698,10 +844,50 @@ footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--bd);font-si
 </main>
 
 <script>
-window.addEventListener('scroll',()=>{const e=document.documentElement;const p=(e.scrollTop/(e.scrollHeight-e.clientHeight))*100;document.getElementById('prog').style.width=p+'%'});
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:0,rootMargin:"0px 0px -50px 0px"});
-document.querySelectorAll('.sec').forEach(s=>obs.observe(s));
-window.addEventListener('scroll',()=>{let secs=document.querySelectorAll('.sec,header');let links=document.querySelectorAll('.nl');let t=window.scrollY+120;secs.forEach(s=>{if(s.id&&t>=s.offsetTop&&t<s.offsetTop+s.offsetHeight){links.forEach(l=>{l.classList.remove('on');if(l.getAttribute('href')=='#'+s.id)l.classList.add('on')})}})});
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('.nl');
+  const sections = document.querySelectorAll('.sec, header.sec');
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const sidebar = document.querySelector('.side');
+
+  // SPA Navigation
+  function showPage(targetId) {
+    sections.forEach(sec => sec.classList.remove('active'));
+    links.forEach(l => l.classList.remove('on'));
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) targetSection.classList.add('active');
+    const targetLink = document.querySelector(`.nl[href="#${targetId}"]`);
+    if (targetLink) targetLink.classList.add('on');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      showPage(targetId);
+      // Ocultar menú en móvil al hacer click
+      if(window.innerWidth <= 900) sidebar.classList.remove('open');
+    });
+  });
+
+  // Accordion Logic
+  const accBtns = document.querySelectorAll('.acc-btn');
+  accBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('open');
+      const content = btn.nextElementSibling;
+      content.classList.toggle('open');
+    });
+  });
+
+  // Mobile Menu Toggle
+  mobileBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
+
+  showPage('ctx'); // Inicializar
+});
 </script>
 </body>
 </html>
