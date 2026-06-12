@@ -1228,6 +1228,16 @@
         </li>
 
         <li class="acc-item">
+          <button class="acc-btn">Cap. 06: Design Thinking <span class="arr">▼</span></button>
+          <ul class="acc-content">
+            <li><a href="#c9-1" class="nl sub-link">6.1 Mapa de Empatía</a></li>
+            <li><a href="#c9-2" class="nl sub-link">6.2 Buyer Persona</a></li>
+            <li><a href="#c9-3" class="nl sub-link">6.3 Customer Journey</a></li>
+            <li><a href="#c9-4" class="nl sub-link">6.4 Brainstorming y Afinidad</a></li>
+          </ul>
+        </li>
+
+        <li class="acc-item">
           <button class="acc-btn">Anexos y Referencias <span class="arr">▼</span></button>
           <ul class="acc-content">
             <li><a href="#anx1" class="nl sub-link">Anexo 1: Instrumentos</a></li>
@@ -3531,6 +3541,321 @@
 
       <div class="hl">
         <strong>Nota de lectura:</strong> La MML se lee de abajo hacia arriba: las <strong>Actividades</strong> producen los <strong>Componentes</strong>, los Componentes logran el <strong>Propósito</strong> y el Propósito contribuye al <strong>Fin</strong>. Los supuestos en cada nivel representan condiciones externas que deben cumplirse para que la lógica causal del proyecto funcione. El incumplimiento de un supuesto en un nivel inferior compromete el alcance de los niveles superiores.
+      </div>
+    </section>
+
+    <!-- CAP 06 — DESIGN THINKING -->
+    <section class="sec" id="c9-1">
+      <h2>CAPÍTULO 06: Diseño Centrado en el Usuario (Design Thinking)</h2>
+
+      <div class="hl" style="margin-bottom: 2rem;">
+        <strong>Nota sobre el usuario objetivo:</strong> La solución de TI está diseñada para <strong>Natalie</strong> (gerente y dueña de Roma Bag's), quien operará el sistema y presenta el dolor operativo documentado. El comprador final de bolsos es únicamente un <em>beneficiario indirecto</em>: se beneficia de entregas más completas y ágiles, pero no interactúa con la herramienta.
+      </div>
+
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.1.
+        Mapa de Empatía (Fase Empatizar)</h3>
+      <p>El mapa de empatía sintetiza el mundo de Natalie como usuario objetivo, identificando sus pensamientos, percepciones, comportamientos, dolores y aspiraciones en relación con la gestión de información de Roma Bag's.</p>
+
+      <div class="gr" style="grid-template-columns: repeat(2, 1fr);">
+
+        <div class="cd" style="border-left: 4px solid var(--y);">
+          <strong style="color: var(--y); font-size: .95rem;">💭 QUÉ PIENSA Y SIENTE</strong>
+          <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>Asume casi todo el control operativo y comercial; siente el peso de ser el único punto de decisión.</li>
+            <li>Le preocupa no conocer su ganancia neta real ni el stock disponible en el momento.</li>
+            <li>Valora el orden y la continuidad, pero teme perder información (ya borró por accidente los datos de 2024).</li>
+            <li>Siente tensión ante herramientas que percibe como complejas o "robóticas".</li>
+          </ul>
+        </div>
+
+        <div class="cd" style="border-left: 4px solid var(--b);">
+          <strong style="color: var(--b); font-size: .95rem;">👀 QUÉ VE</strong>
+          <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>Datos dispersos en cuadernos físicos, Excel local y 6 celulares sin integración.</li>
+            <li>Un stock registrado que no coincide con el físico (falsos positivos).</li>
+            <li>Wi-Fi con zonas muertas que hace fallar el autoguardado en áreas clave del taller.</li>
+            <li>Que todo el seguimiento operativo termina pasando por ella.</li>
+          </ul>
+        </div>
+
+        <div class="cd" style="border-left: 4px solid var(--ac);">
+          <strong style="color: var(--ac); font-size: .95rem;">👂 QUÉ OYE</strong>
+          <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>De los vendedores: consultas constantes de stock que ella debe responder personalmente.</li>
+            <li>Del socio de producción: que necesita saber con anticipación qué fabricar.</li>
+            <li>Frases típicas: <em>"¿Hay stock de este modelo?", "No aparece el registro", "Eso estaba en el otro Excel", "Se perdió la actualización".</em></li>
+          </ul>
+        </div>
+
+        <div class="cd" style="border-left: 4px solid var(--g);">
+          <strong style="color: var(--g); font-size: .95rem;">💬 QUÉ DICE Y HACE</strong>
+          <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>Dice que necesita orden y recuperar tiempo; cada sábado dedica hasta un día completo a cuadrar cuadernos contra Excel.</li>
+            <li>Corrige errores de despacho y paga el doble envío cuando un pedido sale incompleto.</li>
+            <li>Centraliza toda decisión por falta de un sistema que la respalde.</li>
+          </ul>
+        </div>
+
+        <div class="cd" style="border-left: 4px solid var(--r);">
+          <strong style="color: var(--r); font-size: .95rem;">⚡ ESFUERZOS / DOLORES</strong>
+          <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>1 día laborable semanal perdido en conciliación manual (todos los sábados).</li>
+            <li>9 pedidos incompletos al mes con sobrecosto de S/.20 por doble envío (≈2 de cada 10).</li>
+            <li>Dependencia de registros manuales y conectividad deficiente.</li>
+            <li>Riesgo real de pérdida de datos (historial de 2024 borrado accidentalmente).</li>
+            <li>Sobrecarga por ser el único punto de control de la información del negocio.</li>
+          </ul>
+        </div>
+
+        <div class="cd" style="border-left: 4px solid var(--g);">
+          <strong style="color: var(--g); font-size: .95rem;">🎯 RESULTADOS / BENEFICIOS ESPERADOS</strong>
+          <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>Información integrada y confiable consultable en menos de 2 minutos.</li>
+            <li>Reducción de pedidos incompletos a casi cero.</li>
+            <li>Recuperar el día gerencial semanal para actividades de crecimiento.</li>
+            <li>Un historial de datos íntegro para proyectar demanda estacional.</li>
+            <li>Una solución simple, móvil y que coexista con su Excel sin reemplazarlo de golpe.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="sec" id="c9-2">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.2.
+        Buyer Persona (Fase Empatizar)</h3>
+      <p>La definición del usuario objetivo orienta todas las decisiones de diseño de la solución hacia las necesidades reales de quien la operará en el día a día.</p>
+
+      <div class="ficha">
+        <h4 style="color: var(--ac); margin-bottom: 1.5rem;">Natalie — Dueña y Gerente de Roma Bag's</h4>
+        <div class="ficha-row">
+          <span class="ficha-label">Tipo de usuario</span>
+          <span class="ficha-val">Tomadora de decisiones y usuaria principal de la solución de TI.</span>
+        </div>
+        <div class="ficha-row">
+          <span class="ficha-label">Contexto</span>
+          <span class="ficha-val">Microempresa de producción y venta de bolsos (mayoristas y minoristas), 19 personas, sin área de TI.</span>
+        </div>
+        <div class="ficha-row">
+          <span class="ficha-label">Nivel tecnológico</span>
+          <span class="ficha-val">Medio–práctico: 3 laptops de alta capacidad subutilizadas + 6 celulares para registro de ventas.</span>
+        </div>
+      </div>
+
+      <div class="gr" style="margin-top: 1.2rem;">
+        <div class="cd">
+          <strong>Características del perfil</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Emprendedora que ejerce a la vez gerencia, marketing, almacén y logística; conoce el negocio a fondo, pero opera con procesos poco integrados y sin respaldo tecnológico formal.</p>
+        </div>
+        <div class="cd">
+          <strong>Comportamiento</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Trabaja con información en tres medios desconectados; consolida manualmente cada semana; centraliza decisiones para asegurar continuidad; compensa las fallas del sistema con supervisión personal y memoria.</p>
+        </div>
+        <div class="cd">
+          <strong>Motivaciones</strong>
+          <ul style="margin: .4rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.7;">
+            <li>Conocer su ganancia neta real y su stock al día.</li>
+            <li>Reducir errores y reprocesos operativos.</li>
+            <li>Liberar tiempo para captar clientes mayoristas.</li>
+            <li>Crecer aprovechando la capacidad instalada (+50% en ventas).</li>
+          </ul>
+        </div>
+        <div class="cd">
+          <strong>Frustraciones</strong>
+          <ul style="margin: .4rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.7;">
+            <li>Perder un día semanal cuadrando cuentas manualmente.</li>
+            <li>No tener certeza del stock al cerrar una venta.</li>
+            <li>Pagar dobles envíos por información errónea.</li>
+            <li>Haber perdido el historial de datos de 2024.</li>
+            <li>Que todo el control operativo dependa de ella.</li>
+          </ul>
+        </div>
+        <div class="cd">
+          <strong>Necesidades</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Una solución simple, confiable y oportuna, operable desde el celular, adaptada a su conectividad irregular y a su rutina real. No solo correcta "en teoría", sino usable en el día a día del taller.</p>
+        </div>
+        <div class="cd">
+          <strong>Barreras y temores</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Desconfía de soluciones complejas o frágiles; rechaza lo que percibe como "robótico". Teme corromper o perder sus datos. Valorará una solución gradual que conviva con su Excel antes que un reemplazo ambicioso pero riesgoso.</p>
+        </div>
+      </div>
+
+      <div class="hl" style="margin-top: 1.5rem;">
+        <strong>Objetivo de diseño:</strong> Integrar la información en una fuente única, con consulta rápida e indicadores claros, para que Natalie pueda decidir con seguridad sobre stock, ventas y rentabilidad en menos de 2 minutos.
+      </div>
+    </section>
+
+    <section class="sec" id="c9-3">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.3.
+        Customer Journey e Historieta (Empatizar / Definir)</h3>
+      <p>La historieta visualiza el recorrido emocional actual de Natalie a través de 6 momentos clave. Las viñetas se muestran como placeholders de ilustración; la tabla detalla cada momento con datos reales del diagnóstico.</p>
+
+      <h4>Historieta — Viñetas del Journey Actual</h4>
+      <div class="gr" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 2rem;">
+
+        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
+          <span class="bg bb" style="margin-bottom: .5rem;">Viñeta 1</span>
+          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Presionada</strong>
+          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
+          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie de pie con el celular revisando pedidos, gesto de apuro.</p>
+        </div>
+
+        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
+          <span class="bg by" style="margin-bottom: .5rem;">Viñeta 2</span>
+          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Incertidumbre</strong>
+          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
+          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie con un cuaderno abierto, mano en el mentón, dudando del stock.</p>
+        </div>
+
+        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
+          <span class="bg by" style="margin-bottom: .5rem;">Viñeta 3</span>
+          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Preocupación</strong>
+          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
+          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie al teléfono junto a una máquina de coser, coordinando producción.</p>
+        </div>
+
+        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
+          <span class="bg br" style="margin-bottom: .5rem;">Viñeta 4</span>
+          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Sobrecarga</strong>
+          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
+          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie frente a la laptop rodeada de papeles un sábado, agobiada.</p>
+        </div>
+
+        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
+          <span class="bg br" style="margin-bottom: .5rem;">Viñeta 5</span>
+          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Frustración</strong>
+          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
+          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie con papeles y calculadora, mano en la frente, ante un pedido incompleto.</p>
+        </div>
+
+        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
+          <span class="bg bgr" style="margin-bottom: .5rem;">Viñeta 6</span>
+          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Necesidad de claridad</strong>
+          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
+          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie con el celular, expresión más calmada, buscando decidir mejor.</p>
+        </div>
+
+      </div>
+
+      <h4>Tabla del Customer Journey</h4>
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Momento</th>
+              <th>Pensamiento (con dato real del diagnóstico)</th>
+              <th>Emoción</th>
+              <th style="text-align:center;">Nivel exp.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><strong>Recibe pedidos / revisa ventas</strong></td>
+              <td><em>"Llegan pedidos por varios celulares, no se me puede escapar ninguno."</em></td>
+              <td><span class="bg bb">Presionada</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--b);">+</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><strong>Verifica disponibilidad de stock</strong></td>
+              <td><em>"¿Habrá de este modelo? El cuaderno no siempre coincide con lo real."</em></td>
+              <td><span class="bg by">Incertidumbre</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--y);">−</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><strong>Coordina con producción</strong></td>
+              <td><em>"Debo avisar al socio qué fabricar, pero la info no fluye sola."</em></td>
+              <td><span class="bg by">Preocupación</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--y);">−</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><strong>Consolida información (cuadre)</strong></td>
+              <td><em>"Cuadrar cuadernos con Excel me toma todo el sábado."</em></td>
+              <td><span class="bg br">Sobrecarga</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--r);">− −</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><strong>Corrige errores / incidencias</strong></td>
+              <td><em>"Otro pedido incompleto: toca pagar de nuevo al motorizado (S/.20)."</em></td>
+              <td><span class="bg br">Frustración</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--r);">−</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><strong>Toma decisiones del negocio</strong></td>
+              <td><em>"No sé mi ganancia neta real; decido casi a ciegas."</em></td>
+              <td><span class="bg bgr">Nec. de claridad</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--g);">+</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hl" style="margin-top: 1.5rem;">
+        <strong>Insight clave:</strong> La experiencia se hunde en la zona "Durante" (momentos 4 y 5: consolidar y corregir), donde el trabajo manual y la dependencia total de Natalie generan el día perdido, los 9 pedidos incompletos y los sobrecostos de S/.20 por doble envío. La oportunidad de diseño es integrar la información operativa para elevar toda la curva de experiencia.
+      </div>
+    </section>
+
+    <section class="sec" id="c9-4">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.4.
+        Brainstorming y Diagrama de Afinidad (Idear / Definir)</h3>
+      <p>La sesión de ideación generó 18 ideas a partir del diagnóstico. El diagrama de afinidad las organiza en 3 categorías que corresponden exactamente a las 3 causas directas del árbol de problemas, validando la coherencia del diagnóstico.</p>
+
+      <div class="hl" style="margin-bottom: 1.5rem;">
+        <strong>Ideas generadas (18 en total):</strong><br>
+        <span style="font-size: .88rem; line-height: 2.2; display: block; margin-top: .4rem;">Inventario en cuadernos · Ventas en 6 celulares sin sincronizar · Excel local aislado · Stock físico ≠ registrado · Pedidos incompletos · Reprocesos por falta de validación · Cuadre manual de un día · Wi-Fi con zonas muertas · Autoguardado que falla · Pérdida del historial 2024 · No se calcula la ganancia neta · Sin reportes de rentabilidad · Sin protocolo de registro al despachar · Comunicación informal ventas-producción · Dependencia de una sola persona · Consultas de stock que solo Natalie responde · Resistencia a herramientas "robóticas" · Temor a perder datos</span>
+      </div>
+
+      <h4>Diagrama de Afinidad — 3 Grupos (alineados a las 3 Causas Directas del Árbol)</h4>
+      <div class="gr">
+        <div class="cd" style="border-left: 4px solid var(--y);">
+          <span class="bg by" style="margin-bottom: .5rem;">Grupo 1 — CD1</span>
+          <strong>Fragmentación de los datos</strong>
+          <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>Inventario en cuadernos físicos.</li>
+            <li>Ventas en 6 celulares sin sincronizar.</li>
+            <li>Excel local aislado.</li>
+            <li>Sin fuente única de verdad.</li>
+            <li>Información en medios incompatibles.</li>
+          </ul>
+        </div>
+        <div class="cd" style="border-left: 4px solid var(--r);">
+          <span class="bg br" style="margin-bottom: .5rem;">Grupo 2 — CD2</span>
+          <strong>Procesos manuales y pérdida de datos</strong>
+          <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>Cuadre manual de un día (sábado).</li>
+            <li>Sin validación automática al registrar.</li>
+            <li>Stock físico ≠ registrado.</li>
+            <li>Wi-Fi deficiente y autoguardado que falla.</li>
+            <li>Sin protocolo de registro al despacho.</li>
+            <li>Pérdida del historial de datos de 2024.</li>
+          </ul>
+        </div>
+        <div class="cd" style="border-left: 4px solid var(--b);">
+          <span class="bg bb" style="margin-bottom: .5rem;">Grupo 3 — CD3</span>
+          <strong>Ausencia de capacidad analítica</strong>
+          <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>No se calcula la ganancia neta real.</li>
+            <li>Sin reportes de rentabilidad ni de stock en tiempo real.</li>
+            <li>Decisiones a ciegas sobre producto y demanda.</li>
+            <li>Sin historial íntegro para proyectar demanda estacional.</li>
+            <li>Consultas de stock que dependen solo de Natalie.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cd" style="margin-top: 1.2rem; border-left: 4px solid var(--ac);">
+        <strong style="color: var(--ac);">Nota metodológica</strong>
+        <p style="margin: .4rem 0 0; font-size: .88rem;">Las ideas sobre <em>resistencia al cambio</em>, <em>temor a perder datos</em> y <em>rechazo a lo "robótico"</em> no se clasifican como causas del problema, sino como <strong>riesgos de adopción del proyecto</strong>, y se gestionan en la matriz de riesgos. Esto mantiene la coherencia con el árbol de problemas corregido, donde la resistencia al cambio fue retirada de las causas directas por tratarse de un factor de riesgo, no de una causa estructural del problema de información.</p>
+      </div>
+
+      <div class="hl" style="margin-top: 1.5rem;">
+        <strong>Insight principal:</strong> El brainstorming converge en las mismas 3 causas directas del árbol de problemas (fragmentación de datos, procesos manuales, falta de capacidad analítica), lo que <em>valida el diagnóstico</em> y conecta directamente con los medios del árbol de objetivos y con las alternativas de solución evaluadas en el Capítulo 04.
       </div>
     </section>
 
