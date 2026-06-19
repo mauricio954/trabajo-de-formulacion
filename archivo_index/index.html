@@ -3265,7 +3265,7 @@
               <div class="t-node green dashed"><strong>FD 1:</strong> Reducir los pedidos incompletos de 9 a ≤1 por mes al mes 4.</div>
             </div>
             <div class="t-col w-25">
-              <div class="t-node green dashed"><strong>FD 2:</strong> Eliminar el 100% del sobrecosto por doble envío al mes 4.</div>
+              <div class="t-node green dashed"><strong>FD 2:</strong> Eliminar el 100% del sobrecosto por doble envío al mes 5.</div>
             </div>
             <div class="t-col w-25">
               <div class="t-node green dashed"><strong>FD 3:</strong> Recuperar el día gerencial semanal hoy perdido en conciliación, desde el mes 3.</div>
@@ -3602,119 +3602,137 @@
     <section class="sec" id="c7-3">
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.3.
         Evaluación de Viabilidad (Tarea 3)</h3>
-      <p>Se evalúan las tres alternativas mediante una rúbrica de 7 criterios con puntaje del 1 al 3 (1 = bajo / 2 = medio / 3 = alto). El puntaje máximo posible es 21.</p>
+      <p><strong>Técnica de evaluación:</strong> Juicio de expertos bajo enfoque de <strong>Costo-Efectividad</strong>. No se aplica Costo-Beneficio porque los beneficios del proyecto (integración de información, reducción de la dependencia operativa, trazabilidad) no se monetizan de forma confiable en esta etapa; por ello se evalúa la efectividad de cada alternativa para lograr los objetivos frente a su costo.</p>
+      <p>Se evalúan tres alternativas comparables mediante una rúbrica de 7 criterios con puntaje del 1 al 3 (1 = bajo, 2 = medio, 3 = alto). El puntaje máximo posible es 21.</p>
+
+      <div class="fx">
+        <div class="cd">
+          <span class="bg bb" style="margin-bottom: .5rem;">Alt. 1</span>
+          <strong>Ecosistema No-Code</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Hojas de cálculo conectadas + app no-code: solución ligera y de bajo costo.</p>
+        </div>
+        <div class="cd">
+          <span class="bg bgr" style="margin-bottom: .5rem;">Alt. 2</span>
+          <strong>ERP modular Odoo (Community)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">ERP modular open-source con módulos de inventario, ventas y reportes integrados.</p>
+        </div>
+        <div class="cd">
+          <span class="bg br" style="margin-bottom: .5rem;">Alt. 3</span>
+          <strong>ERP/POS comercial SaaS</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">ERP/POS comercial en la nube con pago por suscripción.</p>
+        </div>
+      </div>
 
       <div class="tr">
         <table>
           <thead>
             <tr>
               <th>Criterio de Evaluación</th>
-              <th style="text-align:center;">Alt. 1<br>BI a medida</th>
-              <th style="text-align:center;">Alt. 2<br>No-Code</th>
-              <th style="text-align:center;">Alt. 3<br>ERP/POS</th>
+              <th style="text-align:center;">Alt. 1<br>No-Code</th>
+              <th style="text-align:center;">Alt. 2<br>ERP Odoo</th>
+              <th style="text-align:center;">Alt. 3<br>ERP/POS SaaS</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Viabilidad técnica (hardware + red existente)</td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td>Viabilidad técnica (sobre hardware existente)</td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
             </tr>
             <tr>
               <td>Costo total de implementación</td>
-              <td style="text-align:center;"><span class="bg br">1</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
               <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
             </tr>
             <tr>
               <td>Tiempo de implementación</td>
-              <td style="text-align:center;"><span class="bg br">1</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
               <td style="text-align:center;"><span class="bg by">2</span></td>
             </tr>
             <tr>
               <td>Escalabilidad</td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
               <td style="text-align:center;"><span class="bg by">2</span></td>
-              <td style="text-align:center;"><span class="bg bgr">3</span></td>
             </tr>
             <tr>
-              <td>Sostenibilidad (mantenimiento sin área TI)</td>
+              <td>Sostenibilidad (sistema estándar y soporte)</td>
               <td style="text-align:center;"><span class="bg by">2</span></td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
             </tr>
             <tr>
               <td>Ajuste a restricciones operativas y de adopción</td>
-              <td style="text-align:center;"><span class="bg br">1</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
               <td style="text-align:center;"><span class="bg br">1</span></td>
             </tr>
             <tr>
               <td>Innovación y alineación estratégica</td>
-              <td style="text-align:center;"><span class="bg bgr">3</span></td>
               <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
               <td style="text-align:center;"><span class="bg by">2</span></td>
             </tr>
             <tr style="background: #f1f5f9;">
               <td><strong>TOTAL</strong></td>
-              <td style="text-align:center; font-weight:700;">13 / 21</td>
-              <td style="text-align:center; font-weight:700; color: var(--g);">18 / 21 ★</td>
               <td style="text-align:center; font-weight:700;">16 / 21</td>
+              <td style="text-align:center; font-weight:700; color: var(--g);">18 / 21 ★</td>
+              <td style="text-align:center; font-weight:700;">14 / 21</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="hl">
-        <strong>Veredicto:</strong> La <strong>Alternativa 2 — Ecosistema No-Code (Sheets API + AppSheet)</strong> obtiene el puntaje más alto (18/21) y es la alternativa seleccionada para Roma Bag's. Su ventaja no radica en ser la más potente tecnológicamente, sino en ser la <em>más viable para la madurez operativa actual de la empresa</em>: puede implementarse con el hardware existente sin adquirir infraestructura adicional, no requiere área de TI para su mantenimiento, tiene la curva de aprendizaje más corta para el personal y es la que mejor se adapta a la restricción cultural identificada (resistencia a herramientas percibidas como complejas o impersonales).
+        <strong>Veredicto:</strong> La <strong>Alternativa 2 — ERP modular Odoo (Community)</strong> obtiene el puntaje más alto (18/21) y es la alternativa seleccionada para Roma Bag's. Su ventaja no radica en ser la más rápida ni la más económica de poner en marcha, sino en ofrecer una <em>base integrada, escalable y sostenible</em> para la gestión del negocio. Al ser una suite open-source, no genera costos de licencia recurrentes (a diferencia del ERP/POS comercial) y centraliza de forma nativa inventario, ventas y reportes en un único sistema, lo que ataca directamente la causa raíz del problema (la fragmentación de la información). Además, su carácter modular permite a Roma Bag's crecer en el futuro incorporando módulos como compras o contabilidad sin cambiar de plataforma.
       </div>
+      <p>Se reconoce que la opción No-Code es más barata y rápida de implementar, y que el ERP exige un mayor esfuerzo de configuración y adopción; sin embargo, ese esfuerzo se mitiga con las acciones complementarias del proyecto (capacitación, gestión del cambio y coexistencia temporal con las herramientas actuales), y se justifica por el valor de contar con un sistema integral y duradero en lugar de una solución ligera con límites de crecimiento. La decisión prioriza la <strong>efectividad y sostenibilidad</strong> de la solución sobre el menor costo o el menor tiempo de implementación.</p>
     </section>
 
     <section class="sec" id="c7-4">
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.4.
         Generación de Alternativas con el Doble Diamante</h3>
-      <p>El Doble Diamante (Design Council, 2005) organiza el proceso de diseño en dos ciclos divergente-convergente: el primero orientado a entender el problema real y el segundo orientado a diseñar la solución correcta.</p>
+      <p>El Doble Diamante (Design Council, 2005) organiza el proceso de diseño en dos ciclos de pensamiento divergente y convergente: el primero orientado a entender el problema real y el segundo a diseñar la solución correcta. El proyecto recorrió sus cuatro fases de la siguiente manera:</p>
 
-      <h4>Diamante 1 — Entender el Problema</h4>
+      <h4>Diamante 1 — Entender el problema</h4>
       <div class="fx">
         <div class="cd">
-          <span class="bg bb" style="margin-bottom: .5rem;">DESCUBRIR — Divergente</span>
+          <span class="bg bb" style="margin-bottom: .5rem;">DESCUBRIR — Divergir</span>
           <strong>Exploración amplia del contexto</strong>
           <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
-            <li><strong>Sesión 01</strong> (Virtual – Google Meet): Entrevista semiestructurada con la gerencia — diagnóstico del flujo de datos y cuantificación de pérdidas operativas.</li>
-            <li><strong>Sesión 02</strong> (Presencial – Taller, 4 mayo 2026): Auditoría de hardware, mapeo de zonas muertas Wi-Fi y validación de cuadernos físicos de inventario.</li>
-            <li><strong>Sesión 03</strong> (Entrevista adicional): Confirmación de sobrecostos logísticos y patrones de pedidos incompletos (Anexo 3.3).</li>
+            <li>Se recopiló información de campo mediante tres sesiones de entrevista con la gerencia, observación directa del taller y una auditoría de la infraestructura tecnológica y de red.</li>
+            <li>El objetivo fue comprender el "dolor" real del negocio sin asumir soluciones anticipadas.</li>
           </ul>
         </div>
         <div class="cd">
-          <span class="bg br" style="margin-bottom: .5rem;">DEFINIR — Convergente</span>
+          <span class="bg br" style="margin-bottom: .5rem;">DEFINIR — Convergir</span>
           <strong>Síntesis del problema central</strong>
           <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
-            <li>Construcción del <strong>Árbol de Problemas</strong>: 3 causas directas, 7 causas indirectas y 4 efectos identificados y verificados con evidencia de campo.</li>
-            <li>Definición del <strong>Problema Central</strong>: <em>Gestión fragmentada y no estandarizada de la información operativa y comercial de Roma Bag's, que impide el control oportuno del negocio.</em></li>
+            <li>Toda la información se sintetizó en el <strong>Árbol de Problemas</strong>, delimitando el problema central: la gestión fragmentada, manual y poco oportuna de la información operativa y comercial.</li>
+            <li>Esta fase produjo un diagnóstico neutral, sin tecnología predefinida.</li>
           </ul>
         </div>
       </div>
 
-      <h4>Diamante 2 — Diseñar la Solución</h4>
+      <h4>Diamante 2 — Diseñar la solución</h4>
       <div class="fx">
         <div class="cd">
-          <span class="bg bgr" style="margin-bottom: .5rem;">DESARROLLAR — Divergente</span>
+          <span class="bg bgr" style="margin-bottom: .5rem;">DESARROLLAR — Divergir</span>
           <strong>Generación de alternativas</strong>
           <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
-            <li>Lluvia de ideas sobre tecnologías de centralización de datos con evaluación de restricciones del entorno (hardware, conectividad, madurez digital).</li>
-            <li>Formulación de <strong>3 alternativas completas</strong> (C1 + C2 + C3) con sus respectivas acciones complementarias de gobierno de datos e infraestructura.</li>
+            <li>A partir de los medios fundamentales del árbol de objetivos, se generaron múltiples alternativas mediante brainstorming, diagrama de afinidad, preguntas "¿Cómo podríamos...?" y SCAMPER.</li>
+            <li>Se exploraron caminos diversos: solución no-code, ERP modular open-source (Odoo), ERP/POS comercial, desarrollo a medida y arquitectura de inteligencia de negocios.</li>
           </ul>
         </div>
         <div class="cd">
-          <span class="bg by" style="margin-bottom: .5rem;">ENTREGAR — Convergente</span>
-          <strong>Selección y prototipado</strong>
+          <span class="bg by" style="margin-bottom: .5rem;">ENTREGAR — Convergir</span>
+          <strong>Selección y validación</strong>
           <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
-            <li>Evaluación mediante rúbrica de 7 criterios (puntaje máximo: 21). Resultado: <strong>Alt. 2 No-Code = 18/21</strong>.</li>
-            <li>Selección de la <strong>Alternativa 2</strong> como la más viable para la madurez operativa actual de Roma Bag's.</li>
-            <li>Prototipo conceptual mobile-first: formulario AppSheet para registro de ventas y despachos con validación de campos obligatorios que previene registros incompletos.</li>
+            <li>Las alternativas se evaluaron con una rúbrica de costo-efectividad (punto 4.3), seleccionando el <strong>ERP modular Odoo</strong> por ser la solución más integrada, escalable y sostenible para la madurez actual de Roma Bag's.</li>
+            <li>Antes de cualquier despliegue definitivo, la solución se valida mediante una configuración piloto del sistema, lo que permite probar y ajustar con el usuario antes de la implementación real, cerrando así el ciclo de diseño basado en evidencia.</li>
           </ul>
         </div>
       </div>
@@ -3725,7 +3743,7 @@
       <h2>CAPÍTULO 05: Matriz de Marco Lógico (MML)</h2>
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">5.1.
         Matriz de Marco Lógico</h3>
-      <p>La Matriz de Marco Lógico (MML) estructura la lógica de intervención del proyecto en cuatro niveles jerarquizados, vinculando el fin último con las actividades operativas a través de indicadores objetivamente verificables, medios de verificación y supuestos de riesgo externo.</p>
+      <p>La MML resume en una sola tabla la lógica vertical del proyecto: el Fin que persigue, el Propósito que resuelve, los Componentes que entrega y las Actividades que los producen, junto con sus indicadores, medios de verificación y supuestos. Se construye sobre la <strong>Alternativa 2 — ERP modular Odoo (Community)</strong>, seleccionada en el punto 4.3.</p>
 
       <div class="tr">
         <table>
@@ -3741,38 +3759,43 @@
           <tbody>
             <tr>
               <td><span class="bg bgr">FIN</span></td>
-              <td>Incrementar el volumen de facturación y el posicionamiento de mercado de Roma Bag's aprovechando la capacidad instalada.</td>
-              <td>+50% en ventas al cierre del proyecto respecto a la línea base documentada.</td>
-              <td>Reportes de ventas comparativos: línea base vs. cifras al cierre del mes 6.</td>
-              <td>Estabilidad de la demanda mayorista y minorista durante el periodo de implementación.</td>
+              <td>Mejorar el control operativo y comercial de Roma Bag's, fortaleciendo su capacidad de gestión para soportar un crecimiento sostenible.</td>
+              <td>Reducción de la tasa de pedidos incompletos y del tiempo de conciliación, comparados contra la línea base, al cierre del proyecto.</td>
+              <td>Reportes del sistema ERP comparados con los registros previos (línea base vs. final).</td>
+              <td>Las condiciones de mercado del negocio se mantienen estables durante la implementación.</td>
             </tr>
             <tr>
               <td><span class="bg bb">PROPÓSITO</span></td>
-              <td>Gestión de información operativa y comercial integrada en una fuente única, con tiempos de consulta mínimos para el control oportuno del negocio.</td>
-              <td>Latencia de consulta de stock &lt; 2 min al mes 3; 100% de despachos registrados con datos completos al mes 2.</td>
-              <td>Pruebas de consulta cronometradas; auditoría de registros en la base de datos centralizada.</td>
-              <td>La gerencia mantiene el compromiso de uso del sistema y lo adopta como herramienta primaria de gestión.</td>
+              <td>Integrar la gestión de la información operativa y comercial en una fuente única y confiable.</td>
+              <td>Tiempo de consulta de información clave (stock y ventas) reducido a menos de 2 minutos al mes 3.</td>
+              <td>Pruebas de consulta cronometradas sobre el sistema ERP implementado.</td>
+              <td>La gerencia y el personal usan el ERP como fuente principal de información.</td>
             </tr>
             <tr>
               <td><span class="bg by">COMPONENTES</span></td>
-              <td><strong>C1:</strong> Plataforma no-code operativa (Sheets API + AppSheet).<br><strong>C2:</strong> Procesos y gobierno de datos formalizados (SOP de despacho y políticas de registro).<br><strong>C3:</strong> Infraestructura y adopción consolidadas (Wi-Fi y capacitación).</td>
-              <td>100% de registros en base única (mes 2); 100% de despachos con protocolo completo (mes 2); 0 zonas muertas Wi-Fi en áreas de trabajo (mes 3).</td>
-              <td>Sistema implementado y en uso activo; SOP firmados y distribuidos al equipo; acta de capacitación del personal.</td>
-              <td>El socio de producción adopta el sistema sin generar resistencia pasiva que impida el registro de inventario.</td>
+              <td><strong>C1:</strong> Plataforma ERP implementada (módulos de inventario, ventas y reportes).<br><strong>C2:</strong> Procesos y gobierno de datos formalizados.<br><strong>C3:</strong> Infraestructura y adopción habilitadas.</td>
+              <td>C1: 100% de inventario y ventas registrados en el ERP al mes 2.<br>C2: 100% de despachos registrados bajo el protocolo formal al mes 2.<br>C3: Conectividad estable en el taller; personal capacitado en el uso del ERP.</td>
+              <td>C1: Sistema Odoo configurado y en uso, con reportes de inventario y ventas.<br>C2: Procedimientos (SOP) documentados y firmados.<br>C3: Actas de capacitación y diagnóstico de red resuelto.</td>
+              <td>El equipo de producción y ventas adopta el ERP sin sabotaje pasivo ante fallos iniciales.</td>
             </tr>
             <tr>
               <td><span class="bg br">ACTIVIDADES</span></td>
-              <td><strong>A1.1b</strong> Configuración de plataforma no-code (Google Sheets API + AppSheet).<br><strong>A2.1–A2.3</strong> Gobierno de datos, rediseño de procesos y protocolo obligatorio de despacho.<br><strong>A3.1–A3.3</strong> Mejora de red Wi-Fi, capacitación mobile-first y plan de gestión del cambio.</td>
-              <td>Presupuesto y cronograma ejecutados dentro de los plazos definidos por componente (meses 2–6 del proyecto).</td>
-              <td>Registros de avance del proyecto; comprobantes de gasto; actas de entrega por actividad completada.</td>
-              <td>Disponibilidad de tiempo del personal para las capacitaciones y red estable durante la implementación del sistema.</td>
+              <td><strong>A1:</strong> Instalación y configuración de Odoo (módulos de inventario, ventas y reportes).<br><strong>A2:</strong> Definición de políticas de gobierno de datos y documentación de procesos venta-stock-despacho.<br><strong>A3:</strong> Mejora de conectividad, capacitación del personal y gestión del cambio (coexistencia temporal con los registros actuales).</td>
+              <td>Presupuesto y cronograma de implementación ejecutados según lo planificado.</td>
+              <td>Registros de avance del proyecto, comprobantes de configuración, cronograma de capacitación.</td>
+              <td>Disponibilidad de tiempo del personal para la configuración, pruebas y capacitación; conectividad estable durante la implementación.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="hl">
-        <strong>Nota de lectura:</strong> La MML se lee de abajo hacia arriba: las <strong>Actividades</strong> producen los <strong>Componentes</strong>, los Componentes logran el <strong>Propósito</strong> y el Propósito contribuye al <strong>Fin</strong>. Los supuestos en cada nivel representan condiciones externas que deben cumplirse para que la lógica causal del proyecto funcione. El incumplimiento de un supuesto en un nivel inferior compromete el alcance de los niveles superiores.
+        <strong>Notas de construcción de la matriz:</strong>
+        <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+          <li>El <strong>Propósito</strong> corresponde al Objetivo Central del árbol de objetivos (neutral, sin mencionar tecnología específica), y el <strong>Fin</strong> corresponde al Fin Final, redactado sin prometer una meta externa de ventas, ya que esta depende del mercado y no del proyecto.</li>
+          <li>Los <strong>Componentes</strong> son los tres bloques ya usados en el análisis de alternativas (Plataforma, Procesos/Gobierno de Datos, Infraestructura/Adopción), ahora materializados específicamente en la implementación de Odoo en lugar de una solución no-code.</li>
+          <li>Las <strong>Actividades</strong> describen el trabajo concreto de implementación del ERP: instalación, configuración de módulos, definición de gobierno de datos, documentación de procesos y gestión del cambio, sin mencionar dashboards ni aplicaciones móviles, ya que esas funcionalidades no forman parte del alcance definido.</li>
+        </ul>
       </div>
     </section>
 
