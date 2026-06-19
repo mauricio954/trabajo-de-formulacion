@@ -1450,13 +1450,11 @@
         <li class="acc-item">
           <button class="acc-btn">Cap. 06: Design Thinking <span class="arr">▼</span></button>
           <ul class="acc-content">
-            <li><a href="#c9-1" class="nl sub-link">6.1 Mapa de Empatía</a></li>
-            <li><a href="#c9-2" class="nl sub-link">6.2 Buyer Persona</a></li>
-            <li><a href="#c9-3" class="nl sub-link">6.3 Customer Journey</a></li>
-            <li><a href="#c9-4" class="nl sub-link">6.4 Brainstorming y Afinidad</a></li>
-            <li><a href="#c9-5" class="nl sub-link">6.5 Idear (Reforzado)</a></li>
-            <li><a href="#c9-6" class="nl sub-link">6.6 Prototipar</a></li>
-            <li><a href="#c9-7" class="nl sub-link">6.7 Evaluar</a></li>
+            <li><a href="#c9-1" class="nl sub-link">Fase 1: Mapear y Empatizar</a></li>
+            <li><a href="#c9-2" class="nl sub-link">Fase 2: Definir</a></li>
+            <li><a href="#c9-3" class="nl sub-link">Fase 3: Idear</a></li>
+            <li><a href="#c9-4" class="nl sub-link">Fase 4: Prototipar</a></li>
+            <li><a href="#c9-5" class="nl sub-link">Fase 5: Testear / Evaluar</a></li>
           </ul>
         </li>
 
@@ -3546,9 +3544,9 @@
           <strong>Acciones Excluyentes</strong> <span class="bg br" style="margin-left: .3rem;">Solo 1 de 3</span>
           <p style="margin: .4rem 0 .5rem; font-size: .88rem;">Solo una tecnología de plataforma puede ser la base central del sistema:</p>
           <div style="display: flex; gap: .4rem; flex-wrap: wrap;">
-            <span class="bg bb">A1.1a — BI a medida</span>
-            <span class="bg bb">A1.1b — No-Code</span>
-            <span class="bg bb">A1.1c — ERP/POS</span>
+            <span class="bg bb">A1.1a — No-Code</span>
+            <span class="bg bb">A1.1b — ERP Odoo</span>
+            <span class="bg bb">A1.1c — BI a medida</span>
           </div>
         </div>
         <div class="cd">
@@ -3566,17 +3564,17 @@
           <thead>
             <tr>
               <th>Componente</th>
-              <th>Alt. 1 — BI a medida</th>
-              <th>Alt. 2 — No-Code <span class="bg bgr" style="margin-left:.3rem;">Seleccionada</span></th>
-              <th>Alt. 3 — ERP / POS</th>
+              <th>Alt. 1 — No-Code</th>
+              <th>Alt. 2 — ERP Odoo <span class="bg bgr" style="margin-left:.3rem;">Seleccionada</span></th>
+              <th>Alt. 3 — BI a medida</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><strong>C1 — Plataforma de Datos</strong></td>
-              <td><span class="bg bb">A1.1a</span> Arquitectura BI personalizada</td>
-              <td><span class="bg bb">A1.1b</span> Sheets API + AppSheet móvil</td>
-              <td><span class="bg bb">A1.1c</span> ERP/POS en la nube</td>
+              <td><span class="bg bb">A1.1a</span> Sheets API + AppSheet móvil</td>
+              <td><span class="bg bb">A1.1b</span> ERP modular Odoo (Community)</td>
+              <td><span class="bg bb">A1.1c</span> Arquitectura BI personalizada</td>
             </tr>
             <tr>
               <td><strong>C2 — Procesos y Gobierno</strong></td>
@@ -3618,8 +3616,8 @@
         </div>
         <div class="cd">
           <span class="bg br" style="margin-bottom: .5rem;">Alt. 3</span>
-          <strong>ERP/POS comercial SaaS</strong>
-          <p style="margin: .4rem 0 0; font-size: .88rem;">ERP/POS comercial en la nube con pago por suscripción.</p>
+          <strong>Arquitectura BI a medida</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Data Warehouse personalizado con ETL y dashboards BI (Power BI/Looker): solución potente pero costosa y compleja.</p>
         </div>
       </div>
 
@@ -3630,7 +3628,7 @@
               <th>Criterio de Evaluación</th>
               <th style="text-align:center;">Alt. 1<br>No-Code</th>
               <th style="text-align:center;">Alt. 2<br>ERP Odoo</th>
-              <th style="text-align:center;">Alt. 3<br>ERP/POS SaaS</th>
+              <th style="text-align:center;">Alt. 3<br>BI a medida</th>
             </tr>
           </thead>
           <tbody>
@@ -3638,7 +3636,7 @@
               <td>Viabilidad técnica (sobre hardware existente)</td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
-              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
             </tr>
             <tr>
               <td>Costo total de implementación</td>
@@ -3650,19 +3648,19 @@
               <td>Tiempo de implementación</td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
               <td style="text-align:center;"><span class="bg by">2</span></td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
             </tr>
             <tr>
               <td>Escalabilidad</td>
               <td style="text-align:center;"><span class="bg br">1</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
             </tr>
             <tr>
               <td>Sostenibilidad (sistema estándar y soporte)</td>
               <td style="text-align:center;"><span class="bg by">2</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
-              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
             </tr>
             <tr>
               <td>Ajuste a restricciones operativas y de adopción</td>
@@ -3674,13 +3672,13 @@
               <td>Innovación y alineación estratégica</td>
               <td style="text-align:center;"><span class="bg by">2</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
             </tr>
             <tr style="background: #f1f5f9;">
               <td><strong>TOTAL</strong></td>
               <td style="text-align:center; font-weight:700;">16 / 21</td>
               <td style="text-align:center; font-weight:700; color: var(--g);">18 / 21 ★</td>
-              <td style="text-align:center; font-weight:700;">14 / 21</td>
+              <td style="text-align:center; font-weight:700;">12 / 21</td>
             </tr>
           </tbody>
         </table>
@@ -3689,7 +3687,7 @@
       <div class="hl">
         <strong>Veredicto:</strong> La <strong>Alternativa 2 — ERP modular Odoo (Community)</strong> obtiene el puntaje más alto (18/21) y es la alternativa seleccionada para Roma Bag's. Su ventaja no radica en ser la más rápida ni la más económica de poner en marcha, sino en ofrecer una <em>base integrada, escalable y sostenible</em> para la gestión del negocio. Al ser una suite open-source, no genera costos de licencia recurrentes (a diferencia del ERP/POS comercial) y centraliza de forma nativa inventario, ventas y reportes en un único sistema, lo que ataca directamente la causa raíz del problema (la fragmentación de la información). Además, su carácter modular permite a Roma Bag's crecer en el futuro incorporando módulos como compras o contabilidad sin cambiar de plataforma.
       </div>
-      <p>Se reconoce que la opción No-Code es más barata y rápida de implementar, y que el ERP exige un mayor esfuerzo de configuración y adopción; sin embargo, ese esfuerzo se mitiga con las acciones complementarias del proyecto (capacitación, gestión del cambio y coexistencia temporal con las herramientas actuales), y se justifica por el valor de contar con un sistema integral y duradero en lugar de una solución ligera con límites de crecimiento. La decisión prioriza la <strong>efectividad y sostenibilidad</strong> de la solución sobre el menor costo o el menor tiempo de implementación.</p>
+      <p>Se reconoce que la opción No-Code es más barata y rápida de implementar, y que el ERP exige un mayor esfuerzo de configuración y adopción; sin embargo, ese esfuerzo se mitiga con las acciones complementarias del proyecto (capacitación, gestión del cambio y coexistencia temporal con las herramientas actuales), y se justifica por el valor de contar con un sistema integral y duradero en lugar de una solución ligera con límites de crecimiento. La arquitectura BI a medida, por su parte, ofrece alta innovación y escalabilidad, pero su elevado costo, complejidad y dependencia de personal especializado la hacen inviable para una microempresa sin área de TI. La decisión prioriza la <strong>efectividad y sostenibilidad</strong> de la solución sobre el menor costo o la mayor sofisticación técnica.</p>
     </section>
 
     <section class="sec" id="c7-4">
@@ -3724,7 +3722,7 @@
           <strong>Generación de alternativas</strong>
           <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
             <li>A partir de los medios fundamentales del árbol de objetivos, se generaron múltiples alternativas mediante brainstorming, diagrama de afinidad, preguntas "¿Cómo podríamos...?" y SCAMPER.</li>
-            <li>Se exploraron caminos diversos: solución no-code, ERP modular open-source (Odoo), ERP/POS comercial, desarrollo a medida y arquitectura de inteligencia de negocios.</li>
+            <li>Se exploraron caminos diversos: solución no-code, ERP modular open-source (Odoo) y arquitectura de inteligencia de negocios a medida.</li>
           </ul>
         </div>
         <div class="cd">
@@ -3807,8 +3805,11 @@
         <strong>Nota sobre el usuario objetivo:</strong> La solución de TI está diseñada para <strong>Natalie</strong> (gerente y dueña de Roma Bag's), quien operará el sistema y presenta el dolor operativo documentado. El comprador final de bolsos es únicamente un <em>beneficiario indirecto</em>: se beneficia de entregas más completas y ágiles, pero no interactúa con la herramienta.
       </div>
 
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.1.
-        Mapa de Empatía (Fase Empatizar)</h3>
+      <h3 style="margin-top: 2rem; color: var(--ac); border-bottom: 3px solid var(--ac); padding-bottom: 0.5rem; font-size: 1.25rem;">Fase 1: Mapear y Empatizar</h3>
+      <p style="margin-bottom: 1.5rem;">Comprender al usuario y el problema. Se emplean herramientas de investigación cualitativa y observación directa para adentrarse en la realidad operativa de la gerencia de Roma Bag's.</p>
+
+      <h4 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.1.
+        Mapa de Empatía</h4>
       <p>El mapa de empatía sintetiza el mundo de Natalie como usuario objetivo, identificando sus pensamientos, percepciones, comportamientos, dolores y aspiraciones en relación con la gestión de información de Roma Bag's.</p>
 
       <div class="gr" style="grid-template-columns: repeat(2, 1fr);">
@@ -3874,11 +3875,9 @@
         </div>
 
       </div>
-    </section>
 
-    <section class="sec" id="c9-2">
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.2.
-        Buyer Persona (Fase Empatizar)</h3>
+      <h4 style="margin-top: 2.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.2.
+        Buyer Persona</h4>
       <p>La definición del usuario objetivo orienta todas las decisiones de diseño de la solución hacia las necesidades reales de quien la operará en el día a día.</p>
 
       <div class="ficha">
@@ -3938,134 +3937,70 @@
       <div class="hl" style="margin-top: 1.5rem;">
         <strong>Objetivo de diseño:</strong> Integrar la información en una fuente única, con consulta rápida e indicadores claros, para que Natalie pueda decidir con seguridad sobre stock, ventas y rentabilidad en menos de 2 minutos.
       </div>
-    </section>
 
-    <section class="sec" id="c9-3">
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.3.
-        Customer Journey e Historieta (Empatizar / Definir)</h3>
-      <p>La historieta visualiza el recorrido emocional actual de Natalie a través de 6 momentos clave. Las viñetas se muestran como placeholders de ilustración; la tabla detalla cada momento con datos reales del diagnóstico.</p>
+      <h4 style="margin-top: 2.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.3.
+        Mapa de Actores (Stakeholders Map)</h4>
+      <p>El Mapa de Actores posiciona a todos los individuos y grupos de interés dentro del entorno del problema, identificando quién afecta o se ve afectado por el proyecto. En un escenario donde la información de los pedidos depende de la memoria o de hojas de cálculo aisladas, este mapa es el primer paso para entender el ecosistema humano que sostiene el negocio.</p>
 
-      <h4>Historieta — Viñetas del Journey Actual</h4>
-      <div class="gr" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 2rem;">
-
-        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
-          <span class="bg bb" style="margin-bottom: .5rem;">Viñeta 1</span>
-          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Presionada</strong>
-          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
-          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie de pie con el celular revisando pedidos, gesto de apuro.</p>
+      <h4>Actores Identificados en la Ruta del Pedido</h4>
+      <div class="gr">
+        <div class="cd" style="border-left: 4px solid var(--b);">
+          <span class="bg bb" style="margin-bottom: .5rem;">Actores Internos</span>
+          <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li><strong>Gerencia / Dirección:</strong> Alto poder e interés. Necesita visibilidad del negocio, evitar pérdida de ventas y mejorar el control de inventarios.</li>
+            <li><strong>Personal de Ventas:</strong> Primera línea de contacto. Su dolor es la fricción al no contar con información actualizada de stock para confirmar al cliente.</li>
+            <li><strong>Personal de Almacén / Preparación:</strong> Ejecutan el pedido físico. Perjudicados cuando la información de ventas llega tarde, con errores o de manera informal.</li>
+          </ul>
         </div>
-
-        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
-          <span class="bg by" style="margin-bottom: .5rem;">Viñeta 2</span>
-          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Incertidumbre</strong>
-          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
-          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie con un cuaderno abierto, mano en el mentón, dudando del stock.</p>
+        <div class="cd" style="border-left: 4px solid var(--ac);">
+          <span class="bg bgr" style="margin-bottom: .5rem;">Actores Externos</span>
+          <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li><strong>Clientes Finales:</strong> Motor del flujo. Principales afectados por las demoras en la comunicación; su satisfacción es el indicador clave.</li>
+            <li><strong>Proveedores:</strong> Suministran materia prima. Una gestión de inventario defectuosa impacta los tiempos de reabastecimiento.</li>
+          </ul>
         </div>
-
-        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
-          <span class="bg by" style="margin-bottom: .5rem;">Viñeta 3</span>
-          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Preocupación</strong>
-          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
-          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie al teléfono junto a una máquina de coser, coordinando producción.</p>
-        </div>
-
-        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
-          <span class="bg br" style="margin-bottom: .5rem;">Viñeta 4</span>
-          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Sobrecarga</strong>
-          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
-          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie frente a la laptop rodeada de papeles un sábado, agobiada.</p>
-        </div>
-
-        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
-          <span class="bg br" style="margin-bottom: .5rem;">Viñeta 5</span>
-          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Frustración</strong>
-          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
-          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie con papeles y calculadora, mano en la frente, ante un pedido incompleto.</p>
-        </div>
-
-        <div style="border: 2px dashed var(--bd); border-radius: 10px; padding: 1rem; text-align: center; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fafafa;">
-          <span class="bg bgr" style="margin-bottom: .5rem;">Viñeta 6</span>
-          <strong style="font-size: .88rem; display: block; margin-bottom: .4rem;">Necesidad de claridad</strong>
-          <span style="color: var(--side2); font-size: .78rem; font-style: italic;">[Imagen pendiente]</span>
-          <p style="margin: .5rem 0 0; font-size: .75rem; color: var(--side2);">Natalie con el celular, expresión más calmada, buscando decidir mejor.</p>
-        </div>
-
       </div>
 
-      <h4>Tabla del Customer Journey</h4>
-      <div class="tr">
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Momento</th>
-              <th>Pensamiento (con dato real del diagnóstico)</th>
-              <th>Emoción</th>
-              <th style="text-align:center;">Nivel exp.</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td><strong>Recibe pedidos / revisa ventas</strong></td>
-              <td><em>"Llegan pedidos por varios celulares, no se me puede escapar ninguno."</em></td>
-              <td><span class="bg bb">Presionada</span></td>
-              <td style="text-align:center; font-weight:700; color: var(--b);">+</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td><strong>Verifica disponibilidad de stock</strong></td>
-              <td><em>"¿Habrá de este modelo? El cuaderno no siempre coincide con lo real."</em></td>
-              <td><span class="bg by">Incertidumbre</span></td>
-              <td style="text-align:center; font-weight:700; color: var(--y);">−</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td><strong>Coordina con producción</strong></td>
-              <td><em>"Debo avisar al socio qué fabricar, pero la info no fluye sola."</em></td>
-              <td><span class="bg by">Preocupación</span></td>
-              <td style="text-align:center; font-weight:700; color: var(--y);">−</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td><strong>Consolida información (cuadre)</strong></td>
-              <td><em>"Cuadrar cuadernos con Excel me toma todo el sábado."</em></td>
-              <td><span class="bg br">Sobrecarga</span></td>
-              <td style="text-align:center; font-weight:700; color: var(--r);">− −</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td><strong>Corrige errores / incidencias</strong></td>
-              <td><em>"Otro pedido incompleto: toca pagar de nuevo al motorizado (S/.20)."</em></td>
-              <td><span class="bg br">Frustración</span></td>
-              <td style="text-align:center; font-weight:700; color: var(--r);">−</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td><strong>Toma decisiones del negocio</strong></td>
-              <td><em>"No sé mi ganancia neta real; decido casi a ciegas."</em></td>
-              <td><span class="bg bgr">Nec. de claridad</span></td>
-              <td style="text-align:center; font-weight:700; color: var(--g);">+</td>
-            </tr>
-          </tbody>
-        </table>
+      <h4>Niveles de Influencia</h4>
+      <div class="gr">
+        <div class="cd" style="border-left: 4px solid var(--r);">
+          <strong>Zona Estratégica (Decisores)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">La gerencia, que debe aprobar la transición de un sistema manual a un flujo estandarizado con Odoo. Requieren ver valor real en la propuesta.</p>
+        </div>
+        <div class="cd" style="border-left: 4px solid var(--y);">
+          <strong>Zona de Operación Directa</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Vendedores y operarios. Usuarios diarios de cualquier mejora; entender su rutina actual es vital para diseñar una solución que no genere rechazo.</p>
+        </div>
+        <div class="cd" style="border-left: 4px solid var(--g);">
+          <strong>Zona de Recepción (Impacto)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Los clientes, quienes experimentarán la mejora en el servicio una vez que la información de sus pedidos fluya correctamente dentro de la empresa.</p>
+        </div>
       </div>
 
       <div class="hl" style="margin-top: 1.5rem;">
-        <strong>Insight clave:</strong> La experiencia se hunde en la zona "Durante" (momentos 4 y 5: consolidar y corregir), donde el trabajo manual y la dependencia total de Natalie generan el día perdido, los 9 pedidos incompletos y los sobrecostos de S/.20 por doble envío. La oportunidad de diseño es integrar la información operativa para elevar toda la curva de experiencia.
+        <strong>Delimitación:</strong> El problema no es simplemente "instalar un software", sino resolver la desconexión de información entre el cliente, el área de ventas y el control de inventario. Con los actores y el flujo claramente definidos, se establece una base sólida para transitar hacia la fase de definición y la ideación de soluciones.
       </div>
+
     </section>
 
-    <section class="sec" id="c9-4">
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.4.
-        Brainstorming y Diagrama de Afinidad (Idear / Definir)</h3>
-      <p>La sesión de ideación generó 18 ideas a partir del diagnóstico. El diagrama de afinidad las organiza en 3 categorías que corresponden exactamente a las 3 causas directas del árbol de problemas, validando la coherencia del diagnóstico.</p>
+    <section class="sec" id="c9-2">
+
+      <h3 style="margin-top: 2rem; color: var(--ac); border-bottom: 3px solid var(--ac); padding-bottom: 0.5rem; font-size: 1.25rem;">Fase 2: Definir</h3>
+      <p style="margin-bottom: 1.5rem;">Aterrizar el desafío. Se procesan las ideas e insights de la fase anterior mediante categorización y síntesis, para delimitar con precisión el problema a resolver.</p>
+
+      <h4 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.4.
+        Brainstorming</h4>
+      <p>La sesión de ideación generó 18 ideas a partir del diagnóstico.</p>
 
       <div class="hl" style="margin-bottom: 1.5rem;">
         <strong>Ideas generadas (18 en total):</strong><br>
         <span style="font-size: .88rem; line-height: 2.2; display: block; margin-top: .4rem;">Inventario en cuadernos · Ventas en 6 celulares sin sincronizar · Excel local aislado · Stock físico ≠ registrado · Pedidos incompletos · Reprocesos por falta de validación · Cuadre manual de un día · Wi-Fi con zonas muertas · Autoguardado que falla · Pérdida del historial 2024 · No se calcula la ganancia neta · Sin reportes de rentabilidad · Sin protocolo de registro al despachar · Comunicación informal ventas-producción · Dependencia de una sola persona · Consultas de stock que solo Natalie responde · Resistencia a herramientas "robóticas" · Temor a perder datos</span>
       </div>
 
+      <h4 style="margin-top: 2.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.5.
+        Diagrama de Afinidad</h4>
+      <p>El diagrama de afinidad organiza las ideas en 3 categorías que corresponden exactamente a las 3 causas directas del árbol de problemas, validando la coherencia del diagnóstico.</p>
+      
       <h4>Diagrama de Afinidad — 3 Grupos (alineados a las 3 Causas Directas del Árbol)</h4>
       <div class="gr">
         <div class="cd" style="border-left: 4px solid var(--y);">
@@ -4112,12 +4047,47 @@
       <div class="hl" style="margin-top: 1.5rem;">
         <strong>Insight principal:</strong> El brainstorming converge en las mismas 3 causas directas del árbol de problemas (fragmentación de datos, procesos manuales, falta de capacidad analítica), lo que <em>valida el diagnóstico</em> y conecta directamente con los medios del árbol de objetivos y con las alternativas de solución evaluadas en el Capítulo 04.
       </div>
+
+      <h4 style="margin-top: 2.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.5.
+        Desafío de Diseño (Design Challenge)</h4>
+      <p>El Desafío de Diseño transforma los hallazgos y fricciones recolectados en las fases previas en "preguntas reto" accionables. Su propósito es evitar proponer una solución tecnológica prematura, obligando al equipo a preguntarse <em>cómo</em> resolver los dolores específicos del negocio.</p>
+
+      <h4>Síntesis de Hallazgos Previos</h4>
+      <div class="gr">
+        <div class="cd" style="border-left: 4px solid var(--r);">
+          <strong>Fricción Principal</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">La información del pedido no fluye a tiempo. Los registros dependen de la memoria del personal o de hojas de cálculo desarticuladas.</p>
+        </div>
+        <div class="cd" style="border-left: 4px solid var(--y);">
+          <strong>Impacto Operativo</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">El personal de almacén sufre retrasos y errores en la preparación porque la comunicación de las ventas llega tarde.</p>
+        </div>
+        <div class="cd" style="border-left: 4px solid var(--b);">
+          <strong>Impacto Estratégico</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">La gerencia carece de visibilidad en tiempo real para medir ventas, productividad y estado del stock, dificultando la toma de decisiones.</p>
+        </div>
+      </div>
+
+      <h4>Formulación de las Preguntas Reto ("¿Cómo podríamos...?")</h4>
+      <div class="gr">
+        <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb" style="margin-bottom:.5rem;">Reto 1 — Flujo Operativo</span>¿Cómo podríamos estandarizar y automatizar el flujo de información desde el momento exacto en que el cliente realiza el pedido, hasta que el producto está listo para su entrega, eliminando la dependencia de la memoria humana y los registros aislados?</div>
+        <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb" style="margin-bottom:.5rem;">Reto 2 — Experiencia del Vendedor</span>¿Cómo podríamos dotar al personal de ventas de una visibilidad inmediata y exacta sobre el inventario disponible, para que puedan brindar confirmaciones rápidas a los clientes?</div>
+        <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb" style="margin-bottom:.5rem;">Reto 3 — Gestión y Decisiones</span>¿Cómo podríamos integrar los datos diarios de pedidos y stock de manera que la dirección obtenga un panorama claro y actualizado que le permita evaluar si se están alcanzando las metas?</div>
+      </div>
+
+      <div class="hl" style="margin-top: 1.5rem;">
+        <strong>Transición hacia la Ideación:</strong> Estas preguntas reto delimitan qué partes del proceso se van a transformar. Al responderlas mediante técnicas de ideación (Brainstorming, SCAMPER), se garantiza que la propuesta tecnológica final responda a una necesidad real del negocio.
+      </div>
+
     </section>
 
-    <section class="sec" id="c9-5">
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
-        6.5. Idear (Fase Idear — Reforzada)</h3>
-      <p>Además del brainstorming y el diagrama de afinidad (sección 6.4), se aplicaron herramientas adicionales de
+    <section class="sec" id="c9-3">
+      <h3 style="margin-top: 2rem; color: var(--ac); border-bottom: 3px solid var(--ac); padding-bottom: 0.5rem; font-size: 1.25rem;">Fase 3: Idear</h3>
+      <p style="margin-bottom: 1.5rem;">Generar soluciones innovadoras. Se diseñan y priorizan las propuestas técnicas a partir de los hallazgos de las fases anteriores, conectándolas directamente con la alternativa seleccionada en el Capítulo 04.</p>
+
+      <h4 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+        6.5. Herramientas de Ideación</h4>
+      <p>Además del brainstorming y el diagrama de afinidad (secciones 6.4 y 6.5), se aplicaron herramientas adicionales de
         ideación para refinar las soluciones y conectarlas directamente con la alternativa seleccionada en el
         Capítulo 04.</p>
 
@@ -4194,18 +4164,96 @@
 
       <div class="hl">
         <strong>Conexión con el Cap. 04:</strong> Las ideas de alto impacto y bajo esfuerzo (consulta de stock
-        móvil, registro digital) son exactamente las que conforman la <strong>Alternativa 2 — Ecosistema
-          No-Code</strong>, mientras que las de alto esfuerzo (BI completo) se posponen como fase futura. Esto
-        explica, desde el diseño centrado en el usuario, por qué la Alternativa 2 fue la seleccionada.
+        móvil, registro digital) son exactamente las que conforman la <strong>Alternativa 2 — ERP modular Odoo
+          (Community)</strong>, mientras que las de alto esfuerzo (BI completo) se posponen como fase futura. Esto
+        explica, desde el diseño centrado en el usuario, por qué la Alternativa 2 (ERP Odoo) fue la seleccionada.
+      </div>
+
+      <h4 style="margin-top: 2.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.8.
+        Storyboarding (Historieta)</h4>
+      <p>La historieta visualiza el recorrido emocional proyectado de Natalie tras la implementación de Odoo, contrastando los 6 momentos clave del flujo actual (AS-IS) con la experiencia esperada (TO-BE) al usar el ERP modular. Las viñetas se muestran como placeholders de ilustración.</p>
+
+      <h4>Historieta — Viñetas del Journey Actual</h4>
+      <img src="img/historieta.png" alt="Historieta Odoo" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; margin: 1rem 0 2rem;">
+</div>
+
+      <h4 style="margin-top: 2.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.9.
+        Customer Journey Map (Situación TO-BE con Odoo)</h4>
+      <p>Este Customer Journey Map detalla el recorrido optimizado de Natalie tras la implementación de Odoo, contrastando cómo los datos reales del diagnóstico (puntos de dolor antiguos) se convierten en eficiencia y satisfacción gracias al ERP modular.</p>
+
+      <h4>Tabla del Customer Journey (Flujo Proyectado con Odoo)</h4>
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Momento</th>
+              <th>Pensamiento (Post-Odoo: Integración de datos)</th>
+              <th>Emoción (Post-Odoo)</th>
+              <th style="text-align:center;">Nivel exp.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><strong>Recibe pedidos / revisa ventas</strong></td>
+              <td><em>"Odoo centraliza los pedidos de todos los canales en mi celular; tengo el control total al instante."</em></td>
+              <td><span class="bg bgr">Tranquilidad / Control</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--g);">++</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><strong>Verifica disponibilidad de stock</strong></td>
+              <td><em>"Consulto el stock real en Odoo en segundos. Adiós al cuaderno, esta información sí es confiable."</em></td>
+              <td><span class="bg bgr">Seguridad</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--g);">++</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><strong>Coordina con producción</strong></td>
+              <td><em>"La orden de producción se generó sola en Odoo. Mi socio ya la está viendo; la información fluye."</em></td>
+              <td><span class="bg bb">Eficiencia / Sincronización</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--b);">+</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><strong>Consolida información (cuadre)</strong></td>
+              <td><em>"¡Recuperé mi sábado! El dashboard de Odoo ya consolidó todo automáticamente y sin usar papel."</em></td>
+              <td><span class="bg bgr">Alivio / Relajación</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--g);">+++</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><strong>Corrige errores / incidencias</strong></td>
+              <td><em>"El sistema validó el despacho y no hubo errores. Me ahorré los S/.20 del motorizado y el cliente está feliz."</em></td>
+              <td><span class="bg bb">Satisfacción</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--b);">+</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><strong>Toma decisiones del negocio</strong></td>
+              <td><em>"Conozco mi ganancia neta real y las proyecciones en el panel de KPIs; ahora decido con claridad estratégica."</em></td>
+              <td><span class="bg bgr">Confianza / Claridad</span></td>
+              <td style="text-align:center; font-weight:700; color: var(--g);">++</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hl" style="margin-top: 1.5rem;">
+        <strong>Insight clave:</strong> La implementación de Odoo transforma la experiencia de Natalie en todos los puntos de contacto, especialmente en la zona "Durante" (momentos 4 y 5). El trabajo manual de consolidación y corrección es reemplazado por la automatización y validación del sistema, eliminando los sobrecostos y devolviendo tiempo estratégico a la gerencia. La curva de experiencia pasa de la sobrecarga a la confianza y control total.
       </div>
     </section>
 
-    <section class="sec" id="c9-6">
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
-        6.6. Prototipar (Fase Prototipar)</h3>
-      <p>El prototipo es un mockup móvil de baja/media fidelidad de la aplicación (AppSheet), mobile-first y
-        desechable, construido para validar la propuesta con la Gerencia antes de invertir en su construcción real.
-        A continuación se presenta una maqueta navegable que simula las 5 pantallas principales de la app.</p>
+    <section class="sec" id="c9-4">
+      <h3 style="margin-top: 2rem; color: var(--ac); border-bottom: 3px solid var(--ac); padding-bottom: 0.5rem; font-size: 1.25rem;">Fase 4: Prototipar</h3>
+      <p style="margin-bottom: 1.5rem;">Tangibilizar las ideas. Se construyen representaciones rápidas y económicas de la solución propuesta para mostrar el concepto al cliente y validar su funcionamiento sin necesidad de desarrollar la solución final.</p>
+
+      <h4 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+        6.7. Prototipo Navegable</h4>
+      <p>El prototipo es un mockup móvil de baja/media fidelidad de la interfaz de Odoo, mobile-first y
+        desechable, construido para validar la propuesta con la Gerencia antes de invertir en su configuración real.
+        A continuación se presenta una maqueta navegable que simula las 5 pantallas principales del sistema.</p>
 
       <div class="rb-proto-wrap">
         <div class="rb-phone">
@@ -4320,21 +4368,24 @@
 
       <div class="hl" style="margin-top:1.5rem;">
         <strong>Naturaleza del prototipo:</strong> Esta maqueta es una simulación de baja/media fidelidad: no se
-        conecta a datos reales, a Google Sheets ni a AppSheet. Su único propósito es validar el flujo de
+        conecta a datos reales ni al servidor Odoo. Su único propósito es validar el flujo de
         navegación y la simplicidad de uso con la Gerencia antes de iniciar la construcción real.
       </div>
     </section>
 
-    <section class="sec" id="c9-7">
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
-        6.7. Evaluar (Fase Evaluar)</h3>
+    <section class="sec" id="c9-5">
+      <h3 style="margin-top: 2rem; color: var(--ac); border-bottom: 3px solid var(--ac); padding-bottom: 0.5rem; font-size: 1.25rem;">Fase 5: Testear / Evaluar</h3>
+      <p style="margin-bottom: 1.5rem;">Recibir retroalimentación. Se somete el prototipo al juicio del cliente para encontrar áreas de mejora e iterar sobre la solución antes de su construcción definitiva.</p>
+
+      <h4 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+        6.8. Instrumento de Evaluación</h4>
       <p>Esta sección documenta el <strong>diseño del instrumento de evaluación</strong> del prototipo; los
         resultados reales provendrán de una entrevista de validación con Natalie que, a la fecha de este
         documento, se encuentra pendiente de programación.</p>
 
       <div class="gr">
         <div class="cd"><strong>Método</strong>Prueba de usabilidad guiada con Natalie (usuaria principal) y un
-          integrante del personal de ventas, ejecutada sobre el prototipo navegable de la sección 6.6.</div>
+          integrante del personal de ventas, ejecutada sobre el prototipo navegable de la sección 6.10.</div>
         <div class="cd"><strong>Qué se Mide</strong>
           <ul style="margin:.4rem 0 0; padding-left:1.2rem; font-size:.88rem; line-height:1.8;">
             <li>¿Consulta el stock en menos de 2 minutos?</li>
@@ -4345,7 +4396,7 @@
         <div class="cd"><strong>Instrumentos</strong>Entrevista de retroalimentación post-prueba, observación
           directa de la tarea (Job Shadowing) y una breve encuesta de satisfacción.</div>
         <div class="cd"><strong>Iteración</strong>Los hallazgos de la prueba se incorporan al mockup antes de
-          cualquier construcción real en Google Sheets o AppSheet.</div>
+          cualquier configuración real en Odoo.</div>
       </div>
 
       <div class="hl" style="border-left-color: var(--y); background: var(--y-bg);">
@@ -4357,8 +4408,7 @@
     <!-- CAP 07 — GESTIÓN DEL ALCANCE -->
     <section class="sec" id="c10-0">
       <h2>CAPÍTULO 07: Gestión del Alcance (Línea Base del Alcance)</h2>
-      <p>La línea base del alcance se construye sobre la <strong>Alternativa 2 — Ecosistema no-code mobile-first</strong>
-        (Google Sheets API + AppSheet), seleccionada en el Capítulo 04 tras el proceso de evaluación de viabilidad
+      <p>La línea base del alcance se construye sobre la <strong>Alternativa 2 — ERP modular Odoo (Community)</strong>, seleccionada en el Capítulo 04 tras el proceso de evaluación de viabilidad
         (18/21 puntos). A partir de esta decisión, el presente capítulo documenta los requisitos del proyecto y
         aplica los procesos de planificación del Área de Conocimiento de Gestión del Alcance del PMBOK® (6.ª Ed.):
         <strong>Documentación de Requisitos</strong>, <strong>Definir el Alcance</strong> y <strong>Crear la
@@ -4455,7 +4505,7 @@
               <td style="text-align:center;"><span class="bg br">Alta</span></td>
               <td>EEF Mobile-first</td>
               <td>MD4</td>
-              <td>1.3.4 App móvil (AppSheet)</td>
+              <td>1.3.4 Interfaz Odoo</td>
               <td>App operable desde celular</td>
             </tr>
             <tr>
@@ -4535,7 +4585,7 @@
           central en objetivos verificables, usados como criterio para decidir qué entra y qué no entra en el
           alcance (Cap. 03).</div>
         <div class="cd"><strong>Análisis de Alternativas de Solución</strong>Evaluación de 3 alternativas mediante
-          rúbrica de 7 criterios; la <strong>Alternativa 2 — Ecosistema No-Code</strong> obtuvo el mayor puntaje
+          rúbrica de 7 criterios; la <strong>Alternativa 2 — ERP modular Odoo (Community)</strong> obtuvo el mayor puntaje
           (18/21) y define la arquitectura base del alcance (Cap. 04).</div>
         <div class="cd"><strong>Factores Ambientales de la Empresa</strong>Conectividad Wi-Fi irregular, ausencia de
           personal de TI, resistencia condicional del Socio de Producción y antecedente de rechazo a herramientas
@@ -4549,14 +4599,13 @@
       <div class="gr">
         <div class="cd"><strong>Juicio de Expertos</strong>Validación del enunciado del alcance y de la EDT con el
           asesor del curso, aplicando los criterios de la Guía del PMBOK®.</div>
-        <div class="cd"><strong>Análisis del Producto</strong>Descomposición del ecosistema no-code (Sheets +
-          AppSheet) en sus componentes funcionales — captura, consulta y KPIs — para precisar qué debe construirse.
+        <div class="cd"><strong>Análisis del Producto</strong>Descomposición del ERP Odoo (módulos de inventario, ventas y reportes) en sus componentes funcionales para precisar qué debe configurarse.
         </div>
         <div class="cd"><strong>Análisis de Requisitos</strong>Cruce de la documentación de requisitos de las tres
           sesiones con el árbol de objetivos, separando necesidades reales del alcance de deseos no priorizados.
         </div>
         <div class="cd"><strong>Toma de Decisiones</strong>Aplicación de los criterios de viabilidad del Cap. 04
-          para decidir qué queda dentro (mobile-first, no-code) y qué queda fuera (BI a medida, ERP/POS) del
+          para decidir qué queda dentro (ERP Odoo, módulos base) y qué queda fuera (BI a medida, módulos avanzados) del
           alcance.</div>
         <div class="cd"><strong>Reuniones con la Gerencia</strong>Validación del enunciado del alcance con Natalie
           como usuaria principal, asegurando su conformidad antes de fijar la línea base.</div>
@@ -4564,10 +4613,9 @@
 
       <h4>Salidas — Enunciado del Alcance del Proyecto</h4>
       <div class="hl">
-        <strong>Descripción del Alcance del Producto:</strong> Ecosistema de gestión de información no-code y
-        mobile-first para Roma Bag's, basado en una base de datos centralizada (Google Sheets como fuente única)
-        conectada a una app de captura y consulta (AppSheet) accesible desde el celular, gobernada por políticas de
-        calidad de datos y soportada por procesos documentados, en coexistencia con el Excel actual durante la
+        <strong>Descripción del Alcance del Producto:</strong> Sistema ERP Odoo (Community) configurado para Roma Bag's, con módulos de inventario, ventas y reportes integrados
+        como fuente única de verdad, accesible desde navegador y móvil, gobernado por políticas de
+        calidad de datos y soportado por procesos documentados, en coexistencia con el Excel actual durante la
         adopción.
       </div>
 
@@ -4578,11 +4626,11 @@
           informal vigente (cuadernos, Excel local, 6 celulares), el cuadre manual semanal y los puntos de pérdida
           de datos.</div>
         <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓
-            Incluido</span><strong>Base de datos centralizada</strong>Fuente única de verdad en Google Sheets con
-          tablas de inventario, ventas y despachos, y reglas de validación de ingreso (Gobierno de Datos).</div>
+            Incluido</span><strong>Base de datos centralizada</strong>Fuente única de verdad en Odoo (PostgreSQL) con
+          módulos de inventario, ventas y despachos, y reglas de validación de ingreso (Gobierno de Datos).</div>
         <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓
-            Incluido</span><strong>Aplicación móvil de gestión (AppSheet)</strong>App no-code con formularios de
-          captura, consulta de stock en tiempo real y panel de KPIs básico, accesible desde el celular.</div>
+            Incluido</span><strong>Interfaz web/móvil de Odoo</strong>Módulos de captura de ventas,
+          consulta de stock en tiempo real y panel de KPIs básico, accesible desde navegador y celular.</div>
         <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓
             Incluido</span><strong>Procesos formalizados (TO-BE)</strong>Mapa de procesos y procedimientos estándar
           (SOP) para el flujo venta → stock → despacho, con protocolo de registro obligatorio en el despacho.</div>
@@ -4601,8 +4649,8 @@
             Excluido</span><strong>Arquitectura BI a medida</strong>Sin Data Warehouse, ETL ni herramientas BI
           empresariales (Power BI/Looker); queda como fase futura.</div>
         <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕
-            Excluido</span><strong>Sistema ERP/POS comercial</strong>Excluye adquisición, licenciamiento e
-          implementación de cualquier ERP o POS de terceros.</div>
+            Excluido</span><strong>Arquitectura BI a medida</strong>Sin Data Warehouse, ETL ni herramientas BI
+          empresariales de desarrollo custom; queda como fase futura.</div>
         <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕
             Excluido</span><strong>Reemplazo inmediato del Excel</strong>No se sustituye abruptamente el Excel de
           la gerencia; ambos coexisten durante la adopción.</div>
@@ -4701,9 +4749,9 @@
               <li style="margin-top:.5rem;"><strong>1.3 Componente 1 — Plataforma de Datos</strong>
                 <ul style="list-style:none; padding-left:1.5rem; margin-top:.3rem; font-size:.88rem; font-weight:400;">
                   <li>1.3.1 Modelo de datos (estructura de tablas)</li>
-                  <li>1.3.2 Base de datos centralizada (Google Sheets)</li>
+                  <li>1.3.2 Base de datos centralizada (Odoo / PostgreSQL)</li>
                   <li>1.3.3 Reglas de validación de ingreso</li>
-                  <li>1.3.4 Aplicación móvil de captura (AppSheet)</li>
+                  <li>1.3.4 Interfaz web/móvil de Odoo</li>
                   <li>1.3.5 Módulo de consulta de stock</li>
                   <li>1.3.6 Panel de indicadores (KPIs)</li>
                 </ul>
@@ -5024,6 +5072,46 @@
             ineficiencias operativas: pedidos incompletos, costo del doble envío, tiempo de cuadre semanal y limitante
             estratégica del espacio físico.</span></div>
       </div>
+
+      <h4 style="margin-top:2rem">Anexo 2.7. Evidencias del Flujo Operativo de Ventas</h4>
+      <p style="font-size:.88rem; color:#64748b; margin-bottom:1.5rem;">Las siguientes capturas documentan el ciclo
+        operativo real de Roma Bag's: desde el registro centralizado de despachos en la hoja de cálculo hasta la
+        interacción comercial por WhatsApp con los clientes finales.</p>
+
+      <div class="hl">
+        <strong>Figura 11:</strong> Registro de Despachos — Hoja de Cálculo «DESPACHOS ROMA BAG'S - 2026».<br>
+        <span style="font-size:.82rem; color:#64748b; display:block; margin:.4rem 0 .8rem;">Organiza los pedidos por
+          vendedora, cliente, cantidad, modelo, color, fecha y método de entrega (Delivery / Agencia). Constituye el
+          principal instrumento de control logístico de la empresa.</span>
+        <img src="img/Captura de pantalla 2026-06-19 095548.png" alt="Registro de Despachos Roma Bags 2026"
+          style="max-width: 100%; border-radius: 8px; border: 1px solid var(--bd); margin-top: 10px; margin-bottom: 20px;">
+        <br>
+
+        <strong>Figura 12:</strong> Conversación WhatsApp — Consulta y Reserva del Modelo Baúl.<br>
+        <span style="font-size:.82rem; color:#64748b; display:block; margin:.4rem 0 .8rem;">Un cliente contacta a la
+          empresa tras ver el producto en Instagram, consulta los colores disponibles (negro, crema, marrón, blanco),
+          solicita separar la unidad negra y coordina el envío para el día siguiente.</span>
+        <img src="img/1fd25bb8-30fc-4f4a-9c0a-585f2364b326.jpg" alt="Chat WhatsApp - Consulta Modelo Baúl"
+          style="max-width: 480px; border-radius: 8px; border: 1px solid var(--bd); margin-top: 10px; margin-bottom: 20px;">
+        <br>
+
+        <strong>Figura 13:</strong> Conversación WhatsApp — Confirmación de Separación de Pedido.<br>
+        <span style="font-size:.82rem; color:#64748b; display:block; margin:.4rem 0 .8rem;">El vendedor informa al
+          cliente sobre la disponibilidad de carteras en los colores solicitados. La clienta confirma su compra
+          («me llevo la negra y la beige»), se apartan las unidades y se coordinan los métodos de envío.</span>
+        <img src="img/51f176f2-173a-4f38-afb2-25b156855884.jpg" alt="Chat WhatsApp - Confirmación de Pedido"
+          style="max-width: 480px; border-radius: 8px; border: 1px solid var(--bd); margin-top: 10px; margin-bottom: 20px;">
+        <br>
+
+        <strong>Figura 14:</strong> Conversación WhatsApp — Elección de Color con Fotografía del Catálogo.<br>
+        <span style="font-size:.82rem; color:#64748b; display:block; margin:.4rem 0 .8rem;">Se comparte una composición
+          fotográfica del modelo «El Baúl» en múltiples colores (negro, blanco, animal print, entre otros). El vendedor
+          confirma disponibilidad en 6 variantes, el cliente elige el color negro y se procede a confirmar el envío.</span>
+        <img src="img/605ed537-2f69-41b9-bde7-fc27fbd01808.jpg" alt="Chat WhatsApp - Elección de Color con Catálogo"
+          style="max-width: 480px; border-radius: 8px; border: 1px solid var(--bd); margin-top: 10px; margin-bottom: 20px;">
+        <br>
+      </div>
+
     </section>
 
     <!-- ANEXO 3 -->
