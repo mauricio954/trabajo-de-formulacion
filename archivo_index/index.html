@@ -1527,11 +1527,11 @@
         <li class="acc-item">
           <button class="acc-btn">Cap. 05: Diseño Centrado en el Usuario <span class="arr">▼</span></button>
           <ul class="acc-content">
-            <li><a href="#dt-empatizar" class="nl sub-link">Fase 1 · Empatizar</a></li>
-            <li><a href="#dt-definir" class="nl sub-link">Fase 2 · Definir</a></li>
-            <li><a href="#dt-idear" class="nl sub-link">Fase 3 · Idear</a></li>
-            <li><a href="#dt-prototipar" class="nl sub-link">Fase 4 · Prototipar</a></li>
-            <li><a href="#dt-evaluar" class="nl sub-link">Fase 5 · Evaluar</a></li>
+            <li><a href="#dt-tabs-root" data-tab="dt-empatizar" class="nl sub-link">Fase 1 · Empatizar</a></li>
+            <li><a href="#dt-tabs-root" data-tab="dt-definir" class="nl sub-link">Fase 2 · Definir</a></li>
+            <li><a href="#dt-tabs-root" data-tab="dt-idear" class="nl sub-link">Fase 3 · Idear</a></li>
+            <li><a href="#dt-tabs-root" data-tab="dt-prototipar" class="nl sub-link">Fase 4 · Prototipar</a></li>
+            <li><a href="#dt-tabs-root" data-tab="dt-evaluar" class="nl sub-link">Fase 5 · Evaluar</a></li>
           </ul>
         </li>
 
@@ -4598,22 +4598,9 @@
           });
         });
 
-        // Interceptar clics en los enlaces de la barra lateral para Cap 5
-        document.querySelectorAll('.nm a').forEach(function (link) {
-          link.addEventListener('click', function (e) {
-            var href = link.getAttribute('href');
-            if (href && href.startsWith('#dt-')) {
-              var tabId = href.substring(1);
-              showTab(tabId);
-              setTimeout(function() {
-                var container = document.getElementById('c9-tabs-container');
-                if (container) {
-                  container.scrollIntoView({ behavior: 'smooth' });
-                }
-              }, 50);
-            }
-          });
-        });
+        // Expuesta para que el router principal (.nl) pueda abrir la fase
+        // correcta tras mostrar la sección contenedora #dt-tabs-root
+        window.showDtTab = showTab;
 
         // Activar la pestaña según el hash inicial
         var hash = window.location.hash;
@@ -6278,12 +6265,12 @@
       const sidebar = document.querySelector('.side');
 
       // SPA Navigation
-      function showPage(targetId) {
+      function showPage(targetId, clickedLink) {
         sections.forEach(sec => sec.classList.remove('active'));
         links.forEach(l => l.classList.remove('on'));
         const targetSection = document.getElementById(targetId);
         if (targetSection) targetSection.classList.add('active');
-        const targetLink = document.querySelector(`.nl[href="#${targetId}"]`);
+        const targetLink = clickedLink || document.querySelector(`.nl[href="#${targetId}"]`);
         if (targetLink) targetLink.classList.add('on');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -6292,7 +6279,11 @@
         link.addEventListener('click', (e) => {
           e.preventDefault();
           const targetId = link.getAttribute('href').substring(1);
-          showPage(targetId);
+          showPage(targetId, link);
+          // Capítulo 05 (Design Thinking): la sección es un contenedor de
+          // pestañas; tras mostrarla, abrir la fase indicada en data-tab.
+          const tabId = link.getAttribute('data-tab');
+          if (tabId && typeof window.showDtTab === 'function') window.showDtTab(tabId);
           // Ocultar menú en móvil al hacer click
           if (window.innerWidth <= 900) sidebar.classList.remove('open');
         });
@@ -6313,7 +6304,20 @@
         sidebar.classList.toggle('open');
       });
 
-      showPage('ctx'); // Inicializar
+      // Inicialización: respeta un hash directo en la URL si apunta al
+      // capítulo de Design Thinking (sección contenedora o una de sus
+      // pestañas internas); en cualquier otro caso, comportamiento original.
+      const initialHash = window.location.hash.substring(1);
+      const dtPanelIds = ['dt-empatizar', 'dt-definir', 'dt-idear', 'dt-prototipar', 'dt-evaluar'];
+      if (initialHash === 'dt-tabs-root') {
+        showPage('dt-tabs-root');
+      } else if (dtPanelIds.includes(initialHash)) {
+        const matchingLink = document.querySelector(`.nl[data-tab="${initialHash}"]`);
+        showPage('dt-tabs-root', matchingLink);
+        if (typeof window.showDtTab === 'function') window.showDtTab(initialHash);
+      } else {
+        showPage('ctx'); // Inicializar
+      }
     });
   </script>
 </body>
