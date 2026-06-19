@@ -1238,6 +1238,14 @@
         </li>
 
         <li class="acc-item">
+          <button class="acc-btn">Cap. 07: Gestión del Alcance <span class="arr">▼</span></button>
+          <ul class="acc-content">
+            <li><a href="#c10-1" class="nl sub-link">7.1 Definir el Alcance</a></li>
+            <li><a href="#c10-2" class="nl sub-link">7.2 Crear la EDT/WBS</a></li>
+          </ul>
+        </li>
+
+        <li class="acc-item">
           <button class="acc-btn">Anexos y Referencias <span class="arr">▼</span></button>
           <ul class="acc-content">
             <li><a href="#anx1" class="nl sub-link">Anexo 1: Instrumentos</a></li>
@@ -3857,6 +3865,248 @@
       <div class="hl" style="margin-top: 1.5rem;">
         <strong>Insight principal:</strong> El brainstorming converge en las mismas 3 causas directas del árbol de problemas (fragmentación de datos, procesos manuales, falta de capacidad analítica), lo que <em>valida el diagnóstico</em> y conecta directamente con los medios del árbol de objetivos y con las alternativas de solución evaluadas en el Capítulo 04.
       </div>
+    </section>
+
+    <!-- CAP 07 — GESTIÓN DEL ALCANCE -->
+    <section class="sec" id="c10-1">
+      <h2>CAPÍTULO 07: Gestión del Alcance (Línea Base del Alcance)</h2>
+      <p>La línea base del alcance se construye sobre la <strong>Alternativa 2 — Ecosistema no-code mobile-first</strong>
+        (Google Sheets API + AppSheet), seleccionada en el Capítulo 04 tras el proceso de evaluación de viabilidad
+        (18/21 puntos). A partir de esta decisión, el presente capítulo aplica los dos procesos de planificación del
+        Área de Conocimiento de Gestión del Alcance del PMBOK® (6.ª Ed.): <strong>Definir el Alcance</strong> y
+        <strong>Crear la EDT/WBS</strong>.</p>
+
+      <div class="hl" style="margin-bottom:2rem"><strong>Regla de la línea base:</strong> lo que no está documentado
+        en esta línea base <strong>no forma parte del proyecto</strong>. Cualquier requerimiento adicional deberá
+        tramitarse mediante el proceso formal de control de cambios.</div>
+
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+        7.1. Definir el Alcance</h3>
+      <div class="hl" style="margin-bottom:2rem"><strong>Proceso 5.3 — PMBOK® 6.ª Ed.</strong> &nbsp;|&nbsp; Grupo de
+        Procesos: Planificación &nbsp;|&nbsp; Área de Conocimiento: Gestión del Alcance del Proyecto</div>
+
+      <h4>Entradas</h4>
+      <div class="gr">
+        <div class="cd"><strong>Acta de Constitución del Proyecto</strong>Formaliza la existencia del proyecto y
+          otorga al equipo UNTELS la autoridad para aplicar recursos, anclando el alcance al objetivo central del
+          ecosistema de gestión de información de Roma Bag's.</div>
+        <div class="cd"><strong>Documentación de Requisitos</strong>Recolectada en las tres sesiones de entrevista
+          (Sesiones 01, 02 y 03) con la Gerencia: necesidades funcionales (captura móvil, consulta de stock) y no
+          funcionales (mobile-first, coexistencia con Excel).</div>
+        <div class="cd"><strong>Registro de Interesados</strong>Seis interesados formales (SH-01 a SH-06) con su
+          nivel de influencia y expectativas, que delimitan a quién debe servir el alcance del producto (Cap. 01,
+          §1.3.3).</div>
+        <div class="cd"><strong>Árbol de Objetivos SMART</strong>Medios y fines validados que traducen el problema
+          central en objetivos verificables, usados como criterio para decidir qué entra y qué no entra en el
+          alcance (Cap. 03).</div>
+        <div class="cd"><strong>Análisis de Alternativas de Solución</strong>Evaluación de 3 alternativas mediante
+          rúbrica de 7 criterios; la <strong>Alternativa 2 — Ecosistema No-Code</strong> obtuvo el mayor puntaje
+          (18/21) y define la arquitectura base del alcance (Cap. 04).</div>
+        <div class="cd"><strong>Factores Ambientales de la Empresa</strong>Conectividad Wi-Fi irregular, ausencia de
+          personal de TI, resistencia condicional del Socio de Producción y antecedente de rechazo a herramientas
+          "robóticas" (Cap. 01; Cap. 02, §2.1.5).</div>
+        <div class="cd"><strong>Activos de los Procesos de la Organización</strong>Cuadernos físicos de inventario,
+          archivos Excel en Google Drive y canales informales (WhatsApp) que deben coexistir con la solución
+          propuesta (Cap. 02, §2.1.6).</div>
+      </div>
+
+      <h4>Herramientas y Técnicas</h4>
+      <div class="gr">
+        <div class="cd"><strong>Juicio de Expertos</strong>Validación del enunciado del alcance y de la EDT con el
+          asesor del curso, aplicando los criterios de la Guía del PMBOK®.</div>
+        <div class="cd"><strong>Análisis del Producto</strong>Descomposición del ecosistema no-code (Sheets +
+          AppSheet) en sus componentes funcionales — captura, consulta y KPIs — para precisar qué debe construirse.
+        </div>
+        <div class="cd"><strong>Análisis de Requisitos</strong>Cruce de la documentación de requisitos de las tres
+          sesiones con el árbol de objetivos, separando necesidades reales del alcance de deseos no priorizados.
+        </div>
+        <div class="cd"><strong>Toma de Decisiones</strong>Aplicación de los criterios de viabilidad del Cap. 04
+          para decidir qué queda dentro (mobile-first, no-code) y qué queda fuera (BI a medida, ERP/POS) del
+          alcance.</div>
+        <div class="cd"><strong>Reuniones con la Gerencia</strong>Validación del enunciado del alcance con Natalie
+          como usuaria principal, asegurando su conformidad antes de fijar la línea base.</div>
+      </div>
+
+      <h4>Salidas — Enunciado del Alcance del Proyecto</h4>
+      <div class="hl">
+        <strong>Descripción del Alcance del Producto:</strong> Ecosistema de gestión de información no-code y
+        mobile-first para Roma Bag's, basado en una base de datos centralizada (Google Sheets como fuente única)
+        conectada a una app de captura y consulta (AppSheet) accesible desde el celular, gobernada por políticas de
+        calidad de datos y soportada por procesos documentados, en coexistencia con el Excel actual durante la
+        adopción.
+      </div>
+
+      <h5 style="color:var(--g); margin-top:1.8rem;">✓ Inclusiones del Alcance (Trabajo a Realizar)</h5>
+      <div class="gr">
+        <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓
+            Incluido</span><strong>Diagnóstico de la situación actual (AS-IS)</strong>Documentación del flujo
+          informal vigente (cuadernos, Excel local, 6 celulares), el cuadre manual semanal y los puntos de pérdida
+          de datos.</div>
+        <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓
+            Incluido</span><strong>Base de datos centralizada</strong>Fuente única de verdad en Google Sheets con
+          tablas de inventario, ventas y despachos, y reglas de validación de ingreso (Gobierno de Datos).</div>
+        <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓
+            Incluido</span><strong>Aplicación móvil de gestión (AppSheet)</strong>App no-code con formularios de
+          captura, consulta de stock en tiempo real y panel de KPIs básico, accesible desde el celular.</div>
+        <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓
+            Incluido</span><strong>Procesos formalizados (TO-BE)</strong>Mapa de procesos y procedimientos estándar
+          (SOP) para el flujo venta → stock → despacho, con protocolo de registro obligatorio en el despacho.</div>
+        <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓
+            Incluido</span><strong>Mejora de conectividad del taller</strong>Diagnóstico de zonas muertas de Wi-Fi y
+          propuesta de solución de red para garantizar conectividad en las áreas de trabajo.</div>
+        <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓
+            Incluido</span><strong>Capacitación y gestión del cambio</strong>Talleres breves mobile-first para
+          ventas, producción y gerencia, con estrategia de coexistencia con el Excel para mitigar la resistencia al
+          cambio.</div>
+      </div>
+
+      <h5 style="color:var(--r); margin-top:1.8rem;">✕ Exclusiones del Alcance (Fuera del Proyecto)</h5>
+      <div class="gr">
+        <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕
+            Excluido</span><strong>Arquitectura BI a medida</strong>Sin Data Warehouse, ETL ni herramientas BI
+          empresariales (Power BI/Looker); queda como fase futura.</div>
+        <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕
+            Excluido</span><strong>Sistema ERP/POS comercial</strong>Excluye adquisición, licenciamiento e
+          implementación de cualquier ERP o POS de terceros.</div>
+        <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕
+            Excluido</span><strong>Reemplazo inmediato del Excel</strong>No se sustituye abruptamente el Excel de
+          la gerencia; ambos coexisten durante la adopción.</div>
+        <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕
+            Excluido</span><strong>Módulos no comprometidos</strong>Facturación electrónica, e-commerce al cliente
+          final, contabilidad e integración con SUNAT.</div>
+        <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕
+            Excluido</span><strong>Soporte y mantenimiento post-cierre</strong>Soporte operativo diario o
+          mantenimiento evolutivo tras la firma del acta queda fuera del alcance del equipo UNTELS.</div>
+        <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕
+            Excluido</span><strong>Compra de hardware mayor</strong>Sin adquisición de servidores, laptops ni
+          equipos nuevos; se trabaja sobre los activos existentes (3 laptops, 6 celulares).</div>
+      </div>
+
+      <h4>Criterios de Aceptación del Producto</h4>
+      <div class="gr">
+        <div class="cd"><strong>Integración de datos</strong>100% de registros de inventario y ventas en la base
+          única.</div>
+        <div class="cd"><strong>Latencia de consulta</strong>Consulta de stock desde el celular en menos de 2
+          minutos.</div>
+        <div class="cd"><strong>Reducción del cuadre manual</strong>De un día completo a menos de 1 hora.</div>
+        <div class="cd"><strong>Aprobación de la gerencia</strong>Conformidad firmada por Natalie (usuaria
+          principal).</div>
+        <div class="cd"><strong>Operación mobile-first y coexistencia</strong>Opera desde móviles y convive con el
+          Excel sin pérdida de información.</div>
+      </div>
+
+      <h4>Supuestos y Restricciones</h4>
+      <div class="fx">
+        <div class="cd"><strong>Supuestos</strong>
+          <ul style="margin-top:.6rem; padding-left:1.2rem; font-size:.88rem; line-height:1.8;">
+            <li>La gerencia mantiene el compromiso de uso del sistema.</li>
+            <li>El personal dispone de tiempo para la capacitación.</li>
+            <li>La conectividad mejorada se mantiene estable.</li>
+            <li>El socio de producción adopta el sistema sin sabotaje pasivo.</li>
+          </ul>
+        </div>
+        <div class="cd"><strong>Restricciones</strong>
+          <ul style="margin-top:.6rem; padding-left:1.2rem; font-size:.88rem; line-height:1.8;">
+            <li>Presupuesto limitado de microempresa.</li>
+            <li>Conectividad Wi-Fi irregular.</li>
+            <li>Solución obligatoriamente mobile-first.</li>
+            <li>Coexistencia obligatoria con Excel.</li>
+            <li>Baja tolerancia al error del socio de producción.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="c10-2">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+        7.2. Crear la EDT/WBS</h3>
+      <div class="hl" style="margin-bottom:2rem"><strong>Proceso 5.4 — PMBOK® 6.ª Ed.</strong> &nbsp;|&nbsp; Grupo de
+        Procesos: Planificación &nbsp;|&nbsp; Área de Conocimiento: Gestión del Alcance del Proyecto</div>
+      <p><strong>Regla aplicada:</strong> la EDT/WBS contempla únicamente entregables y paquetes de trabajo,
+        expresados como <strong>sustantivos</strong> (no verbos), conforme a las buenas prácticas del PMBOK®.</p>
+
+      <h4>Entradas</h4>
+      <div class="gr">
+        <div class="cd"><strong>Enunciado del Alcance del Proyecto</strong>Descripción del producto, inclusiones,
+          exclusiones y criterios de aceptación definidos en la sección 7.1.</div>
+        <div class="cd"><strong>Documentación de Requisitos</strong>Necesidades funcionales y no funcionales
+          levantadas en las tres sesiones de entrevista con la Gerencia.</div>
+        <div class="cd"><strong>Plan de Gestión del Alcance</strong>Criterios y reglas con los que se descompone el
+          alcance en entregables y paquetes de trabajo.</div>
+      </div>
+
+      <h4>Herramientas y Técnicas</h4>
+      <div class="gr">
+        <div class="cd"><strong>Descomposición</strong>Subdivisión del alcance total del proyecto en componentes
+          más pequeños y manejables, hasta llegar a paquetes de trabajo verificables.</div>
+        <div class="cd"><strong>Juicio de Expertos</strong>Validación de la jerarquía y el nivel de detalle de la
+          EDT con el asesor del curso.</div>
+      </div>
+
+      <h4>Salidas — EDT/WBS</h4>
+      <div class="tr" style="padding:1.5rem 2rem;">
+        <ul style="list-style:none; font-size:.92rem; line-height:1.9;">
+          <li><strong>1. Ecosistema de Gestión de Información Roma Bag's</strong>
+            <ul style="list-style:none; padding-left:1.5rem; margin-top:.4rem;">
+              <li><strong>1.1 Gestión del Proyecto</strong>
+                <ul style="list-style:none; padding-left:1.5rem; margin-top:.3rem; font-size:.88rem; font-weight:400;">
+                  <li>1.1.1 Acta de constitución</li>
+                  <li>1.1.2 Plan de gestión del proyecto</li>
+                  <li>1.1.3 Informes de avance</li>
+                  <li>1.1.4 Acta de conformidad final</li>
+                </ul>
+              </li>
+              <li style="margin-top:.5rem;"><strong>1.2 Diagnóstico y Requisitos (AS-IS)</strong>
+                <ul style="list-style:none; padding-left:1.5rem; margin-top:.3rem; font-size:.88rem; font-weight:400;">
+                  <li>1.2.1 Documentación del flujo actual</li>
+                  <li>1.2.2 Documentación de requisitos</li>
+                  <li>1.2.3 Matriz de trazabilidad de requisitos</li>
+                </ul>
+              </li>
+              <li style="margin-top:.5rem;"><strong>1.3 Componente 1 — Plataforma de Datos</strong>
+                <ul style="list-style:none; padding-left:1.5rem; margin-top:.3rem; font-size:.88rem; font-weight:400;">
+                  <li>1.3.1 Modelo de datos (estructura de tablas)</li>
+                  <li>1.3.2 Base de datos centralizada (Google Sheets)</li>
+                  <li>1.3.3 Reglas de validación de ingreso</li>
+                  <li>1.3.4 Aplicación móvil de captura (AppSheet)</li>
+                  <li>1.3.5 Módulo de consulta de stock</li>
+                  <li>1.3.6 Panel de indicadores (KPIs)</li>
+                </ul>
+              </li>
+              <li style="margin-top:.5rem;"><strong>1.4 Componente 2 — Procesos y Gobierno de Datos</strong>
+                <ul style="list-style:none; padding-left:1.5rem; margin-top:.3rem; font-size:.88rem; font-weight:400;">
+                  <li>1.4.1 Mapa de procesos TO-BE</li>
+                  <li>1.4.2 Procedimientos estándar (SOP)</li>
+                  <li>1.4.3 Protocolo de registro en despacho</li>
+                  <li>1.4.4 Políticas de Gobierno de Datos</li>
+                </ul>
+              </li>
+              <li style="margin-top:.5rem;"><strong>1.5 Componente 3 — Infraestructura y Adopción</strong>
+                <ul style="list-style:none; padding-left:1.5rem; margin-top:.3rem; font-size:.88rem; font-weight:400;">
+                  <li>1.5.1 Diagnóstico de conectividad</li>
+                  <li>1.5.2 Solución de red del taller</li>
+                  <li>1.5.3 Plan de capacitación</li>
+                  <li>1.5.4 Talleres de capacitación ejecutados</li>
+                  <li>1.5.5 Plan de gestión del cambio</li>
+                  <li>1.5.6 Estrategia de coexistencia con Excel</li>
+                </ul>
+              </li>
+              <li style="margin-top:.5rem;"><strong>1.6 Cierre y Validación</strong>
+                <ul style="list-style:none; padding-left:1.5rem; margin-top:.3rem; font-size:.88rem; font-weight:400;">
+                  <li>1.6.1 Pruebas de aceptación</li>
+                  <li>1.6.2 Acta de conformidad de la gerencia</li>
+                  <li>1.6.3 Documentación final del proyecto</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <p class="ki" style="font-size:.78rem;font-weight:400;color:#64748b;text-transform:none">Diccionario de la
+        EDT: cada paquete de trabajo del nivel más bajo se acompaña de su diccionario (descripción del entregable,
+        responsable y criterio de finalización); el detalle completo puede ir como anexo.</p>
+      <p style="text-align:center;font-size:0.85rem;color:var(--side2);margin-top:2rem;margin-bottom:1rem;"><em>Fin
+          del Capítulo 07.</em></p>
     </section>
 
     <!-- ANEXOS -->
