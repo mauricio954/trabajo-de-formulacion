@@ -1072,7 +1072,7 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
     }
 
-    /* --- Prototipo Interactivo (Cap. 06 — Prototipar) --- */
+    /* --- Prototipo Interactivo (Cap. 05 - Prototipar) --- */
     .rb-proto-wrap {
       display: flex;
       flex-direction: column;
@@ -1437,35 +1437,29 @@
             <li><a href="#c7-2" class="nl sub-link">4.2 Soluciones Alternativas</a></li>
             <li><a href="#c7-3" class="nl sub-link">4.3 Evaluación de Viabilidad</a></li>
             <li><a href="#c7-4" class="nl sub-link">4.4 Doble Diamante</a></li>
+            <li><a href="#c7-5" class="nl sub-link">4.5 Matriz de Marco Lógico</a></li>
           </ul>
         </li>
 
         <li class="acc-item">
-          <button class="acc-btn">Cap. 05: Marco Lógico <span class="arr">▼</span></button>
+          <button class="acc-btn">Cap. 05: Diseño Centrado en el Usuario <span class="arr">▼</span></button>
           <ul class="acc-content">
-            <li><a href="#c8-1" class="nl sub-link">5.1 Matriz de Marco Lógico</a></li>
+            <li><a href="#c9-1" class="nl sub-link">5.1 Mapa de Empatía</a></li>
+            <li><a href="#c9-2" class="nl sub-link">5.2 Buyer Persona</a></li>
+            <li><a href="#c9-3" class="nl sub-link">5.3 Customer Journey</a></li>
+            <li><a href="#c9-4" class="nl sub-link">5.4 Brainstorming y Afinidad</a></li>
+            <li><a href="#c9-5" class="nl sub-link">5.5 Idear (Reforzado)</a></li>
+            <li><a href="#c9-6" class="nl sub-link">5.6 Prototipar</a></li>
+            <li><a href="#c9-7" class="nl sub-link">5.7 Evaluar</a></li>
           </ul>
         </li>
 
         <li class="acc-item">
-          <button class="acc-btn">Cap. 06: Design Thinking <span class="arr">▼</span></button>
+          <button class="acc-btn">Cap. 06: Gestión del Alcance <span class="arr">▼</span></button>
           <ul class="acc-content">
-            <li><a href="#c9-1" class="nl sub-link">6.1 Mapa de Empatía</a></li>
-            <li><a href="#c9-2" class="nl sub-link">6.2 Buyer Persona</a></li>
-            <li><a href="#c9-3" class="nl sub-link">6.3 Customer Journey</a></li>
-            <li><a href="#c9-4" class="nl sub-link">6.4 Brainstorming y Afinidad</a></li>
-            <li><a href="#c9-5" class="nl sub-link">6.5 Idear (Reforzado)</a></li>
-            <li><a href="#c9-6" class="nl sub-link">6.6 Prototipar</a></li>
-            <li><a href="#c9-7" class="nl sub-link">6.7 Evaluar</a></li>
-          </ul>
-        </li>
-
-        <li class="acc-item">
-          <button class="acc-btn">Cap. 07: Gestión del Alcance <span class="arr">▼</span></button>
-          <ul class="acc-content">
-            <li><a href="#c10-0" class="nl sub-link">7.0 Matriz de Trazabilidad</a></li>
-            <li><a href="#c10-1" class="nl sub-link">7.1 Definir el Alcance</a></li>
-            <li><a href="#c10-2" class="nl sub-link">7.2 Crear la EDT/WBS</a></li>
+            <li><a href="#c10-0" class="nl sub-link">6.0 Matriz de Trazabilidad</a></li>
+            <li><a href="#c10-1" class="nl sub-link">6.1 Definir el Alcance</a></li>
+            <li><a href="#c10-2" class="nl sub-link">6.2 Crear la EDT/WBS</a></li>
           </ul>
         </li>
 
@@ -3453,48 +3447,44 @@
           <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>Tiempo de conciliación semanal &lt;1 hora desde el mes 3, equivalente a recuperar ≥7 horas/semana de tiempo gerencial productivo.</span>
           <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>Depende directamente de MD 2 (automatización de conciliación); realista una vez que la base de datos esté centralizada en el mes 2.</span>
           <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Ataca ED 1 (pérdida de 1 día semanal de la gerencia) y su causa raíz CD 2 (procesos 100% manuales).</span>
-          <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Desde el mes 3 de ejecución del proyecto.</span>
+          <!-- FD4 -->
+          <div class="cd" style="margin-bottom: 1.2rem;">
+            <strong style="font-size: 1rem; color: var(--g);">FD 4 — Historial íntegro para proyección de demanda</strong>
+            <p style="margin: 0.3rem 0 0.8rem; font-size: 0.88rem; color: var(--txt);">Constituir un historial de datos íntegro de ≥12 meses para proyección de demanda al mes 6.</p>
+            <div style="display: grid; grid-template-columns: 130px 1fr; gap: 0.5rem 1rem; font-size: 0.87rem; align-items: start;">
+              <span style="font-weight: 700; color: var(--ac);">S — Específico</span><span>Acumular en la base centralizada ≥12 meses de registros completos y continuos de ventas, stock y despachos sin brechas.</span>
+              <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>Historial íntegro ≥12 meses disponible al cierre del mes 6; verificable mediante auditoría de registros en la base de datos.</span>
+              <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>Si MD 1 y MD 3 se implementan desde el mes 2, al mes 6 habrá ≥4 meses nuevos; se complementan con datos recuperados del Excel 2026.</span>
+              <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Ataca CI 3.2 (historial incompleto e irrecuperable, pérdida del 2024) y EI 4 (imposibilidad de proyectar demanda estacional).</span>
+              <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Al mes 6 de ejecución del proyecto.</span>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <!-- FD4 -->
-      <div class="cd" style="margin-bottom: 1.2rem;">
-        <strong style="font-size: 1rem; color: var(--g);">FD 4 — Historial íntegro para proyección de demanda</strong>
-        <p style="margin: 0.3rem 0 0.8rem; font-size: 0.88rem; color: var(--txt);">Constituir un historial de datos íntegro de ≥12 meses para proyección de demanda al mes 6.</p>
-        <div style="display: grid; grid-template-columns: 130px 1fr; gap: 0.5rem 1rem; font-size: 0.87rem; align-items: start;">
-          <span style="font-weight: 700; color: var(--ac);">S — Específico</span><span>Acumular en la base centralizada ≥12 meses de registros completos y continuos de ventas, stock y despachos sin brechas.</span>
-          <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>Historial íntegro ≥12 meses disponible al cierre del mes 6; verificable mediante auditoría de registros en la base de datos.</span>
-          <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>Si MD 1 y MD 3 se implementan desde el mes 2, al mes 6 habrá ≥4 meses nuevos; se complementan con datos recuperados del Excel 2026.</span>
-          <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Ataca CI 3.2 (historial incompleto e irrecuperable, pérdida del 2024) y EI 4 (imposibilidad de proyectar demanda estacional).</span>
-          <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Al mes 6 de ejecución del proyecto.</span>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- CAP 04 — ANÁLISIS DE ALTERNATIVAS -->
     <section class="sec" id="c7-1">
       <h2>CAPÍTULO 04: Análisis de Alternativas de Solución</h2>
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.1.
         Identificación de Acciones (Tarea 1)</h3>
-      <p>A partir del árbol de objetivos y los medios directos identificados, se descompone la intervención en tres componentes con sus acciones potenciales. Las acciones de cada componente conforman el menú de opciones sobre el cual se construirán las alternativas de solución.</p>
+      <p>Por cada medio fundamental del árbol de objetivos se identifican las acciones necesarias para alcanzar la situación deseada, agrupadas en tres componentes:</p>
 
       <h4>Componente 1 — Plataforma de Datos</h4>
       <div class="gr">
         <div class="cd">
           <span class="bg bb" style="margin-bottom: .5rem;">A1.1a</span>
-          <strong>Arquitectura BI a medida</strong>
-          <p style="margin: .4rem 0 0; font-size: .88rem;">Desarrollo de una solución de Inteligencia de Negocios personalizada (base de datos relacional + ETL + dashboard) diseñada específicamente para los procesos de Roma Bag's.</p>
+          <strong>Arquitectura BI a medida (Data Warehouse + ETL + Power BI)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Desarrollo de una solución de Inteligencia de Negocios personalizada (base de datos relacional + ETL + dashboard Power BI) diseñada específicamente para los procesos de Roma Bag's.</p>
         </div>
         <div class="cd">
           <span class="bg bb" style="margin-bottom: .5rem;">A1.1b</span>
-          <strong>Ecosistema no-code (Sheets API + AppSheet móvil)</strong>
+          <strong>Ecosistema no-code (Google Sheets API + AppSheet)</strong>
           <p style="margin: .4rem 0 0; font-size: .88rem;">Centralización de datos usando Google Sheets como backend estructurado (con API) y AppSheet como interfaz móvil de captura, consulta y reporte para el personal.</p>
         </div>
         <div class="cd">
           <span class="bg bb" style="margin-bottom: .5rem;">A1.1c</span>
-          <strong>ERP / POS en la nube</strong>
-          <p style="margin: .4rem 0 0; font-size: .88rem;">Adopción de un sistema ERP o POS en la nube de terceros (ej. Odoo CE, Alegra, Bsale) con módulos de inventario, ventas y reportes preconfigurados.</p>
+          <strong>ERP modular open-source (Odoo Community)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Adopción del sistema ERP open-source Odoo Community con módulos nativos de inventario, ventas, compras y reportes, sin costo de licencia recurrente.</p>
         </div>
       </div>
 
@@ -3507,12 +3497,12 @@
         </div>
         <div class="cd">
           <span class="bg by" style="margin-bottom: .5rem;">A2.2</span>
-          <strong>Rediseño y documentación de procesos venta-stock-despacho</strong>
+          <strong>Documentación de procesos venta-stock-despacho</strong>
           <p style="margin: .4rem 0 0; font-size: .88rem;">Mapeo y formalización del flujo completo de información desde la venta hasta el despacho, eliminando duplicidades y puntos de quiebre actuales.</p>
         </div>
         <div class="cd">
           <span class="bg by" style="margin-bottom: .5rem;">A2.3</span>
-          <strong>Protocolo de registro obligatorio en despacho</strong>
+          <strong>Protocolo de registro obligatorio en el punto de despacho</strong>
           <p style="margin: .4rem 0 0; font-size: .88rem;">Implementación de un procedimiento estándar de operación (SOP) que exija el registro de cada despacho con campos validados antes de confirmar el envío.</p>
         </div>
       </div>
@@ -3521,17 +3511,17 @@
       <div class="gr">
         <div class="cd">
           <span class="bg bgr" style="margin-bottom: .5rem;">A3.1</span>
-          <strong>Mejora de conectividad Wi-Fi</strong>
+          <strong>Mejora de conectividad del taller</strong>
           <p style="margin: .4rem 0 0; font-size: .88rem;">Eliminación de las zonas muertas de red mediante extensión mesh propia o contratación de servicio gestionado con el ISP actual (Movistar fibra óptica).</p>
         </div>
         <div class="cd">
           <span class="bg bgr" style="margin-bottom: .5rem;">A3.2</span>
-          <strong>Capacitación mobile-first</strong>
-          <p style="margin: .4rem 0 0; font-size: .88rem;">Plan de formación orientado al uso del sistema desde celular, adaptado al perfil del personal de ventas (18–35 años) y a los requerimientos de la gerencia.</p>
+          <strong>Capacitación del personal</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Plan de formación orientado al uso del sistema, adaptado al perfil del personal de ventas (18–35 años) y a los requerimientos de la gerencia.</p>
         </div>
         <div class="cd">
           <span class="bg bgr" style="margin-bottom: .5rem;">A3.3</span>
-          <strong>Gestión del cambio con coexistencia del Excel</strong>
+          <strong>Gestión del cambio y coexistencia con el Excel</strong>
           <p style="margin: .4rem 0 0; font-size: .88rem;">Estrategia de transición progresiva que mantiene el Excel en paralelo durante las primeras semanas para reducir la resistencia al cambio identificada en la gerencia.</p>
         </div>
       </div>
@@ -3548,7 +3538,7 @@
           <div style="display: flex; gap: .4rem; flex-wrap: wrap;">
             <span class="bg bb">A1.1a — BI a medida</span>
             <span class="bg bb">A1.1b — No-Code</span>
-            <span class="bg bb">A1.1c — ERP/POS</span>
+            <span class="bg bb">A1.1c — ERP Odoo Community</span>
           </div>
         </div>
         <div class="cd">
@@ -3567,16 +3557,16 @@
             <tr>
               <th>Componente</th>
               <th>Alt. 1 — BI a medida</th>
-              <th>Alt. 2 — No-Code <span class="bg bgr" style="margin-left:.3rem;">Seleccionada</span></th>
-              <th>Alt. 3 — ERP / POS</th>
+              <th>Alt. 2 — ERP Odoo Community <span class="bg bgr" style="margin-left:.3rem;">★ SELECCIONADA</span></th>
+              <th>Alt. 3 — No-Code (Sheets + AppSheet)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><strong>C1 — Plataforma de Datos</strong></td>
               <td><span class="bg bb">A1.1a</span> Arquitectura BI personalizada</td>
+              <td><span class="bg bb">A1.1c</span> ERP/POS en la nube (Odoo CE)</td>
               <td><span class="bg bb">A1.1b</span> Sheets API + AppSheet móvil</td>
-              <td><span class="bg bb">A1.1c</span> ERP/POS en la nube</td>
             </tr>
             <tr>
               <td><strong>C2 — Procesos y Gobierno</strong></td>
@@ -3595,7 +3585,7 @@
       </div>
 
       <div class="hl">
-        <strong>Análisis de suficiencia y consistencia:</strong> Las tres alternativas son <em>suficientes</em> porque cada una aborda los tres componentes necesarios (plataforma, procesos e infraestructura) para resolver el problema central. Son <em>internamente consistentes</em> porque las acciones complementarias de C2 y C3 son tecnológicamente compatibles con cualquiera de las plataformas de C1. La diferencia radica en el grado de sofisticación técnica, el costo de implementación y la adecuación a la madurez operativa actual de Roma Bag's.
+        <strong>Análisis de suficiencia y consistencia:</strong> Las tres alternativas son <em>suficientes</em> porque cada una aborda los tres componentes necesarios para resolver el problema central. Son <em>consistentes</em> porque las acciones complementarias de C2 y C3 son compatibles con cualquiera de las plataformas de C1, y ninguna alternativa mezcla dos acciones excluyentes. La diferencia radica en el grado de integración, el costo de implementación y la escalabilidad a largo plazo.
       </div>
     </section>
 
@@ -3603,23 +3593,23 @@
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.3.
         Evaluación de Viabilidad (Tarea 3)</h3>
       <p><strong>Técnica de evaluación:</strong> Juicio de expertos bajo enfoque de <strong>Costo-Efectividad</strong>. No se aplica Costo-Beneficio porque los beneficios del proyecto (integración de información, reducción de la dependencia operativa, trazabilidad) no se monetizan de forma confiable en esta etapa; por ello se evalúa la efectividad de cada alternativa para lograr los objetivos frente a su costo.</p>
-      <p>Se evalúan tres alternativas comparables mediante una rúbrica de 7 criterios con puntaje del 1 al 3 (1 = bajo, 2 = medio, 3 = alto). El puntaje máximo posible es 21.</p>
+      <p>Se evalúan tres alternativas mediante una rúbrica de 7 criterios con puntaje del 1 al 3 (1 = bajo, 2 = medio, 3 = alto). Puntaje máximo: 21.</p>
 
       <div class="fx">
         <div class="cd">
           <span class="bg bb" style="margin-bottom: .5rem;">Alt. 1</span>
-          <strong>Ecosistema No-Code</strong>
-          <p style="margin: .4rem 0 0; font-size: .88rem;">Hojas de cálculo conectadas + app no-code: solución ligera y de bajo costo.</p>
+          <strong>BI a medida</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Desarrollo personalizado: base de datos relacional + ETL + dashboard diseñado a medida.</p>
         </div>
         <div class="cd">
-          <span class="bg bgr" style="margin-bottom: .5rem;">Alt. 2</span>
-          <strong>ERP modular Odoo (Community)</strong>
-          <p style="margin: .4rem 0 0; font-size: .88rem;">ERP modular open-source con módulos de inventario, ventas y reportes integrados.</p>
+          <span class="bg bgr" style="margin-bottom: .5rem;">Alt. 2 ★</span>
+          <strong>ERP modular Odoo Community</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Sistema ERP open-source modular con módulos nativos de inventario, ventas, compras y reportes, sin costo de licencia recurrente.</p>
         </div>
         <div class="cd">
           <span class="bg br" style="margin-bottom: .5rem;">Alt. 3</span>
-          <strong>ERP/POS comercial SaaS</strong>
-          <p style="margin: .4rem 0 0; font-size: .88rem;">ERP/POS comercial en la nube con pago por suscripción.</p>
+          <strong>Ecosistema No-Code (Sheets + AppSheet)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Hojas de cálculo conectadas como backend más app no-code mobile-first.</p>
         </div>
       </div>
 
@@ -3628,74 +3618,102 @@
           <thead>
             <tr>
               <th>Criterio de Evaluación</th>
-              <th style="text-align:center;">Alt. 1<br>No-Code</th>
-              <th style="text-align:center;">Alt. 2<br>ERP Odoo</th>
-              <th style="text-align:center;">Alt. 3<br>ERP/POS SaaS</th>
+              <th style="text-align:center;">Alt. 1<br>BI a medida</th>
+              <th style="text-align:center;">Alt. 2<br>ERP Odoo ★</th>
+              <th style="text-align:center;">Alt. 3<br>No-Code</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Viabilidad técnica (sobre hardware existente)</td>
-              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
             </tr>
             <tr>
               <td>Costo total de implementación</td>
-              <td style="text-align:center;"><span class="bg bgr">3</span></td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
               <td style="text-align:center;"><span class="bg br">1</span></td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
             </tr>
             <tr>
               <td>Tiempo de implementación</td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
             </tr>
             <tr>
               <td>Escalabilidad</td>
-              <td style="text-align:center;"><span class="bg br">1</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
             </tr>
             <tr>
               <td>Sostenibilidad (sistema estándar y soporte)</td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
               <td style="text-align:center;"><span class="bg by">2</span></td>
-              <td style="text-align:center;"><span class="bg bgr">3</span></td>
-              <td style="text-align:center;"><span class="bg bgr">3</span></td>
             </tr>
             <tr>
               <td>Ajuste a restricciones operativas y de adopción</td>
-              <td style="text-align:center;"><span class="bg bgr">3</span></td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
               <td style="text-align:center;"><span class="bg br">1</span></td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
             </tr>
             <tr>
               <td>Innovación y alineación estratégica</td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
               <td style="text-align:center;"><span class="bg bgr">3</span></td>
-              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
             </tr>
             <tr style="background: #f1f5f9;">
               <td><strong>TOTAL</strong></td>
-              <td style="text-align:center; font-weight:700;">16 / 21</td>
+              <td style="text-align:center; font-weight:700;">12 / 21</td>
               <td style="text-align:center; font-weight:700; color: var(--g);">18 / 21 ★</td>
-              <td style="text-align:center; font-weight:700;">14 / 21</td>
+              <td style="text-align:center; font-weight:700;">16 / 21</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="hl">
-        <strong>Veredicto:</strong> La <strong>Alternativa 2 — ERP modular Odoo (Community)</strong> obtiene el puntaje más alto (18/21) y es la alternativa seleccionada para Roma Bag's. Su ventaja no radica en ser la más rápida ni la más económica de poner en marcha, sino en ofrecer una <em>base integrada, escalable y sostenible</em> para la gestión del negocio. Al ser una suite open-source, no genera costos de licencia recurrentes (a diferencia del ERP/POS comercial) y centraliza de forma nativa inventario, ventas y reportes en un único sistema, lo que ataca directamente la causa raíz del problema (la fragmentación de la información). Además, su carácter modular permite a Roma Bag's crecer en el futuro incorporando módulos como compras o contabilidad sin cambiar de plataforma.
+      <h4>Justificación de los puntajes clave de la Alternativa 2 (Odoo):</h4>
+      <div class="gr">
+        <div class="cd">
+          <strong>Viabilidad técnica (3)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Odoo Community corre sobre las laptops Lenovo i5 12va generación con 24 GB RAM ya disponibles en el taller, sin requerir hardware adicional. Es instalable on-premise o en servidor básico en la nube dentro del presupuesto de una microempresa.</p>
+        </div>
+        <div class="cd">
+          <strong>Costo total (2)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Sin costo de licencia, pero con mayor esfuerzo de configuración y parametrización que el No-Code. Costo medio: sin licencia, con esfuerzo de implementación.</p>
+        </div>
+        <div class="cd">
+          <strong>Escalabilidad (3)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">A diferencia del No-Code, es una plataforma ERP completa que puede crecer incorporando módulos de contabilidad, compras o facturación electrónica sin cambiar de sistema.</p>
+        </div>
+        <div class="cd">
+          <strong>Sostenibilidad (3)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Plataforma estándar open-source con comunidad activa, documentación extensa y actualizaciones periódicas, sin depender de un proveedor único.</p>
+        </div>
+        <div class="cd">
+          <strong>Ajuste a restricciones (2)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Interfaz web responsiva accesible desde celular, admite coexistencia gradual con el Excel. No es 3 porque su curva de configuración inicial es mayor que la del No-Code y requiere una etapa de prueba controlada antes de involucrar al socio de producción.</p>
+        </div>
+        <div class="cd">
+          <strong>Innovación y alineación estratégica (3)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Odoo posiciona a Roma Bag's en una plataforma empresarial real, con capacidad de reportería avanzada, trazabilidad de inventario y proyección de demanda estacional, alineándose con el objetivo estratégico de la gerencia de fortalecer su capacidad de gestión para sostener el crecimiento del negocio.</p>
+        </div>
       </div>
-      <p>Se reconoce que la opción No-Code es más barata y rápida de implementar, y que el ERP exige un mayor esfuerzo de configuración y adopción; sin embargo, ese esfuerzo se mitiga con las acciones complementarias del proyecto (capacitación, gestión del cambio y coexistencia temporal con las herramientas actuales), y se justifica por el valor de contar con un sistema integral y duradero en lugar de una solución ligera con límites de crecimiento. La decisión prioriza la <strong>efectividad y sostenibilidad</strong> de la solución sobre el menor costo o el menor tiempo de implementación.</p>
+
+      <div class="hl">
+        <strong>Veredicto:</strong> La <strong>Alternativa 2 — ERP modular Odoo Community</strong> obtiene el puntaje más alto (18/21) y es la alternativa seleccionada para Roma Bag's. Su ventaja no radica en ser la más rápida ni la más económica de implementar en la fase inicial, sino en ofrecer la base integrada, escalable y sostenible que la empresa necesita para crecer sin cambiar de plataforma. Al ser open-source, elimina los costos de licencia recurrentes que hacen inviable a un ERP/POS comercial para una microempresa, y centraliza de forma nativa inventario, ventas y reportes en un único sistema, atacando directamente la causa raíz del problema: la gestión fragmentada de la información.
+      </div>
+      <p>Se reconoce que el Ecosistema No-Code (Alt. 3) es más rápido y barato de desplegar en el corto plazo, y que satisface las restricciones inmediatas de mobile-first y coexistencia con Excel; sin embargo, sus límites de escalabilidad (volumen de datos, usuarios concurrentes, módulos futuros) lo convierten en una solución de corto alcance que obligaría a una migración más costosa en el futuro. La Alternativa 1 (BI a medida), aunque técnicamente potente, exige un perfil especializado de desarrollo que el equipo no puede sostener post-implementación en una empresa sin área de TI. La decisión prioriza la efectividad, escalabilidad y sostenibilidad de largo plazo sobre la velocidad de implementación inicial.</p>
     </section>
 
     <section class="sec" id="c7-4">
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.4.
         Generación de Alternativas con el Doble Diamante</h3>
-      <p>El Doble Diamante (Design Council, 2005) organiza el proceso de diseño en dos ciclos de pensamiento divergente y convergente: el primero orientado a entender el problema real y el segundo a diseñar la solución correcta. El proyecto recorrió sus cuatro fases de la siguiente manera:</p>
+      <p>El Doble Diamante (Design Council, 2005) organiza el proceso de diseño en dos ciclos de pensamiento divergente y convergente: el primero orientado a entender el problema real y el segundo a diseñar la solución correcta.</p>
 
       <h4>Diamante 1 — Entender el problema</h4>
       <div class="fx">
@@ -3703,7 +3721,7 @@
           <span class="bg bb" style="margin-bottom: .5rem;">DESCUBRIR — Divergir</span>
           <strong>Exploración amplia del contexto</strong>
           <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
-            <li>Se recopiló información de campo mediante tres sesiones de entrevista con la gerencia, observación directa del taller y una auditoría de la infraestructura tecnológica y de red.</li>
+            <li>Se recopiló información de campo mediante sesiones de entrevista con la gerencia, observación directa del taller y auditoría tecnológica.</li>
             <li>El objetivo fue comprender el "dolor" real del negocio sin asumir soluciones anticipadas.</li>
           </ul>
         </div>
@@ -3711,7 +3729,7 @@
           <span class="bg br" style="margin-bottom: .5rem;">DEFINIR — Convergir</span>
           <strong>Síntesis del problema central</strong>
           <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
-            <li>Toda la información se sintetizó en el <strong>Árbol de Problemas</strong>, delimitando el problema central: la gestión fragmentada, manual y poco oportuna de la información operativa y comercial.</li>
+            <li>Se sintetizó el Árbol de Problemas, delimitando la gestión fragmentada, manual y poco oportuna como el núcleo a resolver.</li>
             <li>Esta fase produjo un diagnóstico neutral, sin tecnología predefinida.</li>
           </ul>
         </div>
@@ -3724,33 +3742,32 @@
           <strong>Generación de alternativas</strong>
           <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
             <li>A partir de los medios fundamentales del árbol de objetivos, se generaron múltiples alternativas mediante brainstorming, diagrama de afinidad, preguntas "¿Cómo podríamos...?" y SCAMPER.</li>
-            <li>Se exploraron caminos diversos: solución no-code, ERP modular open-source (Odoo), ERP/POS comercial, desarrollo a medida y arquitectura de inteligencia de negocios.</li>
+            <li>Se exploraron caminos diversos: solución no-code, ERP modular open-source (Odoo Community), ERP/POS comercial SaaS y arquitectura de Inteligencia de Negocios a medida.</li>
           </ul>
         </div>
         <div class="cd">
           <span class="bg by" style="margin-bottom: .5rem;">ENTREGAR — Convergir</span>
           <strong>Selección y validación</strong>
           <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
-            <li>Las alternativas se evaluaron con una rúbrica de costo-efectividad (punto 4.3), seleccionando el <strong>ERP modular Odoo</strong> por ser la solución más integrada, escalable y sostenible para la madurez actual de Roma Bag's.</li>
-            <li>Antes de cualquier despliegue definitivo, la solución se valida mediante una configuración piloto del sistema, lo que permite probar y ajustar con el usuario antes de la implementación real, cerrando así el ciclo de diseño basado en evidencia.</li>
+            <li>Las alternativas se evaluaron con una rúbrica de costo-efectividad (sección 4.3), seleccionando el <strong>ERP modular Odoo Community</strong> por ser la solución más integrada, escalable y sostenible para la madurez actual y el crecimiento proyectado de Roma Bag's.</li>
+            <li>Antes de cualquier despliegue definitivo, la solución se valida mediante un prototipo de interfaz (Capítulo 05), lo que permite verificar el flujo operativo con el usuario antes de la configuración real del sistema.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- CAP 05 — MATRIZ DE MARCO LÓGICO -->
-    <section class="sec" id="c8-1">
-      <h2>CAPÍTULO 05: Matriz de Marco Lógico (MML)</h2>
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">5.1.
-        Matriz de Marco Lógico</h3>
-      <p>La MML resume en una sola tabla la lógica vertical del proyecto: el Fin que persigue, el Propósito que resuelve, los Componentes que entrega y las Actividades que los producen, junto con sus indicadores, medios de verificación y supuestos. Se construye sobre la <strong>Alternativa 2 — ERP modular Odoo (Community)</strong>, seleccionada en el punto 4.3.</p>
+    <!-- CAP 04 — SECCIÓN 4.5: MATRIZ DE MARCO LÓGICO -->
+    <section class="sec" id="c7-5">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.5.
+        Matriz de Marco Lógico (MML)</h3>
+      <p>La MML resume la lógica vertical del proyecto: Fin, Propósito, Componentes y Actividades. Se construye sobre la <strong>Alternativa 2 — ERP modular Odoo Community</strong>, seleccionada en la sección 4.3.</p>
 
       <div class="tr">
         <table>
           <thead>
             <tr>
               <th style="width:9%;">Nivel</th>
-              <th style="width:33%;">Resumen Narrativo</th>
+              <th style="width:33%;">Resumen narrativo</th>
               <th style="width:22%;">Indicador</th>
               <th style="width:21%;">Medio de Verificación</th>
               <th style="width:15%;">Supuestos</th>
@@ -3761,22 +3778,22 @@
               <td><span class="bg bgr">FIN</span></td>
               <td>Mejorar el control operativo y comercial de Roma Bag's, fortaleciendo su capacidad de gestión para soportar un crecimiento sostenible.</td>
               <td>Reducción de la tasa de pedidos incompletos y del tiempo de conciliación, comparados contra la línea base, al cierre del proyecto.</td>
-              <td>Reportes del sistema ERP comparados con los registros previos (línea base vs. final).</td>
+              <td>Reportes del sistema Odoo comparados con los registros previos (línea base vs. final).</td>
               <td>Las condiciones de mercado del negocio se mantienen estables durante la implementación.</td>
             </tr>
             <tr>
               <td><span class="bg bb">PROPÓSITO</span></td>
               <td>Integrar la gestión de la información operativa y comercial en una fuente única y confiable.</td>
               <td>Tiempo de consulta de información clave (stock y ventas) reducido a menos de 2 minutos al mes 3.</td>
-              <td>Pruebas de consulta cronometradas sobre el sistema ERP implementado.</td>
-              <td>La gerencia y el personal usan el ERP como fuente principal de información.</td>
+              <td>Pruebas de consulta cronometradas sobre el sistema Odoo implementado.</td>
+              <td>La gerencia y el personal usan Odoo como fuente principal de información.</td>
             </tr>
             <tr>
               <td><span class="bg by">COMPONENTES</span></td>
-              <td><strong>C1:</strong> Plataforma ERP implementada (módulos de inventario, ventas y reportes).<br><strong>C2:</strong> Procesos y gobierno de datos formalizados.<br><strong>C3:</strong> Infraestructura y adopción habilitadas.</td>
-              <td>C1: 100% de inventario y ventas registrados en el ERP al mes 2.<br>C2: 100% de despachos registrados bajo el protocolo formal al mes 2.<br>C3: Conectividad estable en el taller; personal capacitado en el uso del ERP.</td>
+              <td><strong>C1:</strong> Plataforma Odoo implementada (módulos de inventario, ventas y reportes).<br><strong>C2:</strong> Procesos y gobierno de datos formalizados.<br><strong>C3:</strong> Infraestructura y adopción habilitadas.</td>
+              <td>C1: 100% de inventario y ventas registrados en Odoo al mes 2.<br>C2: 100% de despachos registrados bajo el protocolo formal al mes 2.<br>C3: Conectividad estable en el taller; personal capacitado en el uso de Odoo.</td>
               <td>C1: Sistema Odoo configurado y en uso, con reportes de inventario y ventas.<br>C2: Procedimientos (SOP) documentados y firmados.<br>C3: Actas de capacitación y diagnóstico de red resuelto.</td>
-              <td>El equipo de producción y ventas adopta el ERP sin sabotaje pasivo ante fallos iniciales.</td>
+              <td>El equipo de producción y ventas adopta Odoo sin sabotaje pasivo ante fallos iniciales.</td>
             </tr>
             <tr>
               <td><span class="bg br">ACTIVIDADES</span></td>
@@ -3793,21 +3810,21 @@
         <strong>Notas de construcción de la matriz:</strong>
         <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
           <li>El <strong>Propósito</strong> corresponde al Objetivo Central del árbol de objetivos (neutral, sin mencionar tecnología específica), y el <strong>Fin</strong> corresponde al Fin Final, redactado sin prometer una meta externa de ventas, ya que esta depende del mercado y no del proyecto.</li>
-          <li>Los <strong>Componentes</strong> son los tres bloques ya usados en el análisis de alternativas (Plataforma, Procesos/Gobierno de Datos, Infraestructura/Adopción), ahora materializados específicamente en la implementación de Odoo en lugar de una solución no-code.</li>
-          <li>Las <strong>Actividades</strong> describen el trabajo concreto de implementación del ERP: instalación, configuración de módulos, definición de gobierno de datos, documentación de procesos y gestión del cambio, sin mencionar dashboards ni aplicaciones móviles, ya que esas funcionalidades no forman parte del alcance definido.</li>
+          <li>Los <strong>Componentes</strong> son los tres bloques ya usados en el análisis de alternativas (Plataforma, Procesos/Gobierno de Datos, Infraestructura/Adopción), ahora materializados específicamente en la implementación de Odoo Community.</li>
+          <li>Las <strong>Actividades</strong> describen el trabajo concreto de implementación del ERP: instalación, configuración de módulos, definición de gobierno de datos, documentación de procesos y gestión del cambio.</li>
         </ul>
       </div>
     </section>
 
     <!-- CAP 06 — DESIGN THINKING -->
     <section class="sec" id="c9-1">
-      <h2>CAPÍTULO 06: Diseño Centrado en el Usuario (Design Thinking)</h2>
+      <h2>CAPÍTULO 05: Diseño Centrado en el Usuario (Design Thinking)</h2>
 
       <div class="hl" style="margin-bottom: 2rem;">
         <strong>Nota sobre el usuario objetivo:</strong> La solución de TI está diseñada para <strong>Natalie</strong> (gerente y dueña de Roma Bag's), quien operará el sistema y presenta el dolor operativo documentado. El comprador final de bolsos es únicamente un <em>beneficiario indirecto</em>: se beneficia de entregas más completas y ágiles, pero no interactúa con la herramienta.
       </div>
 
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.1.
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">5.1.
         Mapa de Empatía (Fase Empatizar)</h3>
       <p>El mapa de empatía sintetiza el mundo de Natalie como usuario objetivo, identificando sus pensamientos, percepciones, comportamientos, dolores y aspiraciones en relación con la gestión de información de Roma Bag's.</p>
 
@@ -3877,7 +3894,7 @@
     </section>
 
     <section class="sec" id="c9-2">
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.2.
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">5.2.
         Buyer Persona (Fase Empatizar)</h3>
       <p>La definición del usuario objetivo orienta todas las decisiones de diseño de la solución hacia las necesidades reales de quien la operará en el día a día.</p>
 
@@ -3941,7 +3958,7 @@
     </section>
 
     <section class="sec" id="c9-3">
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.3.
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">5.3.
         Customer Journey e Historieta (Empatizar / Definir)</h3>
       <p>La historieta visualiza el recorrido emocional actual de Natalie a través de 6 momentos clave. Las viñetas se muestran como placeholders de ilustración; la tabla detalla cada momento con datos reales del diagnóstico.</p>
 
@@ -4057,7 +4074,7 @@
     </section>
 
     <section class="sec" id="c9-4">
-      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.4.
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">5.4.
         Brainstorming y Diagrama de Afinidad (Idear / Definir)</h3>
       <p>La sesión de ideación generó 18 ideas a partir del diagnóstico. El diagrama de afinidad las organiza en 3 categorías que corresponden exactamente a las 3 causas directas del árbol de problemas, validando la coherencia del diagnóstico.</p>
 
@@ -4116,8 +4133,8 @@
 
     <section class="sec" id="c9-5">
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
-        6.5. Idear (Fase Idear — Reforzada)</h3>
-      <p>Además del brainstorming y el diagrama de afinidad (sección 6.4), se aplicaron herramientas adicionales de
+        5.5. Idear (Fase Idear — Reforzada)</h3>
+      <p>Además del brainstorming y el diagrama de afinidad (sección 5.4), se aplicaron herramientas adicionales de
         ideación para refinar las soluciones y conectarlas directamente con la alternativa seleccionada en el
         Capítulo 04.</p>
 
@@ -4186,7 +4203,7 @@
               <td>Arquitectura de Inteligencia de Negocios a medida (BI completo)</td>
               <td style="text-align:center;"><span class="bg bgr">Alto</span></td>
               <td style="text-align:center;"><span class="bg br">Alto</span></td>
-              <td><strong>Posponer</strong> — fase futura, fuera del alcance (Cap. 07)</td>
+              <td><strong>Posponer</strong> — fase futura, fuera del alcance (Cap. 06)</td>
             </tr>
           </tbody>
         </table>
@@ -4202,7 +4219,7 @@
 
     <section class="sec" id="c9-6">
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
-        6.6. Prototipar (Fase Prototipar)</h3>
+        5.6. Prototipar (Fase Prototipar)</h3>
       <p>El prototipo es un mockup móvil de baja/media fidelidad de la aplicación (AppSheet), mobile-first y
         desechable, construido para validar la propuesta con la Gerencia antes de invertir en su construcción real.
         A continuación se presenta una maqueta navegable que simula las 5 pantallas principales de la app.</p>
@@ -4327,14 +4344,14 @@
 
     <section class="sec" id="c9-7">
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
-        6.7. Evaluar (Fase Evaluar)</h3>
+        5.7. Evaluar (Fase Evaluar)</h3>
       <p>Esta sección documenta el <strong>diseño del instrumento de evaluación</strong> del prototipo; los
         resultados reales provendrán de una entrevista de validación con Natalie que, a la fecha de este
         documento, se encuentra pendiente de programación.</p>
 
       <div class="gr">
         <div class="cd"><strong>Método</strong>Prueba de usabilidad guiada con Natalie (usuaria principal) y un
-          integrante del personal de ventas, ejecutada sobre el prototipo navegable de la sección 6.6.</div>
+          integrante del personal de ventas, ejecutada sobre el prototipo navegable de la sección 5.6.</div>
         <div class="cd"><strong>Qué se Mide</strong>
           <ul style="margin:.4rem 0 0; padding-left:1.2rem; font-size:.88rem; line-height:1.8;">
             <li>¿Consulta el stock en menos de 2 minutos?</li>
@@ -4356,7 +4373,7 @@
 
     <!-- CAP 07 — GESTIÓN DEL ALCANCE -->
     <section class="sec" id="c10-0">
-      <h2>CAPÍTULO 07: Gestión del Alcance (Línea Base del Alcance)</h2>
+      <h2>CAPÍTULO 06: Gestión del Alcance (Línea Base del Alcance)</h2>
       <p>La línea base del alcance se construye sobre la <strong>Alternativa 2 — Ecosistema no-code mobile-first</strong>
         (Google Sheets API + AppSheet), seleccionada en el Capítulo 04 tras el proceso de evaluación de viabilidad
         (18/21 puntos). A partir de esta decisión, el presente capítulo documenta los requisitos del proyecto y
@@ -4369,7 +4386,7 @@
         tramitarse mediante el proceso formal de control de cambios.</div>
 
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
-        7.0. Documentación de Requisitos y Matriz de Trazabilidad</h3>
+        6.0. Documentación de Requisitos y Matriz de Trazabilidad</h3>
       <p>Los requisitos del proyecto se obtuvieron de tres sesiones de entrevista con Natalie (21 de abril, 4 de
         mayo y 14 de mayo de 2026), complementadas con observación directa (Job Shadowing) en el taller y
         auditoría de hardware y conectividad. La siguiente matriz traza cada requisito desde su origen (necesidad o
@@ -4516,7 +4533,7 @@
 
     <section class="sec" id="c10-1">
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
-        7.1. Definir el Alcance</h3>
+        6.1. Definir el Alcance</h3>
       <div class="hl" style="margin-bottom:2rem"><strong>Proceso 5.3 — PMBOK® 6.ª Ed.</strong> &nbsp;|&nbsp; Grupo de
         Procesos: Planificación &nbsp;|&nbsp; Área de Conocimiento: Gestión del Alcance del Proyecto</div>
 
@@ -4654,7 +4671,7 @@
 
     <section class="sec" id="c10-2">
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
-        7.2. Crear la EDT/WBS</h3>
+        6.2. Crear la EDT/WBS</h3>
       <div class="hl" style="margin-bottom:2rem"><strong>Proceso 5.4 — PMBOK® 6.ª Ed.</strong> &nbsp;|&nbsp; Grupo de
         Procesos: Planificación &nbsp;|&nbsp; Área de Conocimiento: Gestión del Alcance del Proyecto</div>
       <p><strong>Regla aplicada:</strong> la EDT/WBS contempla únicamente entregables y paquetes de trabajo,
@@ -4663,7 +4680,7 @@
       <h4>Entradas</h4>
       <div class="gr">
         <div class="cd"><strong>Enunciado del Alcance del Proyecto</strong>Descripción del producto, inclusiones,
-          exclusiones y criterios de aceptación definidos en la sección 7.1.</div>
+          exclusiones y criterios de aceptación definidos en la sección 6.1.</div>
         <div class="cd"><strong>Documentación de Requisitos</strong>Necesidades funcionales y no funcionales
           levantadas en las tres sesiones de entrevista con la Gerencia.</div>
         <div class="cd"><strong>Plan de Gestión del Alcance</strong>Criterios y reglas con los que se descompone el
@@ -4741,7 +4758,7 @@
         EDT: cada paquete de trabajo del nivel más bajo se acompaña de su diccionario (descripción del entregable,
         responsable y criterio de finalización); el detalle completo puede ir como anexo.</p>
       <p style="text-align:center;font-size:0.85rem;color:var(--side2);margin-top:2rem;margin-bottom:1rem;"><em>Fin
-          del Capítulo 07.</em></p>
+          del Capítulo 06.</em></p>
     </section>
 
     <!-- ANEXOS -->
