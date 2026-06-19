@@ -1072,6 +1072,226 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
     }
 
+    /* --- Prototipo Interactivo (Cap. 06 — Prototipar) --- */
+    .rb-proto-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem 0;
+    }
+
+    .rb-phone {
+      width: 280px;
+      height: 560px;
+      background: var(--side);
+      border-radius: 36px;
+      padding: 14px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
+    }
+
+    .rb-phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 20px;
+      background: var(--side);
+      border-radius: 0 0 14px 14px;
+      z-index: 3;
+    }
+
+    .rb-phone-screen {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      background: var(--bg);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rb-screen {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      padding: 1.4rem 1rem 1rem;
+      overflow-y: auto;
+    }
+
+    .rb-screen.active {
+      display: flex;
+    }
+
+    .rb-phone-home-bar {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 4px;
+      background: rgba(255, 255, 255, .35);
+      border-radius: 4px;
+    }
+
+    .rb-app-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--head);
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .rb-menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .7rem;
+    }
+
+    .rb-menu-item {
+      background: var(--w);
+      border: 1px solid var(--bd);
+      border-radius: 12px;
+      padding: 1rem .5rem;
+      text-align: center;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--head);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .rb-menu-item:hover {
+      border-color: var(--ac);
+      transform: translateY(-2px);
+    }
+
+    .rb-menu-item .ico {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: .4rem;
+    }
+
+    .rb-topbar {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: 1rem;
+    }
+
+    .rb-back-btn {
+      background: none;
+      border: none;
+      color: var(--ac);
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .rb-topbar strong {
+      font-size: .85rem;
+      color: var(--head);
+    }
+
+    .rb-field {
+      margin-bottom: .8rem;
+    }
+
+    .rb-field label {
+      display: block;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--side2);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: .3rem;
+    }
+
+    .rb-input {
+      width: 100%;
+      padding: .55rem .7rem;
+      border: 1px solid var(--bd);
+      border-radius: 8px;
+      font-size: .82rem;
+      font-family: 'Inter', sans-serif;
+      background: var(--w);
+    }
+
+    .rb-btn {
+      background: var(--ac);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: .65rem 1rem;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .rb-result-box {
+      background: var(--ac2);
+      border-left: 4px solid var(--ac);
+      border-radius: 0 8px 8px 0;
+      padding: .8rem;
+      margin-top: 1rem;
+      font-size: .82rem;
+      display: none;
+    }
+
+    .rb-result-box.show {
+      display: block;
+    }
+
+    .rb-confirm-msg {
+      background: var(--g-bg);
+      color: var(--g);
+      border-radius: 8px;
+      padding: .7rem;
+      margin-top: .8rem;
+      font-size: .8rem;
+      font-weight: 600;
+      text-align: center;
+      display: none;
+    }
+
+    .rb-confirm-msg.show {
+      display: block;
+    }
+
+    .rb-kpi-card {
+      background: var(--w);
+      border: 1px solid var(--bd);
+      border-radius: 10px;
+      padding: .8rem .9rem;
+      margin-bottom: .6rem;
+    }
+
+    .rb-kpi-num {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--ac);
+      display: block;
+    }
+
+    .rb-kpi-label {
+      font-size: .75rem;
+      color: var(--side2);
+    }
+
+    .rb-checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      font-size: .8rem;
+      margin: .8rem 0;
+    }
+
     /* --- Media Queries for Responsiveness --- */
     @media(max-width:1200px) {
       .mc {
@@ -1234,12 +1454,16 @@
             <li><a href="#c9-2" class="nl sub-link">6.2 Buyer Persona</a></li>
             <li><a href="#c9-3" class="nl sub-link">6.3 Customer Journey</a></li>
             <li><a href="#c9-4" class="nl sub-link">6.4 Brainstorming y Afinidad</a></li>
+            <li><a href="#c9-5" class="nl sub-link">6.5 Idear (Reforzado)</a></li>
+            <li><a href="#c9-6" class="nl sub-link">6.6 Prototipar</a></li>
+            <li><a href="#c9-7" class="nl sub-link">6.7 Evaluar</a></li>
           </ul>
         </li>
 
         <li class="acc-item">
           <button class="acc-btn">Cap. 07: Gestión del Alcance <span class="arr">▼</span></button>
           <ul class="acc-content">
+            <li><a href="#c10-0" class="nl sub-link">7.0 Matriz de Trazabilidad</a></li>
             <li><a href="#c10-1" class="nl sub-link">7.1 Definir el Alcance</a></li>
             <li><a href="#c10-2" class="nl sub-link">7.2 Crear la EDT/WBS</a></li>
           </ul>
@@ -3867,19 +4091,407 @@
       </div>
     </section>
 
+    <section class="sec" id="c9-5">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+        6.5. Idear (Fase Idear — Reforzada)</h3>
+      <p>Además del brainstorming y el diagrama de afinidad (sección 6.4), se aplicaron herramientas adicionales de
+        ideación para refinar las soluciones y conectarlas directamente con la alternativa seleccionada en el
+        Capítulo 04.</p>
+
+      <h4>Preguntas "¿Cómo Podríamos...?" (How Might We)</h4>
+      <div class="gr">
+        <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb"
+            style="margin-bottom:.5rem;">HMW 1</span>¿Cómo podríamos centralizar la información dispersa sin que
+          Natalie pierda el control de su Excel?</div>
+        <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb"
+            style="margin-bottom:.5rem;">HMW 2</span>¿Cómo podríamos darle al vendedor el stock real en segundos
+          desde su celular?</div>
+        <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb"
+            style="margin-bottom:.5rem;">HMW 3</span>¿Cómo podríamos eliminar el cuadre manual de los sábados?</div>
+      </div>
+
+      <h4>SCAMPER Aplicado a la Solución</h4>
+      <div class="gr">
+        <div class="cd"><strong>Sustituir</strong>
+          <p style="margin:.4rem 0 0; font-size:.88rem;">El cuaderno físico por captura digital en el celular.</p>
+        </div>
+        <div class="cd"><strong>Combinar</strong>
+          <p style="margin:.4rem 0 0; font-size:.88rem;">Registro de venta + descuento automático de stock en un
+            solo paso.</p>
+        </div>
+        <div class="cd"><strong>Adaptar</strong>
+          <p style="margin:.4rem 0 0; font-size:.88rem;">Plantillas de Google Sheets ya conocidas por la gerencia,
+            para reducir la resistencia al cambio.</p>
+        </div>
+        <div class="cd"><strong>Eliminar</strong>
+          <p style="margin:.4rem 0 0; font-size:.88rem;">La doble digitación: el vendedor anota en papel y Natalie
+            vuelve a transcribir en Excel.</p>
+        </div>
+      </div>
+
+      <h4>Matriz de Priorización Impacto / Esfuerzo</h4>
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>Idea</th>
+              <th style="text-align:center;">Impacto</th>
+              <th style="text-align:center;">Esfuerzo</th>
+              <th>Decisión</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Consulta de stock móvil en tiempo real</td>
+              <td style="text-align:center;"><span class="bg bgr">Alto</span></td>
+              <td style="text-align:center;"><span class="bg bgr">Bajo</span></td>
+              <td><strong>Priorizar</strong> — entra a la línea base (Alternativa 2)</td>
+            </tr>
+            <tr>
+              <td>Registro digital de ventas y despachos</td>
+              <td style="text-align:center;"><span class="bg bgr">Alto</span></td>
+              <td style="text-align:center;"><span class="bg bgr">Bajo</span></td>
+              <td><strong>Priorizar</strong> — entra a la línea base (Alternativa 2)</td>
+            </tr>
+            <tr>
+              <td>Panel básico de indicadores (KPIs)</td>
+              <td style="text-align:center;"><span class="bg by">Medio</span></td>
+              <td style="text-align:center;"><span class="bg bgr">Bajo</span></td>
+              <td><strong>Priorizar</strong> — entra a la línea base (Alternativa 2)</td>
+            </tr>
+            <tr>
+              <td>Arquitectura de Inteligencia de Negocios a medida (BI completo)</td>
+              <td style="text-align:center;"><span class="bg bgr">Alto</span></td>
+              <td style="text-align:center;"><span class="bg br">Alto</span></td>
+              <td><strong>Posponer</strong> — fase futura, fuera del alcance (Cap. 07)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hl">
+        <strong>Conexión con el Cap. 04:</strong> Las ideas de alto impacto y bajo esfuerzo (consulta de stock
+        móvil, registro digital) son exactamente las que conforman la <strong>Alternativa 2 — Ecosistema
+          No-Code</strong>, mientras que las de alto esfuerzo (BI completo) se posponen como fase futura. Esto
+        explica, desde el diseño centrado en el usuario, por qué la Alternativa 2 fue la seleccionada.
+      </div>
+    </section>
+
+    <section class="sec" id="c9-6">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+        6.6. Prototipar (Fase Prototipar)</h3>
+      <p>El prototipo es un mockup móvil de baja/media fidelidad de la aplicación (AppSheet), mobile-first y
+        desechable, construido para validar la propuesta con la Gerencia antes de invertir en su construcción real.
+        A continuación se presenta una maqueta navegable que simula las 5 pantallas principales de la app.</p>
+
+      <div class="rb-proto-wrap">
+        <div class="rb-phone">
+          <div class="rb-phone-notch"></div>
+          <div class="rb-phone-screen">
+
+            <div class="rb-screen active" id="rb-s-home">
+              <div class="rb-app-title">Roma Bag's</div>
+              <div class="rb-menu-grid">
+                <div class="rb-menu-item" data-rb-target="rb-s-ventas"><span class="ico">🛒</span>Ventas</div>
+                <div class="rb-menu-item" data-rb-target="rb-s-stock"><span class="ico">📦</span>Stock</div>
+                <div class="rb-menu-item" data-rb-target="rb-s-despacho"><span class="ico">🚚</span>Despachos</div>
+                <div class="rb-menu-item" data-rb-target="rb-s-kpi"><span class="ico">📊</span>Indicadores</div>
+              </div>
+            </div>
+
+            <div class="rb-screen" id="rb-s-stock">
+              <div class="rb-topbar">
+                <button class="rb-back-btn" data-rb-target="rb-s-home">←</button>
+                <strong>Consulta de Stock</strong>
+              </div>
+              <div class="rb-field">
+                <label>Buscar modelo</label>
+                <input class="rb-input" type="text" value="Cartera Negra Mod. A" readonly>
+              </div>
+              <button class="rb-btn" id="rb-btn-buscar" type="button">Buscar</button>
+              <div class="rb-result-box" id="rb-stock-result">
+                <strong>Cartera Negra Mod. A</strong><br>Disponible: <strong>12 unidades</strong>
+              </div>
+            </div>
+
+            <div class="rb-screen" id="rb-s-ventas">
+              <div class="rb-topbar">
+                <button class="rb-back-btn" data-rb-target="rb-s-home">←</button>
+                <strong>Registrar Venta</strong>
+              </div>
+              <div class="rb-field">
+                <label>Modelo</label>
+                <input class="rb-input" type="text" placeholder="Ej. Cartera Negra Mod. A">
+              </div>
+              <div class="rb-field">
+                <label>Cantidad</label>
+                <input class="rb-input" type="number" placeholder="Ej. 1">
+              </div>
+              <div class="rb-field">
+                <label>Cliente</label>
+                <input class="rb-input" type="text" placeholder="Ej. Mayorista Lima Norte">
+              </div>
+              <button class="rb-btn" id="rb-btn-registrar" type="button">Registrar</button>
+              <div class="rb-confirm-msg" id="rb-venta-msg">✓ Venta registrada (simulado)</div>
+            </div>
+
+            <div class="rb-screen" id="rb-s-despacho">
+              <div class="rb-topbar">
+                <button class="rb-back-btn" data-rb-target="rb-s-home">←</button>
+                <strong>Registrar Despacho</strong>
+              </div>
+              <div class="rb-checkbox-row">
+                <input type="checkbox" id="rb-check-despacho">
+                <label for="rb-check-despacho">Confirmo que la mercadería salió completa y verificada.</label>
+              </div>
+              <button class="rb-btn" id="rb-btn-despacho" type="button">Confirmar Despacho</button>
+              <div class="rb-confirm-msg" id="rb-despacho-msg">✓ Despacho confirmado (simulado)</div>
+            </div>
+
+            <div class="rb-screen" id="rb-s-kpi">
+              <div class="rb-topbar">
+                <button class="rb-back-btn" data-rb-target="rb-s-home">←</button>
+                <strong>Indicadores</strong>
+              </div>
+              <div class="rb-kpi-card"><span class="rb-kpi-num">S/. 245</span><span class="rb-kpi-label">Ventas
+                  del día</span></div>
+              <div class="rb-kpi-card"><span class="rb-kpi-num">2 modelos</span><span class="rb-kpi-label">Stock
+                  crítico</span></div>
+              <div class="rb-kpi-card"><span class="rb-kpi-num">3 pedidos</span><span
+                  class="rb-kpi-label">Incompletos este mes</span></div>
+            </div>
+
+          </div>
+          <div class="rb-phone-home-bar"></div>
+        </div>
+        <span class="bg by" style="margin-top:1rem;">Prototipo navegable — datos de ejemplo</span>
+      </div>
+
+      <script>
+        (function () {
+          var root = document.getElementById('c9-6');
+          if (!root) return;
+          var screens = root.querySelectorAll('.rb-screen');
+          function rbShow(id) {
+            screens.forEach(function (s) { s.classList.remove('active'); });
+            var t = document.getElementById(id);
+            if (t) t.classList.add('active');
+          }
+          root.querySelectorAll('[data-rb-target]').forEach(function (el) {
+            el.addEventListener('click', function () { rbShow(el.getAttribute('data-rb-target')); });
+          });
+          var buscarBtn = document.getElementById('rb-btn-buscar');
+          if (buscarBtn) buscarBtn.addEventListener('click', function () {
+            document.getElementById('rb-stock-result').classList.add('show');
+          });
+          var registrarBtn = document.getElementById('rb-btn-registrar');
+          if (registrarBtn) registrarBtn.addEventListener('click', function () {
+            document.getElementById('rb-venta-msg').classList.add('show');
+          });
+          var despachoBtn = document.getElementById('rb-btn-despacho');
+          if (despachoBtn) despachoBtn.addEventListener('click', function () {
+            document.getElementById('rb-despacho-msg').classList.add('show');
+          });
+        })();
+      </script>
+
+      <div class="hl" style="margin-top:1.5rem;">
+        <strong>Naturaleza del prototipo:</strong> Esta maqueta es una simulación de baja/media fidelidad: no se
+        conecta a datos reales, a Google Sheets ni a AppSheet. Su único propósito es validar el flujo de
+        navegación y la simplicidad de uso con la Gerencia antes de iniciar la construcción real.
+      </div>
+    </section>
+
+    <section class="sec" id="c9-7">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+        6.7. Evaluar (Fase Evaluar)</h3>
+      <p>Esta sección documenta el <strong>diseño del instrumento de evaluación</strong> del prototipo; los
+        resultados reales provendrán de una entrevista de validación con Natalie que, a la fecha de este
+        documento, se encuentra pendiente de programación.</p>
+
+      <div class="gr">
+        <div class="cd"><strong>Método</strong>Prueba de usabilidad guiada con Natalie (usuaria principal) y un
+          integrante del personal de ventas, ejecutada sobre el prototipo navegable de la sección 6.6.</div>
+        <div class="cd"><strong>Qué se Mide</strong>
+          <ul style="margin:.4rem 0 0; padding-left:1.2rem; font-size:.88rem; line-height:1.8;">
+            <li>¿Consulta el stock en menos de 2 minutos?</li>
+            <li>¿El vendedor entiende el formulario de registro sin ayuda?</li>
+            <li>¿Percibe la solución como simple y no "robótica"?</li>
+          </ul>
+        </div>
+        <div class="cd"><strong>Instrumentos</strong>Entrevista de retroalimentación post-prueba, observación
+          directa de la tarea (Job Shadowing) y una breve encuesta de satisfacción.</div>
+        <div class="cd"><strong>Iteración</strong>Los hallazgos de la prueba se incorporan al mockup antes de
+          cualquier construcción real en Google Sheets o AppSheet.</div>
+      </div>
+
+      <div class="hl" style="border-left-color: var(--y); background: var(--y-bg);">
+        <strong>[Resultados preliminares — pendiente de validación con Natalie. Se actualizará tras la entrevista
+          de prueba de usabilidad.]</strong>
+      </div>
+    </section>
+
     <!-- CAP 07 — GESTIÓN DEL ALCANCE -->
-    <section class="sec" id="c10-1">
+    <section class="sec" id="c10-0">
       <h2>CAPÍTULO 07: Gestión del Alcance (Línea Base del Alcance)</h2>
       <p>La línea base del alcance se construye sobre la <strong>Alternativa 2 — Ecosistema no-code mobile-first</strong>
         (Google Sheets API + AppSheet), seleccionada en el Capítulo 04 tras el proceso de evaluación de viabilidad
-        (18/21 puntos). A partir de esta decisión, el presente capítulo aplica los dos procesos de planificación del
-        Área de Conocimiento de Gestión del Alcance del PMBOK® (6.ª Ed.): <strong>Definir el Alcance</strong> y
-        <strong>Crear la EDT/WBS</strong>.</p>
+        (18/21 puntos). A partir de esta decisión, el presente capítulo documenta los requisitos del proyecto y
+        aplica los procesos de planificación del Área de Conocimiento de Gestión del Alcance del PMBOK® (6.ª Ed.):
+        <strong>Documentación de Requisitos</strong>, <strong>Definir el Alcance</strong> y <strong>Crear la
+          EDT/WBS</strong>.</p>
 
       <div class="hl" style="margin-bottom:2rem"><strong>Regla de la línea base:</strong> lo que no está documentado
         en esta línea base <strong>no forma parte del proyecto</strong>. Cualquier requerimiento adicional deberá
         tramitarse mediante el proceso formal de control de cambios.</div>
 
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+        7.0. Documentación de Requisitos y Matriz de Trazabilidad</h3>
+      <p>Los requisitos del proyecto se obtuvieron de tres sesiones de entrevista con Natalie (21 de abril, 4 de
+        mayo y 14 de mayo de 2026), complementadas con observación directa (Job Shadowing) en el taller y
+        auditoría de hardware y conectividad. La siguiente matriz traza cada requisito desde su origen (necesidad o
+        causa diagnosticada) hasta el entregable de la EDT que lo materializa y el criterio que verifica su
+        cumplimiento.</p>
+
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Requisito</th>
+              <th>Tipo</th>
+              <th>Interesado</th>
+              <th style="text-align:center;">Prioridad</th>
+              <th>Necesidad / Causa</th>
+              <th>Objetivo</th>
+              <th>Entregable EDT</th>
+              <th>Criterio de Aceptación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>R-01</strong></td>
+              <td>Centralizar inventario y ventas en una fuente única</td>
+              <td><span class="bg bb">Funcional</span></td>
+              <td>Gerencia (SH-01)</td>
+              <td style="text-align:center;"><span class="bg br">Alta</span></td>
+              <td>CD1 Datos dispersos</td>
+              <td>MD1</td>
+              <td>1.3.2 Base de datos centralizada</td>
+              <td>100% de registros en la base única</td>
+            </tr>
+            <tr>
+              <td><strong>R-02</strong></td>
+              <td>Consultar el stock real desde el celular en el momento</td>
+              <td><span class="bg bb">Funcional</span></td>
+              <td>Ventas (SH-03)</td>
+              <td style="text-align:center;"><span class="bg br">Alta</span></td>
+              <td>CD3 Sin capacidad analítica</td>
+              <td>MD4</td>
+              <td>1.3.5 Módulo de consulta de stock</td>
+              <td>Consulta resuelta en &lt; 2 min</td>
+            </tr>
+            <tr>
+              <td><strong>R-03</strong></td>
+              <td>Reducir el tiempo de cuadre semanal</td>
+              <td><span class="bg by">No funcional</span></td>
+              <td>Gerencia (SH-01)</td>
+              <td style="text-align:center;"><span class="bg br">Alta</span></td>
+              <td>CD2 Procesos manuales</td>
+              <td>MD2</td>
+              <td>1.3.3 Reglas de validación</td>
+              <td>Cuadre de 1 día a &lt; 1 hora</td>
+            </tr>
+            <tr>
+              <td><strong>R-04</strong></td>
+              <td>Registrar obligatoriamente cada despacho</td>
+              <td><span class="bg bb">Funcional</span></td>
+              <td>Gerencia / Logística (SH-06)</td>
+              <td style="text-align:center;"><span class="bg br">Alta</span></td>
+              <td>CD2 / CI 2.3 Sin protocolo</td>
+              <td>MD3</td>
+              <td>1.4.3 Protocolo de registro en despacho</td>
+              <td>100% de despachos registrados</td>
+            </tr>
+            <tr>
+              <td><strong>R-05</strong></td>
+              <td>Conocer rentabilidad y ganancia neta</td>
+              <td><span class="bg bb">Funcional</span></td>
+              <td>Gerencia (SH-01)</td>
+              <td style="text-align:center;"><span class="bg by">Media</span></td>
+              <td>CD3 Decisiones a ciegas</td>
+              <td>MD4</td>
+              <td>1.3.6 Panel de KPIs</td>
+              <td>Reporte mensual de rentabilidad disponible</td>
+            </tr>
+            <tr>
+              <td><strong>R-06</strong></td>
+              <td>Operar la solución desde dispositivos móviles</td>
+              <td><span class="bg by">No funcional (restricción)</span></td>
+              <td>Gerencia / Ventas</td>
+              <td style="text-align:center;"><span class="bg br">Alta</span></td>
+              <td>EEF Mobile-first</td>
+              <td>MD4</td>
+              <td>1.3.4 App móvil (AppSheet)</td>
+              <td>App operable desde celular</td>
+            </tr>
+            <tr>
+              <td><strong>R-07</strong></td>
+              <td>Coexistir con el Excel durante la adopción</td>
+              <td><span class="bg by">No funcional (restricción)</span></td>
+              <td>Gerencia (SH-01)</td>
+              <td style="text-align:center;"><span class="bg br">Alta</span></td>
+              <td>Riesgo Temor a perder datos</td>
+              <td>MD1 / Gestión del cambio</td>
+              <td>1.5.6 Estrategia de coexistencia</td>
+              <td>Excel y app conviven sin pérdida de datos</td>
+            </tr>
+            <tr>
+              <td><strong>R-08</strong></td>
+              <td>Garantizar conectividad estable en el taller</td>
+              <td><span class="bg by">No funcional</span></td>
+              <td>Todas las áreas</td>
+              <td style="text-align:center;"><span class="bg by">Media</span></td>
+              <td>CI 2.2 Wi-Fi deficiente</td>
+              <td>MF 4.1</td>
+              <td>1.5.2 Solución de red del taller</td>
+              <td>0 zonas muertas en áreas de trabajo</td>
+            </tr>
+            <tr>
+              <td><strong>R-09</strong></td>
+              <td>Asegurar respaldo y evitar pérdida de datos</td>
+              <td><span class="bg by">No funcional</span></td>
+              <td>Gerencia (SH-01)</td>
+              <td style="text-align:center;"><span class="bg br">Alta</span></td>
+              <td>CI 4.2 Pérdida del 2024</td>
+              <td>MD1 / Gobierno de Datos</td>
+              <td>1.4.4 Políticas de Gobierno de Datos</td>
+              <td>Respaldo automático verificable</td>
+            </tr>
+            <tr>
+              <td><strong>R-10</strong></td>
+              <td>Capacitar al personal en una solución simple, no "robótica"</td>
+              <td><span class="bg by">No funcional</span></td>
+              <td>Personal (SH-03, SH-04)</td>
+              <td style="text-align:center;"><span class="bg by">Media</span></td>
+              <td>Riesgo Resistencia al cambio</td>
+              <td>MF 4.2 / 4.3</td>
+              <td>1.5.4 Talleres ejecutados</td>
+              <td>Personal capacitado y app en uso</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hl">
+        <strong>Nota de lectura:</strong> La matriz se lee de izquierda a derecha como una cadena de valor: cada
+        requisito nace de una necesidad real, responde a un objetivo del árbol, se materializa en un entregable de
+        la EDT y se verifica con un criterio medible. Esto demuestra trazabilidad completa, de la entrevista al
+        entregable.
+      </div>
+    </section>
+
+    <section class="sec" id="c10-1">
       <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
         7.1. Definir el Alcance</h3>
       <div class="hl" style="margin-bottom:2rem"><strong>Proceso 5.3 — PMBOK® 6.ª Ed.</strong> &nbsp;|&nbsp; Grupo de
