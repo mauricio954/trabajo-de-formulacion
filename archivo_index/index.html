@@ -5311,157 +5311,192 @@
       </div>
 
       <h4>Salidas — EDT/WBS</h4>
-      <div id="wbs-section" style="margin-top: 2rem; margin-bottom: 2rem;">
+      <div id="wbs-tree" style="margin-top: 2rem; margin-bottom: 2rem;">
         <style>
-          #wbs-section .wbs-container{ width:100%; margin:auto; background:white; border-radius:18px; padding:30px; box-shadow:0 8px 25px rgba(0,0,0,.12); }
-          #wbs-section .levels{ display:flex; flex-wrap: wrap; gap:20px; align-items:stretch; }
-          #wbs-section .column{ flex:1; min-width: 220px; border-radius:18px; padding:18px; background:#fafafa; border:3px solid #ddd; display: flex; flex-direction: column; }
-          #wbs-section .col-header{ text-align:center; margin-bottom:20px; min-height: 100px; }
-          #wbs-section .number{ width:50px; height:50px; border-radius:50%; color:white; font-size:22px; font-weight:bold; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
-          #wbs-section .blue .number{ background:#1f5fbf; }
-          #wbs-section .green .number{ background:#2c9a44; }
-          #wbs-section .orange .number{ background:#f37b21; }
-          #wbs-section .purple .number{ background:#7c4dff; }
-          #wbs-section .cyan .number{ background:#00a9b7; }
-          #wbs-section .red .number{ background:#d32f2f; }
-          #wbs-section .blue{ border-color:#8ab4ff; }
-          #wbs-section .green{ border-color:#9fd4aa; }
-          #wbs-section .orange{ border-color:#ffbf8c; }
-          #wbs-section .purple{ border-color:#c8b4ff; }
-          #wbs-section .cyan{ border-color:#8ce2ea; }
-          #wbs-section .red{ border-color:#ef9a9a; }
-          #wbs-section .col-title{ font-size:18px; font-weight:bold; line-height:1.3; }
-          #wbs-section .blue .col-title{ color:#1f5fbf; }
-          #wbs-section .green .col-title{ color:#2c9a44; }
-          #wbs-section .orange .col-title{ color:#f37b21; }
-          #wbs-section .purple .col-title{ color:#7c4dff; }
-          #wbs-section .cyan .col-title{ color:#00a9b7; }
-          #wbs-section .red .col-title{ color:#d32f2f; }
-          #wbs-section .card{ background:white; border-radius:12px; padding:20px 15px; margin-bottom:0; border-left:6px solid; box-shadow:0 4px 10px rgba(0,0,0,.06); flex-grow: 1; }
-          #wbs-section .blue .card{ border-color:#1f5fbf; }
-          #wbs-section .green .card{ border-color:#2c9a44; }
-          #wbs-section .orange .card{ border-color:#f37b21; }
-          #wbs-section .purple .card{ border-color:#7c4dff; }
-          #wbs-section .cyan .card{ border-color:#00a9b7; }
-          #wbs-section .red .card{ border-color:#d32f2f; }
-          #wbs-section .card h3{ margin-bottom:15px; font-size:16px; color:#333; border-bottom: 1px solid #eee; padding-bottom: 10px; text-transform: uppercase; }
-          #wbs-section .card ul{ list-style: none; }
-          #wbs-section .card li{ margin-bottom:14px; line-height:1.4; color:#444; display: flex; align-items: flex-start; gap: 8px; font-size: 14px; }
-          #wbs-section .card li:last-child { margin-bottom: 0; }
-          #wbs-section .num-badge { font-weight: bold; color: #555; background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 12px; min-width: 38px; text-align: center; }
-          @media(max-width:1200px){ #wbs-section .column { min-width: 30%; } }
-          @media(max-width:768px){ #wbs-section .column { min-width: 100%; } }
+          #wbs-tree { overflow-x: auto; }
+          #wbs-tree .edt-wrap { min-width: 1150px; padding: 2rem 1rem; background: #fafbfe; border-radius: 16px; border: 1px solid #e2e8f0; }
+          /* Nodo raíz */
+          #wbs-tree .root-node { text-align: center; margin-bottom: 0; }
+          #wbs-tree .root-box { display: inline-block; background: linear-gradient(135deg, #183d7c, #1a56b0); color: #fff; padding: 1rem 2.5rem; border-radius: 14px; font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; box-shadow: 0 6px 18px rgba(24,61,124,.3); }
+          /* Conector raíz → nivel 1 */
+          #wbs-tree .root-conn { display: flex; justify-content: center; position: relative; height: 50px; }
+          #wbs-tree .root-conn::before { content: ''; position: absolute; top: 0; left: 50%; width: 2px; height: 25px; background: #94a3b8; }
+          #wbs-tree .root-conn::after { content: ''; position: absolute; top: 25px; left: calc(100%/12); right: calc(100%/12); height: 2px; background: #94a3b8; }
+          /* Nivel 1: categorías */
+          #wbs-tree .lvl1 { display: flex; justify-content: space-around; gap: 12px; position: relative; }
+          #wbs-tree .branch { flex: 1; display: flex; flex-direction: column; align-items: center; min-width: 160px; }
+          /* Conector vertical desde la línea horizontal hacia cada categoría */
+          #wbs-tree .branch-conn { width: 2px; height: 25px; background: #94a3b8; }
+          /* Nodo categoría */
+          #wbs-tree .cat-node { text-align: center; padding: .8rem .6rem; border-radius: 12px; font-weight: 700; font-size: .82rem; line-height: 1.3; border: 2.5px solid; min-height: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 185px; box-shadow: 0 3px 8px rgba(0,0,0,.06); position: relative; }
+          #wbs-tree .cat-node .cat-id { display: block; font-size: 1.1rem; margin-bottom: .2rem; }
+          #wbs-tree .cat-node .cat-label { font-size: .78rem; font-weight: 600; }
+          /* Colores por categoría */
+          #wbs-tree .cat-blue { border-color: #1f5fbf; background: #eff6ff; color: #1f5fbf; }
+          #wbs-tree .cat-green { border-color: #2c9a44; background: #f0fdf4; color: #2c9a44; }
+          #wbs-tree .cat-orange { border-color: #f37b21; background: #fff7ed; color: #ea580c; }
+          #wbs-tree .cat-purple { border-color: #7c4dff; background: #faf5ff; color: #7c4dff; }
+          #wbs-tree .cat-cyan { border-color: #00a9b7; background: #ecfeff; color: #00a9b7; }
+          #wbs-tree .cat-red { border-color: #d32f2f; background: #fef2f2; color: #d32f2f; }
+          /* Conector categoría → hijos */
+          #wbs-tree .child-conn { width: 2px; height: 20px; }
+          #wbs-tree .child-conn.cc-blue { background: #1f5fbf; }
+          #wbs-tree .child-conn.cc-green { background: #2c9a44; }
+          #wbs-tree .child-conn.cc-orange { background: #f37b21; }
+          #wbs-tree .child-conn.cc-purple { background: #7c4dff; }
+          #wbs-tree .child-conn.cc-cyan { background: #00a9b7; }
+          #wbs-tree .child-conn.cc-red { background: #d32f2f; }
+          /* Lista de paquetes */
+          #wbs-tree .pkg-list { width: 100%; max-width: 185px; border-radius: 10px; border: 2px solid; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
+          #wbs-tree .pkg-list .pkg-header { text-align: center; padding: .4rem; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #fff; }
+          #wbs-tree .pkg-list .pkg-item { display: flex; align-items: center; gap: 6px; padding: .45rem .6rem; font-size: .74rem; color: #334155; border-bottom: 1px solid #f1f5f9; background: #fff; transition: background .15s; }
+          #wbs-tree .pkg-list .pkg-item:last-child { border-bottom: none; }
+          #wbs-tree .pkg-list .pkg-item:hover { background: #f8fafc; }
+          #wbs-tree .pkg-list .pkg-item .pid { font-weight: 700; font-size: .68rem; padding: .15rem .4rem; border-radius: 4px; background: #f1f5f9; color: #64748b; flex-shrink: 0; min-width: 32px; text-align: center; }
+          /* Colores de paquetes */
+          #wbs-tree .pkg-blue { border-color: #1f5fbf; }
+          #wbs-tree .pkg-blue .pkg-header { background: #1f5fbf; }
+          #wbs-tree .pkg-green { border-color: #2c9a44; }
+          #wbs-tree .pkg-green .pkg-header { background: #2c9a44; }
+          #wbs-tree .pkg-orange { border-color: #f37b21; }
+          #wbs-tree .pkg-orange .pkg-header { background: #f37b21; }
+          #wbs-tree .pkg-purple { border-color: #7c4dff; }
+          #wbs-tree .pkg-purple .pkg-header { background: #7c4dff; }
+          #wbs-tree .pkg-cyan { border-color: #00a9b7; }
+          #wbs-tree .pkg-cyan .pkg-header { background: #00a9b7; }
+          #wbs-tree .pkg-red { border-color: #d32f2f; }
+          #wbs-tree .pkg-red .pkg-header { background: #d32f2f; }
+          /* Nota metodológica */
+          #wbs-tree .edt-note { margin-top: 1.5rem; padding: 1rem 1.2rem; border: 2px dashed #bfc7d8; border-radius: 10px; background: #f9fbff; }
+          #wbs-tree .edt-note strong { color: #18315c; }
+          #wbs-tree .edt-note p { font-size: .85rem; color: #475569; margin: 0; line-height: 1.6; }
         </style>
-        <div class="wbs-container">
-          <div class="levels">
 
-            <!-- COLUMNA 1 -->
-            <div class="column blue">
-              <div class="col-header">
-                <div class="number">1.1</div>
-                <div class="col-title">Gestión del Proyecto</div>
-              </div>
-              <div class="card">
-                <h3>Entregables</h3>
-                <ul>
-                  <li><span class="num-badge">1.1.1</span> <span>Acta de constitución</span></li>
-                  <li><span class="num-badge">1.1.2</span> <span>Plan de gestión del proyecto</span></li>
-                  <li><span class="num-badge">1.1.3</span> <span>Informes de avance</span></li>
-                  <li><span class="num-badge">1.1.4</span> <span>Acta de conformidad final</span></li>
-                </ul>
-              </div>
-            </div>
+        <div class="edt-wrap">
 
-            <!-- COLUMNA 2 -->
-            <div class="column green">
-              <div class="col-header">
-                <div class="number">1.2</div>
-                <div class="col-title">Diagnóstico y Requisitos (AS-IS)</div>
-              </div>
-              <div class="card">
-                <h3>Entregables</h3>
-                <ul>
-                  <li><span class="num-badge">1.2.1</span> <span>Documentación del flujo actual</span></li>
-                  <li><span class="num-badge">1.2.2</span> <span>Documentación de requisitos</span></li>
-                  <li><span class="num-badge">1.2.3</span> <span>Matriz de trazabilidad de requisitos</span></li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- COLUMNA 3 -->
-            <div class="column orange">
-              <div class="col-header">
-                <div class="number">1.3</div>
-                <div class="col-title">Componente 1<br>Plataforma de Datos</div>
-              </div>
-              <div class="card">
-                <h3>Entregables</h3>
-                <ul>
-                  <li><span class="num-badge">1.3.1</span> <span>Modelo de datos (estructura de tablas)</span></li>
-                  <li><span class="num-badge">1.3.2</span> <span>Base de datos centralizada (Odoo / PostgreSQL)</span></li>
-                  <li><span class="num-badge">1.3.3</span> <span>Reglas de validación de ingreso</span></li>
-                  <li><span class="num-badge">1.3.4</span> <span>Interfaz web/móvil de Odoo</span></li>
-                  <li><span class="num-badge">1.3.5</span> <span>Módulo de consulta de stock</span></li>
-                  <li><span class="num-badge">1.3.6</span> <span>Panel de indicadores (KPIs)</span></li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- COLUMNA 4 -->
-            <div class="column purple">
-              <div class="col-header">
-                <div class="number">1.4</div>
-                <div class="col-title">Componente 2<br>Procesos y Gobierno de Datos</div>
-              </div>
-              <div class="card">
-                <h3>Entregables</h3>
-                <ul>
-                  <li><span class="num-badge">1.4.1</span> <span>Mapa de procesos TO-BE</span></li>
-                  <li><span class="num-badge">1.4.2</span> <span>Procedimientos estándar (SOP)</span></li>
-                  <li><span class="num-badge">1.4.3</span> <span>Protocolo de registro en despacho</span></li>
-                  <li><span class="num-badge">1.4.4</span> <span>Políticas de Gobierno de Datos</span></li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- COLUMNA 5 -->
-            <div class="column cyan">
-              <div class="col-header">
-                <div class="number">1.5</div>
-                <div class="col-title">Componente 3<br>Infraestructura y Adopción</div>
-              </div>
-              <div class="card">
-                <h3>Entregables</h3>
-                <ul>
-                  <li><span class="num-badge">1.5.1</span> <span>Diagnóstico de conectividad</span></li>
-                  <li><span class="num-badge">1.5.2</span> <span>Solución de red del taller</span></li>
-                  <li><span class="num-badge">1.5.3</span> <span>Plan de capacitación</span></li>
-                  <li><span class="num-badge">1.5.4</span> <span>Talleres de capacitación ejecutados</span></li>
-                  <li><span class="num-badge">1.5.5</span> <span>Plan de gestión del cambio</span></li>
-                  <li><span class="num-badge">1.5.6</span> <span>Estrategia de coexistencia con Excel</span></li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- COLUMNA 6 -->
-            <div class="column red">
-              <div class="col-header">
-                <div class="number">1.6</div>
-                <div class="col-title">Cierre y Validación</div>
-              </div>
-              <div class="card">
-                <h3>Entregables</h3>
-                <ul>
-                  <li><span class="num-badge">1.6.1</span> <span>Pruebas de aceptación</span></li>
-                  <li><span class="num-badge">1.6.2</span> <span>Acta de conformidad de la gerencia</span></li>
-                  <li><span class="num-badge">1.6.3</span> <span>Documentación final del proyecto</span></li>
-                </ul>
-              </div>
-            </div>
-
+          <!-- ══ NIVEL 0: NODO RAÍZ ══ -->
+          <div class="root-node">
+            <div class="root-box">1. Ecosistema de Gestión de Información Roma Bag's</div>
           </div>
-        </div>
-      </div>
+
+          <!-- Conector raíz → nivel 1 -->
+          <div class="root-conn"></div>
+
+          <!-- ══ NIVEL 1: CATEGORÍAS + NIVEL 2: PAQUETES ══ -->
+          <div class="lvl1">
+
+            <!-- ── 1.1 Gestión del Proyecto ── -->
+            <div class="branch">
+              <div class="branch-conn"></div>
+              <div class="cat-node cat-blue">
+                <span class="cat-id">1.1</span>
+                <span class="cat-label">Gestión del Proyecto</span>
+              </div>
+              <div class="child-conn cc-blue"></div>
+              <div class="pkg-list pkg-blue">
+                <div class="pkg-header">Entregables</div>
+                <div class="pkg-item"><span class="pid">1.1.1</span> Acta de constitución</div>
+                <div class="pkg-item"><span class="pid">1.1.2</span> Plan de gestión del proyecto</div>
+                <div class="pkg-item"><span class="pid">1.1.3</span> Informes de avance</div>
+                <div class="pkg-item"><span class="pid">1.1.4</span> Acta de conformidad final</div>
+              </div>
+            </div>
+
+            <!-- ── 1.2 Diagnóstico y Requisitos ── -->
+            <div class="branch">
+              <div class="branch-conn"></div>
+              <div class="cat-node cat-green">
+                <span class="cat-id">1.2</span>
+                <span class="cat-label">Diagnóstico y Requisitos (AS-IS)</span>
+              </div>
+              <div class="child-conn cc-green"></div>
+              <div class="pkg-list pkg-green">
+                <div class="pkg-header">Entregables</div>
+                <div class="pkg-item"><span class="pid">1.2.1</span> Documentación del flujo actual</div>
+                <div class="pkg-item"><span class="pid">1.2.2</span> Documentación de requisitos</div>
+                <div class="pkg-item"><span class="pid">1.2.3</span> Matriz de trazabilidad de requisitos</div>
+              </div>
+            </div>
+
+            <!-- ── 1.3 Plataforma de Datos ── -->
+            <div class="branch">
+              <div class="branch-conn"></div>
+              <div class="cat-node cat-orange">
+                <span class="cat-id">1.3</span>
+                <span class="cat-label">Componente 1<br>Plataforma de Datos</span>
+              </div>
+              <div class="child-conn cc-orange"></div>
+              <div class="pkg-list pkg-orange">
+                <div class="pkg-header">Entregables</div>
+                <div class="pkg-item"><span class="pid">1.3.1</span> Modelo de datos (estructura de tablas)</div>
+                <div class="pkg-item"><span class="pid">1.3.2</span> Base de datos centralizada (Odoo / PostgreSQL)</div>
+                <div class="pkg-item"><span class="pid">1.3.3</span> Reglas de validación de ingreso</div>
+                <div class="pkg-item"><span class="pid">1.3.4</span> Interfaz web/móvil de Odoo</div>
+                <div class="pkg-item"><span class="pid">1.3.5</span> Módulo de consulta de stock</div>
+                <div class="pkg-item"><span class="pid">1.3.6</span> Panel de indicadores (KPIs)</div>
+              </div>
+            </div>
+
+            <!-- ── 1.4 Procesos y Gobierno ── -->
+            <div class="branch">
+              <div class="branch-conn"></div>
+              <div class="cat-node cat-purple">
+                <span class="cat-id">1.4</span>
+                <span class="cat-label">Componente 2<br>Procesos y Gobierno de Datos</span>
+              </div>
+              <div class="child-conn cc-purple"></div>
+              <div class="pkg-list pkg-purple">
+                <div class="pkg-header">Entregables</div>
+                <div class="pkg-item"><span class="pid">1.4.1</span> Mapa de procesos TO-BE</div>
+                <div class="pkg-item"><span class="pid">1.4.2</span> Procedimientos estándar (SOP)</div>
+                <div class="pkg-item"><span class="pid">1.4.3</span> Protocolo de registro en despacho</div>
+                <div class="pkg-item"><span class="pid">1.4.4</span> Políticas de Gobierno de Datos</div>
+              </div>
+            </div>
+
+            <!-- ── 1.5 Infraestructura y Adopción ── -->
+            <div class="branch">
+              <div class="branch-conn"></div>
+              <div class="cat-node cat-cyan">
+                <span class="cat-id">1.5</span>
+                <span class="cat-label">Componente 3<br>Infraestructura y Adopción</span>
+              </div>
+              <div class="child-conn cc-cyan"></div>
+              <div class="pkg-list pkg-cyan">
+                <div class="pkg-header">Entregables</div>
+                <div class="pkg-item"><span class="pid">1.5.1</span> Diagnóstico de conectividad</div>
+                <div class="pkg-item"><span class="pid">1.5.2</span> Solución de red del taller</div>
+                <div class="pkg-item"><span class="pid">1.5.3</span> Plan de capacitación</div>
+                <div class="pkg-item"><span class="pid">1.5.4</span> Talleres de capacitación ejecutados</div>
+                <div class="pkg-item"><span class="pid">1.5.5</span> Plan de gestión del cambio</div>
+                <div class="pkg-item"><span class="pid">1.5.6</span> Estrategia de coexistencia con Excel</div>
+              </div>
+            </div>
+
+            <!-- ── 1.6 Cierre y Validación ── -->
+            <div class="branch">
+              <div class="branch-conn"></div>
+              <div class="cat-node cat-red">
+                <span class="cat-id">1.6</span>
+                <span class="cat-label">Cierre y Validación</span>
+              </div>
+              <div class="child-conn cc-red"></div>
+              <div class="pkg-list pkg-red">
+                <div class="pkg-header">Entregables</div>
+                <div class="pkg-item"><span class="pid">1.6.1</span> Pruebas de aceptación</div>
+                <div class="pkg-item"><span class="pid">1.6.2</span> Acta de conformidad de la gerencia</div>
+                <div class="pkg-item"><span class="pid">1.6.3</span> Documentación final del proyecto</div>
+              </div>
+            </div>
+
+          </div><!-- /lvl1 -->
+
+          <div class="edt-note">
+            <p><strong>NOTA METODOLÓGICA:</strong> La presente estructura sigue el enfoque de desglose orientado a entregables del Ecosistema de Gestión de Información. Se asegura la regla del 100 % de la EDT/WBS, cubriendo la gestión del proyecto, diagnóstico, plataforma de datos, procesos, adopción e infraestructura para Roma Bag's.</p>
+          </div>
+
+        </div><!-- /edt-wrap -->
+      </div><!-- /wbs-tree -->
       <!-- ═══════════════════════════════════════════════════════════════ -->
       <!-- DICCIONARIO DE LA EDT / WBS                                    -->
       <!-- ═══════════════════════════════════════════════════════════════ -->
