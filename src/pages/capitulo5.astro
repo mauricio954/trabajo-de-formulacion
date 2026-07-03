@@ -1,0 +1,792 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Capítulo 05: Diseño Centrado en el Usuario">
+	  <!-- CAP 05 — DISEÑO CENTRADO EN EL USUARIO (Design Thinking) -->
+    <section class="sec" id="dt-tabs-root" style="background:none; border:none; padding:0; margin:0; box-shadow:none;">
+      <h2>CAPÍTULO 05: Diseño Centrado en el Usuario (Design Thinking)</h2>
+
+      <div class="hl" style="margin-bottom: 2rem;">
+        <strong>Nota sobre el usuario objetivo:</strong> La solución de TI está diseñada para <strong>Natalie</strong>
+        (gerente y dueña de Roma Bag's), quien operará el sistema y presenta el dolor operativo documentado. El
+        comprador final de bolsos es únicamente un <em>beneficiario indirecto</em>: se beneficia de entregas más
+        completas y ágiles, pero no interactúa con la herramienta. Esta distinción es metodológicamente correcta: en Design Thinking el sujeto del mapa de empatía es el usuario de la solución, no el cliente comercial de la empresa.
+      </div>
+
+      <p style="margin-bottom: 2rem;">El capítulo se organiza siguiendo las cinco fases del proceso de Design Thinking.
+        Cada fase agrupa únicamente las herramientas metodológicas que le corresponden. Haz clic en las pestañas de
+        abajo para explorar cada fase:</p>
+
+      <div class="dt-tabs-container" id="c9-tabs-container">
+        <div class="dt-tabs-nav">
+          <button class="dt-tab-btn active" data-tab="dt-empatizar">🔍 1. Empatizar</button>
+          <button class="dt-tab-btn" data-tab="dt-definir">🎯 2. Definir</button>
+          <button class="dt-tab-btn" data-tab="dt-idear">💡 3. Idear</button>
+          <button class="dt-tab-btn" data-tab="dt-prototipar">📱 4. Prototipar</button>
+          <button class="dt-tab-btn" data-tab="dt-evaluar">📊 5. Evaluar</button>
+        </div>
+
+        <!-- PANEL 1: EMPATIZAR -->
+        <div class="dt-tab-panel active" id="dt-empatizar">
+          <span id="fase1"></span>
+          <!-- BANDA FASE 1 -->
+          <div
+            style="background: linear-gradient(90deg, var(--b) 0%, #3b82f6 100%); color: #fff; border-radius: 10px; padding: .8rem 1.25rem; margin: 0 0 1.5rem; display: flex; align-items: center; gap: .8rem;">
+            <span style="font-size: 1.5rem; line-height: 1;">🔍</span>
+            <div>
+              <strong style="font-size: 1.05rem; letter-spacing: .05em;">FASE 1 — EMPATIZAR</strong>
+              <span style="font-size: .8rem; opacity: .85; display: block; margin-top: .2rem;">Herramientas: Mapa de
+                Empatía · Buyer Persona</span>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+            5.1. Mapa de Empatía (Fase Empatizar)</h3>
+          <p>El mapa de empatía sintetiza el mundo de Natalie como usuario objetivo, identificando sus pensamientos,
+            percepciones, comportamientos, dolores y aspiraciones en relación con la gestión de información de Roma
+            Bag's.</p>
+
+          <div class="gr" style="grid-template-columns: repeat(2, 1fr);">
+
+            <div class="cd" style="border-left: 4px solid var(--y);">
+              <strong style="color: var(--y); font-size: .95rem;">💭 QUÉ PIENSA Y SIENTE</strong>
+              <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+                <li>Asume casi todo el control operativo y comercial; siente el peso de ser el único punto de decisión.
+                </li>
+                <li>Le preocupa no conocer su ganancia neta real ni el stock disponible en el momento.</li>
+                <li>Valora el orden y la continuidad, pero teme perder información (ya borró por accidente los datos de
+                  2024).</li>
+                <li>Siente tensión ante herramientas que percibe como complejas o "robóticas".</li>
+              </ul>
+            </div>
+
+            <div class="cd" style="border-left: 4px solid var(--b);">
+              <strong style="color: var(--b); font-size: .95rem;">👀 QUÉ VE</strong>
+              <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+                <li>Datos dispersos en cuadernos físicos, Excel local y 6 celulares sin integración.</li>
+                <li>Un stock registrado que no coincide con el físico (falsos positivos).</li>
+                <li>Wi-Fi con zonas muertas que hace fallar el autoguardado en áreas clave del taller.</li>
+                <li>Que todo el seguimiento operativo termina pasando por ella.</li>
+              </ul>
+            </div>
+
+            <div class="cd" style="border-left: 4px solid var(--ac);">
+              <strong style="color: var(--ac); font-size: .95rem;">👂 QUÉ OYE</strong>
+              <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+                <li>De los vendedores: consultas constantes de stock que ella debe responder personalmente.</li>
+                <li>Del socio de producción: que necesita saber con anticipación qué fabricar.</li>
+                <li>Frases típicas: <em>"¿Hay stock de este modelo?", "No aparece el registro", "Eso estaba en el otro
+                    Excel", "Se perdió la actualización".</em></li>
+              </ul>
+            </div>
+
+            <div class="cd" style="border-left: 4px solid var(--g);">
+              <strong style="color: var(--g); font-size: .95rem;">💬 QUÉ DICE Y HACE</strong>
+              <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+                <li>Dice que necesita orden y recuperar tiempo; cada sábado dedica hasta un día completo a cuadrar
+                  cuadernos contra Excel.</li>
+                <li>Corrige errores de despacho y paga el doble envío cuando un pedido sale incompleto.</li>
+                <li>Centraliza toda decisión por falta de un sistema que la respalde.</li>
+              </ul>
+            </div>
+
+            <div class="cd" style="border-left: 4px solid var(--r);">
+              <strong style="color: var(--r); font-size: .95rem;">⚡ ESFUERZOS / DOLORES</strong>
+              <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+                <li>1 día laborable semanal perdido en conciliación manual (todos los sábados).</li>
+                <li>9 pedidos incompletos al mes con sobrecosto de S/.20 por doble envío (≈2 de cada 10).</li>
+                <li>Dependencia de registros manuales y conectividad deficiente.</li>
+                <li>Riesgo real de pérdida de datos (historial de 2024 borrado accidentalmente).</li>
+                <li>Sobrecarga por ser el único punto de control de la información del negocio.</li>
+              </ul>
+            </div>
+
+            <div class="cd" style="border-left: 4px solid var(--g);">
+              <strong style="color: var(--g); font-size: .95rem;">🎯 RESULTADOS / BENEFICIOS ESPERADOS</strong>
+              <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+                <li>Información integrada y confiable consultable en menos de 2 minutos.</li>
+                <li>Reducción de pedidos incompletos a casi cero.</li>
+                <li>Recuperar el día gerencial semanal para actividades de crecimiento.</li>
+                <li>Un historial de datos íntegro para proyectar demanda estacional.</li>
+                <li>Una solución simple, móvil y que coexista con su Excel sin reemplazarlo de golpe.</li>
+              </ul>
+            </div>
+
+          </div>
+
+          <h3 style="margin-top: 2.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+            5.2. Buyer Persona (Fase Empatizar)</h3>
+          <p>La definición del usuario objetivo orienta todas las decisiones de diseño de la solución hacia las
+            necesidades reales de quien la operará en el día a día.</p>
+
+          <div class="ficha">
+            <h4 style="color: var(--ac); margin-bottom: 1.5rem;">Natalie — Dueña y Gerente de Roma Bag's</h4>
+            <div class="ficha-row">
+              <span class="ficha-label">Tipo de usuario</span>
+              <span class="ficha-val">Tomadora de decisiones y usuaria principal de la solución de TI.</span>
+            </div>
+            <div class="ficha-row">
+              <span class="ficha-label">Contexto</span>
+              <span class="ficha-val">Microempresa de producción y venta de bolsos (mayoristas y minoristas), 19
+                personas, sin área de TI.</span>
+            </div>
+            <div class="ficha-row">
+              <span class="ficha-label">Nivel tecnológico</span>
+              <span class="ficha-val">Medio–práctico: 3 laptops de alta capacidad subutilizadas + 6 celulares para
+                registro de ventas.</span>
+            </div>
+          </div>
+
+          <div class="gr" style="margin-top: 1.2rem;">
+            <div class="cd">
+              <strong>Características del perfil</strong>
+              <p style="margin: .4rem 0 0; font-size: .88rem;">Emprendedora que ejerce a la vez gerencia, marketing,
+                almacén y logística; conoce el negocio a fondo, pero opera con procesos poco integrados y sin respaldo
+                tecnológico formal.</p>
+            </div>
+            <div class="cd">
+              <strong>Comportamiento</strong>
+              <p style="margin: .4rem 0 0; font-size: .88rem;">Trabaja con información en tres medios desconectados;
+                consolida manualmente cada semana; centraliza decisiones para asegurar continuidad; compensa las fallas
+                del sistema con supervisión personal y memoria.</p>
+            </div>
+            <div class="cd">
+              <strong>Motivaciones</strong>
+              <ul style="margin: .4rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.7;">
+                <li>Conocer su ganancia neta real y su stock al día.</li>
+                <li>Reducir errores y reprocesos operativos.</li>
+                <li>Liberar tiempo para captar clientes mayoristas.</li>
+                <li>Fortalecer su capacidad de gestión para sostener el crecimiento del negocio aprovechando la
+                  capacidad instalada.</li>
+              </ul>
+            </div>
+            <div class="cd">
+              <strong>Frustraciones</strong>
+              <ul style="margin: .4rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.7;">
+                <li>Perder un día semanal cuadrando cuentas manualmente.</li>
+                <li>No tener certeza del stock al cerrar una venta.</li>
+                <li>Pagar dobles envíos por información errónea.</li>
+                <li>Haber perdido el historial de datos de 2024.</li>
+                <li>Que todo el control operativo dependa de ella.</li>
+              </ul>
+            </div>
+            <div class="cd">
+              <strong>Necesidades</strong>
+              <p style="margin: .4rem 0 0; font-size: .88rem;">Una solución simple, confiable y oportuna, operable desde
+                el celular, adaptada a su conectividad irregular y a su rutina real. No solo correcta "en teoría", sino
+                usable en el día a día del taller.</p>
+            </div>
+            <div class="cd">
+              <strong>Barreras y temores</strong>
+              <p style="margin: .4rem 0 0; font-size: .88rem;">Desconfía de soluciones complejas o frágiles; rechaza lo
+                que percibe como "robótico". Teme corromper o perder sus datos. Valorará una solución gradual que
+                conviva con su Excel antes que un reemplazo ambicioso pero riesgoso.</p>
+            </div>
+          </div>
+
+          <div class="hl" style="margin-top: 1.5rem;">
+            <strong>Objetivo de diseño:</strong> Integrar la información en una fuente única, con consulta rápida e
+            indicadores claros, para que Natalie pueda decidir con seguridad sobre stock, ventas y rentabilidad en menos
+            de 2 minutos.
+          </div>
+        </div>
+
+        <!-- PANEL 2: DEFINIR -->
+        <div class="dt-tab-panel" id="dt-definir">
+          <span id="fase2"></span>
+          <!-- BANDA FASE 2 -->
+          <div
+            style="background: linear-gradient(90deg, #15803d 0%, #22c55e 100%); color: #fff; border-radius: 10px; padding: .8rem 1.25rem; margin: 0 0 1.5rem; display: flex; align-items: center; gap: .8rem;">
+            <span style="font-size: 1.5rem; line-height: 1;">🎯</span>
+            <div>
+              <strong style="font-size: 1.05rem; letter-spacing: .05em;">FASE 2 — DEFINIR</strong>
+              <span style="font-size: .8rem; opacity: .85; display: block; margin-top: .2rem;">Herramientas:
+                Brainstorming · Diagrama de Afinidad · Desafío de Diseño</span>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+            5.3. Brainstorming y Diagrama de Afinidad (Fase Definir)</h3>
+          <p>La sesión de ideación generó 18 ideas a partir del diagnóstico. El diagrama de afinidad las organiza en 3
+            categorías que corresponden exactamente a las 3 causas directas del árbol de problemas, validando la
+            coherencia del diagnóstico.</p>
+
+          <div class="cd" style="border-left: 4px solid var(--b); margin-bottom: 1.5rem;">
+            <strong style="color: var(--b);">Paso 1 — Brainstorming: Ideas generadas (18 en total, sin filtrar)</strong>
+            <span style="font-size: .88rem; line-height: 2.2; display: block; margin-top: .6rem;">Inventario en
+              cuadernos · Ventas en 6 celulares sin sincronizar · Excel local aislado · Stock físico ≠ registrado ·
+              Pedidos incompletos · Reprocesos por falta de validación · Cuadre manual de un día · Wi-Fi con zonas
+              muertas · Autoguardado que falla · Pérdida del historial 2024 · No se calcula la ganancia neta · Sin
+              reportes de rentabilidad · Sin protocolo de registro al despachar · Comunicación informal
+              ventas-producción · Dependencia de una sola persona · Consultas de stock que solo Natalie responde ·
+              Resistencia a herramientas "robóticas" · Temor a perder datos</span>
+          </div>
+
+          <div class="cd" style="border-left: 4px solid var(--g); margin-bottom: 1.5rem;">
+            <strong style="color: var(--g);">Paso 2 — Diagrama de Afinidad: 3 Grupos (alineados a las 3 Causas Directas
+              del Árbol)</strong>
+          </div>
+          <div class="gr">
+            <div class="cd" style="border-left: 4px solid var(--y);">
+              <span class="bg by" style="margin-bottom: .5rem;">Grupo 1 — CD1</span>
+              <strong>Fragmentación de los datos</strong>
+              <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+                <li>Inventario en cuadernos físicos.</li>
+                <li>Ventas en 6 celulares sin sincronizar.</li>
+                <li>Excel local aislado.</li>
+                <li>Sin fuente única de verdad.</li>
+                <li>Información en medios incompatibles.</li>
+              </ul>
+            </div>
+            <div class="cd" style="border-left: 4px solid var(--r);">
+              <span class="bg br" style="margin-bottom: .5rem;">Grupo 2 — CD2</span>
+              <strong>Procesos manuales y pérdida de datos</strong>
+              <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+                <li>Cuadre manual de un día (sábado).</li>
+                <li>Sin validación automática al registrar.</li>
+                <li>Stock físico ≠ registrado.</li>
+                <li>Wi-Fi deficiente y autoguardado que falla.</li>
+                <li>Sin protocolo de registro al despacho.</li>
+                <li>Pérdida del historial de datos de 2024.</li>
+              </ul>
+            </div>
+            <div class="cd" style="border-left: 4px solid var(--b);">
+              <span class="bg bb" style="margin-bottom: .5rem;">Grupo 3 — CD3</span>
+              <strong>Ausencia de capacidad analítica</strong>
+              <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+                <li>No se calcula la ganancia neta real.</li>
+                <li>Sin reportes de rentabilidad ni de stock en tiempo real.</li>
+                <li>Decisiones a ciegas sobre producto y demanda.</li>
+                <li>Sin historial íntegro para proyectar demanda estacional.</li>
+                <li>Consultas de stock que dependen solo de Natalie.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cd" style="margin-top: 1.2rem; border-left: 4px solid var(--ac);">
+            <strong style="color: var(--ac);">Nota metodológica</strong>
+            <p style="margin: .4rem 0 0; font-size: .88rem;">Las ideas sobre <em>resistencia al cambio</em>, <em>temor a
+                perder datos</em> y <em>rechazo a lo "robótico"</em> no se clasifican como causas del problema, sino
+              como <strong>riesgos de adopción del proyecto</strong>, y se gestionan en la matriz de riesgos. Esto
+              mantiene la coherencia con el árbol de problemas corregido, donde la resistencia al cambio fue retirada de
+              las causas directas por tratarse de un factor de riesgo, no de una causa estructural del problema de
+              información.</p>
+          </div>
+
+          <div class="hl" style="margin-top: 1.5rem;">
+            <strong>Insight principal:</strong> El brainstorming converge en las mismas 3 causas directas del árbol de
+            problemas (fragmentación de datos, procesos manuales, falta de capacidad analítica), lo que <em>valida el
+              diagnóstico</em> y conecta directamente con los medios del árbol de objetivos y con las alternativas de
+            solución evaluadas en el Capítulo 04.
+          </div>
+
+          <h4 style="margin-top: 2.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+            5.4.
+            Desafío de Diseño (Design Challenge)</h4>
+          <p>El Desafío de Diseño transforma los hallazgos y fricciones recolectados en las fases previas en "preguntas
+            reto" accionables. Su propósito es evitar proponer una solución tecnológica prematura, obligando al equipo a
+            preguntarse <em>cómo</em> resolver los dolores específicos del negocio.</p>
+
+          <h4>Síntesis de Hallazgos Previos</h4>
+          <div class="gr">
+            <div class="cd" style="border-left: 4px solid var(--r);">
+              <strong>Fricción Principal</strong>
+              <p style="margin: .4rem 0 0; font-size: .88rem;">La información del pedido no fluye a tiempo. Los
+                registros dependen de la memoria del personal o de hojas de cálculo desarticuladas.</p>
+            </div>
+            <div class="cd" style="border-left: 4px solid var(--y);">
+              <strong>Impacto Operativo</strong>
+              <p style="margin: .4rem 0 0; font-size: .88rem;">El personal de almacén sufre retrasos y errores en la
+                preparación porque la comunicación de las ventas llega tarde.</p>
+            </div>
+            <div class="cd" style="border-left: 4px solid var(--b);">
+              <strong>Impacto Estratégico</strong>
+              <p style="margin: .4rem 0 0; font-size: .88rem;">La gerencia carece de visibilidad en tiempo real para
+                medir ventas, productividad y estado del stock, dificultando la toma de decisiones.</p>
+            </div>
+          </div>
+
+          <h4>Formulación de las Preguntas Reto ("¿Cómo podríamos...?")</h4>
+          <div class="gr">
+            <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb"
+                style="margin-bottom:.5rem;">Reto 1 — Flujo Operativo</span>¿Cómo podríamos estandarizar y automatizar
+              el flujo de información desde el momento exacto en que el cliente realiza el pedido, hasta que el producto
+              está listo para su entrega, eliminando la dependencia de la memoria humana y los registros aislados?</div>
+            <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb"
+                style="margin-bottom:.5rem;">Reto 2 — Experiencia del Vendedor</span>¿Cómo podríamos dotar al personal
+              de ventas de una visibilidad inmediata y exacta sobre el inventario disponible, para que puedan brindar
+              confirmaciones rápidas a los clientes?</div>
+            <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb"
+                style="margin-bottom:.5rem;">Reto 3 — Gestión y Decisiones</span>¿Cómo podríamos integrar los datos
+              diarios de pedidos y stock de manera que la dirección obtenga un panorama claro y actualizado que le
+              permita evaluar si se están alcanzando las metas?</div>
+          </div>
+
+          <div class="hl" style="margin-top: 1.5rem;">
+            <strong>Transición hacia la Ideación:</strong> Estas preguntas reto delimitan qué partes del proceso se van
+            a transformar. Al responderlas mediante técnicas de ideación (Brainstorming, SCAMPER), se garantiza que la
+            propuesta tecnológica final responda a una necesidad real del negocio.
+          </div>
+
+
+        </div>
+
+        <!-- PANEL 3: IDEAR -->
+        <div class="dt-tab-panel" id="dt-idear">
+          <span id="fase3"></span>
+          <!-- BANDA FASE 3 -->
+          <div
+            style="background: linear-gradient(90deg, #a16207 0%, #eab308 100%); color: #fff; border-radius: 10px; padding: .8rem 1.25rem; margin: 0 0 1.5rem; display: flex; align-items: center; gap: .8rem;">
+            <span style="font-size: 1.5rem; line-height: 1;">💡</span>
+            <div>
+              <strong style="font-size: 1.05rem; letter-spacing: .05em;">FASE 3 — IDEAR</strong>
+              <span style="font-size: .8rem; opacity: .85; display: block; margin-top: .2rem;">Herramientas: SCAMPER ·
+                Matriz de Priorización · Customer Journey · Historieta · Actores</span>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 2.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+            5.5. Herramientas de Ideación (SCAMPER y Matriz de Priorización)</h3>
+          <p>Se aplicaron herramientas adicionales de ideación para refinar las soluciones y conectarlas directamente
+            con la alternativa seleccionada en el Capítulo 04.</p>
+
+          <h4>Preguntas "¿Cómo Podríamos...?" (How Might We)</h4>
+          <div class="gr">
+            <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb" style="margin-bottom:.5rem;">HMW
+                1</span>¿Cómo podríamos centralizar la información dispersa sin que
+              Natalie pierda el control de su Excel?</div>
+            <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb" style="margin-bottom:.5rem;">HMW
+                2</span>¿Cómo podríamos darle al vendedor el stock real en segundos
+              desde su celular?</div>
+            <div class="cd" style="border-left:4px solid var(--b);"><span class="bg bb" style="margin-bottom:.5rem;">HMW
+                3</span>¿Cómo podríamos eliminar el cuadre manual de los sábados?</div>
+          </div>
+
+          <h4>SCAMPER Aplicado a la Solución</h4>
+          <div class="gr">
+            <div class="cd"><strong>Sustituir</strong>
+              <p style="margin:.4rem 0 0; font-size:.88rem;">El cuaderno físico por registro digital en la base centralizada de la Fase 1, y luego por el módulo de Inventario del ERP en la Fase 2.</p>
+            </div>
+            <div class="cd"><strong>Combinar</strong>
+              <p style="margin:.4rem 0 0; font-size:.88rem;">Registro de venta y descuento automático de stock en un solo paso, primero en la base ligera de la Fase 1 y luego con automatización nativa de Odoo en la Fase 2.</p>
+            </div>
+            <div class="cd"><strong>Adaptar</strong>
+              <p style="margin:.4rem 0 0; font-size:.88rem;">Herramientas ya conocidas por la gerencia (hojas de cálculo) como punto de entrada en la Fase 1, para reducir la resistencia al cambio antes de introducir Odoo.</p>
+            </div>
+            <div class="cd"><strong>Eliminar</strong>
+              <p style="margin:.4rem 0 0; font-size:.88rem;">La doble digitación donde el vendedor anota en papel y Natalie transcribe en Excel. Se elimina desde la Fase 1 con el registro digital único.</p>
+            </div>
+          </div>
+
+          <h4>Matriz de Priorización Impacto / Esfuerzo</h4>
+          <div class="tr">
+            <table>
+              <thead>
+                <tr>
+                  <th>Idea</th>
+                  <th style="text-align:center;">Impacto</th>
+                  <th style="text-align:center;">Esfuerzo</th>
+                  <th>Decisión</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Consulta de stock en tiempo real desde el celular</td>
+                  <td style="text-align:center;"><span class="bg bgr">Alto</span></td>
+                  <td style="text-align:center;"><span class="bg bgr">Bajo</span></td>
+                  <td><strong>Priorizar en Fase 1</strong> — Entregable: acceso de consulta de stock desde celular en base centralizada ligera.</td>
+                </tr>
+                <tr>
+                  <td>Registro digital de ventas y despachos</td>
+                  <td style="text-align:center;"><span class="bg bgr">Alto</span></td>
+                  <td style="text-align:center;"><span class="bg bgr">Bajo</span></td>
+                  <td><strong>Priorizar en Fase 1</strong> — Entregable: base centralizada con reglas de validación.</td>
+                </tr>
+                <tr>
+                  <td>Flujo integrado Venta-Stock-Despacho</td>
+                  <td style="text-align:center;"><span class="bg bgr">Alto</span></td>
+                  <td style="text-align:center;"><span class="bg by">Medio</span></td>
+                  <td><strong>Fase 2 con Odoo</strong> — Requiere el hábito del dato de la Fase 1 primero. Entregable: módulo de Ventas y flujo secuencial mandatorio en Odoo.</td>
+                </tr>
+                <tr>
+                  <td>Panel de reportes de rentabilidad y KPIs</td>
+                  <td style="text-align:center;"><span class="bg by">Medio</span></td>
+                  <td style="text-align:center;"><span class="bg by">Medio</span></td>
+                  <td><strong>Fase 3</strong> — Requiere datos confiables de las Fases 1 y 2. Entregable: módulo Analítico y Gerencial de Odoo.</td>
+                </tr>
+                <tr>
+                  <td>Arquitectura de Inteligencia de Negocios a medida (BI completo, Data Warehouse, ETL)</td>
+                  <td style="text-align:center;"><span class="bg bgr">Alto</span></td>
+                  <td style="text-align:center;"><span class="bg br">Muy alto</span></td>
+                  <td><strong>Posponer</strong> — Fase futura. Razón: sobredimensionado para la madurez actual; las tres fases construyen la base para que en el futuro sea viable.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="hl">
+            <strong>Conexión con el Cap. 04:</strong> La Matriz de Priorización explica, desde el diseño centrado en el usuario, por qué la Transformación Digital por Fases es la alternativa seleccionada. Las ideas de mayor impacto y menor esfuerzo se asignan a fases tempranas, evitando el error de implementar toda la complejidad del sistema desde el primer día. Este es el fundamento metodológico de la estrategia por fases.
+          </div>
+
+          <h3 style="margin-top: 2.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+            5.6. Customer Journey e Historieta (Fase Idear)</h3>
+          <p>La historieta ilustra gráficamente el viaje emocional de la usuaria Natalie en la situación actual (AS-IS),
+            mientras que la tabla detalla cada momento y su impacto en base a las ineficiencias diagnosticadas.</p>
+
+          <div style="text-align: center; margin: 1.5rem 0;">
+            <strong>Historieta — Viñetas del Journey Actual (AS-IS)</strong><br>
+            <img src="img/historieta.png" alt="Historieta del Customer Journey"
+              style="max-width: 100%; height: auto; border: 1px solid var(--bd); border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); margin-top: 10px;">
+          </div>
+
+          <div class="tr">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Momento</th>
+                  <th>Pensamiento (con dato real del diagnóstico)</th>
+                  <th>Emoción</th>
+                  <th style="text-align:center;">Nivel exp.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><strong>Recibe pedidos / revisa ventas</strong></td>
+                  <td><em>"Llegan pedidos por varios celulares, no se me puede escapar ninguno."</em></td>
+                  <td><span class="bg bb">Presionada</span></td>
+                  <td style="text-align:center; font-weight:700; color: var(--b);">+</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><strong>Verifica disponibilidad de stock</strong></td>
+                  <td><em>"¿Habrá de este modelo? El cuaderno no siempre coincide con lo real."</em></td>
+                  <td><span class="bg by">Incertidumbre</span></td>
+                  <td style="text-align:center; font-weight:700; color: var(--y);">−</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><strong>Coordina con producción</strong></td>
+                  <td><em>"Debo avisar al socio qué fabricar, pero la info no fluye sola."</em></td>
+                  <td><span class="bg by">Preocupación</span></td>
+                  <td style="text-align:center; font-weight:700; color: var(--y);">−</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><strong>Consolida información (cuadre)</strong></td>
+                  <td><em>"Cuadrar cuadernos con Excel me toma todo el sábado."</em></td>
+                  <td><span class="bg br">Sobrecarga</span></td>
+                  <td style="text-align:center; font-weight:700; color: var(--r);">− −</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><strong>Corrige errores / incidencias</strong></td>
+                  <td><em>"Otro pedido incompleto: toca pagar de nuevo al motorizado (S/.20)."</em></td>
+                  <td><span class="bg br">Frustración</span></td>
+                  <td style="text-align:center; font-weight:700; color: var(--r);">−</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><strong>Toma decisiones del negocio</strong></td>
+                  <td><em>"No sé mi ganancia neta real; decido casi a ciegas."</em></td>
+                  <td><span class="bg bgr">Nec. de claridad</span></td>
+                  <td style="text-align:center; font-weight:700; color: var(--g);">+</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="hl" style="margin-top: 1.5rem;">
+            <strong>Insight clave:</strong> La experiencia se hunde en la zona "Durante" (momentos 4 y 5: consolidar y
+            corregir), donde el trabajo manual y la dependencia total de Natalie generan el día perdido, los 9 pedidos
+            incompletos y los sobrecostos de S/.20 por doble envío. La oportunidad de diseño es integrar la información
+            operativa para elevar toda la curva de experiencia.
+          </div>
+
+          <h4 style="margin-top: 2.5rem; color: var(--b); margin-bottom: 1rem;">Actores Identificados en la Ruta del
+            Pedido</h4>
+
+          <div class="gr">
+            <div class="cd" style="border-left: 4px solid var(--b);">
+              <span class="bg bb" style="margin-bottom: .5rem;">Actores Internos</span>
+              <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+                <li><strong>Gerencia / Dirección:</strong> Alto poder e interés. Necesita visibilidad del negocio,
+                  evitar pérdida de ventas y mejorar el control de inventarios.</li>
+                <li><strong>Personal de Ventas:</strong> Primera línea de contacto. Su dolor es la fricción al no contar
+                  con información actualizada de stock para confirmar al cliente.</li>
+                <li><strong>Personal de Almacén / Preparación:</strong> Ejecutan el pedido físico. Perjudicados cuando
+                  la información de ventas llega tarde, con errores o de manera informal.</li>
+              </ul>
+            </div>
+            <div class="cd" style="border-left: 4px solid var(--ac);">
+              <span class="bg bgr" style="margin-bottom: .5rem;">Actores Externos</span>
+              <ul style="margin: .6rem 0 0; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+                <li><strong>Clientes Finales:</strong> Motor del flujo. Principales afectados por las demoras en la
+                  comunicación; su satisfacción es el indicador clave.</li>
+                <li><strong>Proveedores:</strong> Suministran materia prima. Una gestión de inventario defectuosa
+                  impacta los tiempos de reabastecimiento.</li>
+              </ul>
+            </div>
+          </div>
+
+
+          <h4 style="margin-top: 1.5rem; color: var(--b); margin-bottom: 1rem;">Niveles de Influencia</h4>
+
+          <div class="gr">
+            <div class="cd" style="border-left: 4px solid var(--r);">
+              <strong>Zona Estratégica (Decisores)</strong>
+              <p style="margin: .4rem 0 0; font-size: .88rem;">La gerencia, que debe aprobar la transición de un sistema
+                manual a un flujo estandarizado con Odoo. Requieren ver valor real en la propuesta.</p>
+            </div>
+            <div class="cd" style="border-left: 4px solid var(--y);">
+              <strong>Zona de Operación Directa</strong>
+              <p style="margin: .4rem 0 0; font-size: .88rem;">Vendedores y operarios. Usuarios diarios de cualquier
+                mejora; entender su rutina actual es vital para diseñar una solución que no genere rechazo.</p>
+            </div>
+            <div class="cd" style="border-left: 4px solid var(--g);">
+              <strong>Zona de Recepción (Impacto)</strong>
+              <p style="margin: .4rem 0 0; font-size: .88rem;">Los clientes, quienes experimentarán la mejora en el
+                servicio una vez que la información de sus pedidos fluya correctamente dentro de la empresa.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 4: PROTOTIPAR -->
+        <div class="dt-tab-panel" id="dt-prototipar">
+          <span id="fase4"></span>
+          <!-- BANDA FASE 4 -->
+          <div
+            style="background: linear-gradient(90deg, #0d9488 0%, #14b8a6 100%); color: #fff; border-radius: 10px; padding: .8rem 1.25rem; margin: 0 0 1.5rem; display: flex; align-items: center; gap: .8rem;">
+            <span style="font-size: 1.5rem; line-height: 1;">📱</span>
+            <div>
+              <strong style="font-size: 1.05rem; letter-spacing: .05em;">FASE 4 — PROTOTIPAR</strong>
+              <span style="font-size: .8rem; opacity: .85; display: block; margin-top: .2rem;">Herramientas: Mockup
+                Móvil Interactivo de Odoo Community</span>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+            5.7. Prototipo Móvil Navegable (Fase Prototipar)</h3>
+          <p>El prototipo es un mockup de baja/media fidelidad de la interfaz de la solución, accesible desde el navegador del celular sin instalación de ninguna aplicación adicional. Corresponde a las pantallas de la Fase 2 de la transformación (interfaz de Odoo Community) y fue construido para validar el flujo operativo con la Gerencia antes de invertir en la configuración real del sistema. Su uso en la fase Prototipar del Design Thinking es el método de validación que cierra el ciclo del Doble Diamante: la solución no avanza a producción sin pasar por una prueba con el usuario real.</p>
+
+          <p style="margin-top: 1rem; font-size: 0.88rem; color: var(--text-muted);"><strong>El prototipo simula las 5 pantallas principales de la interfaz, correspondientes a los módulos definidos en el Capítulo 06:</strong></p>
+
+          <div class="gr" style="margin: 1rem 0; grid-template-columns: 1fr;">
+            <div class="cd" style="border-left: 4px solid var(--b);">
+              <strong>Pantalla de inicio:</strong> Accesos directos a los módulos de Ventas, Inventario, Despachos y Reportes, tal como aparecerían en el menú de navegación de la Fase 2 (Odoo).
+            </div>
+            <div class="cd" style="border-left: 4px solid var(--b);">
+              <strong>Consulta de Stock (módulo de Inventario, Fase 2):</strong> Buscador de modelo con resultado de disponibilidad en tiempo real. En la Fase 1, esta misma función opera sobre la base centralizada ligera antes de migrar a Odoo.
+            </div>
+            <div class="cd" style="border-left: 4px solid var(--b);">
+              <strong>Registro de Venta (módulo de Ventas, Fase 2):</strong> Formulario de captura con descuento automático de stock al confirmar.
+            </div>
+            <div class="cd" style="border-left: 4px solid var(--b);">
+              <strong>Registro de Despacho (módulo de Despachos, Fase 2):</strong> Confirmación obligatoria del flujo secuencial Venta-Stock-Despacho.
+            </div>
+            <div class="cd" style="border-left: 4px solid var(--b);">
+              <strong>Panel de Indicadores (módulo Analítico y Gerencial, Fase 3):</strong> Tarjetas de ventas del día, stock crítico y pedidos incompletos, disponibles únicamente para el perfil de Gerencia.
+            </div>
+          </div>
+
+          <div style="margin: 1.5rem 0; display: flex; justify-content: center;">
+            <iframe src="/prototipo/index.html" style="border: none; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); width: 100%; max-width: 375px; height: 720px; background: #f0eeee;"></iframe>
+          </div>
+          
+          <div style="margin-top: 1rem; padding: 12px; background: var(--y-bg); border-left: 4px solid var(--y); border-radius: 4px; font-size: 0.88rem;">
+            <strong>💡 Instrucciones de uso:</strong> El prototipo anterior es totalmente interactivo. Prueba iniciar sesión con <strong>gerente@romabags.com</strong> (clave: <strong>123</strong>), acceder a los módulos de Inventario y Ventas, registrar una venta, y observar cómo cambia el stock en tiempo real. Este flujo será validado con Natalie en la prueba de usabilidad.
+          </div>
+
+          <div class="hl" style="margin-top:1.5rem;">
+            <strong>Naturaleza del prototipo:</strong> Esta maqueta es una simulación de baja/media fidelidad: no se
+            conecta a una instancia real de Odoo ni a ninguna base de datos. Su único propósito es validar el flujo de
+            navegación y la simplicidad de uso con la Gerencia antes de iniciar la configuración real del sistema
+            descrita en el Capítulo 06.
+          </div>
+        </div>
+
+        <!-- PANEL 5: EVALUAR -->
+        <div class="dt-tab-panel" id="dt-evaluar">
+          <span id="fase5"></span>
+          <!-- BANDA FASE 5 -->
+          <div
+            style="background: linear-gradient(90deg, #b91c1c 0%, #ef4444 100%); color: #fff; border-radius: 10px; padding: .8rem 1.25rem; margin: 0 0 1.5rem; display: flex; align-items: center; gap: .8rem;">
+            <span style="font-size: 1.5rem; line-height: 1;">📊</span>
+            <div>
+              <strong style="font-size: 1.05rem; letter-spacing: .05em;">FASE 5 — EVALUAR</strong>
+              <span style="font-size: .8rem; opacity: .85; display: block; margin-top: .2rem;">Herramientas: Instrumento
+                de Usabilidad · Resultados en Diagrama de Radar SVG</span>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">
+            5.8. Validación con el Usuario (Fase Evaluar)</h3>
+          <p>Esta sección documenta el <strong>instrumento de evaluación</strong> que será utilizado en la entrevista de validación con Natalie tras interactuar con el prototipo de la sección 5.7. Es importante notar que este es el <em>diseño del instrumento de medición</em>; los resultados reales provendrán de la prueba de usabilidad real, aún pendiente de programación. Los hallazgos se documentarán en el diagrama de radar.</p>
+
+          <div class="gr">
+            <div class="cd"><strong>Método</strong>Prueba de usabilidad guiada con Natalie (usuaria principal) y un
+              integrante del personal de ventas, ejecutada sobre el prototipo navegable de la sección 5.7.</div>
+            <div class="cd"><strong>Qué se Mide</strong>
+              <ul style="margin:.4rem 0 0; padding-left:1.2rem; font-size:.88rem; line-height:1.8;">
+                <li><strong>Facilidad de consulta:</strong> ¿Natalie encuentra el stock disponible sin ayuda en menos de 2 minutos?</li>
+                <li><strong>Claridad del formulario:</strong> ¿El formulario de registro de venta es comprensible sin instrucciones externas?</li>
+                <li><strong>Percepción de simplicidad:</strong> ¿La solución se percibe simple y manejable, o abrumadora?</li>
+                <li><strong>Confianza en los datos:</strong> ¿Natalie confía en que el sistema mantiene precisión en el stock y las ventas?</li>
+                <li><strong>Velocidad de la interfaz:</strong> ¿Las respuestas del sistema son rápidas y no generan frustración?</li>
+              </ul>
+            </div>
+            <div class="cd"><strong>Instrumentos</strong>Entrevista de retroalimentación post-prueba, observación
+              directa de la tarea (Job Shadowing) y una breve encuesta de satisfacción.</div>
+            <div class="cd"><strong>Iteración</strong>Los hallazgos de la prueba se incorporan al mockup antes de
+              iniciar la configuración real de los módulos de Odoo Community.</div>
+          </div>
+
+          <h4 style="margin-top: 2rem; color: var(--b);">Diagrama de Radar — Resultados de la Prueba de Usabilidad</h4>
+          <p style="font-size: .88rem; margin-bottom: 1rem;">Cada eje mide del 1 (centro) al 5 (borde) la percepción del
+            usuario sobre un criterio de usabilidad clave. Los valores actuales son de ejemplo; se actualizarán tras la
+            prueba real con Natalie.</p>
+
+          <div style="position: relative; text-align: center; margin: 0 auto 1rem; max-width: 600px;">
+            <div
+              style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); background: var(--y); color: var(--bg); font-size: .75rem; font-weight: 700; padding: .3rem .8rem; border-radius: 20px; white-space: nowrap; z-index: 10; box-shadow: 0 2px 6px rgba(0,0,0,.18);">
+              &#x23F3; Valores de ejemplo — pendiente de prueba real con Natalie</div>
+
+            <svg viewBox="0 0 600 370" width="100%"
+              style="max-width:600px; display:block; margin:0 auto; font-family:inherit; overflow:visible;">
+              <!-- Anillos de escala. cx=300, cy=195. Ang_i = -90° + 72°*i -->
+              <!-- r=24 (v=1) -->
+              <polygon points="300,171 322.8,187.6 314.1,214.4 285.9,214.4 277.2,187.6" fill="none" stroke="#e2e8f0"
+                stroke-width="1" />
+              <!-- r=48 (v=2) -->
+              <polygon points="300,147 345.7,180.2 328.2,233.8 271.8,233.8 254.3,180.2" fill="none" stroke="#e2e8f0"
+                stroke-width="1" />
+              <!-- r=72 (v=3) resaltado -->
+              <polygon points="300,123 368.5,172.8 342.3,253.2 257.7,253.2 231.5,172.8" fill="none" stroke="#94a3b8"
+                stroke-width="1.5" stroke-dasharray="4 2" />
+              <!-- r=96 (v=4) -->
+              <polygon points="300,99 391.3,165.3 356.4,272.7 243.6,272.7 208.7,165.3" fill="none" stroke="#e2e8f0"
+                stroke-width="1" />
+              <!-- r=120 (v=5) -->
+              <polygon points="300,75 414.1,157.9 370.5,292.1 229.5,292.1 185.9,157.9" fill="none" stroke="#cbd5e1"
+                stroke-width="1.5" />
+              <!-- Ejes -->
+              <line x1="300" y1="195" x2="300" y2="75" stroke="#dde1e9" stroke-width="1" />
+              <line x1="300" y1="195" x2="414.1" y2="157.9" stroke="#dde1e9" stroke-width="1" />
+              <line x1="300" y1="195" x2="370.5" y2="292.1" stroke="#dde1e9" stroke-width="1" />
+              <line x1="300" y1="195" x2="229.5" y2="292.1" stroke="#dde1e9" stroke-width="1" />
+              <line x1="300" y1="195" x2="185.9" y2="157.9" stroke="#dde1e9" stroke-width="1" />
+              <!-- Marcas escala eje superior -->
+              <text x="306" y="172" font-size="9" fill="#94a3b8" font-family="inherit">1</text>
+              <text x="306" y="148" font-size="9" fill="#94a3b8" font-family="inherit">2</text>
+              <text x="306" y="124" font-size="9" fill="#1d4ed8" font-weight="700" font-family="inherit">3</text>
+              <text x="306" y="100" font-size="9" fill="#94a3b8" font-family="inherit">4</text>
+              <text x="306" y="76" font-size="9" fill="#94a3b8" font-family="inherit">5</text>
+              <!-- Polígono de datos: todos valor 3, r=72 -->
+              <polygon points="300,123 368.5,172.8 342.3,253.2 257.7,253.2 231.5,172.8" fill="rgba(29,78,216,0.13)"
+                stroke="#1d4ed8" stroke-width="2.5" stroke-linejoin="round" />
+              <!-- Puntos -->
+              <circle cx="300" cy="123" r="5" fill="#1d4ed8" stroke="#fff" stroke-width="1.5" />
+              <circle cx="368.5" cy="172.8" r="5" fill="#1d4ed8" stroke="#fff" stroke-width="1.5" />
+              <circle cx="342.3" cy="253.2" r="5" fill="#1d4ed8" stroke="#fff" stroke-width="1.5" />
+              <circle cx="257.7" cy="253.2" r="5" fill="#1d4ed8" stroke="#fff" stroke-width="1.5" />
+              <circle cx="231.5" cy="172.8" r="5" fill="#1d4ed8" stroke="#fff" stroke-width="1.5" />
+              <circle cx="300" cy="195" r="3" fill="#94a3b8" />
+              <!-- Etiqueta eje 1 (arriba) -->
+              <text text-anchor="middle" font-size="11" fill="#334155" font-family="inherit" font-weight="600">
+                <tspan x="300" y="55">Facilidad de</tspan>
+                <tspan x="300" dy="13">consulta de stock</tspan>
+              </text>
+              <!-- Etiqueta eje 2 (arriba-derecha) -->
+              <text text-anchor="start" font-size="11" fill="#334155" font-family="inherit" font-weight="600">
+                <tspan x="422" y="143">Claridad del</tspan>
+                <tspan x="422" dy="13">formulario de</tspan>
+                <tspan x="422" dy="13">registro de venta</tspan>
+              </text>
+              <!-- Etiqueta eje 3 (abajo-derecha) -->
+              <text text-anchor="start" font-size="11" fill="#334155" font-family="inherit" font-weight="600">
+                <tspan x="377" y="300">Percepción de</tspan>
+                <tspan x="377" dy="13">simplicidad</tspan>
+                <tspan x="377" dy="13">(no &quot;robótico&quot;)</tspan>
+              </text>
+              <!-- Etiqueta eje 4 (abajo-izquierda) -->
+              <text text-anchor="end" font-size="11" fill="#334155" font-family="inherit" font-weight="600">
+                <tspan x="223" y="300">Confianza en la</tspan>
+                <tspan x="223" dy="13">exactitud de los</tspan>
+                <tspan x="223" dy="13">datos mostrados</tspan>
+              </text>
+              <!-- Etiqueta eje 5 (arriba-izquierda) -->
+              <text text-anchor="end" font-size="11" fill="#334155" font-family="inherit" font-weight="600">
+                <tspan x="178" y="143">Velocidad</tspan>
+                <tspan x="178" dy="13">percibida de la</tspan>
+                <tspan x="178" dy="13">interfaz</tspan>
+              </text>
+            </svg>
+          </div>
+
+          <div class="hl" style="border-left-color: var(--y); background: var(--y-bg);">
+            <strong>[Nota importante: Este instrumento es el diseño del método de evaluación. Los valores del diagrama de radar son meramente ejemplares (todos fijados a 3 para visualizar el gráfico) y se actualizarán con los resultados reales de la entrevista de prueba de usabilidad con Natalie, pendiente de programación. El recuadro de hallazgos cualitativos también será completado tras la validación.]</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCRIPT PARA INTERACTIVIDAD DE PESTAÑAS -->
+    <script>
+      (function () {
+        var tabs = document.querySelectorAll('.dt-tab-btn');
+        var panels = document.querySelectorAll('.dt-tab-panel');
+        
+        // Mapeo de hashes a data-tab
+        var hashMap = {
+          'fase1': 'dt-empatizar',
+          'fase2': 'dt-definir',
+          'fase3': 'dt-idear',
+          'fase4': 'dt-prototipar',
+          'fase5': 'dt-evaluar'
+        };
+        
+        function showTab(tabId) {
+          tabs.forEach(function (t) {
+            if (t.getAttribute('data-tab') === tabId) {
+              t.classList.add('active');
+            } else {
+              t.classList.remove('active');
+            }
+          });
+          panels.forEach(function (p) {
+            if (p.id === tabId) {
+              p.classList.add('active');
+            } else {
+              p.classList.remove('active');
+            }
+          });
+        }
+        tabs.forEach(function (t) {
+          t.addEventListener('click', function () {
+            var tabId = t.getAttribute('data-tab');
+            showTab(tabId);
+          });
+        });
+
+        // Expuesta para que el router principal (.nl) pueda abrir la fase
+        // correcta tras mostrar la sección contenedora #dt-tabs-root
+        window.showDtTab = showTab;
+
+        // Activar la pestaña según el hash inicial
+        var hash = window.location.hash;
+        if (hash) {
+          var hashKey = hash.substring(1);
+          var mappedTab = hashMap[hashKey] || hashKey;
+          if (document.querySelector('.dt-tab-btn[data-tab="' + mappedTab + '"]')) {
+            showTab(mappedTab);
+          } else {
+            showTab('dt-empatizar');
+          }
+        } else {
+          showTab('dt-empatizar');
+        }
+      })();
+    </script>
+</Layout>

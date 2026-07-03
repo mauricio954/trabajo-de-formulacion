@@ -1,0 +1,730 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Capítulo 01: Identificación y Análisis">
+
+  <section class="sec">
+    <h2>CAPÍTULO 01: Identificación y Análisis de Interesados</h2>
+
+    <div id="entradas">
+      <h3 style="margin-top: 1.5rem; color: var(--b);">
+        1.1. Entradas (Factores Ambientales y Activos del Negocio)
+      </h3>
+
+      <p>
+        El objetivo de esta sección es establecer una línea base que permita comprender el entorno operativo y las
+        limitaciones tecnológicas que rodean a la organización.
+      </p>
+
+      <h4>1.1.1. Estructura Organizacional</h4>
+
+      <p>
+        Al tratarse de una microempresa conformada por un equipo de diecinueve personas (18 trabajadores internos en el
+        taller y 1 contratado para logística), la estructura jerárquica es horizontal y altamente dependiente de sus
+        fundadores. Las áreas de trabajo se dividen de la siguiente manera:
+      </p>
+
+      <div class="gr">
+        <div class="cd">
+          <strong>Gerencia General (Natalie)</strong>
+          Centraliza la toma de decisiones financieras. Ejerce múltiples roles simultáneos asumiendo las funciones de
+          Marketing, Administración de Almacén y Coordinación de Logística.
+        </div>
+
+        <div class="cd">
+          <strong>Área de Producción</strong>
+          Liderada por el socio cofundador, quien tiene autoridad directa sobre las operaciones de corte, costura y
+          ensamblaje. Cuenta con el apoyo de personal adicional de mano de obra y opera actualmente con una capacidad
+          instalada de tres (3) máquinas de producción.
+        </div>
+
+        <div class="cd">
+          <strong>Área de Ventas</strong>
+          Conformada por personal joven (entre 18 y 35 años) encargado de la atención al cliente, quienes operan
+          principalmente a través de dispositivos móviles.
+        </div>
+
+        <div class="cd">
+          <strong>Logística y Entregas</strong>
+          Tercerizada a través de personal motorizado contratado específicamente para la distribución de los paquetes a
+          los clientes finales.
+        </div>
+      </div>
+
+      <div class="hl">
+        <strong>Figura 1:</strong> Organigrama de Roma Bag's
+        <br />
+        <img
+          src="/img/organigrama-romabags.jpg"
+          alt="Organigrama de Roma Bag's"
+          style="max-width:100%; border-radius:8px; border:1px solid var(--bd);"
+        />
+      </div>
+
+      <h4>1.1.2. Infraestructura y Factores Ambientales (EEFs)</h4>
+
+      <p>
+        De acuerdo con la teoría de gestión de proyectos, los Factores Ambientales de la Empresa (EEFs) se refieren a
+        aquellas condiciones que no están bajo el control del equipo del proyecto, pero que influyen, restringen o
+        dirigen el desarrollo del mismo, abarcando desde la cultura organizacional hasta la infraestructura tecnológica
+        existente (Institute, 2017). En Roma Bag's, estos factores internos se configuran de la siguiente manera:
+      </p>
+
+      <div class="gr">
+        <div class="cd">
+          <strong>Hardware y equipos disponibles</strong>
+          La empresa dispone de tres (3) computadoras portátiles para uso administrativo. Destaca el uso de equipos con
+          alta capacidad de procesamiento (ej. computadoras Lenovo con procesadores Intel Core i5 de 12va generación y
+          24 GB de memoria RAM). A pesar de contar con hardware solvente, la operación de campo y el registro de ventas
+          se realiza de forma paralela a través de seis (6) dispositivos móviles (celulares), lo que evidencia que el
+          cuello de botella no radica en la capacidad de cómputo local, sino en la fragmentación del registro.
+        </div>
+
+        <div class="cd">
+          <strong>Redes y conectividad</strong>
+          Cuentan con un servicio de internet de fibra óptica provisto por Movistar. Sin embargo, la topología de red es
+          deficiente; operan con un único router que no cubre todas las áreas de trabajo, generando zonas muertas de
+          conectividad (específicamente en el área de transmisiones en vivo o lives de ventas), lo que obliga al
+          personal a depender de sus planes de datos móviles personales.
+        </div>
+
+        <div class="cd">
+          <strong>Software y herramientas de registro actuales</strong>
+          Existe una fragmentación en el manejo de la información. El control de insumos y materia prima se realiza de
+          forma manual mediante cuadernos físicos. Por otro lado, la consolidación de ventas se lleva en hojas de
+          cálculo (Excel) con autoguardado en la nube (Google Drive), las cuales son operadas de forma local sin un
+          sistema transaccional integrado.
+        </div>
+
+        <div class="cd">
+          <strong>Ausencia de personal/área de TI</strong>
+          La empresa no cuenta con un departamento de soporte técnico, administrador de redes o un contador externo
+          formalizado. Las incidencias técnicas (como la pérdida de conexión o la caída de archivos) son manejadas de
+          forma empírica por la misma gerencia, lo que incrementa el riesgo operativo frente a la implementación de
+          nuevas tecnologías.
+        </div>
+
+        <div class="cd">
+          <strong>Cultura de adopción tecnológica</strong>
+          Existe un antecedente de fricción ante herramientas percibidas como impersonales. La gerencia descartó
+          previamente el uso de un chatbot de inteligencia artificial para WhatsApp por considerarlo "muy robótico", lo
+          que establece una restricción cultural clara: cualquier nueva implementación debe ser intuitiva y no
+          entorpecer la naturalidad de la atención al cliente.
+        </div>
+      </div>
+
+      <h4>1.1.3. Caso de Negocio (Estado Actual y el "Dolor")</h4>
+
+      <p>
+        La necesidad de optimización en Roma Bag's nace de un cuello de botella crítico en la gestión de la información,
+        el cual genera latencia operativa y pérdidas económicas directas.
+      </p>
+
+      <p>
+        Actualmente, existe un desfase crítico entre el mundo físico (producción y stock real) y el mundo digital
+        (registros en Excel). La Gerencia General invierte un día completo a la semana (los sábados), de forma manual,
+        intentando cuadrar la información de los cuadernos de consumo con los registros de venta, limitando severamente
+        el tiempo gerencial que podría invertirse en la captación de nuevos clientes mayoristas.
+      </p>
+
+      <p>
+        Asimismo, el registro manual y desfasado genera constantes errores de stock ("falsos positivos"). Esta
+        asincronía resulta en un promedio de nueve (9) pedidos incompletos al mes. A nivel financiero, esto obliga a la
+        microempresa a asumir sobrecostos logísticos directos de entre S/. 10.00 y S/. 20.00 por cada incidencia, al
+        tener que despachar un segundo motorizado (viaje doble que ocurre en aproximadamente 2 de cada 10 pedidos
+        procesados).
+      </p>
+
+      <p>
+        Sumado a esto, la gerencia identifica que el tamaño físico del local es su principal limitante de crecimiento.
+        La ineficiencia actual en la gestión de datos agrava esta percepción, ya que la desorganización impide maximizar
+        el rendimiento de la capacidad instalada que ya poseen.
+      </p>
+    </div>
+     <!-- SECCION 1.2 --> 
+    <div id="metodologia">
+      <h3>1.2. Metodología</h3>
+      <p style="margin:0"> De acuerdo con las buenas prácticas de la Guía de los Fundamentos para la Dirección de Proyectos (PMBOK® 6ta
+        Edición), la fase de diagnóstico exige un acercamiento directo y estructurado con los interesados clave. Para
+        asegurar la fidelidad de los datos en "Roma Bag's" y evitar basar el diseño de la arquitectura de Inteligencia
+        de Negocios en supuestos, el equipo de ingeniería seleccionó dos técnicas formales.</p>
+
+      <h4>1.2.1.1. Justificación de la Técnica: Entrevista Semiestructurada (PMBOK® 6.1.2.2)</h4>
+      <div class="cd"><span class="bg bb" style="margin-bottom:.5rem">Técnica Formal</span><strong>Entrevista
+          Semiestructurada</strong>
+        <p style="margin:0">Según el PMBOK®, las entrevistas son un enfoque formal para obtener información directa. Se
+          optó por la modalidad semiestructurada porque permite utilizar un guion base, pero otorga la flexibilidad para
+          profundizar en los "dolores" operativos que el interesado revele. Esta técnica se aplicó en dos modalidades:
+          virtual (para el enfoque gerencial y financiero) y presencial (para evaluar la actitud frente a la tecnología
+          de otros miembros del taller).</p>
+      </div>
+
+      <h4>1.2.1.2. Justificación de la Técnica: Observación (PMBOK® 6.1.2.3)</h4>
+      <div class="cd"><span class="bg by" style="margin-bottom:.5rem">Técnica Complementaria</span><strong>Observación
+          Directa (Job Shadowing)</strong>
+        <p style="margin:0">Definida como la técnica que proporciona una manera directa de ver a las personas en su
+          ambiente. Su uso fue metodológicamente imperativo durante la visita presencial para validar empíricamente la
+          línea base declarada por la gerencia: auditar el hardware real disponible, mapear las "zonas muertas" de red
+          Wi-Fi y verificar físicamente el uso de los cuadernos de inventario que generan el desfase de información.</p>
+      </div>
+
+      <h4>1.2.2. Diseño y Validación de Instrumentos</h4>
+      <p>Para estandarizar la recolección, evitar sesgos y guiar las sesiones, se diseñaron herramientas de medición
+        específicas, separando claramente la "técnica" (acción) del "instrumento" (documento).</p>
+
+      <h4>1.2.2.1. Estructura del Guion de Entrevista (Ejes Temáticos)</h4>
+      <p>El cuestionario principal (Ver Anexo 1.1 y 1.2) fue construido bajo un enfoque modular, dividiendo las
+        preguntas en ejes estratégicos orientados al diagnóstico técnico:</p>
+      <div class="gr">
+        <div class="cd"><strong>Bloque 1</strong>Entorno y Procesos (Factores Ambientales / EEFs).</div>
+        <div class="cd"><strong>Bloque 2</strong>El Dolor y el Valor (Caso de Negocio e ineficiencias).</div>
+        <div class="cd"><strong>Bloque 3</strong>Expectativas Técnicas y Usabilidad (Requisitos).</div>
+        <div class="cd"><strong>Bloque 4</strong>Stakeholders y Cultura Organizacional (Cubo de Interesados).</div>
+        <div class="cd"><strong>Bloque 5</strong>Viabilidad Operativa.</div>
+      </div>
+
+      <h4>1.2.2.2. Diseño de la Ficha de Registro de Campo</h4>
+      <p>Herramienta tipo checklist y registro visual utilizada exclusivamente para la técnica de observación in situ.
+        Orientada a levantar el inventario de equipos (PC y terminales móviles) y documentar el entorno físico del
+        taller de producción.</p>
+
+      <h4>1.2.2.3. Protocolo de Validación (Juicio de Expertos / Prueba Piloto)</h4>
+      <p>Previo a su ejecución, los instrumentos fueron sometidos a una revisión interna por el equipo de proyecto
+        (Camargo, Estrada, Alaluna y Portalanza) para garantizar que las interrogantes posean el nivel técnico exigido
+        para un análisis de Sistemas de Información, asegurando la captura de datos duros (tiempo, dinero, stock)
+        aplicables a modelos de Inteligencia de Negocios y predicción, tomando en consideración las directrices
+        académicas del curso.</p>
+
+      <h4>1.2.3. Bitácora de Ejecución y Levantamiento de Información</h4>
+      <p>El levantamiento de requisitos se ejecutó de manera escalonada para contrastar la versión administrativa con la
+        realidad operativa del taller. Las evidencias completas, fichas técnicas y transcripciones de estas sesiones se
+        encuentran documentadas en la sección de Anexos del presente informe.</p>
+
+      <h4>1.2.3.1. Sesión 01: Diagnóstico de Entorno (Virtual - Google Meet)</h4>
+      <div class="cd"><strong>Participante:</strong> Natalie (Gerencia Operativa).<br><strong>Enfoque:</strong>
+        Entrevista administrativa orientada a descubrir el modelo de negocio, flujo de ventas, gestión actual en Excel y
+        cuantificación de pérdidas de tiempo operativo.<br><strong>Referencia:</strong> Detalles técnicos y
+        transcripción en Anexos 2.1 y 3.1.</div>
+
+      <h4>1.2.3.2. Sesión 02: Validación de Infraestructura y Stakeholders (Presencial - In Situ)</h4>
+      <div class="cd"><strong>Fecha de ejecución:</strong> 4 de mayo de 2026 (11:20 am - 12:00
+        pm).<br><strong>Ubicación:</strong> Taller de Producción "Roma Bag's".<br><strong>Participante
+          Principal:</strong> Natalie (Gerencia), con observación indirecta del socio de producción y entorno de
+        trabajo.<br><strong>Enfoque:</strong> Auditoría de hardware, mapeo de red de fibra óptica, validación de
+        cuadernos físicos y perfilamiento de resistencia al cambio (Influyente Bloqueador). La sesión fue liderada por
+        Camargo Rojas (Entrevista), Estrada Ruiz (Auditoría de Hardware), Alaluna Godinez (Apoyo Metodológico) y
+        Portalanza Hurtado (Registro).<br><strong>Referencia:</strong> Ficha técnica, panel fotográfico y transcripción
+        en Anexos 2.3, 2.4 y 3.1.</div>
+
+      <h4>1.2.3.3. Sesión 03: Entrevista Adicional (Profundización Cuantitativa)</h4>
+      <div class="cd"><strong>Fecha de ejecución:</strong> 14 de mayo de 2026 (1:30
+        pm).<br><strong>Participante:</strong> Natalie (Gerencia General).<br><strong>Enfoque:</strong> Entrevista
+        semiestructurada orientada exclusivamente a la cuantificación de ineficiencias operativas (frecuencia de pedidos
+        incompletos, sobrecostos logísticos exactos, tiempo real de cuadre semanal) e identificación de limitantes
+        estratégicas como el espacio físico.<br><strong>Referencia:</strong> Transcripción en Anexo 3.3.</div>
+
+
+      <h4>1.2.4. Registro de Evidencias de Campo</h4>
+      <p>El proceso de validación operativa y diagnóstico se encuentra sustentado en material audiovisual y documental,
+        asegurando la trazabilidad de los requisitos del proyecto.</p>
+
+      <h4>1.2.4.1. Panel de Evidencias Fotográficas y Capturas de Pantalla</h4>
+      <div class="hl">
+        <strong>Evidencia Virtual:</strong> Capturas de sesión de la entrevista gerencial vía Google Meet (Ver Anexo
+        2.2).<br>
+        <strong>Evidencia Presencial:</strong> Panel fotográfico del entorno operativo, infraestructura tecnológica
+        (tres laptops y seis dispositivos móviles celulares) y registro manual (cuadernos de inventario) en el taller de
+        Roma Bag's (Ver Anexo 2.4).
+      </div>
+
+      <h4>1.2.4.2. Repositorio de Documentación (Enlaces a Transcripciones y Audios)</h4>
+      <div class="cd">
+        <strong>Transcripción Meet:</strong> Ver Anexo 3.1.<br>
+        <strong>Transcripción Presencial:</strong> Ver Anexo 3.1 (Fase 2).<br>
+        <em>(Nota: Se adjuntan hipervínculos a los repositorios en la nube en las fichas técnicas de los Anexos 2.1 y
+          2.3).</em>
+      </div>
+
+      <h4>1.2.5. Procesamiento y Análisis de Hallazgos por Sesión</h4>
+      <p>El análisis de la recolección de datos no se basa en la transcripción literal, sino en la extracción de "datos
+        duros" (métricas de tiempo, dinero, recursos e infraestructura) que validan el caso de negocio y justifican la
+        necesidad de la arquitectura de Inteligencia de Negocios.</p>
+
+      <h4>1.2.5.1. Análisis de Resultados: Sesión 01 (Virtual - Google Meet)</h4>
+      <p>Enfocada en el modelo de negocio y control gerencial. Los principales hallazgos fueron:</p>
+      <div class="gr">
+        <div class="cd"><strong>Procesos Diarios</strong>No existe un control automatizado de insumos; se registran en
+          cuadernos físicos, y el stock general se revisa diariamente sin histórico fijo.</div>
+        <div class="cd"><strong>Métricas de Ineficiencia</strong>En las sesiones de profundización, la gerencia sinceró
+          el tiempo administrativo perdido, admitiendo invertir un día completo a la semana (específicamente los
+          sábados)
+          cruzando información manual en Excel, superando la estimación inicial de "2 horas al día".</div>
+        <div class="cd"><strong>Metas Comerciales Estancadas (Brecha Operativa)</strong>La gerencia manifiesta tener un
+          objetivo comercial de producir 20 carteras diarias e incrementar sus ventas en al menos un 50%. Sin embargo,
+          actualmente esta meta es inalcanzable, ya que el tiempo gerencial estratégico se consume en tareas operativas
+          de validación y cuadre manual de datos.</div>
+        <div class="cd"><strong>Temor Operativo / Riesgo de Datos</strong>Existe un miedo latente y explícito a la
+          pérdida de información debido a experiencias previas (como la eliminación accidental de registros pasados).
+          Esto genera un clima de desconfianza profunda frente a la modificación de sus archivos actuales o el manejo de
+          datos en la nube.</div>
+      </div>
+
+      <h4>1.2.5.2. Análisis de Resultados: Sesión 02 (Presencial - In Situ)</h4>
+      <p>Enfocada en infraestructura, validación de procesos físicos y perfilamiento de stakeholders. Los hallazgos
+        confirmaron las hipótesis del proyecto:</p>
+      <div class="gr">
+        <div class="cd"><strong>Auditoría de Hardware y Red</strong>Se comprobó la existencia de conexión de fibra
+          óptica con "zonas muertas" que fuerzan la dependencia de planes de datos móviles. Sin embargo, la auditoría de
+          equipos reveló que el cuello de botella no es la capacidad de procesamiento local (se utilizan computadoras
+          portátiles de alto rendimiento con procesadores Intel Core i5 de 12va generación y 24 GB de RAM), sino la
+          fragmentación del registro y la falta de un sistema transaccional centralizado.</div>
+        <div class="cd"><strong>Pérdida Económica Directa</strong>Se evidenció un sobrecosto operativo real ("pagar otra
+          vez motorizado para que llegue") ocasionado por errores de transcripción entre el cuaderno físico y el Excel.
+        </div>
+        <div class="cd"><strong>Limitación Analítica de Datos</strong>Se confirmó la eliminación de registros históricos
+          (año 2024 borrado), contando actualmente con una base de datos reducida a 8 meses, lo cual limita
+          temporalmente el alcance del modelo predictivo interanual.</div>
+        <div class="cd"><strong>Cultura y Resistencia (Stakeholders)</strong>Se identificó al Socio de Producción como
+          un potencial "Influyente Bloqueador", ya que posee autoridad para vetar la herramienta frente a una primera
+          falla. Contrastando, el personal joven (17-35 años) muestra una actitud "Promotora" ante la visualización de
+          metas vía móvil.</div>
+      </div>
+
+      <h4>1.2.5.3. Análisis de Resultados: Sesión 03 (Profundización Cuantitativa)</h4>
+      <p>Enfocada en extraer métricas financieras y operativas exactas. Los hallazgos fueron:</p>
+      <div class="gr">
+        <div class="cd"><strong>Frecuencia de Error Operativo</strong>Se promedian nueve (9) pedidos incompletos al mes,
+          lo que desencadena reprocesos inmediatos.</div>
+        <div class="cd"><strong>Fuga de Capital</strong>Los errores de despacho obligan a pagar un doble servicio de
+          motorizado en aproximadamente 2 de cada 10 pedidos, generando un gasto extra no recuperable de entre S/. 10.00
+          y S/. 20.00 por viaje.</div>
+        <div class="cd"><strong>Limitante de Crecimiento</strong>La gerencia identifica la falta de espacio físico como
+          su mayor restricción, lo cual hace imperativo optimizar la gestión de datos para maximizar la capacidad
+          operativa existente.</div>
+      </div>
+
+      <h4>1.2.5.4. Matriz Comparativa de Hallazgos Consolidados</h4>
+      <p>Para orientar las fases posteriores del proyecto, se consolida la problemática (el "Dolor") con su respectivo
+        impacto métrico extraído de las tres sesiones.</p>
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>Categoría</th>
+              <th>Hallazgo Operativo / Dolor Identificado</th>
+              <th>Impacto / Métrica</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="bg by">Tiempo</span></td>
+              <td>Consolidación y cuadre manual (cuaderno físico vs. Excel).</td>
+              <td>Pérdida de 1 día completo a la semana (sábados) exclusivamente en cuadrar cuentas.</td>
+            </tr>
+            <tr>
+              <td><span class="bg br">Costo</span></td>
+              <td>Errores de "falsos positivos" en inventario y despachos incompletos.</td>
+              <td>Sobrecosto logístico de S/. 10 a S/. 20 por incidente, acumulando un promedio de 9 pedidos fallidos al
+                mes.</td>
+            </tr>
+            <tr>
+              <td><span class="bg bb">Datos</span></td>
+              <td>Volatilidad de bases de datos por borrado manual o fallos de sincronización.</td>
+              <td>Riesgo alto de integridad; solo 8 meses de dataset histórico seguro disponible.</td>
+            </tr>
+            <tr>
+              <td><span class="bg bgr">Recursos</span></td>
+              <td>Fragmentación operativa y "Mobile-First" forzado por baja cobertura Wi-Fi.</td>
+              <td>Equipos portátiles de alta gama (24GB RAM) subutilizados por falta de un sistema centralizado;
+                dependencia de 6 celulares personales.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div> <!-- cierre metodologia -->
+    </section>
+
+     <!-- SECCION 1.3 --> 
+    <div id="identificacion">
+      <section class="sec" id="c3">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">1.3.
+        Identificación y Registro de Interesados</h3>
+      <p>En alineación con la Guía de los Fundamentos para la Dirección de Proyectos (PMBOK® 6ta Edición), el proceso de
+        Identificar a los Interesados es fundamental para reconocer a todas las personas u organizaciones que pueden
+        afectar, verse afectados o percibirse a sí mismos como afectados por una decisión, actividad o resultado del
+        proyecto.</p>
+      <p>El presente capítulo formaliza el inicio del análisis de stakeholders para "Roma Bag's", separando a los
+        actores según su ubicación respecto a los límites de la organización y documentando sus expectativas operativas
+        actuales (su día a día), estableciendo así la línea base antes de introducir cualquier propuesta tecnológica.
+      </p>
+
+      <h4>1.3.1. Interesados Internos</h4>
+      <p>Son aquellos actores que operan dentro de la estructura de la microempresa y cuyas labores cotidianas están
+        directamente vinculadas al flujo de valor, desde la confección hasta la salida del producto.</p>
+      <div class="gr">
+        <div class="cd"><strong>Gerencia General (Natalie)</strong>Actor central del negocio. Centraliza las decisiones
+          financieras, la administración del almacén, el cruce de cuentas y el marketing. Es la principal responsable de
+          absorber la carga operativa manual y de gestionar personalmente la resolución de conflictos cuando ocurren
+          errores de despacho, lo cual limita su capacidad para captar nuevos clientes. Adicionalmente, gestiona la
+          logística del espacio físico, el cual percibe como su principal cuello de botella.</div>
+        <div class="cd"><strong>Socio / Jefe de Producción</strong>Cofundador del taller. Lidera físicamente los
+          procesos de corte, costura y ensamblaje, garantizando una producción promedio de 30 a 40 carteras diarias.
+          Posee una visión netamente operativa y pragmática del negocio.</div>
+        <div class="cd"><strong>Personal de Ventas</strong>Equipo operativo conformado por jóvenes (rango de edad entre
+          17 y 35 años). Son la fuerza de primera línea en la atención al cliente, interactuando constantemente a través
+          de dispositivos móviles y redes sociales (ej. transmisiones en vivo).</div>
+        <div class="cd"><strong>Personal de Empaque</strong>Operarios encargados de embalar las carteras una vez
+          confirmada la venta, preparándolas para su despacho físico.</div>
+      </div>
+
+      <h4>1.3.2. Interesados Externos</h4>
+      <p>Agrupa a las entidades o individuos que no forman parte de la planilla directa del taller, pero que interactúan
+        comercialmente con Roma Bag's y se ven impactados por la eficiencia (o ineficiencia) de sus procesos internos.
+      </p>
+      <div class="gr">
+        <div class="cd"><strong>Clientes Mayoristas</strong>Representan el núcleo de rentabilidad, especialmente en la
+          temporada de febrero a mayo. Compran en volumen y exigen respuestas inmediatas sobre la disponibilidad del
+          stock real para abastecer sus propios negocios.</div>
+        <div class="cd"><strong>Clientes Minoristas</strong>Compradores unitarios, con alta presencia en campañas
+          específicas (septiembre a enero por festividades).</div>
+        <div class="cd"><strong>Logística Tercerizada (Motorizados)</strong>Personal externo subcontratado (o enviado
+          directamente por los clientes mayoristas) encargado exclusivamente del recojo y entrega (delivery) de los
+          paquetes. Su eficiencia operativa se ve directamente afectada por los errores de inventario interno; aunque
+          reciben una compensación económica extra por realizar viajes dobles para subsanar pedidos incompletos, estas
+          incidencias generan fricción y retrasos en sus rutas diarias.</div>
+        <div class="cd"><strong>Proveedores de Insumos / Taller Alterno</strong>Incluye a los proveedores de materia
+          prima y al taller de apoyo (gestionado por la hermana de la Gerencia), el cual provee carteras adicionales en
+          momentos de alta demanda para evitar quiebres de stock.</div>
+      </div>
+
+      <h4>1.3.3. Registro Base de Interesados</h4>
+      <p>A continuación, se presenta el documento formal del proyecto (Stakeholder Register). De acuerdo con el rigor
+        metodológico exigido, esta matriz documenta las expectativas frente a su labor actual, aislando temporalmente la
+        solución de software propuesta para entender qué buscan realmente en su entorno de trabajo.</p>
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Interesado (Rol)</th>
+              <th>Tipo</th>
+              <th>Expectativas y Requisitos de su Labor Actual (Día a Día)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>SH-01</strong></td>
+              <td>Gerencia General (Natalie)</td>
+              <td><span class="bg bb">Interno</span></td>
+              <td>- Conocer el monto exacto de ganancia neta mensual.<br>- Recuperar un día completo de trabajo (los
+                sábados) que actualmente invierte cruzando información manual entre cuadernos y Excel.<br>- Eliminar la
+                fuga de capital generada por los sobrecostos logísticos de despachos incompletos (aprox. 9 incidencias
+                al
+                mes).<br>- Maximizar la capacidad de producción dentro de su espacio físico actual.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>SH-02</strong></td>
+              <td>Jefe de Producción (Socio)</td>
+              <td><span class="bg bb">Interno</span></td>
+              <td>- Mantener un ritmo de trabajo fluido en costura y corte (30 a 40 unidades diarias) sin interrupciones
+                por tareas administrativas.<br>- Contar con procesos estables que le indiquen qué producir sin presentar
+                errores o fallos que retrasen la operación física del taller.</td>
+            </tr>
+            <tr>
+              <td><strong>SH-03</strong></td>
+              <td>Personal de Ventas</td>
+              <td><span class="bg bb">Interno</span></td>
+              <td>- Necesitan inmediatez para confirmar el stock real a los clientes (especialmente durante
+                transmisiones en vivo) usando sus propios dispositivos móviles.<br>- Buscan visibilidad clara de sus
+                metas
+                y resultados diarios para medir su propio desempeño y mantener la motivación.</td>
+            </tr>
+            <tr>
+              <td><strong>SH-04</strong></td>
+              <td>Personal de Habilitado y Empaque</td>
+              <td><span class="bg bb">Interno</span></td>
+              <td>- Recibir órdenes claras y exactas sobre qué modelos separar y ensamblar, evitando confusiones
+                manuales que generen reprocesos o envíos erróneos.</td>
+            </tr>
+            <tr>
+              <td><strong>SH-05</strong></td>
+              <td>Clientes Mayoristas</td>
+              <td><span class="bg by">Externo</span></td>
+              <td>- Que la mercadería solicitada esté completa al 100% y sea entregada a tiempo, especialmente en
+                temporada alta (febrero a mayo).<br>- Obtener respuestas rápidas sobre disponibilidad de stock
+                (actualmente experimentan demoras en la atención cuando la gerencia está ocupada cuadrando cuentas).
+              </td>
+            </tr>
+            <tr>
+              <td><strong>SH-06</strong></td>
+              <td>Logística (Motorizado)</td>
+              <td><span class="bg by">Externo</span></td>
+              <td>- Recoger los paquetes completos y correctos en el primer intento para optimizar su ruta de
+                entrega.<br>- Evitar los traslados dobles (reprocesos) que, a pesar de ser compensados económicamente
+                por
+                la tienda (S/. 10 a S/. 20 extra), retrasan su jornada laboral.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    </div> <!-- cierre identificacion -->
+
+    <!-- SECCION 1.4 --> 
+    <div id="analisis">
+      <section class="sec" id="c4">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">1.4.
+        Análisis Profundo de Interesados</h3>
+      <p>En concordancia con los lineamientos del PMBOK® (6ta Edición), la simple identificación de los interesados es
+        insuficiente para garantizar el éxito de un proyecto. Este capítulo profundiza en la evaluación analítica de los
+        actores de "Roma Bag's", aplicando herramientas de clasificación avanzadas para determinar su capacidad de
+        influencia, urgencia operativa y, fundamentalmente, su actitud frente a la introducción de cambios en su
+        dinámica de trabajo.
+      </p>
+
+      <h4>1.4.1. Cubo de Interesados (Stakeholder Cube)</h4>
+      <p>Para evaluar la complejidad del factor humano en la microempresa, se aplica el modelo tridimensional del Cubo
+        de Interesados, el cual clasifica a los actores en 8 categorías según sus vectores de: Poder (+/-), Interés
+        (+/-) y Actitud (+/-).</p>
+
+      <div class="cube-wrap">
+        <svg width="350" height="350" viewBox="0 0 350 350" xmlns="http://www.w3.org/2000/svg">
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#bda89b" points="90,90 130,50 210,50 170,90" />
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#ff0000" points="170,90 210,50 290,50 250,90" />
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#ffc000" points="50,130 90,90 170,90 130,130" />
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#4a86e8" points="130,130 170,90 250,90 210,130" />
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#cc0000" points="250,90 290,50 290,130 250,170" />
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#c27ba0" points="250,170 290,130 290,210 250,250" />
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#3c78d8" points="210,130 250,90 250,170 210,210" />
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#6aa84f" points="210,210 250,170 250,250 210,290" />
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#ffc000" points="50,130 130,130 130,210 50,210" />
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#4a86e8" points="130,130 210,130 210,210 130,210" />
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#4a3c61" points="50,210 130,210 130,290 50,290" />
+          <polygon style="stroke:#000;stroke-width:1.5" fill="#92d050" points="130,210 210,210 210,290 130,290" />
+          <text x="90" y="170"
+            style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">1</text>
+          <text x="170" y="170"
+            style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">2</text>
+          <text x="90" y="250"
+            style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">3</text>
+          <text x="170" y="250"
+            style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">4</text>
+          <text x="150" y="70"
+            style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">5</text>
+          <text x="270" y="110"
+            style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">6</text>
+          <text x="270" y="190"
+            style="font-family:Arial;font-size:26px;fill:white;font-weight:bold;text-anchor:middle;dominant-baseline:central">7</text>
+          <text x="30" y="210" style="font-family:Arial;font-size:16px;font-weight:bold;fill:#333"
+            transform="rotate(-90 30 210)" text-anchor="middle">- Poder +</text>
+          <text x="130" y="320" style="font-family:Arial;font-size:16px;font-weight:bold;fill:#333"
+            text-anchor="middle">- Interés +</text>
+          <text x="260" y="280" style="font-family:Arial;font-size:16px;font-weight:bold;fill:#333"
+            transform="rotate(-45 260 280)" text-anchor="middle">- Actitud +</text>
+        </svg>
+      </div>
+
+      <p>Con base en la información extraída de la entrevista (Capítulo 2), se clasifica a los actores clave:</p>
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>Interesado</th>
+              <th>Cubo</th>
+              <th>Poder</th>
+              <th>Interés</th>
+              <th>Actitud</th>
+              <th>Categoría PMBOK</th>
+              <th>Análisis Estratégico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Gerencia (Natalie)</strong></td>
+              <td style="text-align:center;font-weight:bold;background:#ff0000;color:white">6</td>
+              <td style="text-align:center">+</td>
+              <td style="text-align:center">+</td>
+              <td style="text-align:center">+</td>
+              <td>Influyente activo partidario (6)</td>
+              <td>Busca urgentemente organizar sus datos para no perder 1 día semanal cuadrando información. Posee un
+                trauma documentado a la pérdida de archivos y rechaza herramientas impersonales (ej. descartó IA por ser
+                "robótica").</td>
+            </tr>
+            <tr>
+              <td><strong>Socio (Producción)</strong></td>
+              <td style="text-align:center;font-weight:bold;background:#4a86e8;color:white">2</td>
+              <td style="text-align:center">+</td>
+              <td style="text-align:center">+</td>
+              <td style="text-align:center">-</td>
+              <td>Influyente activo bloqueador (2)</td>
+              <td><span style="font-weight:bold;color:#c0392b">Hallazgo Crítico:</span> Tiene autoridad compartida. Su
+                intolerancia a las fallas lo convierte en un alto riesgo ("Basta que vea un error, ya no lo usaría"). Su
+                prioridad es no detener la producción de 30-40 unidades diarias.</td>
+            </tr>
+            <tr>
+              <td><strong>Personal de Ventas</strong></td>
+              <td style="text-align:center;font-weight:bold;background:#d5a6bd;color:black">7</td>
+              <td style="text-align:center">-</td>
+              <td style="text-align:center">+</td>
+              <td style="text-align:center">+</td>
+              <td>Insignificante activo partidario (7)</td>
+              <td>Jóvenes (17-35 años) muy familiarizados con dispositivos móviles. Tienen alta disposición a adoptar
+                dinámicas que les permitan confirmar stock rápido y ver sus metas visualmente.</td>
+            </tr>
+            <tr>
+              <td><strong>Personal de Empaque</strong></td>
+              <td style="text-align:center;font-weight:bold;background:#d5a6bd;color:black">7</td>
+              <td style="text-align:center">-</td>
+              <td style="text-align:center">+</td>
+              <td style="text-align:center">+</td>
+              <td>Insignificante activo partidario (7)</td>
+              <td>Requieren recibir instrucciones precisas para separar y embalar modelos. Su actitud es favorable si el
+                cambio significa reducir confusiones y reprocesos físicos en su área.</td>
+            </tr>
+            <tr>
+              <td><strong>Logística (Motorizado)</strong></td>
+              <td style="text-align:center;font-weight:bold;background:#d5a6bd;color:black">7</td>
+              <td style="text-align:center">-</td>
+              <td style="text-align:center">+</td>
+              <td style="text-align:center">+</td>
+              <td>Insignificante activo partidario (7)</td>
+              <td>Externos que sufren los errores de despacho. Aunque cobran un extra (S/. 10 - S/. 20) por el viaje
+                doble, su actitud sería partidaria ante cualquier mejora que evite retrasar sus rutas diarias.</td>
+            </tr>
+            <tr>
+              <td><strong>Mayoristas</strong></td>
+              <td style="text-align:center;font-weight:bold;background:#d5a6bd;color:black">7</td>
+              <td style="text-align:center">-</td>
+              <td style="text-align:center">+</td>
+              <td style="text-align:center">+</td>
+              <td>Insignificante activo partidario (7)</td>
+              <td>Su principal interés es recibir pedidos completos en la temporada alta (feb-mayo).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>1.4.2. Modelo de Prominencia (Salience Model)</h4>
+      <p>Este modelo clasifica a los interesados según su Poder (autoridad para influir), Legitimidad (relación adecuada
+        y justificada con el proyecto) y Urgencia (necesidad de atención inmediata). Esta priorización dictará a quién
+        se debe atender primero durante el diseño de la solución.</p>
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>Interesado</th>
+              <th>Poder</th>
+              <th>Legitimidad</th>
+              <th>Urgencia</th>
+              <th>Categoría</th>
+              <th>Justificación del Nivel de Prioridad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Gerencia General</strong></td>
+              <td>SÍ</td>
+              <td>SÍ</td>
+              <td>SÍ</td>
+              <td><span class="bg br">Crítico (7)</span></td>
+              <td>Es la dueña y sufre una urgencia operativa financiera severa (pierde horas administrativas y asume
+                sobrecostos logísticos de S/. 20 por error). Exige atención inmediata.</td>
+            </tr>
+            <tr>
+              <td><strong>Socio (Producción)</strong></td>
+              <td>SÍ</td>
+              <td>SÍ</td>
+              <td>NO</td>
+              <td><span class="bg bb">Dominante (4)</span></td>
+              <td>Tiene poder y legitimidad, pero carece de urgencia administrativa, ya que su enfoque es netamente
+                físico (confección ininterrumpida).</td>
+            </tr>
+            <tr>
+              <td><strong>Personal de Ventas</strong></td>
+              <td>NO</td>
+              <td>SÍ</td>
+              <td>SÍ</td>
+              <td><span class="bg by">Dependiente (6)</span></td>
+              <td>Tienen la urgencia operativa de conocer el stock real sin asincronías para no perder ventas, pero
+                carecen de autoridad para imponer nuevas herramientas al taller.</td>
+            </tr>
+            <tr>
+              <td><strong>Personal de Empaque</strong></td>
+              <td>NO</td>
+              <td>SÍ</td>
+              <td>SÍ</td>
+              <td><span class="bg by">Dependiente (6)</span></td>
+              <td>Tienen urgencia por recibir órdenes claras para no armar pedidos equivocados (causa de los reprocesos
+                logísticos), pero carecen de poder formal.</td>
+            </tr>
+            <tr>
+              <td><strong>Mayoristas</strong></td>
+              <td>NO</td>
+              <td>SÍ</td>
+              <td>SÍ</td>
+              <td><span class="bg by">Dependiente (6)</span></td>
+              <td>Tienen la urgencia de recibir su mercadería sin errores de inventario ni demoras, pero dependen de la
+                gerencia para obtenerla.</td>
+            </tr>
+            <tr>
+              <td><strong>Logística (Motorizado)</strong></td>
+              <td>NO</td>
+              <td>SÍ</td>
+              <td>SÍ</td>
+              <td><span class="bg by">Dependiente (6)</span></td>
+              <td>Tienen la urgencia de recibir paquetes correctos (9 incidencias al mes actuales) para no afectar sus
+                tiempos de ruta de entrega.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>1.4.3. Dirección de la Influencia</h4>
+      <p>Este mapeo clasifica a los interesados según el flujo de autoridad y comunicación dentro de la estructura de
+        Roma Bag's, permitiendo al equipo del proyecto saber cómo canalizar los requerimientos.</p>
+      <div class="gr">
+        <div class="cd"><strong>Ascendente (Hacia la alta dirección)</strong>Gerencia General (Natalie) y el Socio de
+          Producción. A ellos se les presentarán las propuestas de viabilidad y de ellos emanará la aprobación final de
+          cualquier cambio procedimental o tecnológico.</div>
+        <div class="cd"><strong>Descendente (Hacia el equipo)</strong>Personal de Ventas y de Empaque. Son los
+          receptores del impacto de las mejoras operativas. La influencia fluye hacia ellos en forma de inducciones
+          ágiles y nuevas directrices de registro.</div>
+        <div class="cd"><strong>Hacia Afuera (Externos)</strong>Clientes Mayoristas y Personal Logístico (Motorizados).
+          Se beneficiarán de forma tangencial al erradicar los 9 pedidos incompletos mensuales y reducir la fricción en
+          los despachos.</div>
+      </div>
+
+      <h4>1.4.4. Análisis de Riesgos y Expectativas (Mapeo de Resistencia)</h4>
+      <p>El levantamiento de datos evidenció barreras culturales (y experiencias previas) que podrían hacer fracasar la
+        implementación de cualquier cambio metodológico. Se han identificado dos focos de riesgo principal ligados a la
+        resistencia al cambio:</p>
+      <div class="cd" style="border-left:4px solid var(--y)">
+        <strong>Riesgo por "Miedo Operativo" y "Rechazo Impersonal" (Riesgo del Sponsor)</strong>
+        <p><strong>La Expectativa:</strong> La gerencia desea organizar su información para recuperar un día de trabajo
+          semanal e identificar oportunidades de venta, pero exige mantener el control total sobre los datos.</p>
+        <p><strong>La Resistencia:</strong> Existe un trauma documentado a la corrupción de archivos ("el Excel del año
+          pasado lo borré"). Adicionalmente, posee un rechazo explícito a las tecnologías que percibe como abstractas o
+          antinaturales (descartó un chatbot de IA por ser "muy robótico").</p>
+        <p style="margin:0"><strong>Impacto en el Proyecto:</strong> Cualquier propuesta que reemplace bruscamente su
+          Excel, que sea percibida como compleja, o que no ofrezca garantías visibles de respaldo, será rechazada de
+          inmediato.</p>
+      </div>
+      <div class="cd" style="border-left:4px solid var(--r)">
+        <strong>Riesgo por Intolerancia a la Falla (Riesgo del Socio)</strong>
+        <p><strong>La Expectativa:</strong> El socio exige que el ritmo de producción del taller no se detenga jamás por
+          tareas administrativas o "de llenado de datos".</p>
+        <p><strong>La Resistencia:</strong> Clasificado como "Influyente Bloqueador". Su resistencia es condicional;
+          adoptará nuevas dinámicas de trabajo si funcionan fluidamente, pero saboteará pasivamente el proceso (dejando
+          de registrar información) ante el más mínimo fallo de red o lentitud operativa.</p>
+        <p style="margin:0"><strong>Impacto en el Proyecto:</strong> Exige que cualquier herramienta propuesta posea una
+          etapa de pruebas (testing) exhaustiva en un entorno controlado. No habrá una "segunda oportunidad" para
+          generar
+          confianza en el área física de producción.</p>
+      </div>
+    </section>
+    </div> <!-- cierre analisis -->
+
+
+</Layout>

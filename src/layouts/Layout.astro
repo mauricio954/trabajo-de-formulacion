@@ -1,23 +1,197 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+interface Props { title: string; }
+const { title } = Astro.props;
+import '../styles/global.css';
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+</head>
+<body>
+    <div id="prog"></div>
+    <button class="side-toggle" aria-label="Abrir menú">☰</button>
+    <aside class="side">
+        <h2>Universidad Nacional Tecnológica de Lima Sur</h2>
+        <span class="sub">INGENIERÍA DE SISTEMAS · CICLO VIII</span>
+        <nav>
+            <ul class="nm">
+                <li><a href="/" class="nl">Contexto Organizacional</a></li>
+                <li class="acc-item">
+                    <button class="acc-btn">Cap. 01: Identificación y Análisis <span class="arr">▼</span></button>
+                    <ul class="acc-content">
+                        <li><a href="/capitulo1#entradas" class="nl sub-link">1.1 Entradas</a></li>
+                        <li><a href="/capitulo1#metodologia" class="nl sub-link">1.2 Metodología</a></li>
+                        <li><a href="/capitulo1#identificacion" class="nl sub-link">1.3 Identificación y Registro</a></li>
+                        <li><a href="/capitulo1#analisis" class="nl sub-link">1.4 Análisis Profundo</a></li>
+                    </ul>
+                </li>
+				<li class="acc-item">
+                    <button class="acc-btn">Cap. 02: Plan de Involucramiento <span class="arr">▼</span></button>
+                    <ul class="acc-content">
+                        <li><a href="/capitulo2#entradas" class="nl sub-link">2.1 Entradas</a></li>
+                        <li><a href="/capitulo2#herramientas" class="nl sub-link">2.2 Herramientas y Técnicas</a></li>
+                      <li><a href="/capitulo2#salidas" class="nl sub-link">2.3 Salidas</a></li>
+                    </ul>
+                </li>
+				<li class="acc-item">
+                    <button class="acc-btn">Cap. 03: Árboles del Proyecto <span class="arr">▼</span></button>
+                    <ul class="acc-content">
+                        <li><a href="/capitulo3#problemas" class="nl sub-link">3.1 Árbol de Problemas</a></li>
+                        <li><a href="/capitulo3#objetivos" class="nl sub-link">3.2 Árbol de Objetivos</a></li>
+                    </ul>
+                </li>
+				<!-- CAPÍTULO 04: ANÁLISIS DE ALTERNATIVAS -->
+               <li class="acc-item">
+               <button class="acc-btn">Cap. 04: Análisis de Alternativas <span class="arr">▼</span></button>
+               <ul class="acc-content">
+                        <li><a href="/capitulo4#c7-1" class="nl sub-link">4.1 Identificación de Acciones</a></li>
+                        <li><a href="/capitulo4#c7-2" class="nl sub-link">4.2 Soluciones Alternativas</a></li>
+                        <li><a href="/capitulo4#c7-3" class="nl sub-link">4.3 Evaluación de Viabilidad</a></li>
+                        <li><a href="/capitulo4#c7-4" class="nl sub-link">4.4 Plan de la Transformación Digital</a></li>
+                        <li><a href="/capitulo4#c7-5" class="nl sub-link">4.5 Matriz de Marco Lógico</a></li>
+                        <li><a href="/capitulo4#c7-6" class="nl sub-link">4.6 Doble Diamante</a></li>
+                </ul>
+            </li>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+            <!-- CAPÍTULO 05: DISEÑO CENTRADO EN EL USUARIO -->
+        <li class="acc-item">
+    <button class="acc-btn">Cap. 05: Diseño Centrado en el Usuario <span class="arr">▼</span></button>
+    <ul class="acc-content">
+        <li><a href="/capitulo5#fase1" class="nl sub-link">Fase 1 - Empatizar</a></li>
+        <li><a href="/capitulo5#fase2" class="nl sub-link">Fase 2 - Definir</a></li>
+        <li><a href="/capitulo5#fase3" class="nl sub-link">Fase 3 - Idear</a></li>
+        <li><a href="/capitulo5#fase4" class="nl sub-link">Fase 4 - Prototipar</a></li>
+        <li><a href="/capitulo5#fase5" class="nl sub-link">Fase 5 - Evaluar</a></li>
+    </ul>
+</li>
+
+<!-- CAPÍTULO 06: GESTIÓN DEL ALCANCE -->
+<li class="acc-item">
+    <button class="acc-btn">Cap. 06: Gestión del Alcance <span class="arr">▼</span></button>
+    <ul class="acc-content">
+        <li><a href="/capitulo6#trazabilidad" class="nl sub-link">6.0 Matriz de Trazabilidad</a></li>
+        <li><a href="/capitulo6#definir" class="nl sub-link">6.1 Definir el Alcance</a></li>
+        <li><a href="/capitulo6#edt" class="nl sub-link">6.2 Crear la EDT/WBS</a></li>
+        <li><a href="/capitulo6#diccionario" class="nl sub-link">6.3 Diccionario EDT/WBS</a></li>
+    </ul>
+</li>
+
+<!-- CAPÍTULO 07: CALENDARIO -->
+<li class="acc-item">
+    <button class="acc-btn">Cap. 07: Calendario <span class="arr">▼</span></button>
+    <ul class="acc-content">
+        <li><a href="/capitulo7#plan" class="nl sub-link">7.0 Matriz de Trazabilidad</a></li>
+        <li><a href="/capitulo7#lista" class="nl sub-link">7.1 Definir el Alcance</a></li>
+    </ul>
+</li>
+<!-- ANEXOS Y REFERENCIAS -->
+<li class="acc-item">
+    <button class="acc-btn">Anexos y Referencias <span class="arr">▼</span></button>
+    <ul class="acc-content">
+        <li><a href="/anexos#instru" class="nl sub-link">Anexo 1: Instrumentos</a></li>
+        <li><a href="/anexos#eviden" class="nl sub-link">Anexo 2: Evidencias</a></li>
+        <li><a href="/anexos#trans" class="nl sub-link">Anexo 3: Transcripciones</a></li>
+        <li><a href="/referencias" class="nl sub-link">Referencias</a></li>
+    </ul>
+</li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="mc">
+        <slot />
+    </main>
+
+    <div class="side-backdrop" role="presentation"></div>
+
+    <script is:inline>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accButtons = document.querySelectorAll('.acc-btn');
+            accButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    btn.classList.toggle('open');
+                    const content = btn.nextElementSibling;
+                    if (content) content.classList.toggle('open');
+                });
+            });
+
+            // Manejo visual de links activos y navegación a anclas
+            const links = document.querySelectorAll('.nm a');
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    try {
+                        links.forEach(l => l.classList.remove('on'));
+                        link.classList.add('on');
+
+                        const url = new URL(link.href, location.href);
+                        const normalize = (path) => path.replace(/\/+$/, '') || '/';
+                        // Si el link apunta a la misma ruta (solo hash), hacer scroll suave
+                        if (normalize(url.pathname) === normalize(location.pathname) && url.hash) {
+                            e.preventDefault();
+                            const id = url.hash.slice(1);
+                            const target = document.getElementById(id);
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                // Actualizar el hash sin recargar ni resetear el menú
+                                history.replaceState(null, '', url.hash);
+                            }
+                            // cerrar sidebar en móvil
+                            if (side && window.innerWidth <= 900) side.classList.remove('open');
+                        }
+                        // En otro caso, permitir la navegación normal (recarga/ruta nueva)
+                    } catch (err) {
+                        console.error('Menu link handler error', err);
+                    }
+                });
+            });
+
+            // Barra de progreso simple al hacer scroll
+            const prog = document.getElementById('prog');
+            const updateProg = () => {
+                const doc = document.documentElement;
+                const scrollTop = doc.scrollTop || document.body.scrollTop;
+                const scrollHeight = doc.scrollHeight - doc.clientHeight;
+                const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+                if (prog) prog.style.width = pct + '%';
+            };
+            window.addEventListener('scroll', updateProg);
+            window.addEventListener('resize', updateProg);
+            updateProg();
+
+            // Sidebar toggle for small screens
+            const side = document.querySelector('.side');
+            const toggle = document.querySelector('.side-toggle');
+            const backdrop = document.querySelector('.side-backdrop');
+
+            const closeSide = () => side.classList.remove('open');
+            const openSide = () => side.classList.add('open');
+
+            if (toggle && side) {
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    side.classList.toggle('open');
+                });
+            }
+
+            if (backdrop) {
+                backdrop.addEventListener('click', closeSide);
+            }
+
+            // Collapse sidebar by default on small screens
+            const setInitialSideState = () => {
+                if (window.innerWidth <= 900 && side) {
+                    side.classList.remove('open');
+                } else if (side) {
+                    side.classList.add('open');
+                }
+            };
+            setInitialSideState();
+            window.addEventListener('resize', setInitialSideState);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Capítulo 03: Árboles del Proyecto">
+	<section class="sec" id="problemas">
+      <h2>CAPÍTULO 03: Árboles del Proyecto (Diagnóstico y Estrategia)</h2>
+      <h3 class="section-title">3.1. Árbol de Problemas y Diagnóstico Técnico</h3>
+
+      <div style="margin-bottom: 2rem;">
+        <h4>3.1.1. Análisis de Causa Raíz y Justificación Metodológica</h4>
+        <div class="gr">
+          <div class="cd"><strong>Recopilación de Datos (Entrevistas)</strong>
+            <p style="font-size: .82rem;">Triangulación mediante sesiones con interesados para obtener información
+              directa del taller (PMBOK® 6.1).</p>
+          </div>
+          <div class="cd"><strong>Análisis de Causa Raíz (RCA)</strong>
+            <p style="font-size: .82rem;">Técnica para determinar el motivo subyacente básico que causa los sobrecostos
+              (PMBOK® 4.5).</p>
+          </div>
+        </div>
+      </div>
+
+      <h4>3.1.2. Árbol de Problemas (Jerarquía de Marco Lógico)</h4>
+      <p style="text-align: center; font-size: 0.85rem; color: var(--side2); margin-bottom: 1rem;">Lea de abajo hacia
+        arriba. Haga clic en las causas de la base para ver evidencias.</p>
+
+      <div class="tree-scroll">
+        <div class="tree-container">
+          <table class="tree-table">
+            <tr>
+              <td colspan="12">
+                <div class="tree-node-cell red main">
+                  <strong>EFECTO FINAL:</strong> Estancamiento operativo y comercial que impide aprovechar la capacidad instalada y consolidar la base de clientes mayoristas.
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12"><div class="branch-horizontal"></div></td>
+            </tr>
+            <tr>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+            </tr>
+            <tr>
+              <td colspan="3"><div class="tree-node-cell red dashed"><strong>EI 1:</strong> Reducción del margen neto por sobrecostos evitables.</div></td>
+              <td colspan="3"><div class="tree-node-cell red dashed"><strong>EI 2:</strong> Limitación para escalar ventas mayoristas (sin certeza de stock).</div></td>
+              <td colspan="3"><div class="tree-node-cell red dashed"><strong>EI 3:</strong> Deterioro de la confianza del cliente por entregas incompletas.</div></td>
+              <td colspan="3"><div class="tree-node-cell red dashed"><strong>EI 4:</strong> Imposibilidad de proyectar demanda estacional (sin historial íntegro).</div></td>
+            </tr>
+            <tr>
+              <td colspan="3"><div class="branch-vertical up"></div></td>
+              <td colspan="3"><div class="branch-vertical up"></div></td>
+              <td colspan="3"><div class="branch-vertical up"></div></td>
+              <td colspan="3"><div class="branch-vertical up"></div></td>
+            </tr>
+            <tr>
+              <td colspan="4"><div class="tree-node-cell red compact"><strong>ED 1:</strong> Pérdida de 1 día laborable semanal de la gerencia en conciliación manual.</div></td>
+              <td colspan="4"><div class="tree-node-cell red compact"><strong>ED 2:</strong> 9 pedidos incompletos al mes con sobrecosto logístico por doble envío.</div></td>
+              <td colspan="4"><div class="tree-node-cell red compact"><strong>ED 3:</strong> Decisiones gerenciales reactivas, sin información confiable ni oportuna.</div></td>
+            </tr>
+            <tr>
+              <td colspan="12"><div class="branch-horizontal"></div></td>
+            </tr>
+            <tr>
+              <td colspan="5"></td>
+              <td colspan="2"><div class="branch-vertical down"></div></td>
+              <td colspan="5"></td>
+            </tr>
+            <tr>
+              <td colspan="12">
+                <div class="tree-node-cell main">
+                  <strong>PC:</strong> Gestión fragmentada y no estandarizada de la información operativa y comercial de Roma Bag's, que impide el control oportuno del negocio.
+                  <p style="font-size: 0.9rem; margin-top: 0.9rem; color: #9b1c1c; font-weight: 500;">Evidencia: en el <strong>Anexo 2.5: Excel 2026</strong>, el 70.8% de registros de despacho carecen de información financiera o logística.</p>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12"><div class="branch-horizontal"></div></td>
+            </tr>
+            <tr>
+              <td colspan="4"><div class="tree-node-cell yellow"><strong>CD 1:</strong> Datos dispersos en medios incompatibles sin fuente única (cuadernos, Excel local, 6 celulares).</div></td>
+              <td colspan="4"><div class="tree-node-cell yellow"><strong>CD 2:</strong> Procesos de registro y conciliación 100% manuales, expuestos a error y pérdida de datos.</div></td>
+              <td colspan="4"><div class="tree-node-cell yellow"><strong>CD 3:</strong> Ausencia de capacidad para convertir los datos en información gerencial oportuna.</div></td>
+            </tr>
+            <tr>
+              <td colspan="4"><div class="branch-vertical down"></div></td>
+              <td colspan="4"><div class="branch-vertical down"></div></td>
+              <td colspan="4"><div class="branch-vertical down"></div></td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <div class="tree-node-cell yellow compact">
+                  <div class="tree-subnode"><strong>CI 1.1:</strong> Registro de inventario solo en cuadernos físicos.</div>
+                  <div class="tree-subnode"><strong>CI 1.2:</strong> Ventas registradas en 6 celulares sin sincronización.</div>
+                </div>
+              </td>
+              <td colspan="4">
+                <div class="tree-node-cell yellow compact">
+                  <div class="tree-subnode"><strong>CI 2.1:</strong> Conciliación manual semanal (1 día) por falta de validación automática.</div>
+                  <div class="tree-subnode"><strong>CI 2.2:</strong> Pérdida de registros por fallo de autoguardado y Wi-Fi deficiente.</div>
+                  <div class="tree-subnode"><strong>CI 2.3:</strong> Sin protocolo de registro en el punto de despacho ni flujo formal entre áreas.</div>
+                </div>
+              </td>
+              <td colspan="4">
+                <div class="tree-node-cell yellow compact">
+                  <div class="tree-subnode"><strong>CI 3.1:</strong> Sin reportes de rentabilidad; la gerencia desconoce su ganancia neta real.</div>
+                  <div class="tree-subnode"><strong>CI 3.2:</strong> Historial de datos incompleto e irrecuperable (pérdida del 2024).</div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="objetivos">
+      <h3 class="section-title">3.2. Árbol de Objetivos y Estrategia de Mejora</h3>
+
+      <div style="margin-bottom: 2rem;">
+        <h4>3.2.1. Transición hacia el Estado Deseado (Metodología SMART y PMBOK®)</h4>
+        <p>La transformación de las condiciones negativas en estados positivos alcanzables se fundamenta en la
+          <strong>Definición del Alcance</strong> (PMBOK® 5.2). Para garantizar el rigor técnico exigido, la formulación
+          de los objetivos específicos y fines del proyecto aplica estrictamente la <strong>Metodología SMART</strong>
+          (Doran, 1981).</p>
+        <p
+          style="margin-bottom: 1.5rem; padding: 1rem; background: #f8fafc; border-left: 4px solid var(--ac); border-radius: 4px; font-size: 0.9rem;">
+          <strong>Definición SMART:</strong> Todo objetivo debe ser <strong>S</strong>pecific (Específico: claro y
+          detallado), <strong>M</strong>easurable (Medible: cuantificable para establecer líneas base),
+          <strong>A</strong>chievable (Alcanzable: realista y tecnológicamente viable), <strong>R</strong>elevant
+          (Relevante: alineado al dolor del negocio y la necesidad del usuario) y <strong>T</strong>ime-bound (Temporal:
+          con un plazo de ejecución claramente definido).
+        </p>
+
+        <div class="gr">
+          <div class="cd">
+            <span class="bg bgr">Análisis de Alternativas</span>
+            <p style="font-size: .82rem; margin-top:0.3rem;">Técnica utilizada para evaluar diferentes maneras de lograr
+              los objetivos (PMBOK® 5.3). Se priorizó la articulación funcional sobre la digitalización total inmediata.
+            </p>
+          </div>
+          <div class="cd">
+            <span class="bg bb">Gestión de Beneficios</span>
+            <p style="font-size: .82rem; margin-top:0.3rem;">Define los beneficios esperados que el proyecto entregará,
+              alineando la mejora de datos con la rentabilidad comercial y el crecimiento estratégico.</p>
+          </div>
+        </div>
+      </div>
+
+      <h4>3.2.2. Árbol de Objetivos (Estrategia de Solución SMART)</h4>
+      <p style="text-align: center; font-size: 0.85rem; color: var(--side2); margin-bottom: 1rem;">Flujo ascendente: Los
+        medios (base) habilitan el cumplimiento del objetivo y los fines.</p>
+
+      <div class="tree-scroll">
+        <div class="tree-container">
+          <table class="tree-table">
+            <tr>
+              <td colspan="12">
+                <div class="tree-node-cell green-main">
+                  <strong>FIN FINAL:</strong> Incrementar el volumen de facturación y el posicionamiento de mercado de Roma Bag's aprovechando la capacidad instalada (meta acordada: +50% en ventas).
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12"><div class="branch-horizontal"></div></td>
+            </tr>
+            <tr>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+            </tr>
+            <tr>
+              <td colspan="3"><div class="tree-node-cell green dashed"><strong>FD 1:</strong> Reducir los pedidos incompletos de 9 a ≤1 por mes al mes 4.</div></td>
+              <td colspan="3"><div class="tree-node-cell green dashed"><strong>FD 2:</strong> Eliminar el 100% del sobrecosto por doble envío al mes 5.</div></td>
+              <td colspan="3"><div class="tree-node-cell green dashed"><strong>FD 3:</strong> Recuperar el día gerencial semanal hoy perdido en conciliación, desde el mes 3.</div></td>
+              <td colspan="3"><div class="tree-node-cell green dashed"><strong>FD 4:</strong> Constituir un historial de datos íntegro de ≥12 meses para proyección de demanda al mes 6.</div></td>
+            </tr>
+            <tr>
+              <td colspan="12"><div class="branch-horizontal"></div></td>
+            </tr>
+            <tr>
+              <td colspan="5"></td>
+              <td colspan="2"><div class="branch-vertical down"></div></td>
+              <td colspan="5"></td>
+            </tr>
+            <tr>
+              <td colspan="12">
+                <div class="tree-node-cell blue-main">
+                  <strong>OC:</strong> Integrar la gestión de información operativa y comercial en una fuente única, reduciendo el tiempo de consulta de stock de [X] a menos de 2 minutos al cierre del mes 3.
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12"><div class="branch-horizontal"></div></td>
+            </tr>
+            <tr>
+              <td colspan="3"><div class="tree-node-cell blue"><strong>MD 1:</strong> Centralizar el 100% del registro de inventario y ventas en una base única al mes 2 (línea base: 3 medios dispersos).</div></td>
+              <td colspan="3"><div class="tree-node-cell blue"><strong>MD 2:</strong> Automatizar la conciliación para reducir el cuadre manual de 1 día/semana a menos de 1 hora al mes 3.</div></td>
+              <td colspan="3"><div class="tree-node-cell blue"><strong>MD 3:</strong> Establecer protocolo de registro obligatorio venta→stock→despacho con 100% de despachos registrados al mes 2.</div></td>
+              <td colspan="3"><div class="tree-node-cell blue"><strong>MD 4:</strong> Generar reportes de rentabilidad y stock accesibles desde celular, disponibles mensualmente desde el mes 4.</div></td>
+            </tr>
+            <tr>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+              <td colspan="3"><div class="branch-vertical down"></div></td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="tree-node-cell blue compact">
+                  <div class="tree-subnode"><strong>MF 1.1:</strong> Unificar las herramientas digitales de registro para eliminar la dispersión de datos en múltiples soportes.</div>
+                  <div class="tree-subnode"><strong>MF 1.2:</strong> Definir protocolos de ingreso de datos estandarizados para asegurar la integridad de la información desde la fuente.</div>
+                </div>
+              </td>
+              <td colspan="3">
+                <div class="tree-node-cell blue compact">
+                  <div class="tree-subnode"><strong>MF 2.1:</strong> Integrar la lógica de conciliación automática en el procesamiento de transacciones diarias.</div>
+                  <div class="tree-subnode"><strong>MF 2.2:</strong> Reducir la latencia en la actualización de registros para asegurar la disponibilidad de datos en tiempo real.</div>
+                </div>
+              </td>
+              <td colspan="3">
+                <div class="tree-node-cell blue compact">
+                  <div class="tree-subnode"><strong>MF 3.1:</strong> Sincronizar los procesos de venta en vivo con el control de inventario y las órdenes de empaque.</div>
+                  <div class="tree-subnode"><strong>MF 3.2:</strong> Documentar y formalizar los procedimientos de registro para estandarizar la operación del personal.</div>
+                </div>
+              </td>
+              <td colspan="3">
+                <div class="tree-node-cell blue compact">
+                  <div class="tree-subnode"><strong>MF 4.1:</strong> Optimizar la infraestructura de red y cobertura Wi-Fi para garantizar la conectividad en todas las áreas del taller.</div>
+                  <div class="tree-subnode"><strong>MF 4.2:</strong> Capacitar al personal en el uso de herramientas analíticas para el monitoreo de indicadores de desempeño.</div>
+                  <div class="tree-subnode"><strong>MF 4.3:</strong> Ejecutar un plan de gestión del cambio para asegurar la adopción y el uso correcto de las nuevas herramientas de información.</div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <h4 style="margin-top: 2.5rem; color: var(--head);">3.2.2. Sustentación Metodológica (PMBOK® y Marco Lógico)</h4>
+      <p>La transformación de condiciones negativas en estados positivos medibles se fundamenta en la <strong>Definición
+          del Alcance</strong> (PMBOK® 5.2) y en la metodología SMART (Doran, 1981). Los objetivos del árbol incorporan
+        métricas de línea base extraídas del <strong>Anexo 2.5 (Excel 2026)</strong>, donde el 70.8% de los registros de
+        despacho carecen de información completa, y del diagnóstico de campo (conciliación manual: 1 día/semana; pedidos
+        incompletos: 9/mes).</p>
+
+      <h4 id="smart-analysis" style="margin-top: 2.5rem; color: var(--head);">3.2.3. Análisis de Objetivos bajo
+        Metodología SMART</h4>
+      <p style="margin-bottom: 1.5rem;">Cada objetivo del árbol se descompone a continuación en los cinco criterios
+        SMART para verificar su rigor técnico y trazabilidad con el árbol de problemas.</p>
+
+      <!-- OC -->
+      <div class="cd" style="margin-bottom: 1.2rem;">
+        <strong style="font-size: 1rem; color: var(--b);">Objetivo Central (OC)</strong>
+        <p style="margin: 0.3rem 0 0.8rem; font-size: 0.88rem; color: var(--txt);">Integrar la gestión de información
+          operativa y comercial en una fuente única, reduciendo el tiempo de consulta de stock de [X] a menos de 2
+          minutos al cierre del mes 3.</p>
+        <div
+          style="display: grid; grid-template-columns: 130px 1fr; gap: 0.5rem 1rem; font-size: 0.87rem; align-items: start;">
+          <span style="font-weight: 700; color: var(--ac);">S — Específico</span><span>Integrar toda la información
+            operativa y comercial (inventario, ventas, despachos) en una sola base de datos como fuente única de
+            verdad.</span>
+          <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>Tiempo de consulta de stock reducido
+            de [X] min a &lt;2 min; verificable en prueba cronometrada al cierre del mes 3.</span>
+          <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>El hardware existente (3 laptops
+            Lenovo i5 12.ª gen, 24 GB RAM) y la fibra óptica disponible son suficientes para alojar y consultar la base
+            centralizada.</span>
+          <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Ataca directamente el Problema
+            Central: gestión fragmentada en 3 medios dispersos que impide el control oportuno del negocio.</span>
+          <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Al cierre del mes 3 de ejecución
+            del proyecto.</span>
+        </div>
+      </div>
+
+      <!-- MD1 -->
+      <div class="cd" style="margin-bottom: 1.2rem;">
+        <strong style="font-size: 1rem; color: var(--b);">MD 1 — Centralización del registro</strong>
+        <p style="margin: 0.3rem 0 0.8rem; font-size: 0.88rem; color: var(--txt);">Centralizar el 100% del registro de
+          inventario y ventas en una base única al mes 2 (línea base: 3 medios dispersos).</p>
+        <div
+          style="display: grid; grid-template-columns: 130px 1fr; gap: 0.5rem 1rem; font-size: 0.87rem; align-items: start;">
+          <span style="font-weight: 700; color: var(--ac);">S — Específico</span><span>Migrar los registros de cuadernos
+            físicos (inventario) y 6 celulares + Excel (ventas) a una única base de datos.</span>
+          <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>100% de registros en la nueva base;
+            línea base: 3 medios dispersos → 1 medio unificado. Verificable mediante auditoría de fuentes
+            activas.</span>
+          <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>El personal de ventas ya opera
+            con celulares; solo requiere redirigir el registro a una interfaz centralizada, sin adquirir hardware
+            adicional.</span>
+          <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Responde a CD 1 (datos dispersos
+            en medios incompatibles) y a CI 1.1 / CI 1.2 del árbol de problemas.</span>
+          <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Al mes 2 de ejecución del
+            proyecto.</span>
+        </div>
+      </div>
+
+      <!-- MD2 -->
+      <div class="cd" style="margin-bottom: 1.2rem;">
+        <strong style="font-size: 1rem; color: var(--b);">MD 2 — Automatización de conciliación</strong>
+        <p style="margin: 0.3rem 0 0.8rem; font-size: 0.88rem; color: var(--txt);">Automatizar la conciliación para
+          reducir el cuadre manual de 1 día/semana a menos de 1 hora al mes 3.</p>
+        <div
+          style="display: grid; grid-template-columns: 130px 1fr; gap: 0.5rem 1rem; font-size: 0.87rem; align-items: start;">
+          <span style="font-weight: 700; color: var(--ac);">S — Específico</span><span>Implementar conciliación
+            automática que elimine el cruce manual semanal de cuadernos con Excel (actualmente cada sábado).</span>
+          <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>Tiempo de conciliación semanal: de 1
+            día (≈8 h) a &lt;1 hora. Medible en registro de tiempo de las primeras semanas del mes 3.</span>
+          <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>La fuente única generada por MD 1
+            es el prerrequisito técnico; sin centralización previa, la automatización no es posible.</span>
+          <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Responde a CD 2 (procesos
+            manuales) y al efecto directo ED 1 (pérdida de 1 día laborable semanal de la gerencia).</span>
+          <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Al mes 3 de ejecución del
+            proyecto.</span>
+        </div>
+      </div>
+
+      <!-- MD3 -->
+      <div class="cd" style="margin-bottom: 1.2rem;">
+        <strong style="font-size: 1rem; color: var(--b);">MD 3 — Protocolo venta→stock→despacho</strong>
+        <p style="margin: 0.3rem 0 0.8rem; font-size: 0.88rem; color: var(--txt);">Establecer protocolo de registro
+          obligatorio venta→stock→despacho con 100% de despachos registrados al mes 2.</p>
+        <div
+          style="display: grid; grid-template-columns: 130px 1fr; gap: 0.5rem 1rem; font-size: 0.87rem; align-items: start;">
+          <span style="font-weight: 700; color: var(--ac);">S — Específico</span><span>Definir y ejecutar un flujo
+            obligatorio donde cada venta actualiza automáticamente el stock y genera un registro de despacho en el mismo
+            acto.</span>
+          <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>100% de los despachos con
+            información completa (venta + stock + datos de envío). Línea base: 70.8% de despachos con campos vacíos
+            (Anexo 2.5).</span>
+          <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>Solo requiere definir el
+            protocolo de proceso y capacitar al personal; no demanda infraestructura adicional ni inversión en
+            hardware.</span>
+          <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Responde a CI 2.3 (sin protocolo
+            en punto de despacho) y al efecto directo ED 2 (9 pedidos incompletos/mes).</span>
+          <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Al mes 2 de ejecución del
+            proyecto.</span>
+        </div>
+      </div>
+
+      <!-- MD4 -->
+      <div class="cd" style="margin-bottom: 1.2rem;">
+        <strong style="font-size: 1rem; color: var(--b);">MD 4 — Reportes móviles de rentabilidad y stock</strong>
+        <p style="margin: 0.3rem 0 0.8rem; font-size: 0.88rem; color: var(--txt);">Generar reportes de rentabilidad y
+          stock accesibles desde celular, disponibles mensualmente desde el mes 4.</p>
+        <div
+          style="display: grid; grid-template-columns: 130px 1fr; gap: 0.5rem 1rem; font-size: 0.87rem; align-items: start;">
+          <span style="font-weight: 700; color: var(--ac);">S — Específico</span><span>Configurar al menos un reporte
+            mensual de rentabilidad por producto y uno de stock disponible, visualizables en dispositivo móvil.</span>
+          <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>≥1 reporte de rentabilidad y ≥1
+            reporte de stock generados y consultados mensualmente por la gerencia; verificable desde el mes 4.</span>
+          <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>Los celulares del personal ya
+            cuentan con internet; solo requiere una interfaz responsiva en la herramienta centralizada.</span>
+          <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Responde a CD 3 (ausencia de
+            capacidad analítica) y a CI 3.1 (gerencia desconoce ganancia neta real).</span>
+          <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Disponibles mensualmente desde el
+            mes 4 de ejecución.</span>
+        </div>
+      </div>
+
+      <!-- FD1 -->
+      <div class="cd" style="margin-bottom: 1.2rem;">
+        <strong style="font-size: 1rem; color: var(--g);">FD 1 — Reducción de pedidos incompletos</strong>
+        <p style="margin: 0.3rem 0 0.8rem; font-size: 0.88rem; color: var(--txt);">Reducir los pedidos incompletos de 9
+          a ≤1 por mes al mes 4.</p>
+        <div
+          style="display: grid; grid-template-columns: 130px 1fr; gap: 0.5rem 1rem; font-size: 0.87rem; align-items: start;">
+          <span style="font-weight: 700; color: var(--ac);">S — Específico</span><span>Lograr que los despachos con
+            productos faltantes (causados por falsos positivos de stock) bajen de 9 a máximo 1 por mes.</span>
+          <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>Indicador: # pedidos
+            incompletos/mes. Línea base: 9. Meta: ≤1. Verificable en reporte mensual de despachos al cierre del mes
+            4.</span>
+          <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>El cumplimiento de MD 3
+            (protocolo venta→stock→despacho) elimina la causa raíz de los despachos errados; técnicamente viable en 4
+            meses.</span>
+          <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Ataca ED 2 (9 pedidos
+            incompletos/mes) y EI 3 (deterioro de la confianza del cliente por entregas incompletas).</span>
+          <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Al mes 4 de ejecución del
+            proyecto.</span>
+        </div>
+      </div>
+
+      <!-- FD2 -->
+      <div class="cd" style="margin-bottom: 1.2rem;">
+        <strong style="font-size: 1rem; color: var(--g);">FD 2 — Eliminación del sobrecosto por doble envío</strong>
+        <p style="margin: 0.3rem 0 0.8rem; font-size: 0.88rem; color: var(--txt);">Eliminar el 100% del sobrecosto por
+          doble envío al mes 4.</p>
+        <div
+          style="display: grid; grid-template-columns: 130px 1fr; gap: 0.5rem 1rem; font-size: 0.87rem; align-items: start;">
+          <span style="font-weight: 700; color: var(--ac);">S — Específico</span><span>Alcanzar cero incidencias de
+            segundo despacho (motorizado adicional) por pedidos incompletos en el mes.</span>
+          <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>Sobrecosto por doble envío reducido
+            a S/. 0.00/mes. Línea base: S/. 10–20 por incidencia, ≈2 de cada 10 pedidos.</span>
+          <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>Depende de FD 1; al reducir
+            pedidos incompletos a ≤1, los dobles envíos dejan de ser recurrentes como costo operativo.</span>
+          <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Ataca EI 1 (reducción del margen
+            neto por sobrecostos evitables) identificado como efecto indirecto del PC.</span>
+          <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Al mes 4 de ejecución del
+            proyecto.</span>
+        </div>
+      </div>
+
+      <!-- FD3 -->
+      <div class="cd" style="margin-bottom: 1.2rem;">
+        <strong style="font-size: 1rem; color: var(--g);">FD 3 — Recuperación del tiempo gerencial</strong>
+        <p style="margin: 0.3rem 0 0.8rem; font-size: 0.88rem; color: var(--txt);">Recuperar el día gerencial semanal
+          hoy perdido en conciliación, desde el mes 3.</p>
+        <div
+          style="display: grid; grid-template-columns: 130px 1fr; gap: 0.5rem 1rem; font-size: 0.87rem; align-items: start;">
+          <span style="font-weight: 700; color: var(--ac);">S — Específico</span><span>Que la gerencia recupere el
+            sábado (≈8 horas) actualmente dedicado al cruce manual de cuadernos con Excel.</span>
+          <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>Tiempo de conciliación semanal &lt;1
+            hora desde el mes 3, equivalente a recuperar ≥7 horas/semana de tiempo gerencial productivo.</span>
+          <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>Depende directamente de MD 2
+            (automatización de conciliación); realista una vez que la base de datos esté centralizada en el mes
+            2.</span>
+          <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Ataca ED 1 (pérdida de 1 día
+            semanal de la gerencia) y su causa raíz CD 2 (procesos 100% manuales).</span>
+          <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Al mes 3 de ejecución del
+            proyecto.</span>
+        </div>
+      </div>
+
+      <!-- FD4 -->
+      <div class="cd" style="margin-bottom: 1.2rem;">
+        <strong style="font-size: 1rem; color: var(--g);">FD 4 — Historial íntegro para proyección de demanda</strong>
+        <p style="margin: 0.3rem 0 0.8rem; font-size: 0.88rem; color: var(--txt);">Constituir un historial de datos íntegro de ≥12 meses para proyección de demanda al mes 6.</p>
+        <div
+          style="display: grid; grid-template-columns: 130px 1fr; gap: 0.5rem 1rem; font-size: 0.87rem; align-items: start;">
+          <span style="font-weight: 700; color: var(--ac);">S — Específico</span><span>Acumular en la base
+            centralizada ≥12 meses de registros completos y continuos de ventas, stock y despachos sin brechas.</span>
+          <span style="font-weight: 700; color: var(--ac);">M — Medible</span><span>Historial íntegro ≥12 meses
+            disponible al cierre del mes 6; verificable mediante auditoría de registros en la base de datos.</span>
+          <span style="font-weight: 700; color: var(--ac);">A — Alcanzable</span><span>Si MD 1 y MD 3 se implementan
+            desde el mes 2, al mes 6 habrá ≥4 meses nuevos; se complementan con datos recuperados del Excel 2026.</span>
+          <span style="font-weight: 700; color: var(--ac);">R — Relevante</span><span>Ataca CI 3.2 (historial
+            incompleto e irrecuperable, pérdida del 2024) y EI 4 (imposibilidad de proyectar demanda estacional).</span>
+          <span style="font-weight: 700; color: var(--ac);">T — Temporal</span><span>Al mes 6 de ejecución del
+            proyecto.</span>
+        </div>
+      </div>
+
+    </section>
+
+</Layout>

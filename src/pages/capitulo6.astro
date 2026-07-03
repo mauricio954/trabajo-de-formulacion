@@ -1,0 +1,1055 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Capítulo 06: Gestión del Alcance">
+  <style>
+    .chapter-toolbar { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.5rem 0 2rem; align-items: center; }
+    .chapter-toolbar .ct-btn { display: inline-flex; align-items: center; justify-content: center; padding: .8rem 1.1rem; border-radius: 999px; border: 1px solid rgba(15,23,42,.12); background: #fff; color: var(--b); font-weight: 700; text-decoration: none; box-shadow: 0 8px 22px rgba(15,23,42,.08); transition: transform .18s ease, background .18s ease, border-color .18s ease; }
+    .chapter-toolbar .ct-btn:hover { transform: translateY(-1px); border-color: #2563eb; background: #eff6ff; }
+    .chapter-toolbar .ct-btn-primary { background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; border-color: transparent; }
+    .chapter-toolbar .ct-btn-primary:hover { background: linear-gradient(135deg,#1e40af,#1d4ed8); }
+    .dic-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 1.2rem; margin-top: 1.6rem; counter-reset: dictionary-entry; }
+    .dic-grid .dic-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; box-shadow: 0 16px 34px rgba(15,23,42,.08); padding: 1.35rem 1.35rem 1.2rem; overflow: hidden; position: relative; counter-increment: dictionary-entry; }
+    .dic-grid .dic-item::before { content: counter(dictionary-entry, decimal) "."; position: absolute; top: 1.25rem; right: 1.25rem; font-size: .95rem; font-weight: 800; color: #2563eb; background: rgba(59,130,246,.12); padding: .35rem .75rem; border-radius: 999px; }
+    .dic-grid .dic-item h5 { margin: 0 0 .75rem; font-size: 1.02rem; color: #1d4ed8; letter-spacing: .02em; }
+    .dic-grid .dic-item p { margin: .45rem 0; line-height: 1.7; color: #334155; font-size: .94rem; }
+    .dic-grid .dic-item p strong { color: #0f172a; }
+    .dic-grid .dic-item .meta { display: grid; grid-template-columns: 1fr; gap: .4rem; margin: .8rem 0 0; font-size: .88rem; color: #475569; }
+    .dic-grid .dic-item .meta span { display: inline-flex; align-items: center; gap: .4rem; background: #eef2ff; padding: .28rem .65rem; border-radius: 999px; border: 1px solid #dbeafe; }
+    .dic-section-header { margin: 2rem 0 .9rem; padding: .95rem 1rem; border-radius: 16px; background: linear-gradient(135deg,#e0f2fe,#dbeafe); color: #1e3a8a; border: 1px solid #bae6fd; font-weight: 700; box-shadow: inset 0 1px 0 rgba(255,255,255,.8); }
+    .dic-section-header span { display: inline-flex; align-items: center; gap: .5rem; }
+    .dic-section-header small { display: block; font-size: .85rem; color: #475569; margin-top: .35rem; }
+  </style>
+<section class="sec" id="c10-0">
+  <h2>CAPÍTULO 06: Gestión del Alcance (Línea Base del Alcance)</h2>
+  <p>La línea base del alcance se construye sobre la <strong>Alternativa 4 — Transformación Digital por Fases</strong>, seleccionada en el Capítulo 04 tras el proceso de evaluación de viabilidad. El presente capítulo documenta los requisitos del proyecto y aplica los procesos de planificación del Área de Conocimiento de Gestión del Alcance, referenciados bajo el <strong>PMBOK 8 (Dominio de Desempeño de Planificación)</strong>: <strong>Documentación de Requisitos</strong>, <strong>Definir el Alcance</strong> y <strong>Crear la EDT/WBS</strong>.</p>
+
+  <div class="hl" style="margin-bottom:2rem"><strong>Regla de la línea base:</strong> lo que no está documentado en esta línea base <strong>no forma parte del proyecto</strong>. Cualquier requerimiento adicional deberá tramitarse mediante el proceso formal de control de cambios.</div>
+
+  <div class="chapter-toolbar">
+    <a href="#trazabilidad" class="ct-btn">6.0 Matriz de Trazabilidad</a>
+    <a href="#definir" class="ct-btn">6.1 Definir el Alcance</a>
+    <a href="#edt" class="ct-btn">6.2 Crear la EDT/WBS</a>
+    <a href="#c10-3" class="ct-btn ct-btn-primary">6.3 Diccionario EDT/WBS</a>
+  </div>
+
+  <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;"><span id="trazabilidad"></span>6.0. Documentación de Requisitos y Matriz de Trazabilidad</h3>
+  <p>Los requisitos del proyecto se obtuvieron de tres sesiones de entrevista con Natalie (21 de abril, 4 de mayo y 14 de mayo de 2026), complementadas con observación directa (Job Shadowing) en el taller y auditoría de hardware y conectividad. La siguiente matriz traza cada requisito desde su origen hasta el entregable de la EDT que lo materializa y el criterio que verifica su cumplimiento. Los entregables de la EDT ahora se referencian por fase de la transformación.</p>
+  <div class="tr">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Requisito</th>
+          <th>Tipo</th>
+          <th>Interesado</th>
+          <th style="text-align:center;">Prioridad</th>
+          <th>Necesidad/Causa</th>
+          <th>Objetivo</th>
+          <th>Entregable EDT</th>
+          <th>Criterio de Aceptación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>R-01</strong></td>
+          <td>Centralizar inventario y ventas en una fuente única</td>
+          <td><span class="bg bb">Funcional</span></td>
+          <td>Gerencia (SH-01)</td>
+          <td style="text-align:center;"><span class="bg br">Alta</span></td>
+          <td>CD1 Datos dispersos</td>
+          <td>MD1</td>
+          <td>1.3.1 Base de datos centralizada ligera (Fase 1)</td>
+          <td>100% de registros en la base única al cierre de la Fase 1</td>
+        </tr>
+        <tr>
+          <td><strong>R-02</strong></td>
+          <td>Consultar el stock real desde el celular en el momento</td>
+          <td><span class="bg bb">Funcional</span></td>
+          <td>Ventas (SH-03)</td>
+          <td style="text-align:center;"><span class="bg br">Alta</span></td>
+          <td>CD3 Sin capacidad analítica</td>
+          <td>MD4</td>
+          <td>1.3.4 Acceso de consulta de stock desde celular (Fase 1)</td>
+          <td>Consulta resuelta en menos de 2 minutos desde la Fase 1</td>
+        </tr>
+        <tr>
+          <td><strong>R-03</strong></td>
+          <td>Reducir el tiempo de cuadre semanal</td>
+          <td><span class="bg by">No funcional</span></td>
+          <td>Gerencia (SH-01)</td>
+          <td style="text-align:center;"><span class="bg br">Alta</span></td>
+          <td>CD2 Procesos manuales</td>
+          <td>MD2</td>
+          <td>1.4.3 Flujo secuencial mandatorio Venta-Stock-Despacho en Odoo (Fase 2)</td>
+          <td>Cuadre de 1 día a menos de 1 hora al cierre de la Fase 2</td>
+        </tr>
+        <tr>
+          <td><strong>R-04</strong></td>
+          <td>Registrar obligatoriamente cada despacho</td>
+          <td><span class="bg bb">Funcional</span></td>
+          <td>Gerencia/Logística (SH-06)</td>
+          <td style="text-align:center;"><span class="bg br">Alta</span></td>
+          <td>CD2/CI 2.3 Sin protocolo</td>
+          <td>MD3</td>
+          <td>1.3.3 SOPs del flujo venta-stock-despacho (Fase 1) y 1.4.3 Flujo mandatorio en Odoo (Fase 2)</td>
+          <td>100% de despachos registrados desde la Fase 1</td>
+        </tr>
+        <tr>
+          <td><strong>R-05</strong></td>
+          <td>Conocer rentabilidad y ganancia neta</td>
+          <td><span class="bg bb">Funcional</span></td>
+          <td>Gerencia (SH-01)</td>
+          <td style="text-align:center;"><span class="bg by">Media</span></td>
+          <td>CD3 Decisiones a ciegas</td>
+          <td>MD4</td>
+          <td>1.5.1 Panel de reportes de rentabilidad y KPIs en Odoo (Fase 3)</td>
+          <td>Reporte mensual de rentabilidad disponible desde la Fase 3</td>
+        </tr>
+        <tr>
+          <td><strong>R-06</strong></td>
+          <td>Operar la solución desde dispositivos móviles</td>
+          <td><span class="bg by">No funcional (restricción)</span></td>
+          <td>Gerencia/Ventas</td>
+          <td style="text-align:center;"><span class="bg br">Alta</span></td>
+          <td>EEF Mobile-first</td>
+          <td>MD4</td>
+          <td>1.3.4 Acceso desde celular (Fase 1) y 1.4.1 Interfaz web Odoo (Fase 2)</td>
+          <td>Sistema operable desde celular en todas las fases</td>
+        </tr>
+        <tr>
+          <td><strong>R-07</strong></td>
+          <td>Coexistir con el Excel durante la adopción</td>
+          <td><span class="bg by">No funcional (restricción)</span></td>
+          <td>Gerencia (SH-01)</td>
+          <td style="text-align:center;"><span class="bg br">Alta</span></td>
+          <td>Riesgo, temor a perder datos</td>
+          <td>MD1/Gestión del cambio</td>
+          <td>1.3.3 Protocolo de coexistencia con Excel (Fase 1)</td>
+          <td>Excel y sistema conviven sin pérdida de datos durante toda la Fase 1</td>
+        </tr>
+        <tr>
+          <td><strong>R-08</strong></td>
+          <td>Garantizar conectividad estable en el taller</td>
+          <td><span class="bg by">No funcional</span></td>
+          <td>Todas las áreas</td>
+          <td style="text-align:center;"><span class="bg by">Media</span></td>
+          <td>CI 2.2 Wi-Fi deficiente</td>
+          <td>MF 4.1</td>
+          <td>1.3.2 Solución de red del taller (Fase 1)</td>
+          <td>Cero zonas muertas de Wi-Fi en áreas de trabajo al cierre de la Fase 1</td>
+        </tr>
+        <tr>
+          <td><strong>R-09</strong></td>
+          <td>Asegurar respaldo y evitar pérdida de datos</td>
+          <td><span class="bg by">No funcional</span></td>
+          <td>Gerencia (SH-01)</td>
+          <td style="text-align:center;"><span class="bg br">Alta</span></td>
+          <td>CI 4.2 Pérdida del 2024</td>
+          <td>MD1/Gobierno de Datos</td>
+          <td>1.3.3 Política de respaldo y seguridad de datos (Fase 1)</td>
+          <td>Respaldo automático verificable desde la Fase 1</td>
+        </tr>
+        <tr>
+          <td><strong>R-10</strong></td>
+          <td>Capacitar al personal en una solución simple no robótica</td>
+          <td><span class="bg by">No funcional</span></td>
+          <td>Personal (SH-03, SH-04)</td>
+          <td style="text-align:center;"><span class="bg by">Media</span></td>
+          <td>Riesgo, resistencia al cambio</td>
+          <td>MF 4.2/4.3</td>
+          <td>1.5.2 Talleres de capacitación (Fase 3)</td>
+          <td>Personal capacitado y sistema en uso autónomo al cierre de la Fase 3</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="hl"><strong>Nota de lectura:</strong> La matriz se lee de izquierda a derecha como una cadena de valor. Los entregables ahora están referenciados por fase de la transformación, lo que permite trazar no solo a qué EDT pertenece cada requisito sino en qué momento del proyecto se materializa.</div>
+</section>
+
+<section class="sec" id="c10-1">
+  <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;"><span id="definir"></span>6.1. Definir el Alcance</h3>
+  <div class="hl" style="margin-bottom:2rem"><strong>Dominio de Desempeño (PMBOK 8):</strong> Planificación.</div>
+  <h4>Entradas</h4>
+  <div class="gr">
+    <div class="cd"><strong>Acta de Constitución del Proyecto:</strong> Formaliza la existencia del proyecto y otorga al equipo UNTELS la autoridad para aplicar recursos, anclando el alcance al objetivo central de transformación digital por fases de Roma Bag's.</div>
+    <div class="cd"><strong>Documentación de Requisitos:</strong> Recolectada en las tres sesiones de entrevista (Sesiones 01, 02 y 03) con la Gerencia.</div>
+    <div class="cd"><strong>Registro de Interesados:</strong> Seis interesados formales (SH-01 a SH-06) con su nivel de influencia y expectativas (Cap. 01, sección 1.3.3).</div>
+    <div class="cd"><strong>Árbol de Objetivos SMART:</strong> Medios y fines validados que traducen el problema central en objetivos verificables (Cap. 03).</div>
+    <div class="cd"><strong>Análisis de Alternativas:</strong> La Alternativa 4 — Transformación Digital por Fases fue seleccionada como la más viable y sostenible para Roma Bag's (Cap. 04).</div>
+    <div class="cd"><strong>Factores Ambientales de la Empresa:</strong> Conectividad Wi-Fi irregular, ausencia de personal de TI, resistencia condicional del Socio de Producción y rechazo documentado a herramientas percibidas como robóticas (Cap. 01; Cap. 02, sección 2.1.5).</div>
+    <div class="cd"><strong>Activos de los Procesos de la Organización:</strong> Cuadernos físicos de inventario, archivos Excel en Google Drive y canales informales (WhatsApp) que deben coexistir con la solución durante la Fase 1 (Cap. 02, sección 2.1.6).</div>
+  </div>
+  <h4>Herramientas y Técnicas</h4>
+  <div class="gr">
+    <div class="cd"><strong>Análisis del Producto:</strong> Descomposición de la solución por fases (base ligera en Fase 1, Odoo en Fase 2, analítica en Fase 3) para precisar qué debe configurarse en cada etapa.</div>
+    <div class="cd"><strong>Análisis de Requisitos:</strong> Cruce de la documentación de requisitos con el árbol de objetivos, separando necesidades reales del alcance de deseos no priorizados o no viables en esta etapa.</div>
+    <div class="cd"><strong>Toma de Decisiones:</strong> Aplicación de los criterios de viabilidad del Cap. 04 para decidir qué entra en cada fase y qué queda excluido del proyecto.</div>
+    <div class="cd"><strong>Reuniones con la Gerencia:</strong> Validación del enunciado del alcance con Natalie como usuaria principal, asegurando su conformidad antes de fijar la línea base.</div>
+  </div>
+  <h4>Salidas — Enunciado del Alcance del Proyecto</h4>
+  <div class="hl"><strong>Descripción del Alcance del Producto:</strong> Transformación Digital progresiva de Roma Bag's implementada en tres fases con gates de aprobación formales. La Fase 1 establece una base de datos centralizada ligera con acceso móvil y procesos documentados. La Fase 2 implementa el ERP Odoo Community (módulos de inventario, ventas y despachos) como fuente única de verdad, accesible desde navegador y celular. La Fase 3 activa la analítica gerencial (reportes de rentabilidad, KPIs) y completa la autonomía tecnológica de la Gerencia. Cada fase convive con las herramientas actuales de la empresa hasta que la siguiente esté estabilizada.</div>
+  <h5 style="color:var(--g); margin-top:1.8rem;">✓ Inclusiones del Alcance (Trabajo a Realizar)</h5>
+  <div class="gr">
+    <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓ Incluido</span><strong>Diagnóstico de la situación actual (AS-IS):</strong> Documentación del flujo informal vigente (cuadernos, Excel local, 6 celulares), el cuadre manual semanal y los puntos de pérdida de datos.</div>
+    <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓ Incluido</span><strong>Fase 1 — Cimentar:</strong> Base de datos centralizada ligera (no-code) con acceso de consulta de stock desde celular, mejora de conectividad del taller, política de respaldo automático, SOPs del flujo venta-stock-despacho, protocolo de coexistencia con Excel, y Gate 1 de aprobación formal.</div>
+    <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓ Incluido</span><strong>Fase 2 — Integrar:</strong> Instalación y configuración de Odoo Community (módulos de Inventario, Ventas y Despachos), migración de datos desde la Fase 1, flujo secuencial mandatorio Venta-Stock-Despacho, pruebas de aceptación de usuario (UAT) con personal de ventas, producción y gerencia, Certificado de Cero Errores Críticos, y Gate 2 de aprobación formal.</div>
+    <div class="cd" style="border-left:4px solid var(--g);"><span class="bg bgr" style="margin-bottom:.5rem;">✓ Incluido</span><strong>Fase 3 — Optimizar:</strong> Módulo Analítico y Gerencial de Odoo (panel de KPIs, reporte de ganancia neta mensual, restricción de acceso por rol), capacitación final por rol, despliegue en el 100% de los dispositivos del personal, monitoreo post-deploy, y Gate 3 con Acta de Conformidad y Cierre Formal.</div>
+  </div>
+  <h5 style="color:var(--r); margin-top:1.8rem;">✕ Exclusiones del Alcance (Fuera del Proyecto)</h5>
+  <div class="gr">
+    <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕ Excluido</span><strong>Arquitectura BI a medida:</strong> Sin Data Warehouse, ETL ni herramientas BI empresariales; queda como fase futura una vez que el ERP esté consolidado.</div>
+    <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕ Excluido</span><strong>Módulos de Odoo fuera del alcance comprometido:</strong> Facturación electrónica, contabilidad formal, integración con SUNAT, módulo de RRHH y e-commerce al cliente final quedan excluidos de esta implementación.</div>
+    <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕ Excluido</span><strong>Desarrollo de software a medida con código propio:</strong> La solución se limita a la configuración y parametrización de módulos nativos de Odoo Community y de herramientas no-code; sin desarrollo Python personalizado de alta complejidad.</div>
+    <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕ Excluido</span><strong>Compra de hardware:</strong> No se adquieren celulares, laptops, servidores dedicados ni antenas repetidoras de Wi‑Fi; se trabaja sobre los activos existentes (3 laptops, 6 celulares).</div>
+    <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕ Excluido</span><strong>Reemplazo inmediato del Excel:</strong> El Excel de Natalie coexiste con la solución durante toda la Fase 1 y la transición a la Fase 2.</div>
+    <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕ Excluido</span><strong>Soporte y mantenimiento post‑cierre:</strong> El soporte operativo diario y el mantenimiento evolutivo de las herramientas tras la firma del Acta de Conformidad quedan fuera del alcance del equipo UNTELS.</div>
+    <div class="cd" style="border-left:4px solid var(--r);"><span class="bg br" style="margin-bottom:.5rem;">✕ Excluido</span><strong>Automatización de maquinaria física de producción:</strong> El alcance es de registro de información digital, no de integración con maquinaria de costura o ensamblaje.</div>
+  </div>
+  <h4>Criterios de Aceptación del Producto</h4>
+  <div class="gr">
+    <div class="cd"><strong>Gate 1 (cierre Fase 1):</strong> 100% de inventario y ventas registrados en la base centralizada; consulta de stock desde celular en menos de 2 minutos; cero zonas muertas de Wi‑Fi en áreas de trabajo; SOPs firmados por todos los usuarios; respaldo automático activo y verificado.</div>
+    <div class="cd"><strong>Gate 2 (cierre Fase 2):</strong> Flujo integrado Venta‑Stock‑Despacho en Odoo sin errores críticos; pedidos incompletos reducidos a cero en el período de prueba; personal capacitado y operando en Odoo; Certificado de Cero Errores Críticos emitido.</div>
+    <div class="cd"><strong>Gate 3 (cierre Fase 3 y proyecto):</strong> Reportes de rentabilidad generados automáticamente en Odoo; cuadre semanal reducido de 1 día a menos de 1 hora; Natalie resuelve incidencias básicas de forma autónoma; Acta de Conformidad firmada por la Gerencia.</div>
+  </div>
+  <h4>Supuestos y Restricciones</h4>
+  <div class="fx">
+    <div class="cd"><strong>Supuestos</strong>
+      <ul style="margin-top:.6rem; padding-left:1.2rem; font-size:.88rem; line-height:1.8;">
+        <li>La Gerencia mantiene el compromiso de uso del sistema en cada fase.</li>
+        <li>El personal dispone de tiempo para capacitaciones y pruebas.</li>
+        <li>La conectividad mejorada en la Fase 1 se mantiene estable.</li>
+        <li>El Socio de Producción adopta el sistema en la Fase 2 sin sabotaje pasivo.</li>
+      </ul>
+    </div>
+    <div class="cd"><strong>Restricciones</strong>
+      <ul style="margin-top:.6rem; padding-left:1.2rem; font-size:.88rem; line-height:1.8;">
+        <li>Presupuesto limitado de microempresa.</li>
+        <li>Solución obligatoriamente operable desde celular en todas las fases.</li>
+        <li>Coexistencia obligatoria con Excel durante la Fase 1.</li>
+        <li>Baja tolerancia al error del Socio de Producción (requiere entorno de pruebas separado del productivo).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="c10-2">
+  <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;"><span id="edt"></span>6.2. Crear la EDT/WBS</h3>
+  <div class="hl" style="margin-bottom:2rem"><strong>Dominio de Desempeño (PMBOK 8):</strong> Planificación.</div>
+  <p><strong>Regla aplicada:</strong> la EDT/WBS contempla únicamente entregables y paquetes de trabajo expresados como <strong>sustantivos</strong>, conforme a las buenas prácticas de descomposición de alcance.</p>
+  <h4>Entradas</h4>
+  <div class="gr">
+    <div class="cd"><strong>Enunciado del Alcance del Proyecto:</strong> Descripción del producto, inclusiones, exclusiones y criterios de aceptación definidos en la sección 6.1.</div>
+    <div class="cd"><strong>Documentación de Requisitos:</strong> Necesidades funcionales y no funcionales levantadas en las tres sesiones de entrevista con la Gerencia.</div>
+    <div class="cd"><strong>Plan de Gestión del Alcance:</strong> Criterios y reglas con los que se descompone el alcance en entregables y paquetes de trabajo.</div>
+  </div>
+  <h4>Herramientas y Técnicas</h4>
+  <div class="gr">
+    <div class="cd"><strong>Descomposición</strong> Subdivisión del alcance total del proyecto en componentes más pequeños y manejables, hasta llegar a paquetes de trabajo verificables.</div>
+  </div>
+  <h4>Salidas — EDT/WBS</h4>
+  <div id="wbs-tree" style="margin-top: 2rem; margin-bottom: 2rem;">
+    <style>
+      #wbs-tree { overflow-x: auto; }
+      #wbs-tree .edt-wrap { min-width: 1150px; padding: 2rem 1rem; background: #fafbfe; border-radius: 16px; border: 1px solid #e2e8f0; }
+      #wbs-tree .root-node { text-align: center; margin-bottom: 0; }
+      #wbs-tree .root-box { display: inline-block; background: linear-gradient(135deg, #183d7c, #1a56b0); color: #fff; padding: 1rem 2.5rem; border-radius: 14px; font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; box-shadow: 0 6px 18px rgba(24,61,124,.3); }
+      #wbs-tree .root-conn { display: flex; justify-content: center; position: relative; height: 50px; }
+      #wbs-tree .root-conn::before { content: ''; position: absolute; top: 0; left: 50%; width: 2px; height: 25px; background: #94a3b8; }
+      #wbs-tree .root-conn::after { content: ''; position: absolute; top: 25px; left: calc(100%/12); right: calc(100%/12); height: 2px; background: #94a3b8; }
+      #wbs-tree .lvl1 { display: flex; justify-content: space-around; gap: 12px; position: relative; }
+      #wbs-tree .branch { flex: 1; display: flex; flex-direction: column; align-items: center; min-width: 160px; }
+      #wbs-tree .branch-conn { width: 2px; height: 25px; background: #94a3b8; }
+      #wbs-tree .cat-node { text-align: center; padding: .8rem .6rem; border-radius: 12px; font-weight: 700; font-size: .82rem; line-height: 1.3; border: 2.5px solid; min-height: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 185px; box-shadow: 0 3px 8px rgba(0,0,0,.06); position: relative; }
+      #wbs-tree .cat-node .cat-id { display: block; font-size: 1.1rem; margin-bottom: .2rem; }
+      #wbs-tree .cat-node .cat-label { font-size: .78rem; font-weight: 600; }
+      #wbs-tree .cat-blue { border-color: #1f5fbf; background: #eff6ff; color: #1f5fbf; }
+      #wbs-tree .cat-green { border-color: #2c9a44; background: #f0fdf4; color: #2c9a44; }
+      #wbs-tree .cat-orange { border-color: #f37b21; background: #fff7ed; color: #ea580c; }
+      #wbs-tree .cat-purple { border-color: #7c4dff; background: #faf5ff; color: #7c4dff; }
+      #wbs-tree .cat-cyan { border-color: #00a9b7; background: #ecfeff; color: #00a9b7; }
+      #wbs-tree .child-conn { width: 2px; height: 20px; }
+      #wbs-tree .child-conn.cc-blue { background: #1f5fbf; }
+      #wbs-tree .child-conn.cc-green { background: #2c9a44; }
+      #wbs-tree .child-conn.cc-orange { background: #f37b21; }
+      #wbs-tree .child-conn.cc-purple { background: #7c4dff; }
+      #wbs-tree .child-conn.cc-cyan { background: #00a9b7; }
+      #wbs-tree .pkg-list { width: 100%; max-width: 185px; border-radius: 10px; border: 2px solid; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
+      #wbs-tree .pkg-list .pkg-header { text-align: center; padding: .4rem; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #fff; }
+      #wbs-tree .pkg-list .pkg-item { display: flex; align-items: center; gap: 6px; padding: .45rem .6rem; font-size: .74rem; color: #334155; border-bottom: 1px solid #f1f5f9; background: #fff; transition: background .15s; }
+      #wbs-tree .pkg-list .pkg-item:last-child { border-bottom: none; }
+      #wbs-tree .pkg-list .pkg-item:hover { background: #f8fafc; }
+      #wbs-tree .pkg-list .pkg-item .pid { font-weight: 700; font-size: .68rem; padding: .15rem .4rem; border-radius: 4px; background: #f1f5f9; color: #64748b; flex-shrink: 0; min-width: 32px; text-align: center; }
+      #wbs-tree .pkg-blue { border-color: #1f5fbf; }
+      #wbs-tree .pkg-blue .pkg-header { background: #1f5fbf; }
+      #wbs-tree .pkg-green { border-color: #2c9a44; }
+      #wbs-tree .pkg-green .pkg-header { background: #2c9a44; }
+      #wbs-tree .pkg-orange { border-color: #f37b21; }
+      #wbs-tree .pkg-orange .pkg-header { background: #f37b21; }
+      #wbs-tree .pkg-purple { border-color: #7c4dff; }
+      #wbs-tree .pkg-purple .pkg-header { background: #7c4dff; }
+      #wbs-tree .pkg-cyan { border-color: #00a9b7; }
+      #wbs-tree .pkg-cyan .pkg-header { background: #00a9b7; }
+      #wbs-tree .pkg-red { border-color: #d32f2f; }
+      #wbs-tree .pkg-red .pkg-header { background: #d32f2f; }
+      #wbs-tree .pkg-item.four-level { background: #ffffff; box-shadow: inset 0 0 0 1px rgba(15,23,42,.05), 0 1px 4px rgba(15,23,42,.08); }
+      #wbs-tree .pkg-item.four-level .pid { background: #e2e8f0; }
+      #wbs-tree .edt-note { margin-top: 1.5rem; padding: 1rem 1.2rem; border: 2px dashed #bfc7d8; border-radius: 10px; background: #f9fbff; }
+      #wbs-tree .edt-note strong { color: #18315c; }
+      #wbs-tree .edt-note p { font-size: .85rem; color: #475569; margin: 0; line-height: 1.6; }
+    </style>
+    <div class="edt-wrap">
+      <div class="root-node">
+        <div class="root-box">1. Transformación Digital Roma Bag's</div>
+      </div>
+      <div class="root-conn"></div>
+      <div class="lvl1">
+        <div class="branch">
+          <div class="branch-conn"></div>
+          <div class="cat-node cat-blue"><span class="cat-id">1.1</span><span class="cat-label">Gestión del Proyecto</span></div>
+          <div class="child-conn cc-blue"></div>
+          <div class="pkg-list pkg-blue"><div class="pkg-header">Entregables</div><div class="pkg-item"><span class="pid">1.1.1</span> Acta de Constitución del Proyecto aprobada</div><div class="pkg-item"><span class="pid">1.1.2</span> Plan de Gestión del Alcance y Cronograma aprobado</div><div class="pkg-item"><span class="pid">1.1.3</span> Informes de avance semanales</div><div class="pkg-item"><span class="pid">1.1.4</span> Registro de control de cambios</div><div class="pkg-item"><span class="pid">1.1.5</span> Documento de lecciones aprendidas</div><div class="pkg-item"><span class="pid">1.1.6</span> Acta de Cierre Formal firmada</div></div>
+        </div>
+        <div class="branch">
+          <div class="branch-conn"></div>
+          <div class="cat-node cat-green"><span class="cat-id">1.2</span><span class="cat-label">Diagnóstico y Requisitos (AS-IS)</span></div>
+          <div class="child-conn cc-green"></div>
+          <div class="pkg-list pkg-green"><div class="pkg-header">Entregables</div><div class="pkg-item"><span class="pid">1.2.1</span> Documentación del flujo de información actual</div><div class="pkg-item"><span class="pid">1.2.2</span> Auditoría de infraestructura tecnológica y conectividad</div><div class="pkg-item"><span class="pid">1.2.3</span> Fichas de Requisitos del sistema (REQ-01 a REQ-05)</div><div class="pkg-item"><span class="pid">1.2.4</span> Matriz de Trazabilidad de Requisitos aprobada</div></div>
+        </div>
+        <div class="branch">
+          <div class="branch-conn"></div>
+          <div class="cat-node cat-orange"><span class="cat-id">1.3</span><span class="cat-label">Fase 1<br> Cimentar</span></div>
+          <div class="child-conn cc-orange"></div>
+          <div class="pkg-list pkg-orange"><div class="pkg-header">Entregables</div><div class="pkg-item"><span class="pid">1.3.1</span> Base de datos centralizada ligera configurada</div><div class="pkg-item"><span class="pid">1.3.1.1</span> Modelo de datos (estructura de tablas y relaciones)</div><div class="pkg-item"><span class="pid">1.3.1.2</span> Base centralizada desplegada (no-code / Airtable o Sheets estructurado)</div><div class="pkg-item"><span class="pid">1.3.1.3</span> Reglas de validación de ingreso configuradas</div><div class="pkg-item"><span class="pid">1.3.1.4</span> Acceso de consulta de stock desde celular operativo</div><div class="pkg-item"><span class="pid">1.3.2</span> Infraestructura y conectividad habilitada</div><div class="pkg-item"><span class="pid">1.3.2.1</span> Diagnóstico de zonas muertas de Wi-Fi documentado</div><div class="pkg-item"><span class="pid">1.3.2.2</span> Solución de red del taller implementada</div><div class="pkg-item"><span class="pid">1.3.2.3</span> Prueba de acceso por datos móviles 4G/5G verificada</div><div class="pkg-item"><span class="pid">1.3.3</span> Procesos y Gobierno de Datos (Fase 1)</div><div class="pkg-item"><span class="pid">1.3.3.1</span> SOPs del flujo venta-stock-despacho redactados y firmados</div><div class="pkg-item"><span class="pid">1.3.3.2</span> Política de respaldo y seguridad de datos aprobada</div><div class="pkg-item"><span class="pid">1.3.3.3</span> Protocolo de coexistencia con Excel definido</div><div class="pkg-item"><span class="pid">1.3.4</span> GATE 1 — Acta de Aprobación Fase Cimentar firmada por la Gerencia</div></div>
+        </div>
+        <div class="branch">
+          <div class="branch-conn"></div>
+          <div class="cat-node cat-purple"><span class="cat-id">1.4</span><span class="cat-label">Fase 2<br> Integrar</span></div>
+          <div class="child-conn cc-purple"></div>
+          <div class="pkg-list pkg-purple"><div class="pkg-header">Entregables</div><div class="pkg-item"><span class="pid">1.4.1</span> Infraestructura Odoo desplegada</div><div class="pkg-item"><span class="pid">1.4.1.1</span> Servidor de despliegue configurado (nube básica)</div><div class="pkg-item"><span class="pid">1.4.1.2</span> Odoo Community instalado y parametrizado</div><div class="pkg-item"><span class="pid">1.4.1.3</span> Perfiles de acceso por rol configurados (Gerencia, Ventas, Producción)</div><div class="pkg-item"><span class="pid">1.4.2</span> Módulo de Inventario implementado</div><div class="pkg-item"><span class="pid">1.4.2.1</span> Catálogo de productos y variantes cargado</div><div class="pkg-item"><span class="pid">1.4.2.2</span> Migración de datos desde la base centralizada de Fase 1</div><div class="pkg-item"><span class="pid">1.4.2.3</span> Algoritmo de rebaja automática de stock configurado</div><div class="pkg-item"><span class="pid">1.4.2.4</span> Consolidador de registros de talleres duales operativo</div><div class="pkg-item"><span class="pid">1.4.3</span> Módulo de Ventas y Despachos implementado</div><div class="pkg-item"><span class="pid">1.4.3.1</span> Formulario de registro de ventas con validaciones configurado</div><div class="pkg-item"><span class="pid">1.4.3.2</span> Flujo secuencial mandatorio Venta-Stock-Despacho configurado</div><div class="pkg-item"><span class="pid">1.4.3.3</span> Vista de despacho para personal motorizado operativa</div><div class="pkg-item"><span class="pid">1.4.4</span> Pruebas y Aseguramiento de Calidad</div><div class="pkg-item"><span class="pid">1.4.4.1</span> Casos de prueba UAT redactados (CP-01 a CP-06)</div><div class="pkg-item"><span class="pid">1.4.4.2</span> Pruebas técnicas de conectividad ejecutadas</div><div class="pkg-item"><span class="pid">1.4.4.3</span> UAT con Personal de Ventas ejecutada y aprobada</div><div class="pkg-item"><span class="pid">1.4.4.4</span> UAT con Socio de Producción ejecutada y aprobada</div><div class="pkg-item"><span class="pid">1.4.4.5</span> UAT con Gerencia ejecutada y aprobada</div><div class="pkg-item"><span class="pid">1.4.4.6</span> Certificado de Cero Errores Críticos emitido</div><div class="pkg-item"><span class="pid">1.4.5</span> GATE 2 — Acta de Aprobación Fase Integrar firmada por la Gerencia</div></div>
+        </div>
+        <div class="branch">
+          <div class="branch-conn"></div>
+          <div class="cat-node cat-cyan"><span class="cat-id">1.5</span><span class="cat-label">Fase 3<br> Optimizar</span></div>
+          <div class="child-conn cc-cyan"></div>
+          <div class="pkg-list pkg-cyan"><div class="pkg-header">Entregables</div><div class="pkg-item"><span class="pid">1.5.1</span> Módulo Analítico y Gerencial implementado</div><div class="pkg-item"><span class="pid">1.5.1.1</span> Panel de reportes de rentabilidad y KPIs configurado</div><div class="pkg-item"><span class="pid">1.5.1.2</span> Reporte de ganancia neta mensual automatizado</div><div class="pkg-item"><span class="pid">1.5.1.3</span> Acceso restringido por rol verificado</div><div class="pkg-item"><span class="pid">1.5.2</span> Capacitación y Despliegue Final</div><div class="pkg-item"><span class="pid">1.5.2.1</span> Manuales de usuario por rol elaborados</div><div class="pkg-item"><span class="pid">1.5.2.2</span> Guía de auto-recuperación ante incidencias básicas elaborada</div><div class="pkg-item"><span class="pid">1.5.2.3</span> Taller de capacitación Personal de Ventas ejecutado</div><div class="pkg-item"><span class="pid">1.5.2.4</span> Taller de capacitación Socio de Producción y operarios ejecutado</div><div class="pkg-item"><span class="pid">1.5.2.5</span> Sesión de capacitación Gerencia (Natalie) ejecutada</div><div class="pkg-item"><span class="pid">1.5.2.6</span> Despliegue final en 100% de dispositivos del personal verificado</div><div class="pkg-item"><span class="pid">1.5.3</span> Monitoreo Post-Despliegue</div><div class="pkg-item"><span class="pid">1.5.3.1</span> Seguimiento de operaciones reales sobre Odoo (primera semana productiva)</div><div class="pkg-item"><span class="pid">1.5.3.2</span> Verificación de reportes gerenciales en uso real</div><div class="pkg-item"><span class="pid">1.5.4</span> Cierre Formal</div><div class="pkg-item"><span class="pid">1.5.4.1</span> Recopilación de lecciones aprendidas documentada</div><div class="pkg-item"><span class="pid">1.5.4.2</span> Informe final del proyecto elaborado</div><div class="pkg-item"><span class="pid">1.5.4.3</span> Verificación de criterios de aceptación cumplidos</div><div class="pkg-item"><span class="pid">1.5.4.4</span> GATE 3 — Acta de Conformidad y Cierre firmada por Gerencia</div></div>
+        </div>
+      </div>
+      <div class="edt-note"><p><strong>NOTA METODOLÓGICA:</strong> La presente estructura sigue el enfoque de desglose orientado a entregables del Ecosistema de Gestión de Información. Se asegura la regla del 100 % de la EDT/WBS, cubriendo la gestión del proyecto, diagnóstico, plataforma de datos, procesos, adopción e infraestructura para Roma Bag's.</p></div>
+    </div>
+  </div>
+  <script is:inline>
+    document.querySelectorAll('#wbs-tree .pkg-item').forEach(item => {
+      const pid = item.querySelector('.pid')?.textContent?.trim();
+      if (pid && /^\d+\.\d+\.\d+\.\d+$/.test(pid)) {
+        item.classList.add('four-level');
+      }
+    });
+  </script>
+</section>
+
+<section class="sec" id="c10-3">
+  <h4>6.3 Diccionario EDT / WBS</h4>
+  <p><strong>DICCIONARIO DE LA EDT/WBS PROYECTO:</strong> Transformación Digital Roma Bag's</p>
+  <p><strong>SOLUCIÓN:</strong> Transformación Digital Híbrida por Fases</p>
+  <p><strong>FECHA DE ELABORACIÓN:</strong> Julio 2026</p>
+  <p><strong>ELABORADO POR:</strong> Equipo Consultor UNTELS</p>
+
+  <div class="dic-section-header">
+    <span>Diccionario de la EDT/WBS en bloques ordenados</span>
+    <small>Cada entrada muestra el paquete de trabajo, su fase padre, descripción y criterios clave en un bloque separado y con numeración visual.</small>
+  </div>
+  <div class="dic-grid">
+    <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.1.1</h5>
+    <p><strong>Nombre:</strong> Acta de Constitución del Proyecto aprobada</p>
+    <p><strong>Código EDT:</strong> 1.1.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.1 Gestión del Proyecto</p>
+    <p><strong>Descripción del trabajo:</strong> Redacción del documento formal que autoriza el inicio oficial del proyecto Transformación Digital Roma Bag's. Incluye la descripción del problema central (dispersión de información, descoordinación ventas-producción, sobrecostos por pedidos incompletos), el objetivo general del proyecto, el alcance de alto nivel (tres fases: Cimentar, Integrar y Optimizar), el enfoque híbrido seleccionado, los interesados clave identificados, el presupuesto estimado a nivel macro, el cronograma de hitos principales y las restricciones y supuestos del proyecto.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El documento debe estar firmado por Natalie (Gerencia General de Roma Bag's) y por el Líder del Proyecto antes de iniciar cualquier actividad del diagnóstico.</p>
+    <p><strong>Supuestos:</strong> La Gerencia de Roma Bag's dispone de tiempo para la reunión de arranque en la primera semana de septiembre de 2026.</p>
+    <p><strong>Restricciones:</strong> El acta debe completarse y firmarse antes del cierre de la Semana 1 del proyecto.</p>
+    <p><strong>Duración estimada:</strong> 4 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.1.2</h5>
+    <p><strong>Nombre:</strong> Plan de Gestión del Alcance y Cronograma aprobado</p>
+    <p><strong>Código EDT:</strong> 1.1.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.1 Gestión del Proyecto</p>
+    <p><strong>Descripción del trabajo:</strong> Elaboración del plan que documenta cómo se definirá, validará y controlará el alcance durante todo el proyecto, y cómo se desarrollará, controlará y monitoreará el cronograma. Incluye el método de planificación seleccionado (híbrido con enfoque predictivo por fases y gates de decisión), la herramienta de cronograma (GanttPRO), la frecuencia de actualización del cronograma (semanal), los umbrales de alerta por desviación (SPI menor a 0.85) y el proceso de control de cambios.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El plan debe ser revisado y aprobado por el Líder del Proyecto antes del inicio del diagnóstico. Debe ser coherente con la EDT aprobada.</p>
+    <p><strong>Supuestos:</strong> El equipo consultor tiene acceso a GanttPRO desde la Semana 1.</p>
+    <p><strong>Restricciones:</strong> El plan debe completarse en paralelo con el Acta de Constitución, no después.</p>
+    <p><strong>Duración estimada:</strong> 3 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.1.3</h5>
+    <p><strong>Nombre:</strong> Informes de avance semanales</p>
+    <p><strong>Código EDT:</strong> 1.1.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.1 Gestión del Proyecto</p>
+    <p><strong>Descripción del trabajo:</strong> Preparación y distribución de un informe de estado del proyecto cada semana, durante toda la duración del proyecto. Cada informe incluye el porcentaje de avance real vs. planificado por fase, el estado de los hitos, los riesgos activos y su respuesta, las decisiones tomadas en la semana y las actividades planificadas para la semana siguiente. Se calcula el Índice de Desempeño del Cronograma (SPI) para alertar desviaciones.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> Un informe por semana, distribuido al equipo y a la Gerencia de Roma Bag's en un formato conciso de no más de una página o pantalla.</p>
+    <p><strong>Supuestos:</strong> La Gerencia revisa y confirma el recibo del informe cada semana.</p>
+    <p><strong>Restricciones:</strong> No reemplaza las reuniones de gate; es un documento de seguimiento intermedio.</p>
+    <p><strong>Duración estimada:</strong> Recurrente (0.5 días hábiles por semana durante todo el proyecto)</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.1.4</h5>
+    <p><strong>Nombre:</strong> Registro de control de cambios</p>
+    <p><strong>Código EDT:</strong> 1.1.4</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.1 Gestión del Proyecto</p>
+    <p><strong>Descripción del trabajo:</strong> Mantenimiento del registro formal donde se documentan todas las solicitudes de cambio al alcance, cronograma o presupuesto del proyecto. Cada entrada incluye: fecha, solicitante, descripción del cambio propuesto, impacto en alcance/tiempo/costo, decisión tomada (aprobado, rechazado o diferido) y firma de aprobación. Ningún cambio al alcance se ejecuta sin estar registrado y aprobado formalmente.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> El registro debe estar actualizado en cada reunión de seguimiento semanal. Todo cambio aprobado debe reflejarse en la EDT y el cronograma antes de la siguiente semana.</p>
+    <p><strong>Supuestos:</strong> Los miembros del equipo notifican al Líder del Proyecto cualquier solicitud de cambio antes de ejecutarla.</p>
+    <p><strong>Restricciones:</strong> Cambios no registrados ni aprobados se consideran fuera del alcance y no se ejecutan.</p>
+    <p><strong>Duración estimada:</strong> Recurrente durante todo el proyecto</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.1.5</h5>
+    <p><strong>Nombre:</strong> Documento de lecciones aprendidas</p>
+    <p><strong>Código EDT:</strong> 1.1.5</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.1 Gestión del Proyecto</p>
+    <p><strong>Descripción del trabajo:</strong> Recopilación y documentación de las lecciones aprendidas durante el proyecto, al cierre de cada fase y al cierre final del proyecto. Incluye qué funcionó bien, qué no funcionó, qué se recomendaría para una segunda fase de implementación (escalamiento a nuevos módulos de Odoo), y qué prácticas deberían adoptarse o evitarse en proyectos similares de transformación digital en microempresas.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto con participación de todo el equipo consultor</p>
+    <p><strong>Criterio de aceptación:</strong> El documento final debe incluir lecciones de las tres fases del proyecto y estar firmado por el Líder del Proyecto.</p>
+    <p><strong>Supuestos:</strong> Los miembros del equipo participan activamente en las sesiones de cierre de fase.</p>
+    <p><strong>Restricciones:</strong> Debe completarse antes de la firma del Acta de Cierre Formal.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles (al cierre del proyecto)</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.1.6</h5>
+    <p><strong>Nombre:</strong> Acta de Cierre Formal firmada</p>
+    <p><strong>Código EDT:</strong> 1.1.6</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.1 Gestión del Proyecto</p>
+    <p><strong>Descripción del trabajo:</strong> Redacción y obtención de la firma del acta que cierra oficialmente el proyecto. Incluye la verificación del cumplimiento de todos los criterios de aceptación definidos en el Enunciado del Alcance: 100% de registros en Odoo, consulta de stock en menos de 2 minutos, cuadre semanal reducido de 1 día a menos de 1 hora, cero errores críticos en producción, y conformidad de la Gerencia. El acta libera formalmente al equipo consultor de sus responsabilidades sobre el proyecto.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> Firmada por Natalie como usuaria principal y patrocinadora del proyecto.</p>
+    <p><strong>Supuestos:</strong> Todos los criterios de aceptación del Gate 3 se cumplen antes de solicitar la firma.</p>
+    <p><strong>Restricciones:</strong> No se puede firmar el acta si algún criterio de aceptación no fue verificado.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.2.1</h5>
+    <p><strong>Nombre:</strong> Documentación del flujo de información actual</p>
+    <p><strong>Código EDT:</strong> 1.2.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
+    <p><strong>Descripción del trabajo:</strong> Observación directa y documentación del flujo actual de información en Roma Bag's: cómo se registran las ventas (6 celulares sin sincronización), cómo se controla el inventario (cuadernos físicos), cómo se realiza el cuadre de caja (proceso manual de un día completo los sábados), y cómo se coordina entre ventas y producción (comunicación informal). El resultado es un diagrama de flujo AS-IS que muestra los puntos de pérdida de datos, cuellos de botella y sobrecostos actuales documentados (S/.19 a S/.24 por pedido incompleto, 9 pedidos incompletos mensuales).</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El diagrama AS-IS debe ser validado y firmado por Natalie como representación fiel del proceso actual antes de proceder con el diagnóstico técnico.</p>
+    <p><strong>Supuestos:</strong> Natalie y el Socio de Producción están disponibles para las sesiones de observación y entrevista en la Semana 2 del proyecto.</p>
+    <p><strong>Restricciones:</strong> Se trabaja sobre los procesos actuales reales; no se propone ninguna mejora en esta etapa.</p>
+    <p><strong>Duración estimada:</strong> 3 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.2.2</h5>
+    <p><strong>Nombre:</strong> Auditoría de infraestructura tecnológica y conectividad</p>
+    <p><strong>Código EDT:</strong> 1.2.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
+    <p><strong>Descripción del trabajo:</strong> Inventario y evaluación técnica de los activos tecnológicos de Roma Bag's: 3 laptops Lenovo Core i5 12va generación con 24 GB RAM (subutilizadas), 6 celulares del personal, router Movistar con zonas muertas de Wi-Fi identificadas, y conectividad de datos móviles 4G/5G disponible. Incluye prueba de velocidad de red, mapeo de zonas sin cobertura Wi-Fi, y verificación de que los dispositivos existentes son suficientes para soportar el ERP Odoo Community sin adquirir hardware nuevo.</p>
+    <p><strong>Responsable:</strong> Analista de Infraestructura / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El informe de auditoría debe confirmar qué dispositivos son aptos para Odoo, cuáles zonas requieren solución de red, y si la conectividad existente (Wi-Fi + 4G/5G) garantiza operación continua del sistema.</p>
+    <p><strong>Supuestos:</strong> El acceso físico al taller para la auditoría está autorizado por la Gerencia desde el inicio del diagnóstico.</p>
+    <p><strong>Restricciones:</strong> No se adquiere hardware nuevo en ninguna fase del proyecto; la solución debe funcionar sobre los activos existentes.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.2.3</h5>
+    <p><strong>Nombre:</strong> Fichas de Requisitos del sistema aprobadas</p>
+    <p><strong>Código EDT:</strong> 1.2.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
+    <p><strong>Descripción del trabajo:</strong> Elaboración de las fichas formales de requisitos (REQ-01 a REQ-05 como mínimo) que documentan cada necesidad validada con los interesados. Cada ficha incluye: identificador, tipo (funcional o no funcional), descripción, justificación, fuente (interesado que lo propone), criterios de validación, grado de satisfacción e insatisfacción, dependencias entre requisitos y documentos de soporte (transcripciones de entrevistas, evidencias fotográficas). Los requisitos mínimos identificados son: reporte gerencial de utilidades (REQ-01), consulta de stock desde celular (REQ-02), registro digital de insumos y producción (REQ-03), resiliencia ante inestabilidad de red (REQ-04), y capacitación y auto-recuperación (REQ-05).</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Cada ficha debe estar validada y firmada por el interesado que la originó (Natalie para REQ-01, REQ-02 y REQ-05; Socio de Producción para REQ-03; Equipo Técnico para REQ-04).</p>
+    <p><strong>Supuestos:</strong> Las transcripciones de las tres sesiones de entrevista previas (21 abr, 4 may, 14 may 2026) son suficientes para fundamentar los requisitos sin necesidad de sesiones adicionales.</p>
+    <p><strong>Restricciones:</strong> Ningún requisito puede ser modificado unilateralmente por el equipo consultor sin aprobación formal del interesado que lo originó.</p>
+    <p><strong>Duración estimada:</strong> 4 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.2.4</h5>
+    <p><strong>Nombre:</strong> Matriz de Trazabilidad de Requisitos aprobada</p>
+    <p><strong>Código EDT:</strong> 1.2.4</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
+    <p><strong>Descripción del trabajo:</strong> Construcción de la matriz que vincula cada requisito con su necesidad de negocio, el objetivo del proyecto que satisface, el entregable de la EDT que lo materializa, y el caso de prueba que lo verifica. Garantiza que ningún requisito quede sin un entregable que lo cubra y que ningún entregable exista sin un requisito que lo justifique. La trazabilidad va desde la entrevista de campo hasta el caso de prueba de aceptación.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto / Analista de Sistemas UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> La matriz debe ser revisada y aprobada por la Gerencia de Roma Bag's. Toda modificación a un requisito debe rastrearse automáticamente en la matriz para evaluar su impacto en la EDT y el cronograma.</p>
+    <p><strong>Supuestos:</strong> Las fichas de requisitos (1.2.3) están completadas y aprobadas antes de iniciar la matriz.</p>
+    <p><strong>Restricciones:</strong> La matriz debe mantenerse actualizada durante todo el proyecto; no es un documento que se elabora una vez y se archiva.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.3.1.1</h5>
+    <p><strong>Nombre:</strong> Modelo de datos (estructura de tablas y relaciones)</p>
+    <p><strong>Código EDT:</strong> 1.3.1.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.3.1 Base de datos centralizada ligera configurada / 1.3 Fase 1 Cimentar</p>
+    <p><strong>Descripción del trabajo:</strong> Diseño del modelo conceptual de la base de datos que servirá como fuente única de verdad en la Fase 1. Define las entidades principales (productos, ventas, clientes, insumos, despachos), sus atributos y las relaciones entre ellas. Este modelo es el plano de construcción de la base centralizada y debe ser compatible con la migración posterior a Odoo Community en la Fase 2, para que los datos no deban ser re-ingresados al cambiar de plataforma.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El modelo debe ser revisado por el Líder del Proyecto y validado contra los requisitos REQ-01 y REQ-02. Debe incluir todas las entidades necesarias para cubrir inventario, ventas y despachos.</p>
+    <p><strong>Supuestos:</strong> El catálogo de productos de Roma Bag's (modelos de carteras, variantes, materiales) es proporcionado por la Gerencia antes del inicio de la Fase 1.</p>
+    <p><strong>Restricciones:</strong> El modelo debe ser compatible con la estructura de datos nativa de Odoo para facilitar la migración en la Fase 2 sin pérdida de información.</p>
+    <p><strong>Duración estimada:</strong> 3 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.3.1.2</h5>
+    <p><strong>Nombre:</strong> Base centralizada desplegada</p>
+    <p><strong>Código EDT:</strong> 1.3.1.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.3.1 Base de datos centralizada ligera configurada / 1.3 Fase 1 Cimentar</p>
+    <p><strong>Descripción del trabajo:</strong> Configuración y puesta en marcha de la base de datos centralizada ligera que funcionará como fuente única de verdad durante la Fase 1, usando una plataforma no-code o low-code de bajo costo y alta accesibilidad (Airtable o Google Sheets estructurado con controles de versión). Esta base centraliza en un solo lugar los registros de inventario, ventas y despachos que hoy están dispersos en cuadernos físicos, Excel local y 6 celulares sin sincronización. Es la solución de la Fase 1 antes de migrar a Odoo en la Fase 2.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> La base debe estar accesible desde todos los celulares del personal, debe permitir el registro y la consulta de stock en tiempo real, y debe tener respaldo automático activado para evitar la pérdida de datos (en respuesta al trauma documentado de la pérdida del historial de 2024).</p>
+    <p><strong>Supuestos:</strong> La conectividad de la Fase 1 (Wi-Fi mejorado o datos móviles) es suficiente para el acceso simultáneo de los 6 celulares.</p>
+    <p><strong>Restricciones:</strong> Esta plataforma es temporal; en la Fase 2 los datos se migran a Odoo. No se debe invertir en personalizaciones complejas que no sean portables a Odoo.</p>
+    <p><strong>Duración estimada:</strong> 3 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.3.1.3</h5>
+    <p><strong>Nombre:</strong> Reglas de validación de ingreso configuradas</p>
+    <p><strong>Código EDT:</strong> 1.3.1.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.3.1 Base de datos centralizada ligera configurada / 1.3 Fase 1 Cimentar</p>
+    <p><strong>Descripción del trabajo:</strong> Configuración de las reglas que garantizan la calidad del dato desde el momento del ingreso: campos obligatorios (modelo de producto, cantidad, cliente, fecha), formatos válidos (números positivos para cantidades, fechas reales), y bloqueos que impidan registrar una venta con stock cero. Estas reglas son el primer nivel de gobierno de datos del proyecto y responden directamente a la causa raíz CD2 (procesos manuales sin validación automática).</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El sistema debe rechazar el registro de una venta sin modelo y cantidad completados, y debe alertar cuando el stock del modelo consultado es igual a cero.</p>
+    <p><strong>Supuestos:</strong> La plataforma seleccionada (Airtable o Sheets) permite configurar estas reglas sin desarrollo a medida.</p>
+    <p><strong>Restricciones:</strong> Las reglas deben ser simples y no generar fricción adicional para el personal; si una regla ralentiza el ingreso, debe simplificarse.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.3.1.4</h5>
+    <p><strong>Nombre:</strong> Acceso de consulta de stock desde celular operativo</p>
+    <p><strong>Código EDT:</strong> 1.3.1.4</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.3.1 Base de datos centralizada ligera configurada / 1.3 Fase 1 Cimentar</p>
+    <p><strong>Descripción del trabajo:</strong> Configuración y verificación de la vista de consulta rápida de stock que permite al personal de ventas conocer la disponibilidad real de cualquier modelo de cartera desde su celular en menos de 2 minutos. Esta vista es el entregable más crítico de la Fase 1 porque resuelve directamente el dolor inmediato de los 9 pedidos incompletos mensuales causados por falsos positivos de stock.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Un vendedor debe poder consultar el stock de cualquier modelo en menos de 2 minutos desde su celular, sin ayuda del equipo consultor, usando solo la vista configurada. Esto se verifica con una prueba cronometrada con el personal de ventas.</p>
+    <p><strong>Supuestos:</strong> La conectividad del taller es suficiente para acceder a la base desde el celular durante las ventas en transmisiones en vivo.</p>
+    <p><strong>Restricciones:</strong> La consulta debe funcionar también por datos móviles 4G/5G en caso de falla del Wi-Fi.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.3.2.1</h5>
+    <p><strong>Nombre:</strong> Diagnóstico de zonas muertas de Wi-Fi documentado</p>
+    <p><strong>Código EDT:</strong> 1.3.2.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.3.2 Infraestructura y conectividad habilitada / 1.3 Fase 1 Cimentar</p>
+    <p><strong>Descripción del trabajo:</strong> Mapeo físico de las zonas del taller donde la señal Wi-Fi es insuficiente o inexistente, mediante pruebas de cobertura en cada área de trabajo (producción, almacén, área comercial, punto de despacho). Se documenta el resultado con capturas del test de velocidad y un plano simplificado del local marcando las zonas sin cobertura. Este diagnóstico es la evidencia que justifica la inversión en la solución de red.</p>
+    <p><strong>Responsable:</strong> Analista de Infraestructura / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El informe debe identificar al menos una zona muerta confirmada con evidencia fotográfica y resultado del test de velocidad.</p>
+    <p><strong>Supuestos:</strong> El acceso físico a todas las áreas del taller está autorizado por la Gerencia.</p>
+    <p><strong>Restricciones:</strong> El diagnóstico debe completarse antes de proponer ninguna solución de red.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.3.2.2</h5>
+    <p><strong>Nombre:</strong> Solución de red del taller implementada</p>
+    <p><strong>Código EDT:</strong> 1.3.2.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.3.2 Infraestructura y conectividad habilitada / 1.3 Fase 1 Cimentar</p>
+    <p><strong>Descripción del trabajo:</strong> Implementación de la solución de conectividad seleccionada para eliminar las zonas muertas de Wi-Fi en el taller, basada en el diagnóstico del paquete 1.3.2.1. Puede ser la instalación de un repetidor o punto de acceso adicional, o la reconfiguración del router existente. La solución debe garantizar que todos los dispositivos del personal (6 celulares y 3 laptops) tengan cobertura estable en las áreas de trabajo.</p>
+    <p><strong>Responsable:</strong> Analista de Infraestructura / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Después de la implementación, un test de velocidad en cada zona del taller debe mostrar conectividad operativa. No deben quedar zonas muertas confirmadas en el diagnóstico previo.</p>
+    <p><strong>Supuestos:</strong> El costo del equipamiento de red (repetidor o punto de acceso) está dentro del presupuesto aprobado del proyecto.</p>
+    <p><strong>Restricciones:</strong> No se cambia el proveedor de internet (Movistar fibra óptica); solo se mejora la distribución interna de la señal.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.3.2.3</h5>
+    <p><strong>Nombre:</strong> Prueba de acceso por datos móviles 4G/5G verificada</p>
+    <p><strong>Código EDT:</strong> 1.3.2.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.3.2 Infraestructura y conectividad habilitada / 1.3 Fase 1 Cimentar</p>
+    <p><strong>Descripción del trabajo:</strong> Verificación de que el sistema es accesible y operable desde los celulares del personal usando datos móviles 4G/5G en los casos en que el Wi-Fi no esté disponible. Se simula una caída del router y se verifica que el acceso a la base centralizada continúa funcionando por datos móviles sin pérdida de registros en tránsito.</p>
+    <p><strong>Responsable:</strong> Analista de Infraestructura / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El personal puede acceder al sistema y registrar una venta de prueba usando solo datos móviles durante la simulación de corte de Wi-Fi, sin pérdida de datos.</p>
+    <p><strong>Supuestos:</strong> Los celulares del personal tienen plan de datos móviles activo.</p>
+    <p><strong>Restricciones:</strong> La prueba debe realizarse con el mismo tipo de dispositivo que usa el personal en el trabajo real.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.3.3.1</h5>
+    <p><strong>Nombre:</strong> SOPs del flujo venta-stock-despacho redactados y firmados</p>
+    <p><strong>Código EDT:</strong> 1.3.3.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.3.3 Procesos y Gobierno de Datos Fase 1 / 1.3 Fase 1 Cimentar</p>
+    <p><strong>Descripción del trabajo:</strong> Redacción de los Procedimientos Estándar de Operación (SOPs) que documentan paso a paso el flujo venta, descuento de stock y confirmación de despacho, usando la base centralizada de la Fase 1. Los SOPs definen quién hace qué, cuándo y en qué formato, eliminando la ambigüedad que hoy genera los pedidos incompletos. Incluyen el protocolo de registro obligatorio al momento del despacho y las instrucciones para el personal motorizado.</p>
+    <p><strong>Responsable:</strong> Analista de Procesos / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Los SOPs deben ser revisados y firmados por Natalie (Gerencia) y por el Socio de Producción como señal de compromiso de cumplimiento antes de la puesta en marcha de la Fase 1.</p>
+    <p><strong>Supuestos:</strong> El proceso TO-BE (flujo futuro) ya fue validado con la Gerencia y no habrá cambios de fondo durante la redacción de los SOPs.</p>
+    <p><strong>Restricciones:</strong> Los SOPs deben ser simples, visuales y de máximo dos páginas por proceso para facilitar su adopción por personal sin formación técnica.</p>
+    <p><strong>Duración estimada:</strong> 3 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.3.3.2</h5>
+    <p><strong>Nombre:</strong> Política de respaldo y seguridad de datos aprobada</p>
+    <p><strong>Código EDT:</strong> 1.3.3.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.3.3 Procesos y Gobierno de Datos Fase 1 / 1.3 Fase 1 Cimentar</p>
+    <p><strong>Descripción del trabajo:</strong> Elaboración y aprobación de la política que define cómo se respalda la información del sistema, con qué frecuencia, en qué medio y quién es responsable de verificar que el respaldo se realizó correctamente. Esta política responde directamente al riesgo documentado de pérdida de datos (el historial de 2024 se borró accidentalmente) y a la desconfianza de Natalie hacia herramientas que no garanticen la integridad de su información.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> La política debe incluir frecuencia de respaldo (mínimo diaria), medio de respaldo (nube), responsable de verificación, y procedimiento de recuperación ante pérdida. Debe estar firmada por la Gerencia.</p>
+    <p><strong>Supuestos:</strong> La plataforma de la Fase 1 permite configurar respaldos automáticos en la nube sin costo adicional.</p>
+    <p><strong>Restricciones:</strong> El respaldo no puede depender de una acción manual del personal; debe ser automático.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.3.3.3</h5>
+    <p><strong>Nombre:</strong> Protocolo de coexistencia con Excel definido</p>
+    <p><strong>Código EDT:</strong> 1.3.3.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.3.3 Procesos y Gobierno de Datos Fase 1 / 1.3 Fase 1 Cimentar</p>
+    <p><strong>Descripción del trabajo:</strong> Definición de las reglas de convivencia entre el sistema centralizado de la Fase 1 y el Excel actual de Natalie durante el período de transición. Establece qué datos siguen registrándose en Excel temporalmente, cuáles ya van exclusivamente al sistema nuevo, por cuánto tiempo se mantiene la convivencia, y cuál es el criterio para que el sistema sea la única fuente de verdad. Este protocolo es la respuesta formal a la restricción no negociable de la Gerencia de no abandonar el Excel de golpe.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El protocolo debe ser aprobado por Natalie y no debe generar duplicidad de trabajo que desincentive el uso del sistema nuevo.</p>
+    <p><strong>Supuestos:</strong> La coexistencia será temporal, con un plazo máximo de 4 semanas dentro de la Fase 1.</p>
+    <p><strong>Restricciones:</strong> El protocolo no puede requerir que Natalie ingrese el mismo dato en dos lugares distintos; debe definir claramente cuál fuente es la autoridad para cada tipo de dato.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.3.4</h5>
+    <p><strong>Nombre:</strong> Gate 1 — Acta de Aprobación Fase Cimentar firmada</p>
+    <p><strong>Código EDT:</strong> 1.3.4</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.3 Fase 1 Cimentar</p>
+    <p><strong>Descripción del trabajo:</strong> Reunión formal de revisión de cierre de la Fase 1 con la Gerencia de Roma Bag's. Se verifica el cumplimiento de los criterios de salida del Gate 1: 100% del inventario y ventas registrados en la base centralizada, consulta de stock funcionando en menos de 2 minutos desde el celular, cero zonas muertas de Wi-Fi en áreas de trabajo, SOPs firmados por todos los usuarios, y política de respaldo activa y verificada. Solo si todos los criterios se cumplen se autoriza el inicio de la Fase 2. Si algún criterio no se cumple, se ejecutan las correcciones necesarias y se convoca una nueva reunión de gate antes de continuar.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> Acta de aprobación firmada por Natalie (Gerencia General) como patrocinadora del proyecto.</p>
+    <p><strong>Supuestos:</strong> Natalie puede asistir a la reunión de gate dentro de los 2 días siguientes al aviso del equipo consultor.</p>
+    <p><strong>Restricciones:</strong> No se inicia ninguna actividad de la Fase 2 sin la firma de este gate.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil (reunión y firma del acta)</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.1.1</h5>
+    <p><strong>Nombre:</strong> Servidor de despliegue configurado</p>
+    <p><strong>Código EDT:</strong> 1.4.1.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.1 Infraestructura Odoo desplegada / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Selección, contratación y configuración del servidor donde se desplegará Odoo Community. Se evalúan dos opciones: servidor local (usando una de las laptops Lenovo i5 disponibles) o servidor en nube básica (Railway, Render u otro proveedor de bajo costo). La elección se basa en el análisis de costo, disponibilidad 24/7 y capacidad de acceso remoto desde los celulares del personal.</p>
+    <p><strong>Responsable:</strong> Analista de Infraestructura / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El servidor debe estar activo y accesible desde los celulares del personal antes de iniciar la instalación de Odoo.</p>
+    <p><strong>Supuestos:</strong> El costo del servidor en nube (si se elige esa opción) es de aproximadamente S/.30 a S/.40 mensuales, dentro del presupuesto del proyecto.</p>
+    <p><strong>Restricciones:</strong> No se adquieren servidores físicos nuevos; se usa una laptop existente o un servicio de nube básica.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.1.2</h5>
+    <p><strong>Nombre:</strong> Odoo Community instalado y parametrizado</p>
+    <p><strong>Código EDT:</strong> 1.4.1.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.1 Infraestructura Odoo desplegada / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Instalación del sistema operativo base (Ubuntu Server), dependencias requeridas (Python 3.10+, PostgreSQL 14+), y el código fuente de Odoo Community en el servidor seleccionado. Configuración inicial: idioma español (Perú), moneda soles (PEN), zona horaria Lima (GMT-5), datos de la empresa Roma Bag's, y logotipo. Verificación de que Odoo es accesible desde el navegador web de los celulares del personal.</p>
+    <p><strong>Responsable:</strong> Analista de Infraestructura / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Odoo debe ser accesible desde al menos 3 celulares diferentes del personal sin errores, con la configuración base completada.</p>
+    <p><strong>Supuestos:</strong> El equipo consultor tiene experiencia técnica suficiente para la instalación de Odoo Community, o accede a documentación oficial de Odoo para el proceso de instalación.</p>
+    <p><strong>Restricciones:</strong> Solo se instala Odoo Community (versión de código abierto sin costo de licencia); no se instala Odoo Enterprise ni módulos de pago.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.1.3</h5>
+    <p><strong>Nombre:</strong> Perfiles de acceso por rol configurados</p>
+    <p><strong>Código EDT:</strong> 1.4.1.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.1 Infraestructura Odoo desplegada / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Creación de los usuarios del sistema y configuración de sus permisos de acceso según el rol: Gerencia (acceso completo a todos los módulos incluyendo reportes y KPIs), Ventas (acceso al módulo de ventas y consulta de inventario, sin acceso a reportes financieros), Producción (acceso solo al módulo de registro de insumos y producción). Esta segmentación protege la información sensible de rentabilidad y garantiza que cada usuario solo vea lo que necesita para su trabajo.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Un usuario con perfil Ventas no puede acceder al panel de reportes de la Gerencia. Un usuario con perfil Producción no puede modificar registros de ventas. Esto se verifica con pruebas de acceso cruzado.</p>
+    <p><strong>Supuestos:</strong> Los nombres de los usuarios del sistema son proporcionados por Natalie con sus roles asignados antes del inicio de esta actividad.</p>
+    <p><strong>Restricciones:</strong> Las contraseñas iniciales deben ser comunicadas de forma segura a cada usuario y cambiadas en el primer ingreso.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.2.1</h5>
+    <p><strong>Nombre:</strong> Catálogo de productos y variantes cargado</p>
+    <p><strong>Código EDT:</strong> 1.4.2.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.2 Módulo de Inventario implementado / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Carga del catálogo completo de productos de Roma Bag's en el módulo de Inventario de Odoo: modelos de carteras y bolsos, variantes (colores, tallas, materiales), códigos de producto, precios de venta y costos unitarios. Este catálogo es la base sobre la cual funcionan todos los demás módulos: sin productos bien definidos, no hay ventas ni inventario que registrar.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS con apoyo de Natalie</p>
+    <p><strong>Criterio de aceptación:</strong> El 100% de los modelos de carteras activos en Roma Bag's deben estar registrados en Odoo antes de la primera prueba del módulo de inventario.</p>
+    <p><strong>Supuestos:</strong> Natalie proporciona el listado completo y actualizado de productos en la primera semana de la Fase 2.</p>
+    <p><strong>Restricciones:</strong> Los códigos de producto deben ser consistentes con los usados en la base centralizada de la Fase 1 para facilitar la migración.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.2.2</h5>
+    <p><strong>Nombre:</strong> Migración de datos desde la base centralizada de Fase 1</p>
+    <p><strong>Código EDT:</strong> 1.4.2.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.2 Módulo de Inventario implementado / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Transferencia de los datos históricos acumulados durante la Fase 1 (inventario inicial, registro de ventas del período, historial de despachos) desde la base centralizada ligera hacia el módulo de Inventario de Odoo. Se verifica la integridad de los datos después de la migración comparando totales de inventario y ventas entre la fuente y el destino.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Los totales de inventario en Odoo deben coincidir exactamente con los de la base de la Fase 1 al cierre del período de migración. No se permiten diferencias.</p>
+    <p><strong>Supuestos:</strong> La estructura de datos de la Fase 1 fue diseñada para ser compatible con Odoo (como se definió en el paquete 1.3.1.1).</p>
+    <p><strong>Restricciones:</strong> La migración debe realizarse en un horario de baja actividad comercial para minimizar el riesgo de datos incompletos.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.2.3</h5>
+    <p><strong>Nombre:</strong> Algoritmo de rebaja automática de stock configurado</p>
+    <p><strong>Código EDT:</strong> 1.4.2.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.2 Módulo de Inventario implementado / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Configuración de las reglas de automatización en Odoo para que al confirmarse una orden de venta, la cantidad vendida se descuente automáticamente del stock disponible del modelo correspondiente en el módulo de Inventario, sin intervención manual. Esta automatización elimina la doble digitación (vendedor anota en papel, Natalie transcribe en Excel) y reduce los falsos positivos de stock que generan los pedidos incompletos.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Al confirmar una venta de prueba de 5 unidades del modelo A, el stock del modelo A en Odoo debe reducirse automáticamente en 5 unidades en menos de 2 minutos. El sistema no permite confirmar una venta si el stock es cero.</p>
+    <p><strong>Supuestos:</strong> El catálogo de productos (1.4.2.1) y la migración de datos (1.4.2.2) están completados antes de iniciar esta configuración.</p>
+    <p><strong>Restricciones:</strong> La automatización no debe requerir ninguna acción adicional del vendedor después de confirmar la venta.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.2.4</h5>
+    <p><strong>Nombre:</strong> Consolidador de registros de talleres duales operativo</p>
+    <p><strong>Código EDT:</strong> 1.4.2.4</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.2 Módulo de Inventario implementado / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Configuración en Odoo de las ubicaciones duales de producción (taller principal y taller alterno a cargo de la hermana de Natalie) para que ambos registren su producción e insumos en una única base de datos. El stock total visible en Odoo es la suma consolidada de ambos talleres, sin necesidad de conciliar manualmente entre dos fuentes separadas.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Un registro de producción ingresado desde el taller alterno debe verse reflejado en el inventario total de Odoo en tiempo real, sin intervención manual del taller principal.</p>
+    <p><strong>Supuestos:</strong> El taller alterno tiene conectividad suficiente para acceder a Odoo desde un celular.</p>
+    <p><strong>Restricciones:</strong> La hermana de Natalie debe ser capacitada en el uso del módulo de registro de insumos antes de la puesta en marcha.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.3.1</h5>
+    <p><strong>Nombre:</strong> Formulario de registro de ventas con validaciones configurado</p>
+    <p><strong>Código EDT:</strong> 1.4.3.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.3 Módulo de Ventas y Despachos implementado / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Configuración del formulario de registro de ventas en Odoo con campos obligatorios (modelo, cantidad, cliente, precio) y validaciones que impidan registrar una venta incompleta. El formulario debe ser operable desde el navegador móvil de cualquier celular del personal en un máximo de 3 pasos, para no generar fricción durante las transmisiones en vivo de ventas.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Un vendedor debe poder registrar una venta completa desde su celular en menos de 3 minutos, sin ayuda del equipo consultor.</p>
+    <p><strong>Supuestos:</strong> El personal de ventas tiene conocimiento básico de uso de formularios en el celular.</p>
+    <p><strong>Restricciones:</strong> El formulario no puede tener más de 5 campos visibles en la pantalla principal para no abrumar al usuario.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.3.2</h5>
+    <p><strong>Nombre:</strong> Flujo secuencial mandatorio Venta-Stock-Despacho configurado</p>
+    <p><strong>Código EDT:</strong> 1.4.3.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.3 Módulo de Ventas y Despachos implementado / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Configuración de los estados lógicos del pedido en Odoo para que la orden de despacho solo se habilite después de que la venta esté confirmada y el stock haya sido rebajado automáticamente. El personal motorizado solo puede ver y ejecutar el despacho cuando el pedido tiene estado confirmado en el sistema. Esta configuración elimina técnicamente la posibilidad de que salga un despacho incompleto por error de información.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Es técnicamente imposible generar una orden de despacho en Odoo sin que exista una venta confirmada y un descuento de stock previo. Esto se verifica intentando crear un despacho sin venta previa y confirmando que el sistema lo bloquea.</p>
+    <p><strong>Supuestos:</strong> El módulo de Inventario (1.4.2) está completamente configurado y probado antes de iniciar esta configuración.</p>
+    <p><strong>Restricciones:</strong> El motorizado debe tener acceso a Odoo desde su celular para visualizar el estado del despacho.</p>
+    <p><strong>Duración estimada:</strong> 3 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.3.3</h5>
+    <p><strong>Nombre:</strong> Vista de despacho para personal motorizado operativa</p>
+    <p><strong>Código EDT:</strong> 1.4.3.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.3 Módulo de Ventas y Despachos implementado / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Configuración de una vista simplificada en Odoo exclusiva para el personal motorizado, que muestre únicamente los despachos pendientes autorizados (con venta confirmada y stock verificado), la dirección de entrega y el estado del pedido. Esta vista no expone información financiera ni de inventario general.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El motorizado puede ver en su celular solo los despachos que están autorizados, con la información de entrega completa, sin acceder a datos que no corresponden a su rol.</p>
+    <p><strong>Supuestos:</strong> El motorizado tiene un celular con acceso a internet y puede usar el navegador web.</p>
+    <p><strong>Restricciones:</strong> La vista debe ser de solo lectura para el motorizado; no puede modificar el estado del pedido desde su perfil.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.4.1</h5>
+    <p><strong>Nombre:</strong> Casos de prueba UAT redactados</p>
+    <p><strong>Código EDT:</strong> 1.4.4.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.4 Pruebas y Aseguramiento de Calidad / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Redacción formal de los casos de prueba de aceptación de usuario (CP-01 a CP-06 mínimo), cada uno con pasos detallados, datos de entrada, resultado esperado y criterio de aprobación. Los casos de prueba cubren: validación de utilidad neta en reportes (CP-01), consulta de stock durante transmisión en vivo (CP-02), registro de lote de producción (CP-03), consolidación de talleres duales (CP-04), pruebas de visualización en móvil (CP-05), y resolución autónoma de incidencia por Natalie (CP-06).</p>
+    <p><strong>Responsable:</strong> Analista de Calidad / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Cada caso de prueba debe ser revisado por el Líder del Proyecto antes de ejecutarse con los usuarios.</p>
+    <p><strong>Supuestos:</strong> Los módulos de Odoo están configurados y funcionando en el entorno de pruebas antes de redactar los casos.</p>
+    <p><strong>Restricciones:</strong> Los casos de prueba deben ejecutarse en un entorno de pruebas separado del productivo, especialmente los que involucran al Socio de Producción.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.4.2</h5>
+    <p><strong>Nombre:</strong> Pruebas técnicas de conectividad ejecutadas</p>
+    <p><strong>Código EDT:</strong> 1.4.4.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.4 Pruebas y Aseguramiento de Calidad / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Simulación de corte del router Wi-Fi del taller para verificar que Odoo sigue siendo accesible por datos móviles 4G/5G y que no se pierden registros en tránsito durante la caída de conectividad. Esta prueba valida el requisito REQ-04 y es la garantía de que el sistema es resiliente ante la inestabilidad de red documentada en el diagnóstico.</p>
+    <p><strong>Responsable:</strong> Analista de Infraestructura / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Durante el corte simulado del router, los celulares del personal acceden a Odoo por datos móviles sin pérdida de datos y sin mensajes de error crítico.</p>
+    <p><strong>Supuestos:</strong> Los celulares tienen plan de datos activo durante la prueba.</p>
+    <p><strong>Restricciones:</strong> La prueba de corte se realiza en horario no productivo para no interrumpir operaciones reales.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.4.3</h5>
+    <p><strong>Nombre:</strong> UAT con Personal de Ventas ejecutada y aprobada</p>
+    <p><strong>Código EDT:</strong> 1.4.4.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.4 Pruebas y Aseguramiento de Calidad / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Sesión guiada de prueba de aceptación con el personal de ventas donde ejecutan los casos de prueba CP-02 (consulta de stock durante transmisión en vivo simulada) y CP-05 (navegación y registro desde celular). Se registran las incidencias encontradas y se obtiene la firma del acta de prueba.</p>
+    <p><strong>Responsable:</strong> Analista de Calidad / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El personal de ventas completa los casos de prueba sin ayuda del equipo consultor y firma el acta indicando que el sistema es apto para el uso en ventas.</p>
+    <p><strong>Supuestos:</strong> Al menos un representante del personal de ventas está disponible para la sesión en el horario acordado.</p>
+    <p><strong>Restricciones:</strong> La sesión no puede durar más de 2 horas para no interrumpir las operaciones del día.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.4.4</h5>
+    <p><strong>Nombre:</strong> UAT con Socio de Producción ejecutada y aprobada</p>
+    <p><strong>Código EDT:</strong> 1.4.4.4</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.4 Pruebas y Aseguramiento de Calidad / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Sesión guiada de prueba de aceptación con el Socio de Producción donde ejecuta los casos de prueba CP-03 (registro de lote de producción y descuento de materia prima) y CP-04 (verificación de consolidación de ambos talleres). Esta es la sesión más sensible del proyecto por la baja tolerancia al error del Socio de Producción. Se ejecuta en entorno de pruebas completamente separado del productivo para que cualquier error no afecte datos reales.</p>
+    <p><strong>Responsable:</strong> Analista de Calidad y Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El Socio de Producción completa el registro de un lote de prueba en máximo 3 pasos y firma el acta indicando que el sistema es apto para el uso en producción.</p>
+    <p><strong>Supuestos:</strong> La sesión se anuncia con al menos una semana de anticipación y se acuerda un horario que no interfiera con la jornada de producción.</p>
+    <p><strong>Restricciones:</strong> Si el Socio de Producción rechaza el sistema durante la prueba por fallas técnicas, se corrigen las incidencias críticas antes de re-agendar la sesión; no se avanza al Gate 2 sin su aprobación.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.4.5</h5>
+    <p><strong>Nombre:</strong> UAT con Gerencia ejecutada y aprobada</p>
+    <p><strong>Código EDT:</strong> 1.4.4.5</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.4 Pruebas y Aseguramiento de Calidad / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Sesión guiada de prueba de aceptación con Natalie donde ejecuta el caso de prueba CP-01 (validación de fórmulas de utilidad neta comparando el reporte de Odoo con la auditoría física de caja de la semana) y CP-06 (resolución autónoma de una desincronización de datos simulada). Esta sesión verifica que Natalie puede interpretar los reportes y resolver incidencias básicas sin depender del equipo consultor.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Natalie resuelve la desincronización simulada sin ayuda del equipo en menos de 10 minutos y verifica que los reportes de Odoo coinciden con su auditoría física. Firma el acta de prueba.</p>
+    <p><strong>Supuestos:</strong> Los datos de ventas de la semana anterior están correctamente registrados en Odoo para que la comparación con la auditoría física sea posible.</p>
+    <p><strong>Restricciones:</strong> La sesión debe realizarse en un momento en que Natalie tenga disponibilidad sin interrupciones de la operación del negocio.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.4.6</h5>
+    <p><strong>Nombre:</strong> Certificado de Cero Errores Críticos emitido</p>
+    <p><strong>Código EDT:</strong> 1.4.4.6</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.4 Pruebas y Aseguramiento de Calidad / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Corrección de todas las incidencias críticas detectadas durante las sesiones UAT (1.4.4.3, 1.4.4.4 y 1.4.4.5) y emisión del certificado formal que confirma que el sistema no tiene errores críticos pendientes antes de la puesta en producción. Una incidencia crítica se define como cualquier falla que impida completar un flujo principal (registrar una venta, consultar stock, confirmar un despacho o generar un reporte de rentabilidad).</p>
+    <p><strong>Responsable:</strong> Analista de Calidad / Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> Cero incidencias críticas abiertas en el registro de incidencias. Las incidencias menores o cosméticas pueden quedar pendientes siempre que no afecten los flujos principales.</p>
+    <p><strong>Supuestos:</strong> El equipo consultor puede corregir las incidencias críticas dentro de los 2 días siguientes a su identificación.</p>
+    <p><strong>Restricciones:</strong> No se puede emitir el certificado ni avanzar al Gate 2 si hay una sola incidencia crítica abierta.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.5</h5>
+    <p><strong>Nombre:</strong> Gate 2 — Acta de Aprobación Fase Integrar firmada</p>
+    <p><strong>Código EDT:</strong> 1.4.5</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Reunión formal de revisión de cierre de la Fase 2 con la Gerencia de Roma Bag's. Se verifica el cumplimiento de los criterios de salida del Gate 2: flujo integrado Venta-Stock-Despacho operando sin errores críticos, pedidos incompletos reducidos a cero o casi cero en el período de prueba, personal de ventas y producción operando en Odoo, y Certificado de Cero Errores Críticos emitido. Solo si todos los criterios se cumplen se autoriza el inicio de la Fase 3.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> Acta de aprobación firmada por Natalie y por el Socio de Producción, ambos como usuarios clave cuya aprobación es necesaria para validar que la Fase 2 cumplió sus objetivos.</p>
+    <p><strong>Supuestos:</strong> Las actas de UAT de ventas, producción y gerencia están firmadas y el certificado de cero errores emitido antes de la reunión de gate.</p>
+    <p><strong>Restricciones:</strong> No se inicia ninguna actividad de la Fase 3 sin la firma de este gate.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.1.1</h5>
+    <p><strong>Nombre:</strong> Panel de reportes de rentabilidad y KPIs configurado</p>
+    <p><strong>Código EDT:</strong> 1.5.1.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.1 Módulo Analítico y Gerencial implementado / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Configuración del módulo de Reportes de Odoo con vistas personalizadas exclusivas para la Gerencia General. Incluye el reporte de ganancia neta real mensual (deduciendo costos operativos de materia prima, mano de obra y despachos), el top de modelos más rentables, los gráficos de estacionalidad histórica para proyección de demanda de la temporada septiembre-enero, y el panel de KPIs de operación (pedidos completados, stock crítico, tiempo promedio de despacho). El acceso está restringido al perfil de Gerencia.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Natalie puede acceder al panel desde su celular, ver la ganancia neta del mes y el top de modelos rentables sin ayuda del equipo consultor. El panel se genera automáticamente al cierre del mes sin intervención manual.</p>
+    <p><strong>Supuestos:</strong> Los datos históricos migrados desde la Fase 1 son suficientes para los primeros reportes de estacionalidad.</p>
+    <p><strong>Restricciones:</strong> Las vistas del panel están limitadas a las disponibles en Odoo Community sin módulos de pago adicionales.</p>
+    <p><strong>Duración estimada:</strong> 3 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.1.2</h5>
+    <p><strong>Nombre:</strong> Reporte de ganancia neta mensual automatizado</p>
+    <p><strong>Código EDT:</strong> 1.5.1.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.1 Módulo Analítico y Gerencial implementado / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Configuración del cálculo automático de la ganancia neta mensual en Odoo, deduciendo de los ingresos de ventas los costos de materia prima (registrados en el módulo de producción), los costos de mano de obra (estimados y parametrizados) y los costos de despacho. Este reporte reemplaza el cuadre manual del sábado que hoy consume un día completo de la Gerencia.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El reporte de ganancia neta del mes se genera en menos de 1 minuto desde el módulo de Odoo y los valores coinciden con la auditoría física de caja de Natalie (CP-01).</p>
+    <p><strong>Supuestos:</strong> Los costos de materia prima y mano de obra son proporcionados por Natalie con suficiente detalle para parametrizarlos en Odoo.</p>
+    <p><strong>Restricciones:</strong> El reporte está acotado a las capacidades de cálculo de Odoo Community; cálculos más complejos de contabilidad formal quedan fuera del alcance de esta fase.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.1.3</h5>
+    <p><strong>Nombre:</strong> Acceso restringido por rol verificado</p>
+    <p><strong>Código EDT:</strong> 1.5.1.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.1 Módulo Analítico y Gerencial implementado / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Verificación final de que los controles de acceso por rol configurados en la Fase 2 siguen siendo efectivos después de añadir el módulo analítico: un usuario con perfil Ventas no puede acceder al panel de rentabilidad, y un usuario con perfil Producción no puede ver información comercial. Se ejecuta una prueba de acceso cruzado con usuarios reales.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Analista de Calidad</p>
+    <p><strong>Criterio de aceptación:</strong> Ningún usuario con perfil diferente a Gerencia puede acceder al panel de reportes de rentabilidad ni a los KPIs financieros.</p>
+    <p><strong>Supuestos:</strong> Los perfiles de usuario configurados en la Fase 2 no fueron modificados.</p>
+    <p><strong>Restricciones:</strong> Cualquier brecha de seguridad detectada debe corregirse antes de la puesta en producción del módulo analítico.</p>
+    <p><strong>Duración estimada:</strong> 0.5 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.2.1</h5>
+    <p><strong>Nombre:</strong> Manuales de usuario por rol elaborados</p>
+    <p><strong>Código EDT:</strong> 1.5.2.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.2 Capacitación y Despliegue Final / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Redacción de manuales visuales y simples de uso del sistema, uno por cada rol de usuario: Manual de Ventas (cómo registrar una venta, consultar stock y confirmar despacho desde el celular), Manual de Producción (cómo registrar el consumo de insumos en máximo 3 pasos), y Manual de Gerencia (cómo visualizar reportes, interpretar KPIs y exportar el reporte de ganancia neta). Los manuales deben ser accesibles desde el celular en formato PDF o equivalente, sin necesidad de impresión.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Un usuario nuevo que nunca usó Odoo debe poder completar la tarea principal de su rol siguiendo el manual, sin ayuda adicional.</p>
+    <p><strong>Supuestos:</strong> Los módulos de Odoo están estables y sin cambios pendientes antes de redactar los manuales.</p>
+    <p><strong>Restricciones:</strong> Los manuales no pueden exceder 5 pantallas de celular de largo por proceso; deben ser concisos y visuales.</p>
+    <p><strong>Duración estimada:</strong> 3 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.2.2</h5>
+    <p><strong>Nombre:</strong> Guía de auto-recuperación ante incidencias básicas elaborada</p>
+    <p><strong>Código EDT:</strong> 1.5.2.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.2 Capacitación y Despliegue Final / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Redacción de una guía práctica que permite a Natalie resolver las incidencias más frecuentes de Odoo sin depender del equipo consultor: qué hacer si el sistema no carga, cómo recuperar una sesión cerrada, cómo verificar si un registro se guardó correctamente, y qué hacer ante una desincronización de datos. Esta guía es la respuesta formal a la restricción de que Roma Bag's no tiene área de TI y el equipo consultor no estará disponible permanentemente.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Natalie puede resolver la incidencia simulada del CP-06 usando solo la guía, sin contactar al equipo consultor.</p>
+    <p><strong>Supuestos:</strong> Las incidencias incluidas en la guía son las identificadas durante las sesiones UAT como las más probables en el uso real.</p>
+    <p><strong>Restricciones:</strong> La guía debe estar disponible en el celular de Natalie, no solo en computadora.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.2.3</h5>
+    <p><strong>Nombre:</strong> Taller de capacitación Personal de Ventas ejecutado</p>
+    <p><strong>Código EDT:</strong> 1.5.2.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.2 Capacitación y Despliegue Final / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Sesión práctica de capacitación con el personal de ventas, máximo 2 horas, donde aprenden a registrar ventas, consultar stock y confirmar despachos en Odoo desde el celular, usando el Manual de Ventas como guía. La capacitación incluye práctica real sobre el sistema en producción (no en entorno de pruebas).</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Al finalizar la sesión, cada participante del personal de ventas puede registrar una venta completa en Odoo de forma autónoma. Se firma el acta de capacitación.</p>
+    <p><strong>Supuestos:</strong> Todo el personal de ventas puede asistir a una sola sesión agrupada.</p>
+    <p><strong>Restricciones:</strong> La capacitación no puede realizarse en horario de transmisiones en vivo para no interrumpir las ventas del día.</p>
+    <p><strong>Duración estimada:</strong> 0.5 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.2.4</h5>
+    <p><strong>Nombre:</strong> Taller de capacitación Socio de Producción y operarios ejecutado</p>
+    <p><strong>Código EDT:</strong> 1.5.2.4</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.2 Capacitación y Despliegue Final / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Sesión práctica de capacitación con el Socio de Producción y los operarios del taller, máximo 1.5 horas, donde aprenden a registrar el consumo de insumos y la producción del día en Odoo en máximo 3 pasos, usando el Manual de Producción. Esta sesión debe ser particularmente cuidadosa con el Socio de Producción, cuya baja tolerancia al error hace necesario un enfoque paciente y sin presión.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El Socio de Producción completa el registro de un lote de producción real de forma autónoma y firma el acta de capacitación.</p>
+    <p><strong>Supuestos:</strong> La capacitación se agenda con al menos una semana de anticipación con el Socio de Producción.</p>
+    <p><strong>Restricciones:</strong> La sesión debe realizarse en el taller para que el Socio de Producción use los mismos dispositivos que usará en el trabajo real.</p>
+    <p><strong>Duración estimada:</strong> 0.5 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.2.5</h5>
+    <p><strong>Nombre:</strong> Sesión de capacitación Gerencia ejecutada</p>
+    <p><strong>Código EDT:</strong> 1.5.2.5</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.2 Capacitación y Despliegue Final / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Sesión práctica de capacitación con Natalie, máximo 2 horas, donde aprende a visualizar e interpretar los reportes de rentabilidad y KPIs, exportar el reporte de ganancia neta, y resolver incidencias básicas usando la guía de auto-recuperación. Esta sesión consolida la autonomía tecnológica de Natalie, que es el criterio de aceptación más importante de toda la Fase 3.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Natalie puede acceder al panel de reportes, interpretar los KPIs del mes y resolver una incidencia simulada de forma autónoma. Firma el acta de capacitación.</p>
+    <p><strong>Supuestos:</strong> Natalie dispone de 2 horas sin interrupciones operativas para la sesión.</p>
+    <p><strong>Restricciones:</strong> La sesión de Gerencia se realiza por separado del resto del personal para proteger la confidencialidad de la información financiera.</p>
+    <p><strong>Duración estimada:</strong> 0.5 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.2.6</h5>
+    <p><strong>Nombre:</strong> Despliegue final en 100% de dispositivos verificado</p>
+    <p><strong>Código EDT:</strong> 1.5.2.6</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.2 Capacitación y Despliegue Final / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Verificación de que Odoo es accesible y operable desde el 100% de los dispositivos del personal operativo: los 6 celulares y las 3 laptops. Se confirma que cada usuario tiene sus credenciales activas, que el acceso funciona tanto por Wi-Fi como por datos móviles, y que el sistema está en modo productivo (no en entorno de pruebas).</p>
+    <p><strong>Responsable:</strong> Analista de Infraestructura / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Los 6 celulares y 3 laptops acceden a Odoo en modo producción sin errores. Cada usuario puede iniciar sesión con sus propias credenciales.</p>
+    <p><strong>Supuestos:</strong> Los talleres de capacitación (1.5.2.3, 1.5.2.4 y 1.5.2.5) se han completado antes del despliegue final.</p>
+    <p><strong>Restricciones:</strong> El despliegue final se realiza en un horario de baja actividad comercial para evitar interrupciones operativas.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.3.1</h5>
+    <p><strong>Nombre:</strong> Seguimiento de operaciones reales sobre Odoo</p>
+    <p><strong>Código EDT:</strong> 1.5.3.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.3 Monitoreo Post-Despliegue / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Acompañamiento del equipo consultor durante la primera semana de operación real de Odoo en producción, verificando que las ventas, el inventario y los despachos se están registrando correctamente, que el flujo secuencial mandatorio está funcionando, y que no emergen incidencias críticas no detectadas en las UAT.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Al cierre de la semana de monitoreo, el sistema opera sin incidencias críticas y los datos de Odoo coinciden con los registros físicos del negocio.</p>
+    <p><strong>Supuestos:</strong> El personal ya fue capacitado y está usando Odoo como sistema principal durante la semana de monitoreo.</p>
+    <p><strong>Restricciones:</strong> Las incidencias menores detectadas durante el monitoreo se documentan en el registro de lecciones aprendidas, no se tratan como fallas del proyecto.</p>
+    <p><strong>Duración estimada:</strong> 5 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.3.2</h5>
+    <p><strong>Nombre:</strong> Verificación de reportes gerenciales en uso real</p>
+    <p><strong>Código EDT:</strong> 1.5.3.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.3 Monitoreo Post-Despliegue / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Verificación de que el panel de reportes y el reporte de ganancia neta se generan correctamente al cierre del primer período productivo completo (primera semana o primer mes según el ciclo de cierre de Natalie). Se compara el reporte de Odoo con la auditoría física de Natalie para confirmar que los valores son correctos y que el cuadre manual del sábado ya no es necesario.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto con Natalie</p>
+    <p><strong>Criterio de aceptación:</strong> El reporte de ganancia neta generado por Odoo coincide con la auditoría física de Natalie en un margen de error menor al 2%. Natalie confirma que no necesitó hacer el cuadre manual del sábado.</p>
+    <p><strong>Supuestos:</strong> Los datos de costos (materia prima, mano de obra) están correctamente parametrizados en Odoo desde la Fase 2.</p>
+    <p><strong>Restricciones:</strong> Si los reportes no coinciden con la auditoría física, se identifica la causa raíz antes de cerrar el proyecto.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.4.1</h5>
+    <p><strong>Nombre:</strong> Recopilación de lecciones aprendidas documentada</p>
+    <p><strong>Código EDT:</strong> 1.5.4.1</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.4 Cierre Formal / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Sesiones breves de cierre con cada usuario clave (Natalie, Socio de Producción, un representante de ventas) para documentar qué funcionó bien en el proyecto, qué fue difícil, qué haría diferente el equipo en una segunda fase, y qué prácticas de gestión de la información deberían mantenerse permanentemente. El documento de lecciones aprendidas es un insumo directo para el escalamiento futuro del proyecto (activación de nuevos módulos de Odoo).</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> Al menos una lección aprendida documentada por fase del proyecto y por cada usuario clave entrevistado.</p>
+    <p><strong>Supuestos:</strong> Los usuarios están disponibles para sesiones breves de 30 minutos al final del proyecto.</p>
+    <p><strong>Restricciones:</strong> Las lecciones aprendidas deben documentarse antes de la firma del Acta de Cierre; no pueden archivarse después.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.4.2</h5>
+    <p><strong>Nombre:</strong> Informe final del proyecto elaborado</p>
+    <p><strong>Código EDT:</strong> 1.5.4.2</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.4 Cierre Formal / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Redacción del documento de cierre que resume el proyecto completo: objetivos alcanzados, entregables producidos por fase, desviaciones del cronograma y presupuesto con sus causas, cumplimiento de los criterios de aceptación, resultados medibles de impacto en el negocio (reducción de pedidos incompletos, tiempo de cuadre, acceso a ganancia neta), y recomendaciones para la siguiente fase de escalamiento.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> El informe debe cubrir las tres fases del proyecto y ser aprobado por el Líder del Proyecto antes de la sesión de cierre con Natalie.</p>
+    <p><strong>Supuestos:</strong> Los datos de desempeño del proyecto (SPI por fase, incidencias resueltas, tiempos reales vs. planificados) están disponibles en los informes semanales acumulados.</p>
+    <p><strong>Restricciones:</strong> El informe no puede exceder 10 páginas para facilitar su revisión por la Gerencia de Roma Bag's.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.4.3</h5>
+    <p><strong>Nombre:</strong> Verificación de criterios de aceptación cumplidos</p>
+    <p><strong>Código EDT:</strong> 1.5.4.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.4 Cierre Formal / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Revisión formal del cumplimiento de todos los criterios de aceptación definidos en el Enunciado del Alcance antes de solicitar la firma del Acta de Cierre. Los criterios a verificar son: 100% de registros de inventario y ventas en Odoo, consulta de stock en menos de 2 minutos, reducción del cuadre semanal de 1 día a menos de 1 hora, cero errores críticos en producción, y conformidad y autonomía tecnológica de Natalie confirmada.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> Lista de verificación firmada por el Líder del Proyecto confirmando el cumplimiento de los 5 criterios. Si algún criterio no se cumple, se ejecutan las correcciones necesarias antes de proceder al cierre.</p>
+    <p><strong>Supuestos:</strong> Los datos del monitoreo post-despliegue (1.5.3.1 y 1.5.3.2) son suficientes para verificar el cumplimiento de los criterios.</p>
+    <p><strong>Restricciones:</strong> No se firma el Acta de Cierre si algún criterio de aceptación no fue verificado formalmente.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.4.4</h5>
+    <p><strong>Nombre:</strong> Gate 3 — Acta de Conformidad y Cierre firmada por Gerencia</p>
+    <p><strong>Código EDT:</strong> 1.5.4.4</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.4 Cierre Formal / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Reunión formal de cierre del proyecto con Natalie donde se presentan el informe final, las lecciones aprendidas y la lista de verificación de criterios cumplidos. Natalie firma el Acta de Conformidad y Cierre que libera formalmente al equipo consultor de sus responsabilidades sobre el proyecto y da por concluida la Transformación Digital Roma Bag's en su primera versión. Esta acta también marca el inicio formal del período de autosuficiencia tecnológica de la empresa.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> Acta de Conformidad y Cierre firmada por Natalie como patrocinadora y usuaria principal del proyecto.</p>
+    <p><strong>Supuestos:</strong> Los criterios de aceptación del paquete 1.5.4.3 están todos verificados y cumplidos antes de la reunión de cierre.</p>
+    <p><strong>Restricciones:</strong> Esta es la única firma que cierra formalmente el proyecto. Sin ella, el proyecto no puede considerarse cerrado.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+  </div>
+</section>
+
+</Layout>

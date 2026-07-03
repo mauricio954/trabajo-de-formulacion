@@ -1,0 +1,472 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Capítulo 04: Análisis de Alternativas">
+	<section class="sec" id="c7-1">
+      <h2>CAPÍTULO 04: Análisis de Alternativas de Solución</h2>
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.1.
+        Identificación de Acciones (Tarea 1)</h3>
+      <p>Por cada medio fundamental del árbol de objetivos se identifican las acciones necesarias para alcanzar la
+        situación deseada, agrupadas en tres componentes. Estas acciones son tecnológicamente neutras: no presuponen ninguna solución antes del análisis comparativo.</p>
+
+      <h4>Componente 1 — Plataforma de Datos</h4>
+      <div class="gr">
+        <div class="cd">
+          <span class="bg bb" style="margin-bottom: .5rem;">A1.1a</span>
+          <strong>Arquitectura BI a medida (Data Warehouse + ETL + Power BI)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Desarrollo de una solución de Inteligencia de Negocios
+            personalizada (base de datos relacional + ETL + dashboard Power BI) diseñada específicamente para los
+            procesos de Roma Bag's.</p>
+        </div>
+        <div class="cd">
+          <span class="bg bb" style="margin-bottom: .5rem;">A1.1b</span>
+          <strong>Ecosistema no-code (Google Sheets API + AppSheet)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Centralización de datos usando Google Sheets como backend estructurado y AppSheet como interfaz móvil de captura, consulta y reporte para el personal.</p>
+        </div>
+        <div class="cd">
+          <span class="bg bb" style="margin-bottom: .5rem;">A1.1c</span>
+          <strong>ERP modular open-source (Odoo Community)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Adopción del sistema ERP open-source Odoo Community con
+            módulos nativos de inventario, ventas y reportes, sin costo de licencia recurrente.</p>
+        </div>
+        <div class="cd">
+          <span class="bg bb" style="margin-bottom: .5rem;">A1.1d</span>
+          <strong>Transformación Digital por Fases (solución híbrida incremental)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Implementación progresiva que parte de una base de datos centralizada ligera en la Fase 1 (no-code), evoluciona hacia el ERP Odoo Community en la Fase 2, y consolida la analítica gerencial en la Fase 3. Cada fase se habilita mediante un gate de aprobación formal de la Gerencia.</p>
+        </div>
+      </div>
+
+      <h4>Componente 2 — Procesos y Gobierno de Datos</h4>
+      <div class="gr">
+        <div class="cd">
+          <span class="bg by" style="margin-bottom: .5rem;">A2.1</span>
+          <strong>Políticas de Gobierno de Datos</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Definición de reglas, responsables y estándares de calidad
+            para el registro y mantenimiento de la información operativa y comercial de la organización.</p>
+        </div>
+        <div class="cd">
+          <span class="bg by" style="margin-bottom: .5rem;">A2.2</span>
+          <strong>Documentación de procesos venta-stock-despacho</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Mapeo y formalización del flujo completo de información desde
+            la venta hasta el despacho, eliminando duplicidades y puntos de quiebre actuales.</p>
+        </div>
+        <div class="cd">
+          <span class="bg by" style="margin-bottom: .5rem;">A2.3</span>
+          <strong>Protocolo de registro obligatorio en el punto de despacho</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Implementación de un procedimiento estándar de operación
+            (SOP) que exija el registro de cada despacho con campos validados antes de confirmar el envío.</p>
+        </div>
+      </div>
+
+      <h4>Componente 3 — Infraestructura y Adopción</h4>
+      <div class="gr">
+        <div class="cd">
+          <span class="bg bgr" style="margin-bottom: .5rem;">A3.1</span>
+          <strong>Mejora de conectividad del taller</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Eliminación de las zonas muertas de red mediante extensión
+            mesh propia o contratación de servicio gestionado con el ISP actual (Movistar fibra óptica).</p>
+        </div>
+        <div class="cd">
+          <span class="bg bgr" style="margin-bottom: .5rem;">A3.2</span>
+          <strong>Capacitación del personal</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Plan de formación orientado al uso del sistema, adaptado al perfil del personal de ventas y a los requerimientos de la gerencia.</p>
+        </div>
+        <div class="cd">
+          <span class="bg bgr" style="margin-bottom: .5rem;">A3.3</span>
+          <strong>Gestión del cambio y coexistencia con el Excel</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Estrategia de transición progresiva que mantiene el Excel en
+            paralelo durante las primeras semanas para reducir la resistencia al cambio identificada en la gerencia.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="c7-2">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.2.
+        Organización en Soluciones Alternativas (Tarea 2)</h3>
+
+      <p><strong>Clasificación:</strong> Las acciones A1.1a, A1.1b, A1.1c y A1.1d son mutuamente excluyentes en su plataforma central: solo se elige una. Las acciones A2.1, A2.2, A2.3, A3.1, A3.2 y A3.3 son complementarias y obligatorias en todas las alternativas.</p>
+
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>Componente / Alternativa</th>
+              <th>1 — BI a medida</th>
+              <th>2 — ERP Odoo directo</th>
+              <th>3 — No-Code</th>
+              <th>4 — Transformación Digital por Fases <span class="bg bgr" style="margin-left:.3rem;">★ SELECCIONADA</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>C1 — Plataforma de Datos</strong></td>
+              <td><span class="bg bb">A1.1a</span> Arquitectura BI personalizada</td>
+              <td><span class="bg bb">A1.1c</span> ERP Odoo Community directo</td>
+              <td><span class="bg bb">A1.1b</span> Sheets API + AppSheet móvil</td>
+              <td><span class="bg bb">A1.1d</span> Implementación incremental: base no-code en Fase 1, Odoo en Fase 2, analítica en Fase 3.</td>
+            </tr>
+            <tr>
+              <td><strong>C2 — Procesos y Gobierno</strong></td>
+              <td><span class="bg by">A2.1</span> <span class="bg by">A2.2</span> <span class="bg by">A2.3</span></td>
+              <td><span class="bg by">A2.1</span> <span class="bg by">A2.2</span> <span class="bg by">A2.3</span></td>
+              <td><span class="bg by">A2.1</span> <span class="bg by">A2.2</span> <span class="bg by">A2.3</span></td>
+              <td><span class="bg by">A2.1</span> <span class="bg by">A2.2</span> <span class="bg by">A2.3</span></td>
+            </tr>
+            <tr>
+              <td><strong>C3 — Infraestructura y Adopción</strong></td>
+              <td><span class="bg bgr">A3.1</span> <span class="bg bgr">A3.2</span> <span class="bg bgr">A3.3</span></td>
+              <td><span class="bg bgr">A3.1</span> <span class="bg bgr">A3.2</span> <span class="bg bgr">A3.3</span></td>
+              <td><span class="bg bgr">A3.1</span> <span class="bg bgr">A3.2</span> <span class="bg bgr">A3.3</span></td>
+              <td><span class="bg bgr">A3.1</span> <span class="bg bgr">A3.2</span> <span class="bg bgr">A3.3</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hl">
+        <strong>Análisis de suficiencia y consistencia:</strong> Las cuatro alternativas son <em>suficientes</em> porque cada una aborda los tres componentes necesarios para resolver el problema central. Son <em>consistentes</em> porque las acciones complementarias de C2 y C3 son tecnológicamente compatibles con cualquiera de las plataformas de C1. La diferencia clave entre las alternativas radica en el modelo de implementación: la Alternativa 4 no reemplaza a las demás sino que las integra secuencialmente, reduciendo el riesgo de sobredimensionamiento tecnológico en una microempresa sin área de TI.
+      </div>
+    </section>
+
+    <section class="sec" id="c7-3">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.3.
+        Evaluación de Viabilidad (Tarea 3)</h3>
+      <p><strong>Técnica de evaluación:</strong> Juicio de expertos bajo enfoque de <strong>Costo-Efectividad</strong>.
+        No se aplica Costo-Beneficio porque los beneficios del proyecto (integración de información, reducción de la
+        dependencia operativa, trazabilidad) no se monetizan de forma confiable en esta etapa; por ello se evalúa la
+        efectividad de cada alternativa para lograr los objetivos frente a su costo.</p>
+      <p>Se evalúan cuatro alternativas mediante una rúbrica de 7 criterios con puntaje del 1 al 3 (1 = bajo, 2 = medio, 3
+        = alto). Puntaje máximo: 21. La Alternativa 4 utiliza escala de 1 a 5 en criterios donde el enfoque incremental genera diferencial significativo.</p>
+
+      <div class="fx">
+        <div class="cd">
+          <span class="bg bb" style="margin-bottom: .5rem;">Alt. 1</span>
+          <strong>BI a medida</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Desarrollo personalizado: base de datos relacional + ETL +
+            dashboard Power BI diseñado a medida.</p>
+        </div>
+        <div class="cd">
+          <span class="bg bb" style="margin-bottom: .5rem;">Alt. 2</span>
+          <strong>ERP Odoo Community directo</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Sistema ERP open-source modular con módulos nativos de
+            inventario, ventas y reportes, implementado desde el primer día.</p>
+        </div>
+        <div class="cd">
+          <span class="bg br" style="margin-bottom: .5rem;">Alt. 3</span>
+          <strong>Ecosistema No-Code (Sheets + AppSheet)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Hojas de cálculo conectadas como backend más app no-code mobile-first; solución ligera y de bajo costo inicial.</p>
+        </div>
+        <div class="cd">
+          <span class="bg bgr" style="margin-bottom: .5rem;">Alt. 4 ★</span>
+          <strong>Transformación Digital por Fases</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Implementación incremental que parte de una base centralizada ligera, escala hacia Odoo y consolida la analítica gerencial en tres fases con gates de aprobación formales.</p>
+        </div>
+      </div>
+
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>Criterio de Evaluación</th>
+              <th style="text-align:center;">Alt. 1<br>BI a medida</th>
+              <th style="text-align:center;">Alt. 2<br>ERP Odoo</th>
+              <th style="text-align:center;">Alt. 3<br>No-Code</th>
+              <th style="text-align:center;">Alt. 4 ★<br>Por Fases</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Viabilidad técnica (sobre hardware existente)</td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg bgr">5</span></td>
+            </tr>
+            <tr>
+              <td>Costo total de implementación</td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg bgr">4</span></td>
+            </tr>
+            <tr>
+              <td>Tiempo de implementación</td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+            </tr>
+            <tr>
+              <td>Escalabilidad</td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
+              <td style="text-align:center;"><span class="bg bgr">5</span></td>
+            </tr>
+            <tr>
+              <td>Sostenibilidad sin área de TI</td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">4</span></td>
+            </tr>
+            <tr>
+              <td>Ajuste a restricciones operativas y culturales</td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
+              <td style="text-align:center;"><span class="bg by">2</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg bgr">5</span></td>
+            </tr>
+            <tr>
+              <td>Innovación y alineación estratégica</td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg bgr">3</span></td>
+              <td style="text-align:center;"><span class="bg br">1</span></td>
+              <td style="text-align:center;"><span class="bg bgr">4</span></td>
+            </tr>
+            <tr style="background: #f1f5f9;">
+              <td><strong>TOTAL</strong></td>
+              <td style="text-align:center; font-weight:700;">12 / 21</td>
+              <td style="text-align:center; font-weight:700;">18 / 21</td>
+              <td style="text-align:center; font-weight:700;">16 / 21</td>
+              <td style="text-align:center; font-weight:700; color: var(--g);">30 / 35 ★</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Justificación de los puntajes clave de la Alternativa 4:</h4>
+      <div class="gr">
+        <div class="cd">
+          <strong>Viabilidad técnica (5)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">La Fase 1 opera sobre herramientas no-code que funcionan en los 6 celulares y 3 laptops existentes desde el primer día, sin configuración técnica compleja. Odoo solo se introduce en la Fase 2, cuando la organización ya tiene el hábito del dato digital y la conectividad está estabilizada.</p>
+        </div>
+        <div class="cd">
+          <strong>Costo total (4)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">La Fase 1 tiene costo mínimo (no-code gratuito o de bajo costo). La Fase 2 introduce Odoo Community sin licencias. La inversión se distribuye en el tiempo, aliviando la presión presupuestaria de una microempresa.</p>
+        </div>
+        <div class="cd">
+          <strong>Escalabilidad (5)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">El diseño por fases garantiza que la arquitectura de datos de la Fase 1 es compatible con Odoo en la Fase 2, y que Odoo en la Fase 2 soporta la analítica de la Fase 3. No hay migración traumática entre etapas porque fueron diseñadas para ser compatibles desde el inicio.</p>
+        </div>
+        <div class="cd">
+          <strong>Sostenibilidad sin área de TI (4)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Cada fase tiene un gate de aprobación donde la Gerencia valida que el sistema es adoptado antes de avanzar. Esto garantiza que Roma Bag's nunca avanza hacia una fase más compleja sin que la anterior esté estabilizada y el personal la domine.</p>
+        </div>
+        <div class="cd">
+          <strong>Ajuste a restricciones operativas y culturales (5)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Responde directamente a la crítica de sobredimensionamiento tecnológico ("carro de alta gama en carretera de trocha"). La Fase 1 pavimenta la carretera (hábito del dato, conectividad, procesos), la Fase 2 introduce el vehículo (Odoo) cuando la carretera ya está lista.</p>
+        </div>
+        <div class="cd">
+          <strong>Innovación y alineación estratégica (4)</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Combina lo mejor del enfoque no-code (adopción rápida) con lo mejor del ERP (escalabilidad y trazabilidad), posicionando a Roma Bag's en un camino de madurez tecnológica real y sostenible.</p>
+        </div>
+      </div>
+
+      <div class="hl">
+        <strong>Veredicto:</strong> La <strong>Alternativa 4 — Transformación Digital por Fases</strong> obtiene el puntaje más alto y es la alternativa seleccionada para Roma Bag's. Su ventaja no radica en ser la más rápida ni la más simple, sino en ser la más viable y sostenible para una microempresa familiar sin área de TI que opera en un entorno con alta resistencia al cambio y baja tolerancia al error. La decisión responde explícitamente a la crítica de sobredimensionamiento: en vez de imponer un ERP completo desde el día uno sobre una organización que aún registra en cuadernos, se construye primero la madurez organizacional necesaria para que el ERP sea adoptado con éxito. Las alternativas 2 (ERP directo) y 3 (No-Code) no son descartadas por ser malas; son los componentes tecnológicos de las Fases 1 y 2 de la solución ganadora.
+      </div>
+    </section>
+
+    <section class="sec" id="c7-4">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.4.
+        Plan de la Transformación Digital por Fases</h3>
+
+      <p>La solución seleccionada se estructura en tres fases secuenciales con gates de aprobación formales entre cada una. Ninguna fase comienza sin que la anterior haya cumplido sus criterios de salida y obtenido la firma de aprobación de la Gerencia.</p>
+
+      <h4>Fase 1 — Cimentar: Centralización y Orden del Dato</h4>
+      <div class="gr">
+        <div class="cd">
+          <strong>Objetivo</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Eliminar la fragmentación de información con la mínima fricción posible y crear el hábito del registro digital único antes de introducir tecnología más compleja.</p>
+        </div>
+        <div class="cd">
+          <strong>Plataforma</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Base de datos centralizada ligera (no-code, herramienta tipo Airtable o Google Sheets estructurado con controles de versión) accesible desde el celular.</p>
+        </div>
+        <div class="cd">
+          <strong>Capa de infraestructura</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Diagnóstico y corrección de zonas muertas de Wi-Fi, verificación de acceso por datos móviles 4G/5G como respaldo.</p>
+        </div>
+        <div class="cd">
+          <strong>Capa de seguridad</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Política de respaldo automático en la nube (responde al trauma de la pérdida del historial de 2024) y control de accesos básico.</p>
+        </div>
+        <div class="cd">
+          <strong>Capa de procesos</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Redacción y firma de SOPs del flujo venta-stock-despacho y protocolo de registro en el punto de despacho.</p>
+        </div>
+        <div class="cd">
+          <strong>Capa cultural</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Coexistencia total con el Excel de Natalie durante esta fase. No se elimina ni se reemplaza ninguna herramienta actual.</p>
+        </div>
+        <div class="cd">
+          <strong>Duración estimada</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">4 a 6 semanas.</p>
+        </div>
+      </div>
+
+      <div class="hl">
+        <strong>Gate 1 — Criterios de salida:</strong> 100% del inventario y ventas registrados en la base centralizada, consulta de stock en menos de 2 minutos desde el celular, SOPs firmados por todos los usuarios, cero zonas muertas de Wi-Fi en áreas de trabajo y política de respaldo activa y verificada. Solo si se cumplen todos los criterios se firma el Acta de Aprobación de Fase 1 y se autoriza el inicio de la Fase 2.
+      </div>
+
+      <h4>Fase 2 — Integrar: Implementación ERP Odoo Community</h4>
+      <div class="gr">
+        <div class="cd">
+          <strong>Objetivo</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Conectar las áreas (ventas, producción y despacho) en un sistema integrado y automatizar lo que en la Fase 1 aún requería registro manual.</p>
+        </div>
+        <div class="cd">
+          <strong>Plataforma</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">ERP Odoo Community instalado en servidor (local o nube básica), comenzando por los módulos de Inventario y Ventas, con migración de los datos ya ordenados de la Fase 1.</p>
+        </div>
+        <div class="cd">
+          <strong>Capa de infraestructura</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Despliegue del servidor y configuración de acceso multiusuario con perfiles por rol (Gerencia, Ventas, Producción).</p>
+        </div>
+        <div class="cd">
+          <strong>Capa de procesos</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Implementación del flujo secuencial mandatorio Venta-Stock-Despacho en Odoo, que técnicamente impide que salga un despacho sin venta confirmada y stock rebajado.</p>
+        </div>
+        <div class="cd">
+          <strong>Capa cultural</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Capacitación por rol y reducción gradual de la dependencia del Excel (ya no coexistencia total, sino transición controlada).</p>
+        </div>
+        <div class="cd">
+          <strong>Duración estimada</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">6 a 8 semanas.</p>
+        </div>
+      </div>
+
+      <div class="hl">
+        <strong>Gate 2 — Criterios de salida:</strong> Flujo integrado Venta-Stock-Despacho operando sin errores críticos en Odoo, pedidos incompletos reducidos a cero en el período de prueba, personal de ventas y producción operando en Odoo, y Certificado de Cero Errores Críticos emitido. Solo si se cumplen todos los criterios se firma el Acta de Aprobación de Fase 2 y se autoriza el inicio de la Fase 3.
+      </div>
+
+      <h4>Fase 3 — Optimizar: Analítica Gerencial y Cierre</h4>
+      <div class="gr">
+        <div class="cd">
+          <strong>Objetivo</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Dar a la Gerencia capacidad analítica para decidir con datos confiables, una vez que la operación es estable y el personal domina el sistema.</p>
+        </div>
+        <div class="cd">
+          <strong>Plataforma</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Activación del módulo Analítico y de Reportes de Odoo: ganancia neta real, rentabilidad por modelo, estacionalidad histórica para proyección de demanda. Acceso restringido al perfil de Gerencia.</p>
+        </div>
+        <div class="cd">
+          <strong>Capa cultural</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">Autonomía tecnológica de Natalie mediante capacitación en interpretación de reportes y resolución de incidencias básicas, reduciendo la dependencia del equipo consultor tras el cierre.</p>
+        </div>
+        <div class="cd">
+          <strong>Duración estimada</strong>
+          <p style="margin: .4rem 0 0; font-size: .88rem;">4 a 6 semanas.</p>
+        </div>
+      </div>
+
+      <div class="hl">
+        <strong>Gate 3 — Criterios de salida:</strong> Reportes gerenciales en uso real, cuadre manual semanal eliminado, Natalie resuelve incidencias básicas de forma autónoma, y todos los criterios de aceptación del Enunciado del Alcance verificados. Se firma el Acta de Conformidad y Cierre Formal del proyecto.
+      </div>
+    </section>
+
+    <section class="sec" id="c7-5">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.5.
+        Matriz de Marco Lógico (MML)</h3>
+      <p>La MML resume la lógica vertical del proyecto: el Fin que persigue, el Propósito que resuelve, los Componentes que entrega y las Actividades que los producen, junto con sus indicadores, medios de verificación y supuestos. Se construye sobre la Alternativa 4 — Transformación Digital por Fases.</p>
+
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:9%;">Nivel</th>
+              <th style="width:33%;">Resumen narrativo</th>
+              <th style="width:22%;">Indicador</th>
+              <th style="width:21%;">Medio de Verificación</th>
+              <th style="width:15%;">Supuestos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="bg bgr">FIN</span></td>
+              <td>Mejorar el control operativo y comercial de Roma Bag's, fortaleciendo su capacidad de gestión para soportar un crecimiento sostenible.</td>
+              <td>Reducción de la tasa de pedidos incompletos y del tiempo de conciliación, comparados contra la línea base, al cierre del proyecto.</td>
+              <td>Reportes del sistema comparados con los registros previos (línea base vs. final).</td>
+              <td>Las condiciones de mercado del negocio se mantienen estables durante la implementación.</td>
+            </tr>
+            <tr>
+              <td><span class="bg bb">PROPÓSITO</span></td>
+              <td>Integrar la gestión de la información operativa y comercial en una fuente única y confiable mediante una transformación digital progresiva adaptada a la madurez de la organización.</td>
+              <td>Tiempo de consulta de información clave (stock y ventas) reducido a menos de 2 minutos al cierre de la Fase 1, y cuadre semanal reducido de 1 día a menos de 1 hora al cierre de la Fase 2.</td>
+              <td>Pruebas de consulta cronometradas y registro del tiempo de cuadre semanal.</td>
+              <td>La Gerencia y el personal usan el sistema como fuente principal de información desde la Fase 1.</td>
+            </tr>
+            <tr>
+              <td><span class="bg by">COMPONENTES</span></td>
+              <td><strong>Fase 1 Cimentar</strong> (base centralizada ligera y procesos), <strong>Fase 2 Integrar</strong> (ERP Odoo con módulos de inventario, ventas y despachos), <strong>Fase 3 Optimizar</strong> (analítica gerencial y cierre).</td>
+              <td>Gate 1 aprobado al mes 1.5, Gate 2 aprobado al mes 3.5, Gate 3 aprobado al mes 4.5.</td>
+              <td>Actas de aprobación de fase firmadas por la Gerencia.</td>
+              <td>El equipo de producción y ventas adopta cada fase sin sabotaje pasivo ante las primeras fricciones.</td>
+            </tr>
+            <tr>
+              <td><span class="bg br">ACTIVIDADES</span></td>
+              <td><strong>A1</strong> diagnóstico y levantamiento de requisitos, <strong>A2</strong> implementación de Fase 1 (base ligera, red, SOPs), <strong>A3</strong> Gate 1 y aprobación, <strong>A4</strong> implementación de Fase 2 (Odoo, módulos, pruebas UAT), <strong>A5</strong> Gate 2 y aprobación, <strong>A6</strong> implementación de Fase 3 (analítica, capacitación, cierre), <strong>A7</strong> Gate 3 y cierre formal.</td>
+              <td>Presupuesto y cronograma ejecutados según lo planificado.</td>
+              <td>Informes de avance semanales y registro de control de cambios.</td>
+              <td>Disponibilidad de tiempo del personal para las actividades de cada fase; conectividad estable durante la implementación.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hl">
+        <strong>Notas de construcción:</strong> El Propósito describe qué se logra (integración de información) sin mencionar la tecnología específica (Odoo), respetando la neutralidad del nivel estratégico. El Fin no promete una meta comercial de incremento de ventas porque ese resultado depende del mercado, no del proyecto. Los Componentes son las tres fases de la transformación, no los módulos de Odoo, porque la EDT tiene las fases como entregables de primer nivel.
+      </div>
+    </section>
+
+    <section class="sec" id="c7-6">
+      <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">4.6.
+        Generación de Alternativas con el Doble Diamante</h3>
+      <p>El Doble Diamante (Design Council, 2005) organiza el proceso de diseño en dos ciclos de pensamiento divergente
+        y convergente: el primero orientado a entender el problema real y el segundo a diseñar la solución correcta.</p>
+
+      <h4>Diamante 1 — Entender el problema</h4>
+      <div class="fx">
+        <div class="cd">
+          <span class="bg bb" style="margin-bottom: .5rem;">DESCUBRIR — Divergir</span>
+          <strong>Exploración amplia del contexto</strong>
+          <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>Se recopiló información de campo mediante tres sesiones de entrevista con la gerencia (21 de abril, 4 de mayo y 14 de mayo de 2026), observación directa del taller (Job Shadowing) y auditoría de la infraestructura tecnológica y de red.</li>
+            <li>El objetivo fue comprender el "dolor" real del negocio sin asumir soluciones anticipadas.</li>
+          </ul>
+        </div>
+        <div class="cd">
+          <span class="bg br" style="margin-bottom: .5rem;">DEFINIR — Convergir</span>
+          <strong>Síntesis del problema central</strong>
+          <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>Toda la información se sintetizó en el Árbol de Problemas, delimitando el problema central: la gestión fragmentada, manual y poco oportuna de la información operativa y comercial.</li>
+            <li>Esta fase produjo un diagnóstico neutral, sin tecnología predefinida.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h4>Diamante 2 — Diseñar la solución</h4>
+      <div class="fx">
+        <div class="cd">
+          <span class="bg bgr" style="margin-bottom: .5rem;">DESARROLLAR — Divergir</span>
+          <strong>Generación de alternativas</strong>
+          <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>A partir de los medios fundamentales del árbol de objetivos se generaron cuatro alternativas mediante brainstorming, diagrama de afinidad, preguntas Cómo podríamos y SCAMPER.</li>
+            <li>Se exploraron caminos diversos: solución no-code, ERP modular open-source (Odoo Community), arquitectura de Inteligencia de Negocios a medida, y transformación digital por fases de implementación incremental.</li>
+          </ul>
+        </div>
+        <div class="cd">
+          <span class="bg by" style="margin-bottom: .5rem;">ENTREGAR — Convergir</span>
+          <strong>Selección y validación</strong>
+          <ul style="margin-top: .6rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.8;">
+            <li>Las alternativas se evaluaron con una rúbrica de costo-efectividad (sección 4.3), seleccionando la Transformación Digital por Fases por ser la solución más viable, sostenible y culturalmente adaptada a la madurez actual de Roma Bag's.</li>
+            <li>El proceso de validación se realizó mediante un prototipo navegable de la interfaz (Capítulo 05), que permitió verificar el flujo operativo con la usuaria antes de comprometer recursos en la configuración real del sistema.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+</Layout>
