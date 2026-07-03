@@ -1,0 +1,354 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GanttChart from '../../components/GanttChart.astro';
+---
+
+<Layout title="Capítulo 07: Plan de Gestión del Cronograma - Salidas">
+  <style>
+    .hero-card, .section-card, .note-card, .list-panel { background: #ffffff; border: 1px solid #dbeafe; border-radius: 24px; padding: 1.6rem; margin-bottom: 1.6rem; box-shadow: 0 22px 48px rgba(15,23,42,.09); }
+    .hero-card { background: linear-gradient(180deg, #eff6ff 0%, #f8fbff 100%); border-color: #c7d2fe; }
+    .hero-card h2 { margin: 0; color: #1e40af; font-size: 2rem; letter-spacing: .02em; }
+    .hero-card .meta-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); margin-top: 1.25rem; }
+    .hero-card .meta-item { background: #f8fbff; border: 1px solid #dbeafe; border-radius: 16px; padding: 1rem; }
+    .hero-card .meta-item strong { display: block; color: #2563eb; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .35rem; }
+    .hero-card .meta-item span { color: #0f172a; font-size: .96rem; line-height: 1.5; }
+    .section-card h3, .list-panel h3 { margin-top: 0; color: #1e3a8a; }
+    .section-card p, .section-card ul, .section-card ol { color: #334155; line-height: 1.75; margin: .85rem 0; }
+    .section-card ul, .section-card ol { padding-left: 1.25rem; }
+    .chapter-toolbar { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 1.5rem; }
+    .ct-btn { display: inline-flex; align-items: center; justify-content: center; padding: .85rem 1.2rem; border-radius: 999px; border: 1px solid rgba(15,23,42,.14); background: #fff; color: #1e3a8a; font-weight: 700; text-decoration: none; transition: transform .18s ease, background .18s ease, border-color .18s ease; box-shadow: 0 12px 28px rgba(15,23,42,.08); }
+    .ct-btn:hover { transform: translateY(-1px); background: #e0e7ff; border-color: #93c5fd; }
+    .ct-btn-primary { background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; border-color: transparent; }
+
+    /* ── SECTION HEADERS ── */
+    .sec-header { display: flex; align-items: center; gap: .75rem; margin: 2.2rem 0 1.2rem; }
+    .sec-header .sec-num { font-size: 2rem; font-weight: 800; color: #dbeafe; line-height: 1; }
+    .sec-header h2 { margin: 0; font-size: 1.4rem; color: #1e3a8a; }
+
+    /* ── CALENDARIO CARD ── */
+    .calendar-card { background: linear-gradient(135deg,#f0f9ff,#eff6ff); border: 1px solid #bae6fd; border-radius: 20px; padding: 1.4rem 1.5rem; margin-bottom: 1.1rem; }
+    .calendar-card h4 { margin: 0 0 1rem; color: #0369a1; font-size: 1.05rem; }
+    .holiday-list { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); margin-top: .75rem; }
+    .holiday-item { display: flex; gap: .65rem; align-items: flex-start; background: #fff; border: 1px solid #bae6fd; border-radius: 12px; padding: .6rem .9rem; }
+    .holiday-date { font-size: .82rem; font-weight: 700; color: #0369a1; white-space: nowrap; }
+    .holiday-name { font-size: .88rem; color: #334155; }
+
+    /* ── RUTA CRÍTICA ── */
+    .critical-path { background: #fff; border: 2px solid #ef4444; border-radius: 20px; padding: 1.4rem 1.5rem; margin-bottom: 1.1rem; box-shadow: 0 8px 24px rgba(239,68,68,.12); }
+    .critical-path h4 { margin: 0 0 .75rem; color: #b91c1c; font-size: 1.05rem; display: flex; align-items: center; gap: .5rem; }
+    .critical-path p { margin: 0 0 .85rem; color: #334155; line-height: 1.7; }
+    .cp-flow { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin-top: .75rem; }
+    .cp-step { background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: .3rem .65rem; font-size: .82rem; color: #991b1b; font-weight: 600; }
+    .cp-arrow { color: #ef4444; font-weight: 700; font-size: 1rem; }
+    .cp-gate { background: #ef4444; color: #fff; border-radius: 8px; padding: .3rem .7rem; font-size: .82rem; font-weight: 700; }
+
+    /* ── HOLGURA TABLE ── */
+    .holgura-table { width: 100%; border-collapse: collapse; margin-top: .75rem; font-size: .88rem; }
+    .holgura-table th { background: #eff6ff; color: #1e3a8a; padding: .5rem .75rem; text-align: left; font-size: .8rem; border-bottom: 2px solid #dbeafe; }
+    .holgura-table td { padding: .45rem .75rem; border-bottom: 1px solid #f1f5f9; color: #334155; }
+    .holgura-table tr:hover td { background: #f8fbff; }
+    .holgura-id { font-weight: 700; color: #2563eb; }
+    .holgura-days { font-weight: 700; color: #16a34a; }
+
+    /* ── GATE CARDS ── */
+    .gates-grid { display: grid; gap: 1.2rem; }
+    .gate-card { border-radius: 22px; padding: 1.5rem 1.6rem; box-shadow: 0 16px 40px rgba(15,23,42,.1); }
+    .gate-1 { background: linear-gradient(135deg,#f0f9ff,#e0f2fe); border: 2px solid #0ea5e9; }
+    .gate-2 { background: linear-gradient(135deg,#f0fdf4,#dcfce7); border: 2px solid #22c55e; }
+    .gate-3 { background: linear-gradient(135deg,#fdf4ff,#f3e8ff); border: 2px solid #a855f7; }
+    .gate-card .gate-title { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
+    .gate-card .gate-diamond { font-size: 1.5rem; }
+    .gate-card h4 { margin: 0; font-size: 1.05rem; }
+    .gate-1 h4 { color: #0369a1; }
+    .gate-2 h4 { color: #15803d; }
+    .gate-3 h4 { color: #7e22ce; }
+    .gate-card .gate-criteria { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+    .gate-card .gate-criteria li { display: flex; gap: .6rem; align-items: flex-start; font-size: .9rem; color: #334155; line-height: 1.55; }
+    .gate-card .gate-criteria li .chk { flex-shrink: 0; font-size: 1rem; }
+    .gate-1 .chk { color: #0ea5e9; }
+    .gate-2 .chk { color: #22c55e; }
+    .gate-3 .chk { color: #a855f7; }
+    .gate-card .gate-firmantes { margin-top: 1rem; padding-top: .75rem; border-top: 1px solid rgba(0,0,0,.08); font-size: .82rem; font-weight: 600; }
+    .gate-1 .gate-firmantes { color: #0369a1; }
+    .gate-2 .gate-firmantes { color: #15803d; }
+    .gate-3 .gate-firmantes { color: #7e22ce; }
+
+    .gantt-section { margin-top: 1.5rem; }
+    .note-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
+  </style>
+
+  <section class="sec" id="capitulo7">
+
+    <!-- HERO PRINCIPAL -->
+    <div class="hero-card" id="plan">
+      <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
+      <div class="meta-grid">
+        <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>1.0</span></div>
+        <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
+        <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
+        <div class="meta-item"><strong>Aprobado por</strong><span>Líder del Proyecto</span></div>
+      </div>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN RÁPIDA -->
+    <div class="chapter-toolbar">
+      <a href="/capitulo7"             class="ct-btn">7.0 Plan</a>
+      <a href="/capitulo7/entradas"     class="ct-btn">7.1 Entradas</a>
+      <a href="/capitulo7/herramientas" class="ct-btn">7.2 Herramientas</a>
+      <a href="/capitulo7/salidas"      class="ct-btn ct-btn-primary">7.3 Salidas</a>
+      <a href="/capitulo7/control"      class="ct-btn">7.4 Control</a>
+      <a href="/capitulo7/lista"        class="ct-btn">Lista de Actividades</a>
+    </div>
+
+    <!-- 7.3 SALIDAS -->
+    <div class="sec-header" id="salidas">
+      <span class="sec-num">7.3</span>
+      <h2>Salidas</h2>
+    </div>
+
+    <!-- Línea Base -->
+    <div class="hero-card">
+      <h2>Línea Base del Cronograma</h2>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <strong>Inicio</strong>
+          <span>7 de Septiembre 2026</span>
+        </div>
+        <div class="meta-item">
+          <strong>Fin</strong>
+          <span>15 de Diciembre 2026</span>
+        </div>
+        <div class="meta-item">
+          <strong>Duración Total</strong>
+          <span>75 días hábiles</span>
+        </div>
+        <div class="meta-item">
+          <strong>Actividades</strong>
+          <span>77 actividades (resúmenes, trabajo e hitos)</span>
+        </div>
+        <div class="meta-item">
+          <strong>Hitos / Gates</strong>
+          <span>3 gates de aprobación formal</span>
+        </div>
+        <div class="meta-item">
+          <strong>Programación</strong>
+          <span>Automática en MS Project (CPM)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h3>Sobre la Línea Base</h3>
+      <p>La línea base del cronograma es la versión aprobada del modelo de programación aceptada por el Líder del Proyecto. Sirve como referencia para medir el desempeño real. Solo puede modificarse mediante el proceso formal de control de cambios documentado en el Registro de Control de Cambios (paquete 1.1.4 de la EDT).</p>
+      <p>Incluye fechas de inicio temprano, fin temprano, inicio tardío y fin tardío calculadas por CPM. La holgura total de cada actividad resulta de la diferencia entre las fechas tardías y tempranas.</p>
+    </div>
+
+    <!-- Calendario -->
+    <div class="calendar-card">
+      <h4>📅 Calendario del Proyecto</h4>
+      <div class="note-grid">
+        <div class="note-card"><strong>Días laborables</strong> Lunes a viernes (5 días/semana, 8 horas/día).</div>
+        <div class="note-card"><strong>Días no laborables</strong> Sábados y domingos.</div>
+      </div>
+      <p style="margin: 1rem 0 .5rem; color: #334155; font-size: .93rem;"><strong>Feriados oficiales del Perú configurados en MS Project</strong> para el período septiembre–diciembre 2026:</p>
+      <div class="holiday-list">
+        <div class="holiday-item">
+          <span class="holiday-date">08 Oct 2026<br/>Jueves</span>
+          <span class="holiday-name">Combate de Angamos</span>
+        </div>
+        <div class="holiday-item">
+          <span class="holiday-date">30 Oct 2026<br/>Viernes</span>
+          <span class="holiday-name">Día de la Canción Criolla</span>
+        </div>
+        <div class="holiday-item">
+          <span class="holiday-date">02 Nov 2026<br/>Lunes</span>
+          <span class="holiday-name">Día de Todos los Santos</span>
+        </div>
+        <div class="holiday-item">
+          <span class="holiday-date">08 Dic 2026<br/>Martes</span>
+          <span class="holiday-name">Inmaculada Concepción</span>
+        </div>
+        <div class="holiday-item">
+          <span class="holiday-date">25 Dic 2026<br/>Viernes</span>
+          <span class="holiday-name">Navidad</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ruta Crítica -->
+    <div class="critical-path">
+      <h4>🔴 Ruta Crítica del Proyecto</h4>
+      <p>La ruta crítica es la secuencia de actividades con holgura total = 0. Cualquier retraso en una actividad crítica retrasa el proyecto en la misma proporción. Calculada por MS Project y resaltada en rojo en el diagrama de Gantt.</p>
+      <div class="cp-flow">
+        <span class="cp-step">Acta de Constitución</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Plan de Gestión</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Observación AS-IS</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Entrevistas</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Flujo AS-IS</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Fichas Requisitos</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Matriz Trazabilidad</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Diseño modelo datos</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Validación Odoo</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Base centralizada</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Reglas validación</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Consulta stock</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Prueba cronometrada</span><span class="cp-arrow">→</span>
+        <span class="cp-step">SOPs firmados</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Protocolo Excel</span><span class="cp-arrow">→</span>
+        <span class="cp-gate">◆ GATE 1</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Servidor configurado</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Odoo instalado</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Config. inicial</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Perfiles acceso</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Catálogo cargado</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Migración verificada</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Rebaja stock</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Formulario ventas</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Flujo Venta-Stock</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Bloqueo técnico</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Prueba conectividad</span><span class="cp-arrow">→</span>
+        <span class="cp-step">UAT Ventas</span><span class="cp-arrow">→</span>
+        <span class="cp-step">UAT Producción</span><span class="cp-arrow">→</span>
+        <span class="cp-step">UAT Gerencia</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Corrección incidencias</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Certificado Cero Errores</span><span class="cp-arrow">→</span>
+        <span class="cp-gate">◆ GATE 2</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Panel KPIs</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Reporte ganancia neta</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Verif. acceso por rol</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Talleres capacitación</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Despliegue dispositivos</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Monitoreo</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Verif. reportes</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Lecciones aprendidas</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Informe final</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Criterios aceptación</span><span class="cp-arrow">→</span>
+        <span class="cp-gate">◆ GATE 3</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Acta de Cierre Formal</span>
+      </div>
+    </div>
+
+    <!-- Holguras -->
+    <div class="section-card">
+      <h3>Actividades con Holgura Positiva (Fast-Tracking en Paralelo)</h3>
+      <p>Las siguientes actividades pueden retrasarse sin afectar la fecha de fin del proyecto. Su holgura positiva fue calculada por MS Project mediante CPM:</p>
+      <table class="holgura-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Actividad</th>
+            <th>Holgura estimada</th>
+            <th>Motivo del paralelismo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="holgura-id">10</td>
+            <td>Auditoría de infraestructura tecnológica</td>
+            <td class="holgura-days">2 días</td>
+            <td>Inicia en paralelo con la observación del flujo AS-IS (ID 7)</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">26</td>
+            <td>Redacción de SOPs del flujo venta-stock-despacho</td>
+            <td class="holgura-days">3 días</td>
+            <td>Inicia en paralelo con el diseño del modelo de datos (ID 16)</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">28</td>
+            <td>Política de respaldo y seguridad</td>
+            <td class="holgura-days">2 días</td>
+            <td>Inicia en paralelo con la redacción de SOPs (ID 26)</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">39</td>
+            <td>Solicitud del catálogo de productos</td>
+            <td class="holgura-days">1 día</td>
+            <td>Inicia desde el Gate 1 (ID 31) en paralelo con la configuración del servidor</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">51</td>
+            <td>Redacción de casos de prueba UAT CP-01 a CP-06</td>
+            <td class="holgura-days">2 días</td>
+            <td>Inicia en paralelo con la configuración del formulario de ventas (ID 47)</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">63</td>
+            <td>Manual de usuario por rol</td>
+            <td class="holgura-days">3 días</td>
+            <td>Inicia desde el Gate 2 (ID 58) en paralelo con la configuración del panel KPIs</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">64</td>
+            <td>Guía de auto-recuperación de incidencias</td>
+            <td class="holgura-days">2 días</td>
+            <td>Inicia en paralelo con la elaboración del manual (ID 63)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Hitos/Gates -->
+    <div class="section-card">
+      <h3>Hitos con Criterios de Salida — Gates de Aprobación</h3>
+      <p>Los gates son hitos de duración cero que marcan puntos de control formales. <strong>Todos los criterios de salida deben cumplirse</strong> para firmar el acta y avanzar a la siguiente fase. Ningún gate puede aprobarse parcialmente.</p>
+
+      <div class="gates-grid">
+
+        <!-- GATE 1 -->
+        <div class="gate-card gate-1">
+          <div class="gate-title">
+            <span class="gate-diamond">◆</span>
+            <h4>GATE 1 — Acta de Aprobación Fase Cimentar (fin Fase 1)</h4>
+          </div>
+          <ul class="gate-criteria">
+            <li><span class="chk">✓</span> 100% del inventario y ventas registrados en la base de datos centralizada</li>
+            <li><span class="chk">✓</span> Consulta de stock desde celular en menos de 2 minutos (prueba cronometrada aprobada)</li>
+            <li><span class="chk">✓</span> Cero zonas muertas de Wi-Fi en todas las áreas de trabajo del taller</li>
+            <li><span class="chk">✓</span> SOPs del flujo venta-stock-despacho firmados por todos los usuarios</li>
+            <li><span class="chk">✓</span> Política de respaldo activa y verificada con primera copia de seguridad exitosa</li>
+          </ul>
+          <div class="gate-firmantes">👤 Firmante requerido: Natalie — Gerencia General</div>
+        </div>
+
+        <!-- GATE 2 -->
+        <div class="gate-card gate-2">
+          <div class="gate-title">
+            <span class="gate-diamond">◆</span>
+            <h4>GATE 2 — Acta de Aprobación Fase Integrar (fin Fase 2)</h4>
+          </div>
+          <ul class="gate-criteria">
+            <li><span class="chk">✓</span> Flujo Venta-Stock-Despacho en Odoo sin errores críticos en período de prueba</li>
+            <li><span class="chk">✓</span> Pedidos incompletos reducidos a cero durante el período de prueba de la UAT</li>
+            <li><span class="chk">✓</span> Personal de ventas y producción capacitado y operando en Odoo de forma autónoma</li>
+            <li><span class="chk">✓</span> Certificado de Cero Errores Críticos emitido tras corrección de todas las incidencias UAT</li>
+          </ul>
+          <div class="gate-firmantes">👤 Firmantes requeridos: Natalie (Gerencia) y Socio de Producción</div>
+        </div>
+
+        <!-- GATE 3 -->
+        <div class="gate-card gate-3">
+          <div class="gate-title">
+            <span class="gate-diamond">◆</span>
+            <h4>GATE 3 — Acta de Conformidad y Cierre Formal (fin del proyecto)</h4>
+          </div>
+          <ul class="gate-criteria">
+            <li><span class="chk">✓</span> Reportes de rentabilidad generados automáticamente en Odoo sin intervención manual</li>
+            <li><span class="chk">✓</span> Cuadre semanal reducido de 1 día a menos de 1 hora (medido y documentado)</li>
+            <li><span class="chk">✓</span> Natalie resuelve incidencias básicas de Odoo de forma autónoma sin apoyo del consultor</li>
+            <li><span class="chk">✓</span> Todos los criterios de aceptación del Enunciado del Alcance verificados y documentados</li>
+          </ul>
+          <div class="gate-firmantes">👤 Firmante requerido: Natalie — Gerencia General</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIAGRAMA DE GANTT -->
+    <div class="gantt-section">
+      <GanttChart />
+    </div>
+
+  </section>
+</Layout>

@@ -83,12 +83,12 @@ import '../styles/global.css';
 <li class="acc-item">
     <button class="acc-btn">Cap. 07: Gestión del Cronograma <span class="arr">▼</span></button>
     <ul class="acc-content">
-        <li><a href="/capitulo7#plan" class="nl sub-link">7.0 Plan de Gestión</a></li>
-        <li><a href="/capitulo7#entradas" class="nl sub-link">7.1 Entradas</a></li>
-        <li><a href="/capitulo7#herramientas" class="nl sub-link">7.2 Herramientas y Técnicas</a></li>
-        <li><a href="/capitulo7#salidas" class="nl sub-link">7.3 Salidas</a></li>
-        <li><a href="/capitulo7#control" class="nl sub-link">7.4 Control del Cronograma</a></li>
-        <li><a href="/capitulo7#lista" class="nl sub-link">Lista de Actividades</a></li>
+        <li><a href="/capitulo7" class="nl sub-link">7.0 Plan de Gestión</a></li>
+        <li><a href="/capitulo7/entradas" class="nl sub-link">7.1 Entradas</a></li>
+        <li><a href="/capitulo7/herramientas" class="nl sub-link">7.2 Herramientas y Técnicas</a></li>
+        <li><a href="/capitulo7/salidas" class="nl sub-link">7.3 Salidas</a></li>
+        <li><a href="/capitulo7/control" class="nl sub-link">7.4 Control del Cronograma</a></li>
+        <li><a href="/capitulo7/lista" class="nl sub-link">Lista de Actividades</a></li>
     </ul>
 </li>
 <!-- ANEXOS Y REFERENCIAS -->
@@ -123,8 +123,37 @@ import '../styles/global.css';
                 });
             });
 
-            // Manejo visual de links activos y navegación a anclas
             const links = document.querySelectorAll('.nm a');
+
+            // Resaltar link activo en base a la URL actual al cargar la página
+            const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+            links.forEach(link => {
+                const linkPath = new URL(link.href, location.origin).pathname.replace(/\/+$/, '') || '/';
+                const linkHash = new URL(link.href, location.origin).hash;
+                
+                if (currentPath === linkPath) {
+                    if (linkHash) {
+                        if (window.location.hash === linkHash) {
+                            link.classList.add('on');
+                            const parentAcc = link.closest('.acc-content');
+                            if (parentAcc) {
+                                parentAcc.classList.add('open');
+                                const accBtn = parentAcc.previousElementSibling;
+                                if (accBtn) accBtn.classList.add('open');
+                            }
+                        }
+                    } else if (!window.location.hash) {
+                        link.classList.add('on');
+                        const parentAcc = link.closest('.acc-content');
+                        if (parentAcc) {
+                            parentAcc.classList.add('open');
+                            const accBtn = parentAcc.previousElementSibling;
+                            if (accBtn) accBtn.classList.add('open');
+                        }
+                    }
+                }
+            });
+
             links.forEach(link => {
                 link.addEventListener('click', (e) => {
                     try {

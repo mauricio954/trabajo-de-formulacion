@@ -1,0 +1,118 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Capítulo 07: Plan de Gestión del Cronograma - Herramientas y Técnicas">
+  <style>
+    .hero-card, .section-card, .note-card, .list-panel { background: #ffffff; border: 1px solid #dbeafe; border-radius: 24px; padding: 1.6rem; margin-bottom: 1.6rem; box-shadow: 0 22px 48px rgba(15,23,42,.09); }
+    .hero-card { background: linear-gradient(180deg, #eff6ff 0%, #f8fbff 100%); border-color: #c7d2fe; }
+    .hero-card h2 { margin: 0; color: #1e40af; font-size: 2rem; letter-spacing: .02em; }
+    .hero-card .meta-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); margin-top: 1.25rem; }
+    .hero-card .meta-item { background: #f8fbff; border: 1px solid #dbeafe; border-radius: 16px; padding: 1rem; }
+    .hero-card .meta-item strong { display: block; color: #2563eb; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .35rem; }
+    .hero-card .meta-item span { color: #0f172a; font-size: .96rem; line-height: 1.5; }
+    .section-card h3, .list-panel h3 { margin-top: 0; color: #1e3a8a; }
+    .section-card p, .section-card ul, .section-card ol { color: #334155; line-height: 1.75; margin: .85rem 0; }
+    .section-card ul, .section-card ol { padding-left: 1.25rem; }
+    .chapter-toolbar { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 1.5rem; }
+    .ct-btn { display: inline-flex; align-items: center; justify-content: center; padding: .85rem 1.2rem; border-radius: 999px; border: 1px solid rgba(15,23,42,.14); background: #fff; color: #1e3a8a; font-weight: 700; text-decoration: none; transition: transform .18s ease, background .18s ease, border-color .18s ease; box-shadow: 0 12px 28px rgba(15,23,42,.08); }
+    .ct-btn:hover { transform: translateY(-1px); background: #e0e7ff; border-color: #93c5fd; }
+    .ct-btn-primary { background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; border-color: transparent; }
+
+    /* ── SECTION HEADERS ── */
+    .sec-header { display: flex; align-items: center; gap: .75rem; margin: 2.2rem 0 1.2rem; }
+    .sec-header .sec-num { font-size: 2rem; font-weight: 800; color: #dbeafe; line-height: 1; }
+    .sec-header h2 { margin: 0; font-size: 1.4rem; color: #1e3a8a; }
+
+    /* ── TECNICA CARDS ── */
+    .tecnica-card { background: #fff; border: 1px solid #dbeafe; border-radius: 20px; padding: 1.4rem 1.5rem; margin-bottom: 1.1rem; box-shadow: 0 8px 24px rgba(15,23,42,.06); }
+    .tecnica-card .tc-badge { display: inline-block; background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; font-size: .72rem; font-weight: 700; border-radius: 999px; padding: .25rem .7rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .7rem; }
+    .tecnica-card h4 { margin: 0 0 .55rem; color: #1e3a8a; font-size: 1.05rem; }
+    .tecnica-card p { margin: 0 0 .6rem; color: #334155; line-height: 1.75; }
+    .tecnica-card ul { margin: .5rem 0 0; padding-left: 1.15rem; color: #475569; line-height: 1.7; }
+    .tecnica-result { display: inline-block; background: #dcfce7; color: #166534; border-radius: 10px; padding: .5rem 1rem; font-size: .88rem; font-weight: 600; margin-top: .75rem; }
+  </style>
+
+  <section class="sec" id="capitulo7">
+
+    <!-- HERO PRINCIPAL -->
+    <div class="hero-card" id="plan">
+      <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
+      <div class="meta-grid">
+        <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>1.0</span></div>
+        <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
+        <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
+        <div class="meta-item"><strong>Aprobado por</strong><span>Líder del Proyecto</span></div>
+      </div>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN RÁPIDA -->
+    <div class="chapter-toolbar">
+      <a href="/capitulo7"             class="ct-btn">7.0 Plan</a>
+      <a href="/capitulo7/entradas"     class="ct-btn">7.1 Entradas</a>
+      <a href="/capitulo7/herramientas" class="ct-btn ct-btn-primary">7.2 Herramientas</a>
+      <a href="/capitulo7/salidas"      class="ct-btn">7.3 Salidas</a>
+      <a href="/capitulo7/control"      class="ct-btn">7.4 Control</a>
+      <a href="/capitulo7/lista"        class="ct-btn">Lista de Actividades</a>
+    </div>
+
+    <!-- 7.2 HERRAMIENTAS Y TÉCNICAS -->
+    <div class="sec-header" id="herramientas">
+      <span class="sec-num">7.2</span>
+      <h2>Herramientas y Técnicas</h2>
+    </div>
+
+    <div class="section-card">
+      <h3>Técnicas aplicadas para el desarrollo del cronograma</h3>
+      <p>El cronograma se desarrolló siguiendo la secuencia de procesos del Dominio de Planificación del PMBOK 8, con la ruta crítica como técnica central y el fast-tracking como estrategia de optimización. El resultado: 75 días hábiles desde un escenario de secuencia estricta de ~90 días.</p>
+
+      <!-- Técnica 1 -->
+      <div class="tecnica-card">
+        <span class="tc-badge">Técnica 1</span>
+        <h4>Método de la Ruta Crítica (CPM)</h4>
+        <p>El CPM calcula las fechas más tempranas y tardías de inicio y fin de cada actividad, determinando la holgura total. Las actividades con holgura total = 0 forman la ruta crítica: cualquier retraso en ellas retrasa el proyecto en la misma proporción. En MS Project la ruta crítica se resalta automáticamente en rojo. Se calculó el CPM completo sobre las 77 actividades del proyecto.</p>
+      </div>
+
+      <!-- Técnica 2 -->
+      <div class="tecnica-card">
+        <span class="tc-badge">Técnica 2</span>
+        <h4>Método de Diagramación de Precedencia (PDM)</h4>
+        <p>Se usó el PDM para definir las dependencias entre actividades. Se priorizó la relación Fin-Inicio (FI) como estándar. La relación Inicio-Inicio (II) se aplicó cuando dos actividades podían comenzar simultáneamente sin que la primera necesitara completarse (base del fast-tracking).</p>
+      </div>
+
+      <!-- Técnica 3 -->
+      <div class="tecnica-card">
+        <span class="tc-badge">Técnica 3</span>
+        <h4>Estimación Análoga y Juicio de Expertos</h4>
+        <p>Las duraciones se calcularon en días hábiles (8 horas, lunes a viernes) mediante juicio de expertos del equipo consultor y estimación análoga basada en proyectos de implementación de ERP similares en PYMES peruanas. La estimación fue conservadora para actividades críticas (diagnóstico, UAT) y ajustada para actividades de baja variabilidad (instalación de software, redacción de documentos).</p>
+      </div>
+
+      <!-- Técnica 4 -->
+      <div class="tecnica-card">
+        <span class="tc-badge">Técnica 4</span>
+        <h4>Microsoft Project como PMIS</h4>
+        <p>Herramienta de Información para la Gestión del Proyecto. Funciones utilizadas: (75 días hábiles) cálculo automático del CPM, visualización del diagrama de Gantt con barras y flechas, asignación de recursos, configuración del calendario con feriados del Perú, generación de la línea base y seguimiento del Valor Ganado (EVM). El PMBOK 8 reconoce el PMIS como herramienta habilitante del Dominio de Planificación.</p>
+      </div>
+
+      <!-- Técnica 5 -->
+      <div class="tecnica-card">
+        <span class="tc-badge">Técnica 5</span>
+        <h4>Compresión del Cronograma por Fast-Tracking</h4>
+        <p>El fast-tracking consiste en ejecutar en paralelo actividades que en secuencia estricta irían una después de la otra, cuando sus entradas no son dependientes entre sí. Se aplica para reducir la duración total sin agregar recursos ni costos adicionales.</p>
+        <p><strong>5 casos documentados en este proyecto:</strong></p>
+        <ul>
+          <li><strong>(1)</strong> Auditoría de infraestructura (ID 10) en paralelo con observación directa del flujo (ID 7) — relación II.</li>
+          <li><strong>(2)</strong> Redacción de SOPs (ID 26) en paralelo con diseño del modelo de datos (ID 16) — relación II.</li>
+          <li><strong>(3)</strong> Solicitud del catálogo de productos (ID 39) en paralelo desde Gate 1 (ID 31) — relación II.</li>
+          <li><strong>(4)</strong> Redacción de casos de prueba UAT (ID 51) en paralelo con configuración del formulario de ventas (ID 47) — relación II.</li>
+          <li><strong>(5)</strong> Elaboración de manuales de usuario (ID 63) en paralelo desde Gate 2 (ID 58) — relación II.</li>
+        </ul>
+        <div class="tecnica-result">
+          ✓ Resultado: reducción de ~90 días (secuencia estricta) a 75 días hábiles sin agregar recursos ni costos adicionales.
+        </div>
+      </div>
+    </div>
+
+  </section>
+</Layout>

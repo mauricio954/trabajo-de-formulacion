@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Capítulo 07: Plan de Gestión del Cronograma">
+  <style>
+    .hero-card, .section-card, .note-card, .list-panel { background: #ffffff; border: 1px solid #dbeafe; border-radius: 24px; padding: 1.6rem; margin-bottom: 1.6rem; box-shadow: 0 22px 48px rgba(15,23,42,.09); }
+    .hero-card { background: linear-gradient(180deg, #eff6ff 0%, #f8fbff 100%); border-color: #c7d2fe; }
+    .hero-card h2 { margin: 0; color: #1e40af; font-size: 2rem; letter-spacing: .02em; }
+    .hero-card .meta-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); margin-top: 1.25rem; }
+    .hero-card .meta-item { background: #f8fbff; border: 1px solid #dbeafe; border-radius: 16px; padding: 1rem; }
+    .hero-card .meta-item strong { display: block; color: #2563eb; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .35rem; }
+    .hero-card .meta-item span { color: #0f172a; font-size: .96rem; line-height: 1.5; }
+    .section-card h3, .list-panel h3 { margin-top: 0; color: #1e3a8a; }
+    .section-card p, .section-card ul, .section-card ol { color: #334155; line-height: 1.75; margin: .85rem 0; }
+    .section-card ul, .section-card ol { padding-left: 1.25rem; }
+    .section-card hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, #93c5fd, transparent); margin: 1.5rem 0; }
+    .note-card { border-color: #d0e8ff; background: #eef6ff; }
+    .note-card strong { display: block; color: #1e40af; margin-bottom: .4rem; }
+    .note-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
+    .chapter-toolbar { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 1.5rem; }
+    .ct-btn { display: inline-flex; align-items: center; justify-content: center; padding: .85rem 1.2rem; border-radius: 999px; border: 1px solid rgba(15,23,42,.14); background: #fff; color: #1e3a8a; font-weight: 700; text-decoration: none; transition: transform .18s ease, background .18s ease, border-color .18s ease; box-shadow: 0 12px 28px rgba(15,23,42,.08); }
+    .ct-btn:hover { transform: translateY(-1px); background: #e0e7ff; border-color: #93c5fd; }
+    .ct-btn-primary { background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; border-color: transparent; }
+
+    /* ── INTRO HERO ── */
+    .intro-hero { background: linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 50%,#2563eb 100%); border-radius: 24px; padding: 2.2rem 2rem; margin-bottom: 1.6rem; color: #fff; box-shadow: 0 28px 56px rgba(15,23,42,.18); }
+    .intro-hero h2 { margin: 0 0 .5rem; font-size: 1.85rem; color: #fff; }
+    .intro-hero .ih-sub { color: #bfdbfe; font-size: .95rem; margin: 0 0 1.4rem; }
+    .intro-hero .ih-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
+    .intro-hero .ih-card { background: rgba(255,255,255,.12); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.2); border-radius: 18px; padding: 1.1rem 1.3rem; }
+    .intro-hero .ih-card strong { display: block; color: #93c5fd; font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .5rem; }
+    .intro-hero .ih-card p { margin: 0; font-size: .9rem; color: #e0f2fe; line-height: 1.65; }
+
+    /* ── SECTION HEADERS ── */
+    .sec-header { display: flex; align-items: center; gap: .75rem; margin: 2.2rem 0 1.2rem; }
+    .sec-header .sec-num { font-size: 2rem; font-weight: 800; color: #dbeafe; line-height: 1; }
+    .sec-header h2 { margin: 0; font-size: 1.4rem; color: #1e3a8a; }
+  </style>
+
+  <section class="sec" id="capitulo7">
+
+    <!-- HERO PRINCIPAL -->
+    <div class="hero-card" id="plan">
+      <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
+      <div class="meta-grid">
+        <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>1.0</span></div>
+        <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
+        <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
+        <div class="meta-item"><strong>Aprobado por</strong><span>Líder del Proyecto</span></div>
+      </div>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN RÁPIDA -->
+    <div class="chapter-toolbar">
+      <a href="/capitulo7"             class="ct-btn ct-btn-primary">7.0 Plan</a>
+      <a href="/capitulo7/entradas"     class="ct-btn">7.1 Entradas</a>
+      <a href="/capitulo7/herramientas" class="ct-btn">7.2 Herramientas</a>
+      <a href="/capitulo7/salidas"      class="ct-btn">7.3 Salidas</a>
+      <a href="/capitulo7/control"      class="ct-btn">7.4 Control</a>
+      <a href="/capitulo7/lista"        class="ct-btn">Lista de Actividades</a>
+    </div>
+
+    <!-- INTRO HERO -->
+    <div class="intro-hero">
+      <h2>Plan de Gestión del Cronograma</h2>
+      <p class="ih-sub">Transformación Digital Roma Bag's · Equipo Consultor UNTELS · PMBOK 8</p>
+      <div class="ih-grid">
+        <div class="ih-card">
+          <strong>Propósito del Plan</strong>
+          <p>Establece las políticas, procedimientos y documentación necesarios para planificar, desarrollar, gestionar, ejecutar y controlar el cronograma del proyecto. Define cómo se medirá y controlará el avance temporal y qué acciones se tomarán ante desviaciones. Todo lo establecido es vinculante para el equipo consultor UNTELS durante todo el ciclo de vida del proyecto.</p>
+        </div>
+        <div class="ih-card">
+          <strong>Enfoque de Desarrollo</strong>
+          <p>Híbrido predictivo por fases con gates de decisión formales. La planificación es en cascada dentro de cada fase y el paso entre fases depende de una decisión formal de la Gerencia basada en resultados medibles. Responde al Principio de Navegar la Complejidad del PMBOK 8: el director adapta el enfoque a las características específicas del entorno.</p>
+        </div>
+        <div class="ih-card">
+          <strong>Herramienta PMIS Seleccionada</strong>
+          <p>Microsoft Project. Justificación: calcula el CPM automáticamente, genera el Gantt con barras y flechas conectoras, permite asignar recursos, soporta el seguimiento del Valor Ganado y exporta en formato .mpp estándar de la industria. El PMBOK 8 reconoce el PMIS como herramienta habilitante del Dominio de Planificación.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- METODOLOGÍA -->
+    <div class="section-card">
+      <h3>3. METODOLOGÍA DE ELABORACIÓN DEL CRONOGRAMA</h3>
+      <p>El cronograma se desarrolló siguiendo la secuencia de procesos del dominio de Planificación del PMBOK 8, aplicando el Método de la Ruta Crítica (CPM, Critical Path Method) como técnica principal de análisis de red del cronograma.</p>
+      <div class="note-grid">
+        <div class="note-card"><strong>Definición de actividades</strong> Cada paquete de trabajo de la EDT se tradujo en actividades ejecutables con verbo. La EDT incluye 5 entregables de Nivel 1 descompuestos en 77 actividades y 3 hitos de gate.</div>
+        <div class="note-card"><strong>Secuenciación</strong> Se usó el Método de Diagramación de Precedencia (PDM) con predominio Fin-Inicio (FI) y dependencias Inicio-Inicio (II) cuando fue necesario ejecutar tareas en paralelo.</div>
+        <div class="note-card"><strong>Estimación</strong> Duraciones calculadas en días hábiles mediante juicio de expertos y estimación análoga, con jornada de 8 horas de lunes a viernes.</div>
+        <div class="note-card"><strong>Herramienta PMIS</strong> El cronograma se desarrolló en Microsoft Project, generando línea base, Gantt y diagrama de red con ruta crítica automática.</div>
+      </div>
+    </div>
+
+    <!-- HERRAMIENTA DE GESTIÓN -->
+    <div class="section-card">
+      <h3>4. HERRAMIENTA DE GESTIÓN DEL CRONOGRAMA</h3>
+      <p><strong>Herramienta seleccionada:</strong> Microsoft Project (versión profesional).</p>
+      <p>MS Project es la herramienta de referencia mencionada por el docente del curso y cumple con todos los requisitos técnicos del proyecto: cálculo automático del CPM, visualización de Gantt, diagrama de red, asignación de recursos, valor ganado y exportación en formato estándar (.mpp). También permite configurar calendarios personalizados con los feriados oficiales del Perú aplicables al proyecto.</p>
+    </div>
+
+    <!-- PARÁMETROS GENERALES -->
+    <div class="section-card">
+      <h3>6. PARÁMETROS GENERALES DEL CRONOGRAMA</h3>
+      <div class="note-grid">
+        <div class="note-card"><strong>Inicio</strong> Lunes 7 de septiembre de 2026.</div>
+        <div class="note-card"><strong>Fin estimado</strong> Martes 15 de diciembre de 2026.</div>
+        <div class="note-card"><strong>Duración</strong> 75 días hábiles.</div>
+        <div class="note-card"><strong>Actividades</strong> 77 actividades (incluye resúmenes, trabajo y hitos).</div>
+        <div class="note-card"><strong>Hitos</strong> 3 gates de aprobación.</div>
+        <div class="note-card"><strong>Programación</strong> Automática en MS Project.</div>
+      </div>
+      <p>La programación es automática para evitar restricciones fijas que bloqueen el recálculo del cronograma.</p>
+    </div>
+
+  </section>
+</Layout>

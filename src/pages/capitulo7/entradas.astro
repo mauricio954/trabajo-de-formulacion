@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Capítulo 07: Plan de Gestión del Cronograma - Entradas">
+  <style>
+    .hero-card, .section-card, .note-card, .list-panel { background: #ffffff; border: 1px solid #dbeafe; border-radius: 24px; padding: 1.6rem; margin-bottom: 1.6rem; box-shadow: 0 22px 48px rgba(15,23,42,.09); }
+    .hero-card { background: linear-gradient(180deg, #eff6ff 0%, #f8fbff 100%); border-color: #c7d2fe; }
+    .hero-card h2 { margin: 0; color: #1e40af; font-size: 2rem; letter-spacing: .02em; }
+    .hero-card .meta-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); margin-top: 1.25rem; }
+    .hero-card .meta-item { background: #f8fbff; border: 1px solid #dbeafe; border-radius: 16px; padding: 1rem; }
+    .hero-card .meta-item strong { display: block; color: #2563eb; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .35rem; }
+    .hero-card .meta-item span { color: #0f172a; font-size: .96rem; line-height: 1.5; }
+    .section-card h3, .list-panel h3 { margin-top: 0; color: #1e3a8a; }
+    .section-card p, .section-card ul, .section-card ol { color: #334155; line-height: 1.75; margin: .85rem 0; }
+    .section-card ul, .section-card ol { padding-left: 1.25rem; }
+    .chapter-toolbar { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 1.5rem; }
+    .ct-btn { display: inline-flex; align-items: center; justify-content: center; padding: .85rem 1.2rem; border-radius: 999px; border: 1px solid rgba(15,23,42,.14); background: #fff; color: #1e3a8a; font-weight: 700; text-decoration: none; transition: transform .18s ease, background .18s ease, border-color .18s ease; box-shadow: 0 12px 28px rgba(15,23,42,.08); }
+    .ct-btn:hover { transform: translateY(-1px); background: #e0e7ff; border-color: #93c5fd; }
+    .ct-btn-primary { background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; border-color: transparent; }
+
+    /* ── SECTION HEADERS ── */
+    .sec-header { display: flex; align-items: center; gap: .75rem; margin: 2.2rem 0 1.2rem; }
+    .sec-header .sec-num { font-size: 2rem; font-weight: 800; color: #dbeafe; line-height: 1; }
+    .sec-header h2 { margin: 0; font-size: 1.4rem; color: #1e3a8a; }
+
+    /* ── ENTRADA CARDS ── */
+    .entrada-grid { display: grid; gap: 1.1rem; }
+    .entrada-card { background: #fff; border: 1px solid #dbeafe; border-radius: 20px; padding: 1.3rem 1.5rem; box-shadow: 0 8px 24px rgba(15,23,42,.06); }
+    .entrada-card .en-tag { display: inline-block; font-size: .72rem; font-weight: 700; color: #1d4ed8; background: #dbeafe; border-radius: 999px; padding: .2rem .65rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
+    .entrada-card h4 { margin: 0 0 .55rem; color: #0f172a; font-size: 1rem; }
+    .entrada-card p { margin: 0 0 .6rem; color: #475569; font-size: .93rem; line-height: 1.7; }
+    .entrada-card ul { margin: .5rem 0 0; padding-left: 1.15rem; color: #475569; font-size: .9rem; line-height: 1.7; }
+  </style>
+
+  <section class="sec" id="capitulo7">
+
+    <!-- HERO PRINCIPAL -->
+    <div class="hero-card" id="plan">
+      <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
+      <div class="meta-grid">
+        <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>1.0</span></div>
+        <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
+        <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
+        <div class="meta-item"><strong>Aprobado por</strong><span>Líder del Proyecto</span></div>
+      </div>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN RÁPIDA -->
+    <div class="chapter-toolbar">
+      <a href="/capitulo7"             class="ct-btn">7.0 Plan</a>
+      <a href="/capitulo7/entradas"     class="ct-btn ct-btn-primary">7.1 Entradas</a>
+      <a href="/capitulo7/herramientas" class="ct-btn">7.2 Herramientas</a>
+      <a href="/capitulo7/salidas"      class="ct-btn">7.3 Salidas</a>
+      <a href="/capitulo7/control"      class="ct-btn">7.4 Control</a>
+      <a href="/capitulo7/lista"        class="ct-btn">Lista de Actividades</a>
+    </div>
+
+    <!-- 7.1 ENTRADAS -->
+    <div class="sec-header" id="entradas">
+      <span class="sec-num">7.1</span>
+      <h2>Entradas</h2>
+    </div>
+
+    <div class="section-card">
+      <h3>Entradas del Proceso: Planificar la Gestión del Cronograma</h3>
+      <p>El proceso de planificación del cronograma requiere las siguientes entradas del PMBOK 8. Cada una aporta información crítica que delimita el margen de maniobra para la planificación temporal del proyecto.</p>
+
+      <div class="entrada-grid">
+
+        <!-- ENTRADA 1 -->
+        <div class="entrada-card">
+          <span class="en-tag">Entrada 1</span>
+          <h4>Plan de Gestión del Alcance</h4>
+          <p>Define los entregables y paquetes de trabajo de la EDT. Cada paquete de trabajo se traduce en una o más actividades con duración estimable. El alcance delimitado en el Capítulo 06 (EDT aprobada con 5 entregables de Nivel 1 y 77 actividades) es el insumo directo para construir el cronograma.</p>
+          <ul>
+            <li>EDT aprobada con 5 entregables de Nivel 1 descompuestos en 77 actividades</li>
+            <li>Enunciado del Alcance con criterios de aceptación verificables por gate</li>
+            <li>Diccionario EDT con descripción y criterios de cada paquete de trabajo</li>
+          </ul>
+        </div>
+
+        <!-- ENTRADA 2 -->
+        <div class="entrada-card">
+          <span class="en-tag">Entrada 2</span>
+          <h4>Acta de Constitución del Proyecto</h4>
+          <p>Proporciona las restricciones de tiempo de alto nivel: fecha de inicio, recursos disponibles y umbrales de riesgo aceptable. La restricción de completar el proyecto en un máximo de 75 días hábiles proviene directamente del Acta firmada por la Gerencia de Roma Bag's.</p>
+          <ul>
+            <li>Fecha de inicio autorizada: lunes 7 de septiembre de 2026</li>
+            <li>Restricción de duración: máximo 75 días hábiles sin reservas</li>
+            <li>Equipo asignado: Consultor UNTELS (3 integrantes)</li>
+          </ul>
+        </div>
+
+        <!-- ENTRADA 3 -->
+        <div class="entrada-card">
+          <span class="en-tag">Entrada 3</span>
+          <h4>Registro de Interesados</h4>
+          <p>Define la disponibilidad y el rol de cada interesado en las validaciones y hitos gate del cronograma. La no-disponibilidad de un interesado clave puede bloquear un gate y retrasar el proyecto.</p>
+          <ul>
+            <li><strong>Natalie (Gerencia General):</strong> firma requerida en los 3 gates. Alta disponibilidad condicionada a agenda ejecutiva. Plazo máximo de respuesta: 48 h.</li>
+            <li><strong>Socio de Producción:</strong> aprobación en UAT Fase 2 y Gate 2. Baja tolerancia al error; requiere pre-prueba informal antes de la UAT formal.</li>
+            <li><strong>Personal de Ventas:</strong> disponibilidad para UAT y capacitación en horarios de no-pico del taller.</li>
+            <li><strong>Equipo Consultor UNTELS:</strong> responsable de la ejecución de todas las actividades técnicas durante las 3 fases.</li>
+          </ul>
+        </div>
+
+        <!-- ENTRADA 4 -->
+        <div class="entrada-card">
+          <span class="en-tag">Entrada 4</span>
+          <h4>Factores Ambientales de la Empresa</h4>
+          <p>Las condiciones del entorno de Roma Bag's impactan directamente las estimaciones y la secuenciación:</p>
+          <ul>
+            <li><strong>Ausencia de área de TI:</strong> obliga a incluir actividades de auto-recuperación y capacitación intensiva que no existirían en una empresa con soporte técnico interno.</li>
+            <li><strong>Conectividad Wi-Fi irregular:</strong> el taller tiene zonas muertas documentadas, lo que justifica las actividades de diagnóstico de red (ID 18–21) como prerequisito técnico de la configuración del sistema.</li>
+            <li><strong>Resistencia al cambio documentada:</strong> agrega un buffer de gestión del cambio en las estimaciones de capacitación y explica la necesidad del protocolo de coexistencia con Excel (ID 30) antes del Gate 1.</li>
+          </ul>
+        </div>
+
+        <!-- ENTRADA 5 -->
+        <div class="entrada-card">
+          <span class="en-tag">Entrada 5</span>
+          <h4>Registro de Riesgos</h4>
+          <p>Los riesgos con impacto directo sobre el cronograma son:</p>
+          <ul>
+            <li><strong>R1 — Disponibilidad de Natalie para los gates:</strong> Probabilidad alta · Impacto alto. Respuesta: plazo máximo de 48 h y suplente autorizado.</li>
+            <li><strong>R2 — Rechazo del Socio de Producción en UAT:</strong> Probabilidad media · Impacto muy alto. Respuesta: pre-prueba informal antes de la UAT formal para filtrar errores críticos.</li>
+            <li><strong>R3 — Complejidad de migración de datos Fase 1 a Odoo:</strong> Probabilidad media · Impacto alto. Respuesta: validar compatibilidad del modelo de datos al cierre del paquete 1.3.1.1 antes de cerrar la Fase 1.</li>
+            <li><strong>R4 — Feriados de nov-dic concentrados en el período de la Fase 3:</strong> Respuesta: planificar capacitaciones antes del 5 de diciembre para dejar margen ante feriados de fin de año.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+</Layout>

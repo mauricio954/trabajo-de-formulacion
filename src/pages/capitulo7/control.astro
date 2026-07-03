@@ -1,0 +1,168 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Capítulo 07: Plan de Gestión del Cronograma - Control del Cronograma">
+  <style>
+    .hero-card, .section-card, .note-card, .list-panel { background: #ffffff; border: 1px solid #dbeafe; border-radius: 24px; padding: 1.6rem; margin-bottom: 1.6rem; box-shadow: 0 22px 48px rgba(15,23,42,.09); }
+    .hero-card { background: linear-gradient(180deg, #eff6ff 0%, #f8fbff 100%); border-color: #c7d2fe; }
+    .hero-card h2 { margin: 0; color: #1e40af; font-size: 2rem; letter-spacing: .02em; }
+    .hero-card .meta-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); margin-top: 1.25rem; }
+    .hero-card .meta-item { background: #f8fbff; border: 1px solid #dbeafe; border-radius: 16px; padding: 1rem; }
+    .hero-card .meta-item strong { display: block; color: #2563eb; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .35rem; }
+    .hero-card .meta-item span { color: #0f172a; font-size: .96rem; line-height: 1.5; }
+    .section-card h3, .list-panel h3 { margin-top: 0; color: #1e3a8a; }
+    .section-card p, .section-card ul, .section-card ol { color: #334155; line-height: 1.75; margin: .85rem 0; }
+    .section-card ul, .section-card ol { padding-left: 1.25rem; }
+    .chapter-toolbar { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 1.5rem; }
+    .ct-btn { display: inline-flex; align-items: center; justify-content: center; padding: .85rem 1.2rem; border-radius: 999px; border: 1px solid rgba(15,23,42,.14); background: #fff; color: #1e3a8a; font-weight: 700; text-decoration: none; transition: transform .18s ease, background .18s ease, border-color .18s ease; box-shadow: 0 12px 28px rgba(15,23,42,.08); }
+    .ct-btn:hover { transform: translateY(-1px); background: #e0e7ff; border-color: #93c5fd; }
+    .ct-btn-primary { background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; border-color: transparent; }
+
+    /* ── SECTION HEADERS ── */
+    .sec-header { display: flex; align-items: center; gap: .75rem; margin: 2.2rem 0 1.2rem; }
+    .sec-header .sec-num { font-size: 2rem; font-weight: 800; color: #dbeafe; line-height: 1; }
+    .sec-header h2 { margin: 0; font-size: 1.4rem; color: #1e3a8a; }
+
+    /* ── CONTROL SECTION ── */
+    .control-card { background: #fff; border: 1px solid #dbeafe; border-radius: 22px; padding: 1.5rem 1.6rem; margin-bottom: 1.2rem; box-shadow: 0 12px 32px rgba(15,23,42,.08); }
+    .control-card h4 { margin: 0 0 1rem; color: #1e3a8a; font-size: 1.08rem; border-bottom: 2px solid #dbeafe; padding-bottom: .65rem; }
+    .evm-grid { display: grid; gap: .85rem; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); margin: .75rem 0 1rem; }
+    .evm-item { background: #eff6ff; border: 1px solid #dbeafe; border-radius: 14px; padding: .9rem 1rem; }
+    .evm-item .evm-formula { font-family: monospace; font-size: 1rem; font-weight: 700; color: #1e3a8a; margin-bottom: .35rem; }
+    .evm-item .evm-desc { font-size: .85rem; color: #475569; line-height: 1.55; }
+    .alert-box { border-radius: 14px; padding: .85rem 1rem; font-size: .9rem; margin: .5rem 0; display: flex; gap: .6rem; align-items: flex-start; }
+    .alert-warning { background: #fefce8; border: 1px solid #fde047; color: #713f12; }
+    .alert-danger  { background: #fef2f2; border: 1px solid #fca5a5; color: #7f1d1d; }
+    .alert-box .alert-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .proceso-steps { list-style: none; margin: .75rem 0 0; padding: 0; display: grid; gap: .6rem; }
+    .proceso-steps li { display: flex; gap: .75rem; align-items: flex-start; font-size: .91rem; color: #334155; line-height: 1.6; }
+    .step-num { flex-shrink: 0; width: 26px; height: 26px; background: #1d4ed8; color: #fff; border-radius: 50%; font-size: .78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: .1rem; }
+    .reservas-grid { display: grid; gap: .85rem; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); margin-top: 1rem; }
+    .reserva-item { border-radius: 14px; padding: 1rem; text-align: center; }
+    .reserva-cont { background: #fef9c3; border: 1px solid #fde047; }
+    .reserva-gest { background: #f0f9ff; border: 1px solid #7dd3fc; }
+    .reserva-max  { background: #fdf4ff; border: 1px solid #d8b4fe; }
+    .reserva-item strong { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .35rem; }
+    .reserva-cont strong { color: #713f12; }
+    .reserva-gest strong { color: #075985; }
+    .reserva-max  strong { color: #6b21a8; }
+    .reserva-item .rv-val { font-size: 1.25rem; font-weight: 800; display: block; margin-bottom: .2rem; }
+    .reserva-cont .rv-val { color: #92400e; }
+    .reserva-gest .rv-val { color: #0369a1; }
+    .reserva-max  .rv-val { color: #7e22ce; }
+    .reserva-item .rv-note { font-size: .82rem; color: #64748b; }
+  </style>
+
+  <section class="sec" id="capitulo7">
+
+    <!-- HERO PRINCIPAL -->
+    <div class="hero-card" id="plan">
+      <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
+      <div class="meta-grid">
+        <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>1.0</span></div>
+        <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
+        <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
+        <div class="meta-item"><strong>Aprobado por</strong><span>Líder del Proyecto</span></div>
+      </div>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN RÁPIDA -->
+    <div class="chapter-toolbar">
+      <a href="/capitulo7"             class="ct-btn">7.0 Plan</a>
+      <a href="/capitulo7/entradas"     class="ct-btn">7.1 Entradas</a>
+      <a href="/capitulo7/herramientas" class="ct-btn">7.2 Herramientas</a>
+      <a href="/capitulo7/salidas"      class="ct-btn">7.3 Salidas</a>
+      <a href="/capitulo7/control"      class="ct-btn ct-btn-primary">7.4 Control</a>
+      <a href="/capitulo7/lista"        class="ct-btn">Lista de Actividades</a>
+    </div>
+
+    <!-- 7.4 CONTROL -->
+    <div class="sec-header" id="control">
+      <span class="sec-num">7.4</span>
+      <h2>Control del Cronograma</h2>
+    </div>
+
+    <!-- SUB-BLOQUE CONTROL 1 — Proceso de Control -->
+    <div class="control-card">
+      <h4>Proceso de Control del Cronograma</h4>
+      <p style="color:#334155;margin:0 0 1rem;line-height:1.7;">
+        <strong>Frecuencia de revisión:</strong> Semanal — reunión de 30 minutos al inicio de cada semana con el equipo consultor. En esta reunión se compara el avance real vs. la línea base y se calculan los indicadores de Valor Ganado (EVM).
+      </p>
+
+      <div class="evm-grid">
+        <div class="evm-item">
+          <div class="evm-formula">SV = EV − PV</div>
+          <div class="evm-desc"><strong>Variación del Cronograma</strong><br/>Positivo = adelantado respecto al plan<br/>Negativo = atrasado respecto al plan</div>
+        </div>
+        <div class="evm-item">
+          <div class="evm-formula">SPI = EV / PV</div>
+          <div class="evm-desc"><strong>Índice de Desempeño del Cronograma</strong><br/>Mayor a 1.0 = avanza más rápido que lo planeado<br/>Menor a 1.0 = avanza más lento que lo planeado</div>
+        </div>
+      </div>
+
+      <div class="alert-box alert-warning">
+        <span class="alert-icon">⚠️</span>
+        <span><strong>Umbral de alerta:</strong> SPI &lt; 0.85 → activar plan de acción correctivo. El Líder del Proyecto evalúa opciones de compresión del cronograma en la reunión semanal siguiente.</span>
+      </div>
+      <div class="alert-box alert-danger">
+        <span class="alert-icon">🚨</span>
+        <span><strong>Umbral de escalamiento:</strong> SPI &lt; 0.70 o proyección de desvío en hito gate → el Líder del Proyecto escala a la Gerencia de Roma Bag's y propone:<br/>
+          <strong>Opción 1:</strong> Fast-tracking (más actividades en paralelo) |
+          <strong>Opción 2:</strong> Crashing (agregar recursos temporales) |
+          <strong>Opción 3:</strong> Ajuste formal de la línea base (control de cambios)
+        </span>
+      </div>
+    </div>
+
+    <!-- SUB-BLOQUE CONTROL 2 — Cambios y Reservas -->
+    <div class="control-card">
+      <h4>Proceso de Control de Cambios al Cronograma</h4>
+      <p style="color:#334155;margin:0 0 .75rem;line-height:1.7;">Ningún cambio a la línea base puede ejecutarse sin pasar por este proceso de 5 pasos:</p>
+
+      <ol class="proceso-steps">
+        <li>
+          <span class="step-num">1</span>
+          <span>Registrar el cambio solicitado en el <strong>Registro de Control de Cambios</strong> (paquete 1.1.4 de la EDT) con descripción del cambio, impacto estimado y solicitante.</span>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <span>El <strong>Líder del Proyecto</strong> evalúa el impacto en alcance, cronograma y presupuesto dentro de las 24 h hábiles siguientes.</span>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <span>Cambios con impacto <strong>≤ 2 días en ruta crítica y sin afectación de hito gate</strong> → aprueba directamente el Líder del Proyecto.</span>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <span>Cambios con impacto <strong>&gt; 2 días en ruta crítica o que afectan un hito gate</strong> → requieren aprobación formal de la Gerencia de Roma Bag's con reunión presencial o virtual.</span>
+        </li>
+        <li>
+          <span class="step-num">5</span>
+          <span>Todo cambio aprobado se refleja en <strong>EDT y cronograma antes del inicio de la siguiente semana de trabajo</strong>, actualizando la línea base si corresponde.</span>
+        </li>
+      </ol>
+
+      <h4 style="margin-top:1.5rem;">Reservas de Tiempo</h4>
+      <div class="reservas-grid">
+        <div class="reserva-item reserva-cont">
+          <strong>Reserva de Contingencia</strong>
+          <span class="rv-val">5 días hábiles</span>
+          <span class="rv-note">Fase 2 (mayor riesgo técnico). Se activa sin control de cambios si SPI &lt; 0.85 en Fase 2.</span>
+        </div>
+        <div class="reserva-item reserva-gest">
+          <strong>Reserva de Gestión</strong>
+          <span class="rv-val">3 días hábiles</span>
+          <span class="rv-note">Para riesgos no identificados (unknown unknowns). Requiere documentación en Registro de Cambios.</span>
+        </div>
+        <div class="reserva-item reserva-max">
+          <strong>Duración Máxima con Reservas</strong>
+          <span class="rv-val">83 días hábiles</span>
+          <span class="rv-note">Fecha de cierre máxima con todas las reservas: viernes 9 de enero de 2027.</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</Layout>
