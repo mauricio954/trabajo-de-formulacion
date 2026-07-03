@@ -185,3 +185,447 @@ html { scroll-behavior: smooth; }
 
 /* Small helpers */
 .hl img { max-width: 100%; border-radius: 8px; display: block; margin-top: .6rem; }
+
+/* --- ANEXOS Y FICHAS --- */
+    .ficha {
+      background: linear-gradient(135deg, #f8fafc, #eef2ff);
+      border: 1px solid var(--bd);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1rem 0
+    }
+
+    .ficha h4 {
+      margin: 0 0 1rem;
+      color: var(--ac)
+    }
+
+    .ficha-row {
+      display: flex;
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--bd);
+      font-size: .88rem
+    }
+
+    .ficha-row:last-child {
+      border-bottom: none
+    }
+
+    .ficha-label {
+      font-weight: 600;
+      color: var(--head);
+      width: 200px;
+      flex-shrink: 0
+    }
+
+    .ficha-val {
+      color: var(--txt)
+    }
+
+    /* SVG cube container */
+    .cube-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1.5rem 0
+    }
+
+    .cube-wrap svg {
+      max-width: 100%;
+      height: auto
+    }
+
+    /* Guion preguntas */
+    .pregunta-block {
+      background: var(--w);
+      border: 1px solid var(--bd);
+      border-radius: 8px;
+      padding: 1rem 1.3rem;
+      margin: .6rem 0
+    }
+
+    .pregunta-block .num {
+      font-weight: 700;
+      color: var(--ac);
+      margin-right: .5rem
+    }
+
+    .pregunta-block .resp {
+      display: block;
+      margin-top: .4rem;
+      padding: .5rem;
+      background: #f8fafc;
+      border: 1px dashed var(--bd);
+      border-radius: 4px;
+      font-size: .85rem;
+      color: #94a3b8;
+      font-style: italic
+    }
+
+    /* Accordion Menu */
+    .acc-btn {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--side2);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      padding: 0.8rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .acc-btn:hover {
+      color: var(--w);
+    }
+
+    .acc-content {
+      list-style: none;
+      display: none;
+      margin-bottom: 0.5rem;
+    }
+
+    .acc-content.open {
+      display: block;
+    }
+
+    .acc-btn .arr {
+      font-size: 0.6rem;
+      transition: transform 0.3s;
+    }
+
+    .acc-btn.open .arr {
+      transform: rotate(180deg);
+    }
+
+    #mobile-menu-btn {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    }
+
+    /* --- Prototipo Interactivo (Cap. 05 - Prototipar) --- */
+    .rb-proto-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem 0;
+    }
+
+    .rb-phone {
+      width: 280px;
+      height: 560px;
+      background: var(--side);
+      border-radius: 36px;
+      padding: 14px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
+    }
+
+    .rb-phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 20px;
+      background: var(--side);
+      border-radius: 0 0 14px 14px;
+      z-index: 3;
+    }
+
+    .rb-phone-screen {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      background: var(--bg);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rb-screen {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      padding: 1.4rem 1rem 1rem;
+      overflow-y: auto;
+    }
+
+    .rb-screen.active {
+      display: flex;
+    }
+
+    .rb-phone-home-bar {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 4px;
+      background: rgba(255, 255, 255, .35);
+      border-radius: 4px;
+    }
+
+    .rb-app-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--head);
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .rb-menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .7rem;
+    }
+
+    .rb-menu-item {
+      background: var(--w);
+      border: 1px solid var(--bd);
+      border-radius: 12px;
+      padding: 1rem .5rem;
+      text-align: center;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--head);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .rb-menu-item:hover {
+      border-color: var(--ac);
+      transform: translateY(-2px);
+    }
+
+    .rb-menu-item .ico {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: .4rem;
+    }
+
+    .rb-topbar {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: 1rem;
+    }
+
+    .rb-back-btn {
+      background: none;
+      border: none;
+      color: var(--ac);
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .rb-topbar strong {
+      font-size: .85rem;
+      color: var(--head);
+    }
+
+    .rb-field {
+      margin-bottom: .8rem;
+    }
+
+    .rb-field label {
+      display: block;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--side2);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: .3rem;
+    }
+
+    .rb-input {
+      width: 100%;
+      padding: .55rem .7rem;
+      border: 1px solid var(--bd);
+      border-radius: 8px;
+      font-size: .82rem;
+      font-family: 'Inter', sans-serif;
+      background: var(--w);
+    }
+
+    .rb-btn {
+      background: var(--ac);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: .65rem 1rem;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .rb-result-box {
+      background: var(--ac2);
+      border-left: 4px solid var(--ac);
+      border-radius: 0 8px 8px 0;
+      padding: .8rem;
+      margin-top: 1rem;
+      font-size: .82rem;
+      display: none;
+    }
+
+    .rb-result-box.show {
+      display: block;
+    }
+
+    .rb-confirm-msg {
+      background: var(--g-bg);
+      color: var(--g);
+      border-radius: 8px;
+      padding: .7rem;
+      margin-top: .8rem;
+      font-size: .8rem;
+      font-weight: 600;
+      text-align: center;
+      display: none;
+    }
+
+    .rb-confirm-msg.show {
+      display: block;
+    }
+
+    .rb-kpi-card {
+      background: var(--w);
+      border: 1px solid var(--bd);
+      border-radius: 10px;
+      padding: .8rem .9rem;
+      margin-bottom: .6rem;
+    }
+
+    .rb-kpi-num {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--ac);
+      display: block;
+    }
+
+    .rb-kpi-label {
+      font-size: .75rem;
+      color: var(--side2);
+    }
+
+    .rb-checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      font-size: .8rem;
+      margin: .8rem 0;
+    }
+
+    /* --- Media Queries for Responsiveness --- */
+    @media(max-width:1200px) {
+      .mc {
+        padding: 2.5rem 3rem
+      }
+    }
+
+    @media(max-width:900px) {
+      body {
+        display: block
+      }
+
+      #mobile-menu-btn {
+        display: block !important;
+      }
+
+      .side {
+        position: fixed;
+        top: 0;
+        left: -320px;
+        width: 300px;
+        height: 100vh;
+        z-index: 1001;
+        transition: left 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+      }
+
+      .side.open {
+        left: 0;
+      }
+
+      .nm {
+        display: block;
+        padding-bottom: .8rem;
+        margin-bottom: 0
+      }
+
+      .nm li {
+        margin-bottom: 0
+      }
+
+      .nm a {
+        border-left: 3px solid transparent;
+        border-bottom: none;
+        padding: .5rem .7rem;
+        border-radius: 6px
+      }
+
+      .nm a:hover,
+      .nm a.on {
+        border-left-color: var(--ac);
+        border-bottom-color: transparent;
+        background: rgba(255, 255, 255, .06)
+      }
+
+      .tb {
+        display: none
+      }
+
+      .mc {
+        margin-left: 0;
+        width: 100%;
+        padding: 4rem 1.5rem 2rem;
+      }
+    }
+
+    @media(max-width:600px) {
+      .mc {
+        padding: 1.5rem 1rem
+      }
+
+      h1 {
+        font-size: 1.8rem
+      }
+
+      .mc h2 {
+        font-size: 1.1rem;
+        margin: 2rem 0 1rem
+      }
+
+      .ficha-row {
+        flex-direction: column;
+        gap: .3rem
+      }
+
+      .ficha-label {
+        width: 100%
+      }
+
+      .cd,
+      .hl,
+      .chat-box {
+        padding: 1rem
+      }
+    }
+
+    /* --- Design Thinking Tabbed Layout --- */
+

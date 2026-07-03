@@ -4,32 +4,17 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Capítulo 05: Diseño Centrado en el Usuario">
 	  <!-- CAP 05 — DISEÑO CENTRADO EN EL USUARIO (Design Thinking) -->
-    <section class="sec" id="dt-tabs-root" style="background:none; border:none; padding:0; margin:0; box-shadow:none;">
       <h2>CAPÍTULO 05: Diseño Centrado en el Usuario (Design Thinking)</h2>
-
       <div class="hl" style="margin-bottom: 2rem;">
         <strong>Nota sobre el usuario objetivo:</strong> La solución de TI está diseñada para <strong>Natalie</strong>
         (gerente y dueña de Roma Bag's), quien operará el sistema y presenta el dolor operativo documentado. El
         comprador final de bolsos es únicamente un <em>beneficiario indirecto</em>: se beneficia de entregas más
         completas y ágiles, pero no interactúa con la herramienta. Esta distinción es metodológicamente correcta: en Design Thinking el sujeto del mapa de empatía es el usuario de la solución, no el cliente comercial de la empresa.
       </div>
-
       <p style="margin-bottom: 2rem;">El capítulo se organiza siguiendo las cinco fases del proceso de Design Thinking.
-        Cada fase agrupa únicamente las herramientas metodológicas que le corresponden. Haz clic en las pestañas de
-        abajo para explorar cada fase:</p>
+        Cada fase agrupa únicamente las herramientas metodológicas que le corresponden.</p>
 
-      <div class="dt-tabs-container" id="c9-tabs-container">
-        <div class="dt-tabs-nav">
-          <button class="dt-tab-btn active" data-tab="dt-empatizar">🔍 1. Empatizar</button>
-          <button class="dt-tab-btn" data-tab="dt-definir">🎯 2. Definir</button>
-          <button class="dt-tab-btn" data-tab="dt-idear">💡 3. Idear</button>
-          <button class="dt-tab-btn" data-tab="dt-prototipar">📱 4. Prototipar</button>
-          <button class="dt-tab-btn" data-tab="dt-evaluar">📊 5. Evaluar</button>
-        </div>
-
-        <!-- PANEL 1: EMPATIZAR -->
-        <div class="dt-tab-panel active" id="dt-empatizar">
-          <span id="fase1"></span>
+      <section class="sec" id="fase1">
           <!-- BANDA FASE 1 -->
           <div
             style="background: linear-gradient(90deg, var(--b) 0%, #3b82f6 100%); color: #fff; border-radius: 10px; padding: .8rem 1.25rem; margin: 0 0 1.5rem; display: flex; align-items: center; gap: .8rem;">
@@ -190,11 +175,10 @@ import Layout from '../layouts/Layout.astro';
             indicadores claros, para que Natalie pueda decidir con seguridad sobre stock, ventas y rentabilidad en menos
             de 2 minutos.
           </div>
-        </div>
+        </section>
 
         <!-- PANEL 2: DEFINIR -->
-        <div class="dt-tab-panel" id="dt-definir">
-          <span id="fase2"></span>
+        <section class="sec" id="fase2">
           <!-- BANDA FASE 2 -->
           <div
             style="background: linear-gradient(90deg, #15803d 0%, #22c55e 100%); color: #fff; border-radius: 10px; padding: .8rem 1.25rem; margin: 0 0 1.5rem; display: flex; align-items: center; gap: .8rem;">
@@ -330,11 +314,10 @@ import Layout from '../layouts/Layout.astro';
           </div>
 
 
-        </div>
+        </section>
 
         <!-- PANEL 3: IDEAR -->
-        <div class="dt-tab-panel" id="dt-idear">
-          <span id="fase3"></span>
+        <section class="sec" id="fase3">
           <!-- BANDA FASE 3 -->
           <div
             style="background: linear-gradient(90deg, #a16207 0%, #eab308 100%); color: #fff; border-radius: 10px; padding: .8rem 1.25rem; margin: 0 0 1.5rem; display: flex; align-items: center; gap: .8rem;">
@@ -551,11 +534,10 @@ import Layout from '../layouts/Layout.astro';
                 servicio una vez que la información de sus pedidos fluya correctamente dentro de la empresa.</p>
             </div>
           </div>
-        </div>
+        </section>
 
         <!-- PANEL 4: PROTOTIPAR -->
-        <div class="dt-tab-panel" id="dt-prototipar">
-          <span id="fase4"></span>
+        <section class="sec" id="fase4">
           <!-- BANDA FASE 4 -->
           <div
             style="background: linear-gradient(90deg, #0d9488 0%, #14b8a6 100%); color: #fff; border-radius: 10px; padding: .8rem 1.25rem; margin: 0 0 1.5rem; display: flex; align-items: center; gap: .8rem;">
@@ -605,11 +587,10 @@ import Layout from '../layouts/Layout.astro';
             navegación y la simplicidad de uso con la Gerencia antes de iniciar la configuración real del sistema
             descrita en el Capítulo 06.
           </div>
-        </div>
+        </section>
 
         <!-- PANEL 5: EVALUAR -->
-        <div class="dt-tab-panel" id="dt-evaluar">
-          <span id="fase5"></span>
+        <section class="sec" id="fase5">
           <!-- BANDA FASE 5 -->
           <div
             style="background: linear-gradient(90deg, #b91c1c 0%, #ef4444 100%); color: #fff; border-radius: 10px; padding: .8rem 1.25rem; margin: 0 0 1.5rem; display: flex; align-items: center; gap: .8rem;">
@@ -728,65 +709,5 @@ import Layout from '../layouts/Layout.astro';
           <div class="hl" style="border-left-color: var(--y); background: var(--y-bg);">
             <strong>[Nota importante: Este instrumento es el diseño del método de evaluación. Los valores del diagrama de radar son meramente ejemplares (todos fijados a 3 para visualizar el gráfico) y se actualizarán con los resultados reales de la entrevista de prueba de usabilidad con Natalie, pendiente de programación. El recuadro de hallazgos cualitativos también será completado tras la validación.]</strong>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SCRIPT PARA INTERACTIVIDAD DE PESTAÑAS -->
-    <script>
-      (function () {
-        var tabs = document.querySelectorAll('.dt-tab-btn');
-        var panels = document.querySelectorAll('.dt-tab-panel');
-        
-        // Mapeo de hashes a data-tab
-        var hashMap = {
-          'fase1': 'dt-empatizar',
-          'fase2': 'dt-definir',
-          'fase3': 'dt-idear',
-          'fase4': 'dt-prototipar',
-          'fase5': 'dt-evaluar'
-        };
-        
-        function showTab(tabId) {
-          tabs.forEach(function (t) {
-            if (t.getAttribute('data-tab') === tabId) {
-              t.classList.add('active');
-            } else {
-              t.classList.remove('active');
-            }
-          });
-          panels.forEach(function (p) {
-            if (p.id === tabId) {
-              p.classList.add('active');
-            } else {
-              p.classList.remove('active');
-            }
-          });
-        }
-        tabs.forEach(function (t) {
-          t.addEventListener('click', function () {
-            var tabId = t.getAttribute('data-tab');
-            showTab(tabId);
-          });
-        });
-
-        // Expuesta para que el router principal (.nl) pueda abrir la fase
-        // correcta tras mostrar la sección contenedora #dt-tabs-root
-        window.showDtTab = showTab;
-
-        // Activar la pestaña según el hash inicial
-        var hash = window.location.hash;
-        if (hash) {
-          var hashKey = hash.substring(1);
-          var mappedTab = hashMap[hashKey] || hashKey;
-          if (document.querySelector('.dt-tab-btn[data-tab="' + mappedTab + '"]')) {
-            showTab(mappedTab);
-          } else {
-            showTab('dt-empatizar');
-          }
-        } else {
-          showTab('dt-empatizar');
-        }
-      })();
-    </script>
+        </section>
 </Layout>

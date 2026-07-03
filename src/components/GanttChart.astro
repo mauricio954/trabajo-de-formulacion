@@ -1,0 +1,1190 @@
+---
+---
+<style>
+    .gantt-container {
+        width: 100%;
+        background-color: #fff;
+        border-radius: 8px;
+        color: #333;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .gantt-container h1 {
+        color: #1e293b;
+        font-size: 24px;
+        margin-bottom: 5px;
+        border-bottom: 2px solid #3b82f6;
+        padding-bottom: 10px;
+    }
+    .gantt-container h2 {
+        color: #334155;
+        font-size: 18px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    .meta-info {
+        background-color: #f8fafc;
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 25px;
+        font-size: 14px;
+        border-left: 4px solid #3b82f6;
+    }
+    .meta-info table {
+        width: auto;
+        border: none;
+    }
+    .meta-info td {
+        padding: 4px 15px 4px 0;
+        border: none;
+        font-weight: 500;
+    }
+    .meta-info td.label {
+        color: #64748b;
+    }
+    .gantt-container table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        margin-bottom: 40px;
+    }
+    .gantt-container th {
+        background-color: #0f172a;
+        color: #fff;
+        font-weight: 600;
+        text-align: left;
+        padding: 10px 12px;
+    }
+    .gantt-container td {
+        padding: 8px 12px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    tr.root {
+        background-color: #e2e8f0;
+        font-weight: bold;
+    }
+    tr.phase {
+        background-color: #f1f5f9;
+        font-weight: bold;
+        color: #1e3a8a;
+    }
+    tr.milestone {
+        background-color: #fef9c3;
+        font-weight: bold;
+    }
+    .indent-1 { padding-left: 25px; }
+    .indent-2 { padding-left: 45px; }
+    
+    /* Gantt Chart Styling */
+    .gantt-wrapper {
+        overflow-x: auto;
+        margin-top: 20px;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 15px;
+    }
+    .gantt-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .gantt-header-row th {
+        background-color: #1e293b;
+        text-align: center;
+        font-size: 12px;
+        padding: 6px;
+        border: 1px solid #334155;
+    }
+    .gantt-row td {
+        padding: 6px 8px;
+        height: 32px;
+        font-size: 12px;
+        border: 1px solid #e2e8f0;
+    }
+    .gantt-bar-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #f8fafc;
+        min-width: 500px;
+    }
+    .gantt-bar {
+        position: absolute;
+        height: 14px;
+        top: 9px;
+        border-radius: 3px;
+    }
+    .gantt-bar.root-bar {
+        background-color: #475569;
+    }
+    .gantt-bar.phase-bar {
+        background-color: #2563eb;
+    }
+    .gantt-bar.task-bar {
+        background-color: #38bdf8;
+        border: 1px solid #0284c7;
+    }
+    .gantt-bar.milestone-bar {
+        width: 10px !important;
+        height: 10px;
+        background-color: #dc2626;
+        transform: rotate(45deg);
+        top: 11px;
+    }
+    .badge {
+        background-color: #ef4444;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 10px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="gantt-container">
+    <h1>TRANSFORMACIÓN DIGITAL ROMA BAG'S</h1>
+    
+    <div class="meta-info">
+        <table>
+            <tr>
+                <td class="label">Duración Total:</td>
+                <td>81 días</td>
+                <td class="label">Inicio:</td>
+                <td>Lun 31/08/26</td>
+                <td class="label">Fin:</td>
+                <td>Jue 24/12/26</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>Tabla de Planificación de Tareas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 40px; text-align: center;">ID</th>
+                <th>Nombre de la Tarea</th>
+                <th style="width: 80px;">Duración</th>
+                <th style="width: 100px;">Inicio</th>
+                <th style="width: 100px;">Fin</th>
+                <th style="width: 100px;">Predecesoras</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="root">
+                <td style="text-align: center;">0</td>
+                <td class="">1.0 TRANSFORMACIÓN DIGITAL ROMA BAG'S</td>
+                <td>81 days</td>
+                <td>31/08/26</td>
+                <td>24/12/26</td>
+                <td></td>
+            </tr>
+            <tr class="phase">
+                <td style="text-align: center;">1</td>
+                <td class="indent-1">1.1 Gestión del Proyecto</td>
+                <td>8 days</td>
+                <td>31/08/26</td>
+                <td>09/09/26</td>
+                <td></td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">2</td>
+                <td class="indent-2">Redactar y firmar el Acta de Constitución del Proyecto</td>
+                <td>4 days</td>
+                <td>31/08/26</td>
+                <td>03/09/26</td>
+                <td></td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">3</td>
+                <td class="indent-2">Elaborar el Plan de Gestión del Alcance y Cronograma</td>
+                <td>3 days</td>
+                <td>04/09/26</td>
+                <td>08/09/26</td>
+                <td>2</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">4</td>
+                <td class="indent-2">Emitir informes de avance semanales</td>
+                <td>1 day</td>
+                <td>04/09/26</td>
+                <td>04/09/26</td>
+                <td>2</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">5</td>
+                <td class="indent-2">Mantener el Registro de Control de Cambios</td>
+                <td>1 day</td>
+                <td>09/09/26</td>
+                <td>09/09/26</td>
+                <td>3</td>
+            </tr>
+            <tr class="phase">
+                <td style="text-align: center;">6</td>
+                <td class="indent-1">1.2 Diagnóstico y Requisitos AS-IS</td>
+                <td>13 days</td>
+                <td>09/09/26</td>
+                <td>25/09/26</td>
+                <td></td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">7</td>
+                <td class="indent-2">Realizar observación directa del flujo actual</td>
+                <td>2 days</td>
+                <td>09/09/26</td>
+                <td>10/09/26</td>
+                <td>3</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">8</td>
+                <td class="indent-2">Ejecutar entrevistas con interesados clave</td>
+                <td>2 days</td>
+                <td>11/09/26</td>
+                <td>14/09/26</td>
+                <td>7</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">9</td>
+                <td class="indent-2">Documentar el flujo actual AS-IS y validar con Gerencia</td>
+                <td>1 day</td>
+                <td>15/09/26</td>
+                <td>15/09/26</td>
+                <td>8</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">10</td>
+                <td class="indent-2">Ejecutar auditoría de infraestructura y conectividad</td>
+                <td>2 days</td>
+                <td>09/09/26</td>
+                <td>10/09/26</td>
+                <td>7SS</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">11</td>
+                <td class="indent-2">Redactar fichas de requisitos REQ-01 a REQ-05</td>
+                <td>4 days</td>
+                <td>16/09/26</td>
+                <td>21/09/26</td>
+                <td>9</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">12</td>
+                <td class="indent-2">Validar y obtener firma de fichas de requisitos</td>
+                <td>1 day</td>
+                <td>22/09/26</td>
+                <td>22/09/26</td>
+                <td>11</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">13</td>
+                <td class="indent-2">Elaborar la Matriz de Trazabilidad de Requisitos</td>
+                <td>2 days</td>
+                <td>23/09/26</td>
+                <td>24/09/26</td>
+                <td>12</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">14</td>
+                <td class="indent-2">Aprobar la Matriz de Trazabilidad con la Gerencia</td>
+                <td>1 day</td>
+                <td>25/09/26</td>
+                <td>25/09/26</td>
+                <td>13</td>
+            </tr>
+            <tr class="phase">
+                <td style="text-align: center;">15</td>
+                <td class="indent-1">1.3 FASE 1 - CIMENTAR: Centralización y Orden del Dato</td>
+                <td>23 days</td>
+                <td>11/09/26</td>
+                <td>14/10/26</td>
+                <td></td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">16</td>
+                <td class="indent-2">Diseñar el modelo de datos (entidades y relaciones)</td>
+                <td>3 days</td>
+                <td>28/09/26</td>
+                <td>30/09/26</td>
+                <td>14</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">17</td>
+                <td class="indent-2">Validar compatibilidad del modelo de datos con Odoo</td>
+                <td>1 day</td>
+                <td>01/10/26</td>
+                <td>01/10/26</td>
+                <td>16</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">18</td>
+                <td class="indent-2">Mapear zonas muertas de Wi-Fi en el taller</td>
+                <td>1 day</td>
+                <td>11/09/26</td>
+                <td>11/09/26</td>
+                <td>10</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">19</td>
+                <td class="indent-2">Evaluar y seleccionar solución de red del taller</td>
+                <td>1 day</td>
+                <td>14/09/26</td>
+                <td>14/09/26</td>
+                <td>18</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">20</td>
+                <td class="indent-2">Implementar la solución de red seleccionada</td>
+                <td>2 days</td>
+                <td>15/09/26</td>
+                <td>16/09/26</td>
+                <td>19</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">21</td>
+                <td class="indent-2">Verificar acceso a Odoo por datos móviles 4G/5G</td>
+                <td>1 day</td>
+                <td>17/09/26</td>
+                <td>17/09/26</td>
+                <td>20</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">22</td>
+                <td class="indent-2">Configurar y desplegar la base de datos centralizada ligera</td>
+                <td>3 days</td>
+                <td>02/10/26</td>
+                <td>06/10/26</td>
+                <td>17</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">23</td>
+                <td class="indent-2">Configurar reglas de validación de ingreso de datos</td>
+                <td>2 days</td>
+                <td>07/10/26</td>
+                <td>09/10/26</td>
+                <td>22</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">24</td>
+                <td class="indent-2">Configurar y verificar consulta de stock desde celular</td>
+                <td>2 days</td>
+                <td>12/10/26</td>
+                <td>13/10/26</td>
+                <td>23</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">25</td>
+                <td class="indent-2">Ejecutar prueba cronometrada de consulta de stock</td>
+                <td>1 day</td>
+                <td>14/10/26</td>
+                <td>14/10/26</td>
+                <td>24</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">26</td>
+                <td class="indent-2">Redactar SOPs del flujo venta-stock-despacho</td>
+                <td>3 days</td>
+                <td>28/09/26</td>
+                <td>30/09/26</td>
+                <td>16SS</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">27</td>
+                <td class="indent-2">Obtener firma de SOPs por Gerencia y Socio de Producción</td>
+                <td>1 day</td>
+                <td>01/10/26</td>
+                <td>01/10/26</td>
+                <td>26</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">28</td>
+                <td class="indent-2">Redactar política de respaldo y seguridad de datos</td>
+                <td>2 days</td>
+                <td>28/09/26</td>
+                <td>29/09/26</td>
+                <td>26SS</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">29</td>
+                <td class="indent-2">Obtener firma de política de respaldo con Gerencia</td>
+                <td>1 day</td>
+                <td>30/09/26</td>
+                <td>30/09/26</td>
+                <td>28</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">30</td>
+                <td class="indent-2">Definir protocolo de coexistencia con Excel</td>
+                <td>1 day</td>
+                <td>02/10/26</td>
+                <td>02/10/26</td>
+                <td>27</td>
+            </tr>
+            <tr class="milestone">
+                <td style="text-align: center;">31</td>
+                <td class="indent-2">HITO GATE 1 - Aprobación Fase Cimentar firmada por Gerencia <span class="badge">HITO</span></td>
+                <td>0 days</td>
+                <td>14/10/26</td>
+                <td>14/10/26</td>
+                <td>21,25,27,29,30</td>
+            </tr>
+            <tr class="phase">
+                <td style="text-align: center;">32</td>
+                <td class="indent-1">1.4 FASE 2 - INTEGRAR: Implementación ERP Odoo Community</td>
+                <td>30 days</td>
+                <td>15/10/26</td>
+                <td>25/11/26</td>
+                <td></td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">33</td>
+                <td class="indent-2">Seleccionar y contratar servidor de despliegue</td>
+                <td>1 day</td>
+                <td>15/10/26</td>
+                <td>15/10/26</td>
+                <td>31</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">34</td>
+                <td class="indent-2">Instalar sistema operativo y dependencias en el servidor</td>
+                <td>1 day</td>
+                <td>16/10/26</td>
+                <td>16/10/26</td>
+                <td>33</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">35</td>
+                <td class="indent-2">Instalar y verificar Odoo Community en el servidor</td>
+                <td>2 days</td>
+                <td>19/10/26</td>
+                <td>20/10/26</td>
+                <td>34</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">36</td>
+                <td class="indent-2">Realizar configuración inicial de Odoo</td>
+                <td>1 day</td>
+                <td>21/10/26</td>
+                <td>21/10/26</td>
+                <td>35</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">37</td>
+                <td class="indent-2">Crear usuarios y configurar perfiles de acceso por rol</td>
+                <td>1 day</td>
+                <td>22/10/26</td>
+                <td>22/10/26</td>
+                <td>36</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">38</td>
+                <td class="indent-2">Verificar restricciones de acceso cruzado entre roles</td>
+                <td>1 day</td>
+                <td>23/10/26</td>
+                <td>23/10/26</td>
+                <td>37</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">39</td>
+                <td class="indent-2">Solicitar y recibir catálogo de productos de Gerencia</td>
+                <td>1 day</td>
+                <td>15/10/26</td>
+                <td>15/10/26</td>
+                <td>31SS</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">40</td>
+                <td class="indent-2">Cargar catálogo de productos y variantes en Odoo</td>
+                <td>2 days</td>
+                <td>26/10/26</td>
+                <td>27/10/26</td>
+                <td>38,39</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">41</td>
+                <td class="indent-2">Planificar y ejecutar migración de datos Fase 1 a Odoo</td>
+                <td>2 days</td>
+                <td>28/10/26</td>
+                <td>29/10/26</td>
+                <td>40</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">42</td>
+                <td class="indent-2">Verificar integridad de datos después de la migración</td>
+                <td>1 day</td>
+                <td>30/10/26</td>
+                <td>30/10/26</td>
+                <td>41</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">43</td>
+                <td class="indent-2">Configurar algoritmo de rebaja automática de stock</td>
+                <td>2 days</td>
+                <td>02/11/26</td>
+                <td>03/11/26</td>
+                <td>42</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">44</td>
+                <td class="indent-2">Ejecutar prueba interna de rebaja automática de stock</td>
+                <td>1 day</td>
+                <td>04/11/26</td>
+                <td>04/11/26</td>
+                <td>43</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">45</td>
+                <td class="indent-2">Configurar ubicaciones duales de talleres en Odoo</td>
+                <td>2 days</td>
+                <td>05/11/26</td>
+                <td>06/11/26</td>
+                <td>44</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">46</td>
+                <td class="indent-2">Verificar consolidación de registros entre talleres duales</td>
+                <td>1 day</td>
+                <td>09/11/26</td>
+                <td>09/11/26</td>
+                <td>45</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">47</td>
+                <td class="indent-2">Configurar formulario de registro de ventas con validaciones</td>
+                <td>2 days</td>
+                <td>10/11/26</td>
+                <td>11/11/26</td>
+                <td>46</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">48</td>
+                <td class="indent-2">Configurar flujo secuencial mandatorio Venta-Stock-Despacho</td>
+                <td>3 days</td>
+                <td>12/11/26</td>
+                <td>16/11/26</td>
+                <td>47</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">49</td>
+                <td class="indent-2">Verificar bloqueo técnico de despacho sin venta confirmada</td>
+                <td>1 day</td>
+                <td>17/11/26</td>
+                <td>17/11/26</td>
+                <td>48</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">50</td>
+                <td class="indent-2">Configurar vista de despacho para personal motorizado</td>
+                <td>1 day</td>
+                <td>18/11/26</td>
+                <td>18/11/26</td>
+                <td>49</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">51</td>
+                <td class="indent-2">Redactar casos de prueba UAT CP-01 a CP-06</td>
+                <td>2 days</td>
+                <td>10/11/26</td>
+                <td>11/11/26</td>
+                <td>47SS</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">52</td>
+                <td class="indent-2">Ejecutar prueba técnica de conectividad y corte de router</td>
+                <td>1 day</td>
+                <td>19/11/26</td>
+                <td>19/11/26</td>
+                <td>50</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">53</td>
+                <td class="indent-2">Ejecutar sesión UAT con Personal de Ventas</td>
+                <td>1 day</td>
+                <td>20/11/26</td>
+                <td>20/11/26</td>
+                <td>51,52</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">54</td>
+                <td class="indent-2">Ejecutar sesión UAT con Socio de Producción</td>
+                <td>1 day</td>
+                <td>20/11/26</td>
+                <td>20/11/26</td>
+                <td>51,52</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">55</td>
+                <td class="indent-2">Ejecutar sesión UAT con Gerencia Natalie</td>
+                <td>1 day</td>
+                <td>20/11/26</td>
+                <td>20/11/26</td>
+                <td>51,52</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">56</td>
+                <td class="indent-2">Registrar y corregir incidencias críticas en UAT</td>
+                <td>2 days</td>
+                <td>23/11/26</td>
+                <td>24/11/26</td>
+                <td>53,54,55</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">57</td>
+                <td class="indent-2">Emitir Certificado de Cero Errores Críticos</td>
+                <td>1 day</td>
+                <td>25/11/26</td>
+                <td>25/11/26</td>
+                <td>56</td>
+            </tr>
+            <tr class="milestone">
+                <td style="text-align: center;">58</td>
+                <td class="indent-2">HITO GATE 2 - Aprobación Fase Integrar firmada por Gerencia <span class="badge">HITO</span></td>
+                <td>0 days</td>
+                <td>25/11/26</td>
+                <td>25/11/26</td>
+                <td>57</td>
+            </tr>
+            <tr class="phase">
+                <td style="text-align: center;">59</td>
+                <td class="indent-1">1.5 FASE 3 - OPTIMIZAR: Analítica, Capacitación y Cierre</td>
+                <td>17 days</td>
+                <td>26/11/26</td>
+                <td>22/12/26</td>
+                <td></td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">60</td>
+                <td class="indent-2">Configurar panel de reportes de rentabilidad y KPIs en Odoo</td>
+                <td>3 days</td>
+                <td>26/11/26</td>
+                <td>30/11/26</td>
+                <td>58</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">61</td>
+                <td class="indent-2">Configurar reporte de ganancia neta mensual automatizado</td>
+                <td>2 days</td>
+                <td>01/12/26</td>
+                <td>02/12/26</td>
+                <td>60</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">62</td>
+                <td class="indent-2">Verificar restricción de acceso al panel por rol</td>
+                <td>1 day</td>
+                <td>03/12/26</td>
+                <td>03/12/26</td>
+                <td>61</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">63</td>
+                <td class="indent-2">Elaborar manuales de usuario por rol</td>
+                <td>3 days</td>
+                <td>26/11/26</td>
+                <td>30/11/26</td>
+                <td>58SS</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">64</td>
+                <td class="indent-2">Elaborar guía de auto-recuperación ante incidencias básicas</td>
+                <td>2 days</td>
+                <td>26/11/26</td>
+                <td>27/11/26</td>
+                <td>63SS</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">65</td>
+                <td class="indent-2">Ejecutar taller de capacitación con Personal de Ventas</td>
+                <td>1 day</td>
+                <td>04/12/26</td>
+                <td>04/12/26</td>
+                <td>62,63</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">66</td>
+                <td class="indent-2">Ejecutar taller de capacitación con Socio de Producción</td>
+                <td>1 day</td>
+                <td>04/12/26</td>
+                <td>04/12/26</td>
+                <td>62,63</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">67</td>
+                <td class="indent-2">Ejecutar sesión de capacitación con Gerencia Natalie</td>
+                <td>1 day</td>
+                <td>04/12/26</td>
+                <td>04/12/26</td>
+                <td>62,64</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">68</td>
+                <td class="indent-2">Verificar despliegue final en 100% de dispositivos</td>
+                <td>1 day</td>
+                <td>07/12/26</td>
+                <td>07/12/26</td>
+                <td>65,66,67</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">69</td>
+                <td class="indent-2">Ejecutar monitoreo de operaciones reales primera semana</td>
+                <td>5 days</td>
+                <td>10/12/26</td>
+                <td>16/12/26</td>
+                <td>68</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">70</td>
+                <td class="indent-2">Verificar reportes gerenciales y eliminación cuadre manual</td>
+                <td>1 day</td>
+                <td>17/12/26</td>
+                <td>17/12/26</td>
+                <td>69</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">71</td>
+                <td class="indent-2">Recopilar y documentar lecciones aprendidas</td>
+                <td>1 day</td>
+                <td>18/12/26</td>
+                <td>18/12/26</td>
+                <td>70</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">72</td>
+                <td class="indent-2">Elaborar informe final del proyecto</td>
+                <td>2 days</td>
+                <td>21/12/26</td>
+                <td>22/12/26</td>
+                <td>71</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">73</td>
+                <td class="indent-2">Verificar cumplimiento de criterios de aceptación</td>
+                <td>1 day</td>
+                <td>21/12/26</td>
+                <td>21/12/26</td>
+                <td>72SS</td>
+            </tr>
+            <tr class="milestone">
+                <td style="text-align: center;">74</td>
+                <td class="indent-2">HITO GATE 3 - Acta de Conformidad y Cierre firmada por Gerencia <span class="badge">HITO</span></td>
+                <td>0 days</td>
+                <td>22/12/26</td>
+                <td>22/12/26</td>
+                <td>72,73</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">75</td>
+                <td class="indent-2">Elaborar documento consolidado de lecciones aprendidas</td>
+                <td>1 day</td>
+                <td>23/12/26</td>
+                <td>23/12/26</td>
+                <td>74</td>
+            </tr>
+            <tr class="task">
+                <td style="text-align: center;">76</td>
+                <td class="indent-2">Emitir y firmar el Acta de Cierre Formal del proyecto</td>
+                <td>1 day</td>
+                <td>24/12/26</td>
+                <td>24/12/26</td>
+                <td>75</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Diagrama de Gantt del Proyecto</h2>
+    <div class="gantt-wrapper">
+        <table class="gantt-table">
+            <thead>
+                <tr class="gantt-header-row">
+                    <th style="width: 50px; text-align: center;">ID</th>
+                    <th style="width: 300px; text-align: left;">Tarea</th>
+                    <th>Línea de Tiempo (Agosto - Diciembre 2026)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">0</td>
+                    <td class="" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">1.0 TRANSFORMACIÓN DIGITAL ROMA BAG'S</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar root-bar" style="left: 0.00%; width: 100.00%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">1</td>
+                    <td class="indent-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">1.1 Gestión del Proyecto</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar phase-bar" style="left: 0.00%; width: 8.62%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">2</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Redactar y firmar el Acta de Constitución del Proyecto</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 0.00%; width: 3.45%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">3</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Elaborar el Plan de Gestión del Alcance y Cronograma</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 3.45%; width: 4.31%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">4</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Emitir informes de avance semanales</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 3.45%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">5</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Mantener el Registro de Control de Cambios</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 7.76%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">6</td>
+                    <td class="indent-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">1.2 Diagnóstico y Requisitos AS-IS</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar phase-bar" style="left: 7.76%; width: 14.66%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">7</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Realizar observación directa del flujo actual</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 7.76%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">8</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar entrevistas con interesados clave</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 9.48%; width: 3.45%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">9</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Documentar el flujo actual AS-IS y validar con Gerencia</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 12.93%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">10</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar auditoría de infraestructura y conectividad</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 7.76%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">11</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Redactar fichas de requisitos REQ-01 a REQ-05</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 13.79%; width: 5.17%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">12</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Validar y obtener firma de fichas de requisitos</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 18.97%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">13</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Elaborar la Matriz de Trazabilidad de Requisitos</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 19.83%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">14</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Aprobar la Matriz de Trazabilidad con la Gerencia</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 21.55%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">15</td>
+                    <td class="indent-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">1.3 FASE 1 - CIMENTAR: Centralización y Orden del Dato</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar phase-bar" style="left: 9.48%; width: 29.31%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">16</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Diseñar el modelo de datos (entidades y relaciones)</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 24.14%; width: 2.59%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">17</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Validar compatibilidad del modelo de datos con Odoo</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 26.72%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">18</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Mapear zonas muertas de Wi-Fi en el taller</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 9.48%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">19</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Evaluar y seleccionar solución de red del taller</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 12.07%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">20</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Implementar la solución de red seleccionada</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 12.93%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">21</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Verificar acceso a Odoo por datos móviles 4G/5G</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 14.66%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">22</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Configurar y desplegar la base de datos centralizada ligera</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 27.59%; width: 4.31%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">23</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Configurar reglas de validación de ingreso de datos</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 31.90%; width: 2.59%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">24</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Configurar y verificar consulta de stock desde celular</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 36.21%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">25</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar prueba cronometrada de consulta de stock</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 37.93%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">26</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Redactar SOPs del flujo venta-stock-despacho</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 24.14%; width: 2.59%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">27</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Obtener firma de SOPs por Gerencia y Socio de Producción</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 26.72%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">28</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Redactar política de respaldo y seguridad de datos</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 24.14%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">29</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Obtener firma de política de respaldo con Gerencia</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 25.86%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">30</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Definir protocolo de coexistencia con Excel</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 27.59%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">31</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">HITO GATE 1 - Aprobación Fase Cimentar firmada por Gerencia</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar milestone-bar" style="left: 37.93%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">32</td>
+                    <td class="indent-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">1.4 FASE 2 - INTEGRAR: Implementación ERP Odoo Community</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar phase-bar" style="left: 38.79%; width: 36.21%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">33</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Seleccionar y contratar servidor de despliegue</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 38.79%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">34</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Instalar sistema operativo y dependencias en el servidor</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 39.66%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">35</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Instalar y verificar Odoo Community en el servidor</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 42.24%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">36</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Realizar configuración inicial de Odoo</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 43.97%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">37</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Crear usuarios y configurar perfiles de acceso por rol</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 44.83%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">38</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Verificar restricciones de acceso cruzado entre roles</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 45.69%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">39</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Solicitar y recibir catálogo de productos de Gerencia</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 38.79%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">40</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Cargar catálogo de productos y variantes en Odoo</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 48.28%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">41</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Planificar y ejecutar migración de datos Fase 1 a Odoo</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 50.00%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">42</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Verificar integridad de datos después de la migración</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 51.72%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">43</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Configurar algoritmo de rebaja automática de stock</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 54.31%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">44</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar prueba interna de rebaja automática de stock</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 56.03%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">45</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Configurar ubicaciones duales de talleres en Odoo</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 56.90%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">46</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Verificar consolidación de registros entre talleres duales</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 60.34%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">47</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Configurar formulario de registro de ventas con validaciones</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 61.21%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">48</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Configurar flujo secuencial mandatorio Venta-Stock-Despacho</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 62.93%; width: 4.31%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">49</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Verificar bloqueo técnico de despacho sin venta confirmada</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 67.24%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">50</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Configurar vista de despacho para personal motorizado</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 68.10%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">51</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Redactar casos de prueba UAT CP-01 a CP-06</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 61.21%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">52</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar prueba técnica de conectividad y corte de router</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 68.97%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">53</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar sesión UAT con Personal de Ventas</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 69.83%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">54</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar sesión UAT con Socio de Producción</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 69.83%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">55</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar sesión UAT con Gerencia Natalie</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 69.83%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">56</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Registrar y corregir incidencias críticas en UAT</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 72.41%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">57</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Emitir Certificado de Cero Errores Críticos</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 74.14%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">58</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">HITO GATE 2 - Aprobación Fase Integrar firmada por Gerencia</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar milestone-bar" style="left: 74.14%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">59</td>
+                    <td class="indent-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">1.5 FASE 3 - OPTIMIZAR: Analítica, Capacitación y Cierre</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar phase-bar" style="left: 75.00%; width: 23.28%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">60</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Configurar panel de reportes de rentabilidad y KPIs en Odoo</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 75.00%; width: 4.31%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">61</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Configurar reporte de ganancia neta mensual automatizado</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 79.31%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">62</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Verificar restricción de acceso al panel por rol</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 81.03%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">63</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Elaborar manuales de usuario por rol</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 75.00%; width: 4.31%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">64</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Elaborar guía de auto-recuperación ante incidencias básicas</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 75.00%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">65</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar taller de capacitación con Personal de Ventas</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 81.90%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">66</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar taller de capacitación con Socio de Producción</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 81.90%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">67</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar sesión de capacitación con Gerencia Natalie</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 81.90%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">68</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Verificar despliegue final en 100% de dispositivos</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 84.48%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">69</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Ejecutar monitoreo de operaciones reales primera semana</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 87.07%; width: 6.03%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">70</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Verificar reportes gerenciales y eliminación cuadre manual</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 93.10%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">71</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Recopilar y documentar lecciones aprendidas</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 93.97%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">72</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Elaborar informe final del proyecto</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 96.55%; width: 1.72%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">73</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Verificar cumplimiento de criterios de aceptación</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 96.55%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">74</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">HITO GATE 3 - Acta de Conformidad y Cierre firmada por Gerencia</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar milestone-bar" style="left: 97.41%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">75</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Elaborar documento consolidado de lecciones aprendidas</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 98.28%; width: 0.86%;"></div></div></td>
+                </tr>
+                <tr class="gantt-row">
+                    <td style="text-align: center; color: #64748b;">76</td>
+                    <td class="indent-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px;">Emitir y firmar el Acta de Cierre Formal del proyecto</td>
+                    <td><div class="gantt-bar-container"><div class="gantt-bar task-bar" style="left: 99.14%; width: 0.86%;"></div></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

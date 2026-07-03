@@ -10,9 +10,9 @@ import Layout from '../layouts/Layout.astro';
     .chapter-toolbar .ct-btn-primary { background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; border-color: transparent; }
     .chapter-toolbar .ct-btn-primary:hover { background: linear-gradient(135deg,#1e40af,#1d4ed8); }
     .dic-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 1.2rem; margin-top: 1.6rem; counter-reset: dictionary-entry; }
-    .dic-grid .dic-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; box-shadow: 0 16px 34px rgba(15,23,42,.08); padding: 1.35rem 1.35rem 1.2rem; overflow: hidden; position: relative; counter-increment: dictionary-entry; }
+    .dic-grid .dic-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; box-shadow: 0 16px 34px rgba(15,23,42,.08); padding: 1.35rem 1.35rem 25px; position: relative; counter-increment: dictionary-entry; height: auto; min-height: 100%; display: flex; flex-direction: column; }
     .dic-grid .dic-item::before { content: counter(dictionary-entry, decimal) "."; position: absolute; top: 1.25rem; right: 1.25rem; font-size: .95rem; font-weight: 800; color: #2563eb; background: rgba(59,130,246,.12); padding: .35rem .75rem; border-radius: 999px; }
-    .dic-grid .dic-item h5 { margin: 0 0 .75rem; font-size: 1.02rem; color: #1d4ed8; letter-spacing: .02em; }
+    .dic-grid .dic-item h5 { margin: 0 0 .75rem; font-size: 1.02rem; color: #1d4ed8; letter-spacing: .02em; padding-right: 4rem; width: 100%; display: flex; align-items: center; justify-content: flex-start; }
     .dic-grid .dic-item p { margin: .45rem 0; line-height: 1.7; color: #334155; font-size: .94rem; }
     .dic-grid .dic-item p strong { color: #0f172a; }
     .dic-grid .dic-item .meta { display: grid; grid-template-columns: 1fr; gap: .4rem; margin: .8rem 0 0; font-size: .88rem; color: #475569; }
@@ -21,8 +21,8 @@ import Layout from '../layouts/Layout.astro';
     .dic-section-header span { display: inline-flex; align-items: center; gap: .5rem; }
     .dic-section-header small { display: block; font-size: .85rem; color: #475569; margin-top: .35rem; }
   </style>
-<section class="sec" id="c10-0">
   <h2>CAPÍTULO 06: Gestión del Alcance (Línea Base del Alcance)</h2>
+<section class="sec" id="trazabilidad">
   <p>La línea base del alcance se construye sobre la <strong>Alternativa 4 — Transformación Digital por Fases</strong>, seleccionada en el Capítulo 04 tras el proceso de evaluación de viabilidad. El presente capítulo documenta los requisitos del proyecto y aplica los procesos de planificación del Área de Conocimiento de Gestión del Alcance, referenciados bajo el <strong>PMBOK 8 (Dominio de Desempeño de Planificación)</strong>: <strong>Documentación de Requisitos</strong>, <strong>Definir el Alcance</strong> y <strong>Crear la EDT/WBS</strong>.</p>
 
   <div class="hl" style="margin-bottom:2rem"><strong>Regla de la línea base:</strong> lo que no está documentado en esta línea base <strong>no forma parte del proyecto</strong>. Cualquier requerimiento adicional deberá tramitarse mediante el proceso formal de control de cambios.</div>
@@ -31,10 +31,10 @@ import Layout from '../layouts/Layout.astro';
     <a href="#trazabilidad" class="ct-btn">6.0 Matriz de Trazabilidad</a>
     <a href="#definir" class="ct-btn">6.1 Definir el Alcance</a>
     <a href="#edt" class="ct-btn">6.2 Crear la EDT/WBS</a>
-    <a href="#c10-3" class="ct-btn ct-btn-primary">6.3 Diccionario EDT/WBS</a>
+    <a href="#diccionario" class="ct-btn ct-btn-primary">6.3 Diccionario EDT/WBS</a>
   </div>
 
-  <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;"><span id="trazabilidad"></span>6.0. Documentación de Requisitos y Matriz de Trazabilidad</h3>
+  <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.0. Documentación de Requisitos y Matriz de Trazabilidad</h3>
   <p>Los requisitos del proyecto se obtuvieron de tres sesiones de entrevista con Natalie (21 de abril, 4 de mayo y 14 de mayo de 2026), complementadas con observación directa (Job Shadowing) en el taller y auditoría de hardware y conectividad. La siguiente matriz traza cada requisito desde su origen hasta el entregable de la EDT que lo materializa y el criterio que verifica su cumplimiento. Los entregables de la EDT ahora se referencian por fase de la transformación.</p>
   <div class="tr">
     <table>
@@ -168,8 +168,8 @@ import Layout from '../layouts/Layout.astro';
   <div class="hl"><strong>Nota de lectura:</strong> La matriz se lee de izquierda a derecha como una cadena de valor. Los entregables ahora están referenciados por fase de la transformación, lo que permite trazar no solo a qué EDT pertenece cada requisito sino en qué momento del proyecto se materializa.</div>
 </section>
 
-<section class="sec" id="c10-1">
-  <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;"><span id="definir"></span>6.1. Definir el Alcance</h3>
+<section class="sec" id="definir">
+  <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.1. Definir el Alcance</h3>
   <div class="hl" style="margin-bottom:2rem"><strong>Dominio de Desempeño (PMBOK 8):</strong> Planificación.</div>
   <h4>Entradas</h4>
   <div class="gr">
@@ -234,8 +234,8 @@ import Layout from '../layouts/Layout.astro';
   </div>
 </section>
 
-<section class="sec" id="c10-2">
-  <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;"><span id="edt"></span>6.2. Crear la EDT/WBS</h3>
+<section class="sec" id="edt">
+  <h3 style="margin-top: 1.5rem; color: var(--b); border-bottom: 2px solid var(--bd); padding-bottom: 0.5rem;">6.2. Crear la EDT/WBS</h3>
   <div class="hl" style="margin-bottom:2rem"><strong>Dominio de Desempeño (PMBOK 8):</strong> Planificación.</div>
   <p><strong>Regla aplicada:</strong> la EDT/WBS contempla únicamente entregables y paquetes de trabajo expresados como <strong>sustantivos</strong>, conforme a las buenas prácticas de descomposición de alcance.</p>
   <h4>Entradas</h4>
@@ -251,17 +251,17 @@ import Layout from '../layouts/Layout.astro';
   <h4>Salidas — EDT/WBS</h4>
   <div id="wbs-tree" style="margin-top: 2rem; margin-bottom: 2rem;">
     <style>
-      #wbs-tree { overflow-x: auto; }
-      #wbs-tree .edt-wrap { min-width: 1150px; padding: 2rem 1rem; background: #fafbfe; border-radius: 16px; border: 1px solid #e2e8f0; }
+      #wbs-tree { overflow-x: auto; padding-bottom: 1rem; width: 100%; }
+      #wbs-tree .edt-wrap { min-width: 100%; width: max-content; padding: 1.5rem 1.5rem; background: #fafbfe; border-radius: 16px; border: 1px solid #e2e8f0; margin: 0 auto; }
       #wbs-tree .root-node { text-align: center; margin-bottom: 0; }
-      #wbs-tree .root-box { display: inline-block; background: linear-gradient(135deg, #183d7c, #1a56b0); color: #fff; padding: 1rem 2.5rem; border-radius: 14px; font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; box-shadow: 0 6px 18px rgba(24,61,124,.3); }
-      #wbs-tree .root-conn { display: flex; justify-content: center; position: relative; height: 50px; }
-      #wbs-tree .root-conn::before { content: ''; position: absolute; top: 0; left: 50%; width: 2px; height: 25px; background: #94a3b8; }
-      #wbs-tree .root-conn::after { content: ''; position: absolute; top: 25px; left: calc(100%/12); right: calc(100%/12); height: 2px; background: #94a3b8; }
-      #wbs-tree .lvl1 { display: flex; justify-content: space-around; gap: 12px; position: relative; }
-      #wbs-tree .branch { flex: 1; display: flex; flex-direction: column; align-items: center; min-width: 160px; }
+      #wbs-tree .root-box { display: inline-block; background: linear-gradient(135deg, #183d7c, #1a56b0); color: #fff; padding: .8rem 2rem; border-radius: 14px; font-size: .95rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; box-shadow: 0 6px 18px rgba(24,61,124,.3); }
+      #wbs-tree .root-conn { display: flex; justify-content: center; position: relative; height: 35px; }
+      #wbs-tree .root-conn::before { content: ''; position: absolute; top: 0; left: 50%; width: 2px; height: 18px; background: #94a3b8; }
+      #wbs-tree .root-conn::after { content: ''; position: absolute; top: 18px; left: calc(100%/10); right: calc(100%/10); height: 2px; background: #94a3b8; }
+      #wbs-tree .lvl1 { display: flex; justify-content: center; gap: 16px; position: relative; align-items: flex-start; }
+      #wbs-tree .branch { flex: 1; display: flex; flex-direction: column; align-items: center; min-width: 220px; max-width: 260px; }
       #wbs-tree .branch-conn { width: 2px; height: 25px; background: #94a3b8; }
-      #wbs-tree .cat-node { text-align: center; padding: .8rem .6rem; border-radius: 12px; font-weight: 700; font-size: .82rem; line-height: 1.3; border: 2.5px solid; min-height: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 185px; box-shadow: 0 3px 8px rgba(0,0,0,.06); position: relative; }
+      #wbs-tree .cat-node { text-align: center; padding: .8rem .6rem; border-radius: 12px; font-weight: 700; font-size: .85rem; line-height: 1.3; border: 2.5px solid; min-height: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; box-shadow: 0 3px 8px rgba(0,0,0,.06); position: relative; }
       #wbs-tree .cat-node .cat-id { display: block; font-size: 1.1rem; margin-bottom: .2rem; }
       #wbs-tree .cat-node .cat-label { font-size: .78rem; font-weight: 600; }
       #wbs-tree .cat-blue { border-color: #1f5fbf; background: #eff6ff; color: #1f5fbf; }
@@ -275,12 +275,12 @@ import Layout from '../layouts/Layout.astro';
       #wbs-tree .child-conn.cc-orange { background: #f37b21; }
       #wbs-tree .child-conn.cc-purple { background: #7c4dff; }
       #wbs-tree .child-conn.cc-cyan { background: #00a9b7; }
-      #wbs-tree .pkg-list { width: 100%; max-width: 185px; border-radius: 10px; border: 2px solid; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
-      #wbs-tree .pkg-list .pkg-header { text-align: center; padding: .4rem; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #fff; }
-      #wbs-tree .pkg-list .pkg-item { display: flex; align-items: center; gap: 6px; padding: .45rem .6rem; font-size: .74rem; color: #334155; border-bottom: 1px solid #f1f5f9; background: #fff; transition: background .15s; }
-      #wbs-tree .pkg-list .pkg-item:last-child { border-bottom: none; }
+      #wbs-tree .pkg-list { width: 100%; border-radius: 10px; border: 2px solid; box-shadow: 0 2px 6px rgba(0,0,0,.04); display: flex; flex-direction: column; }
+      #wbs-tree .pkg-list .pkg-header { text-align: center; padding: .5rem; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #fff; }
+      #wbs-tree .pkg-list .pkg-item { display: flex; align-items: flex-start; gap: 8px; padding: .6rem; font-size: .78rem; color: #334155; border-bottom: 1px solid #f1f5f9; background: #fff; line-height: 1.4; word-break: normal; overflow-wrap: break-word; white-space: normal; }
+      #wbs-tree .pkg-list .pkg-item:last-child { border-bottom: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
       #wbs-tree .pkg-list .pkg-item:hover { background: #f8fafc; }
-      #wbs-tree .pkg-list .pkg-item .pid { font-weight: 700; font-size: .68rem; padding: .15rem .4rem; border-radius: 4px; background: #f1f5f9; color: #64748b; flex-shrink: 0; min-width: 32px; text-align: center; }
+      #wbs-tree .pkg-list .pkg-item .pid { font-weight: 700; font-size: .7rem; padding: .2rem .4rem; border-radius: 4px; background: #f1f5f9; color: #64748b; flex-shrink: 0; min-width: 38px; text-align: center; }
       #wbs-tree .pkg-blue { border-color: #1f5fbf; }
       #wbs-tree .pkg-blue .pkg-header { background: #1f5fbf; }
       #wbs-tree .pkg-green { border-color: #2c9a44; }
@@ -349,7 +349,7 @@ import Layout from '../layouts/Layout.astro';
   </script>
 </section>
 
-<section class="sec" id="c10-3">
+<section class="sec" id="diccionario">
   <h4>6.3 Diccionario EDT / WBS</h4>
   <p><strong>DICCIONARIO DE LA EDT/WBS PROYECTO:</strong> Transformación Digital Roma Bag's</p>
   <p><strong>SOLUCIÓN:</strong> Transformación Digital Híbrida por Fases</p>
