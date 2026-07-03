@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import GanttChart from '../../components/GanttChart.astro';
+import NetworkDiagram from '../../components/NetworkDiagram.astro';
 ---
 
 <Layout title="Capítulo 07: Plan de Gestión del Cronograma - Salidas">
@@ -345,7 +346,21 @@ import GanttChart from '../../components/GanttChart.astro';
       </div>
     </div>
 
-    <!-- DIAGRAMA DE GANTT -->
+    <!-- Diagrama de Red del Cronograma -->
+    <div class="section-card" id="red" style="margin-bottom: 2rem; padding: 0; overflow: hidden;">
+      <div style="padding: 1.2rem 1.6rem 0.5rem;">
+        <h3 style="color: #1e3a8a; margin: 0 0 .5rem;">7.3.1 Diagrama de Red del Cronograma</h3>
+        <p style="color: #334155; font-size: 0.9rem; margin: 0 0 1rem; line-height: 1.65;">
+          Representación gráfica de las relaciones lógicas entre las actividades del proyecto,
+          construida mediante el Método de Diagramación por Precedencia (PDM) del PMBOK 8.
+          Las actividades de la ruta crítica (holgura total = 0) se resaltan en rojo.
+          Las relaciones Inicio-Inicio (CC) se muestran con flechas punteadas azules.
+        </p>
+      </div>
+      <NetworkDiagram />
+    </div>
+
+    <!-- Inclusión del componente Gantt extraído -->
     <div class="gantt-section">
       <GanttChart />
     </div>

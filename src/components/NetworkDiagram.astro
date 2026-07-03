@@ -1,0 +1,841 @@
+---
+// NetworkDiagram.astro
+// Diagrama de Red del Cronograma — PDM (Precedence Diagramming Method)
+// PMBOK 8 · Ruta Crítica por CPM · 75 días hábiles
+// Técnica: tabla HTML por columnas de fase + SVG superpuesto para flechas
+---
+
+<style>
+  /* ── CONTENEDOR PRINCIPAL ── */
+  .nd-outer {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #dbeafe;
+    box-shadow: 0 4px 24px rgba(15,23,42,.08);
+  }
+
+  /* ── ENCABEZADO ── */
+  .nd-header {
+    padding: 1.2rem 1.5rem 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    background: linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 100%);
+    border-radius: 16px 16px 0 0;
+  }
+  .nd-header h3 {
+    margin: 0 0 .25rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: .02em;
+  }
+  .nd-header .nd-subtitle {
+    margin: 0 0 .85rem;
+    font-size: .8rem;
+    color: #bfdbfe;
+  }
+
+  /* ── LEYENDA ── */
+  .nd-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem .9rem;
+    align-items: center;
+  }
+  .leg-item {
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .75rem;
+    color: #e0f2fe;
+    white-space: nowrap;
+  }
+  .leg-box {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .leg-box.crit   { background:#fef2f2; border: 2px solid #ef4444; }
+  .leg-box.par    { background:#eff6ff; border: 2px solid #3b82f6; }
+  .leg-box.summ   { background:#1e3a8a; border: 2px solid #60a5fa; }
+  .leg-diamond    { display:inline-block; color:#f59e0b; font-size:1rem; line-height:1; }
+  .leg-arrow-fc   { font-size:.85rem; color:#94a3b8; font-weight:700; }
+  .leg-arrow-cc   { font-size:.85rem; color:#3b82f6; font-weight:700; letter-spacing:-.5px; }
+
+  /* ── CONTENEDOR DEL DIAGRAMA ── */
+  .nd-diagram {
+    position: relative;
+    min-width: 2500px;
+    height: 980px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  /* ── SVG DE FLECHAS (superpuesto) ── */
+  .nd-svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  /* ── CABECERAS DE FASE ── */
+  .phase-label {
+    position: absolute;
+    top: 10px;
+    font-size: .68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: #64748b;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: .2rem .5rem;
+  }
+
+  /* ── NODOS ── */
+  .nd-node {
+    position: absolute;
+    width: 150px;
+    border-radius: 6px;
+    border: 1.5px solid #94a3b8;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(15,23,42,.08);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .nd-node .nid {
+    background: #1e293b;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    line-height: 1.6;
+  }
+  .nd-node .nname {
+    font-size: 9px;
+    color: #1e293b;
+    padding: 3px 5px 2px;
+    line-height: 1.35;
+    text-align: center;
+    font-weight: 600;
+  }
+  .nd-node .ndur {
+    font-size: 8px;
+    color: #64748b;
+    padding: 0 5px 3px;
+    text-align: center;
+  }
+
+  /* Crítica */
+  .nd-node.crit {
+    border: 2.5px solid #ef4444;
+    background: #fef2f2;
+  }
+  .nd-node.crit .nid { background: #b91c1c; }
+
+  /* Paralela */
+  .nd-node.par {
+    border: 1.5px solid #3b82f6;
+    background: #eff6ff;
+  }
+
+  /* Tarea resumen */
+  .nd-node.summ {
+    width: 170px;
+    background: #1e3a8a;
+    border: 2px solid #60a5fa;
+  }
+  .nd-node.summ .nid  { background: #0f172a; color: #93c5fd; }
+  .nd-node.summ .nname { color: #e0f2fe; font-size: 8px; }
+  .nd-node.summ .ndur  { color: #93c5fd; }
+
+  /* Gate (diamante) — se posiciona sobre un pseudo-rombo HTML */
+  .nd-gate {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    transform: rotate(45deg);
+    background: #fef9c3;
+    border: 2.5px solid #f59e0b;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(245,158,11,.25);
+  }
+  .nd-gate-label {
+    position: absolute;
+    transform: none;
+    font-size: 9px;
+    font-weight: 800;
+    color: #92400e;
+    text-align: center;
+    line-height: 1.2;
+    pointer-events: none;
+  }
+
+  /* Nodos INICIO / FIN */
+  .nd-terminal {
+    position: absolute;
+    width: 70px;
+    height: 36px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(15,23,42,.15);
+  }
+  .nd-terminal.start { background: #16a34a; border: 2px solid #15803d; }
+  .nd-terminal.end   { background: #dc2626; border: 2px solid #b91c1c; }
+</style>
+
+<!-- ── ENCABEZADO ── -->
+<div class="nd-outer">
+  <div class="nd-header">
+    <h3>Diagrama de Red del Cronograma</h3>
+    <p class="nd-subtitle">
+      Método de Diagramación por Precedencia (PDM) · PMBOK 8 ·
+      Ruta Crítica calculada por CPM · 75 días hábiles
+    </p>
+    <div class="nd-legend">
+      <span class="leg-item"><span class="leg-box crit"></span> Ruta crítica (holgura = 0)</span>
+      <span class="leg-item"><span class="leg-box par"></span> Holgura positiva</span>
+      <span class="leg-item"><span class="leg-box summ"></span> Tarea resumen de fase</span>
+      <span class="leg-item"><span class="leg-diamond">◆</span> Hito Gate</span>
+      <span class="leg-item"><span class="leg-arrow-fc">→</span> Fin-Inicio (FC)</span>
+      <span class="leg-item"><span class="leg-arrow-cc">- -›</span> Inicio-Inicio (CC)</span>
+    </div>
+  </div>
+
+  <!-- ── DIAGRAMA ── -->
+  <div class="nd-diagram" id="nd-main">
+
+    <!-- SVG PARA FLECHAS -->
+    <svg class="nd-svg" id="nd-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Punta de flecha gris FC -->
+        <marker id="arr-fc" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#475569"/>
+        </marker>
+        <!-- Punta de flecha azul CC -->
+        <marker id="arr-cc" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
+        </marker>
+        <!-- Punta de flecha roja crítica -->
+        <marker id="arr-crit" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#ef4444"/>
+        </marker>
+      </defs>
+
+      <!--
+        ==========================================
+        FLECHAS — Conexiones entre actividades
+        Coordenadas: centro-derecho del nodo origen → centro-izquierdo del nodo destino
+        Nodo normal: 150px ancho, altura ~70px → centro = x+150, y+35
+        Nodo summ:   170px ancho             → centro = x+170, y+35
+        Gate:        rombo 60px centrado en (gx+30, gy+30)
+        Terminal:    70px ancho, 36px alto   → cx=x+70, cy=y+18
+        ==========================================
+
+        Abreviaturas:
+          crit  = flecha de ruta crítica (rojo)
+          fc    = Fin-Inicio normal (gris)
+          cc    = Inicio-Inicio (azul punteado)
+
+        GRUPO 1 → GRUPO 2
+      -->
+
+      <!-- INICIO → ID2 (crítica) -->
+      <line x1="88" y1="498" x2="170" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID2 → ID3 (crítica) -->
+      <line x1="320" y1="498" x2="370" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID2 → ID4 (normal) -->
+      <polyline points="320,498 345,498 345,390 370,390" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+
+      <!-- ID3 → ID5 (normal) -->
+      <polyline points="520,498 545,498 545,600 370,600" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+
+      <!-- ID3 → ID7 (crítica) -->
+      <line x1="520" y1="498" x2="570" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID7 → ID10 CC (paralela, punteada azul) -->
+      <polyline points="570,498 570,440 720,440" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-cc)"/>
+
+      <!-- ID7 → ID8 (crítica) -->
+      <line x1="720" y1="498" x2="770" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID8 → ID9 (crítica) -->
+      <line x1="920" y1="498" x2="970" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID9 → ID11 (crítica) -->
+      <line x1="1120" y1="498" x2="1170" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID10 → ID18 FC (paralela) -->
+      <polyline points="870,440 970,440 970,330" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+
+      <!-- ID11 → ID12 (crítica) -->
+      <line x1="1320" y1="498" x2="1370" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID12 → ID13 (crítica) -->
+      <line x1="1520" y1="498" x2="1570" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID13 → ID14 (crítica) -->
+      <line x1="1720" y1="498" x2="1770" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID14 → ID16 (crítica) — salto a Fase 1 -->
+      <polyline points="1920,498 1970,498 1970,498 2020,498" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- GRUPO 3 – FASE 1 CIMENTAR -->
+
+      <!-- ID16 → ID17 (crítica) -->
+      <line x1="2170" y1="498" x2="2220" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID16 → ID26 CC (paralela punteada) -->
+      <polyline points="2020,498 2020,620 2220,620" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-cc)"/>
+
+      <!-- ID17 → ID22 (crítica) -->
+      <line x1="2370" y1="498" x2="2420" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID18 → ID19 (paralela) -->
+      <line x1="1020" y1="330" x2="1070" y2="330" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+
+      <!-- ID19 → ID20 (paralela) -->
+      <line x1="1220" y1="330" x2="1270" y2="330" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+
+      <!-- ID20 → ID21 (paralela) -->
+      <line x1="1420" y1="330" x2="1470" y2="330" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+
+      <!-- ID21 → GATE1 (paralela) -->
+      <polyline points="1620,330 1650,330 1650,650 2840,650 2840,720" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+
+      <!-- ID22 → ID23 (crítica) -->
+      <line x1="2570" y1="498" x2="2620" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID23 → ID24 (crítica) -->
+      <line x1="2770" y1="498" x2="2820" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID24 → ID25 (crítica) -->
+      <line x1="2970" y1="498" x2="3020" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID25 → GATE1 (crítica) -->
+      <polyline points="3170,498 3200,498 3200,720 2870,720" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID26 → ID27 (crítica) -->
+      <line x1="2370" y1="620" x2="2420" y2="620" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID26 → ID28 CC (paralela) -->
+      <polyline points="2220,620 2220,760 2420,760" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-cc)"/>
+
+      <!-- ID27 → ID30 (crítica) -->
+      <line x1="2570" y1="620" x2="2620" y2="620" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID27 → GATE1 (crítica) -->
+      <polyline points="2770,620 2870,620 2870,720" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+      <!-- ID28 → ID29 (paralela) -->
+      <line x1="2570" y1="760" x2="2620" y2="760" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+
+      <!-- ID29 → GATE1 (paralela) -->
+      <polyline points="2770,760 2870,760 2870,750" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+
+      <!-- ID30 → GATE1 (crítica) -->
+      <polyline points="2770,620 2800,620 2800,720 2870,720" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+
+    </svg>
+
+    <!-- ── ETIQUETAS DE FASE ── -->
+    <div class="phase-label" style="left:160px; top:10px;">Gestión Proyecto</div>
+    <div class="phase-label" style="left:560px; top:10px;">Diagnóstico AS-IS</div>
+    <div class="phase-label" style="left:2010px; top:10px;">Fase 1 · Cimentar</div>
+    <div class="phase-label" style="left:3300px; top:10px;">Fase 2 · Integrar</div>
+    <div class="phase-label" style="left:4900px; top:10px;">Fase 3 · Optimizar</div>
+
+    <!-- ── NODO INICIO ── -->
+    <div class="nd-terminal start" style="left:18px; top:480px;">INICIO</div>
+
+    <!-- ============================================================
+         GRUPO 1 — GESTIÓN DEL PROYECTO (X: 160–530px)
+    ============================================================ -->
+    <!-- ID1 resumen (transversal) -->
+    <div class="nd-node summ" style="left:160px; top:40px;">
+      <div class="nid">ID 1 — RESUMEN</div>
+      <div class="nname">Gestión del Proyecto</div>
+      <div class="ndur">Transversal</div>
+    </div>
+    <!-- ID2 crítica -->
+    <div class="nd-node crit" style="left:170px; top:465px;">
+      <div class="nid">ID 2 · 4d</div>
+      <div class="nname">Acta de Constitución</div>
+      <div class="ndur">4 días · CRÍTICA</div>
+    </div>
+    <!-- ID4 paralela -->
+    <div class="nd-node par" style="left:370px; top:355px;">
+      <div class="nid">ID 4 · 1d</div>
+      <div class="nname">Informes avance (recurrente)</div>
+      <div class="ndur">Holgura +</div>
+    </div>
+    <!-- ID3 crítica -->
+    <div class="nd-node crit" style="left:370px; top:465px;">
+      <div class="nid">ID 3 · 3d</div>
+      <div class="nname">Plan de Gestión</div>
+      <div class="ndur">3 días · CRÍTICA</div>
+    </div>
+    <!-- ID5 paralela -->
+    <div class="nd-node par" style="left:370px; top:565px;">
+      <div class="nid">ID 5 · 1d</div>
+      <div class="nname">Registro de Cambios</div>
+      <div class="ndur">Holgura +</div>
+    </div>
+
+    <!-- ============================================================
+         GRUPO 2 — DIAGNÓSTICO AS-IS (X: 570–1970px)
+    ============================================================ -->
+    <!-- ID6 resumen -->
+    <div class="nd-node summ" style="left:570px; top:40px;">
+      <div class="nid">ID 6 — RESUMEN</div>
+      <div class="nname">Diagnóstico y Req. AS-IS</div>
+      <div class="ndur">—</div>
+    </div>
+    <!-- ID7 crítica -->
+    <div class="nd-node crit" style="left:570px; top:465px;">
+      <div class="nid">ID 7 · 2d</div>
+      <div class="nname">Observación directa flujo</div>
+      <div class="ndur">2 días · CRÍTICA</div>
+    </div>
+    <!-- ID10 paralela (CC desde ID7) -->
+    <div class="nd-node par" style="left:720px; top:405px;">
+      <div class="nid">ID 10 · 2d</div>
+      <div class="nname">Auditoría infraestructura</div>
+      <div class="ndur">Holgura + (CC)</div>
+    </div>
+    <!-- ID8 crítica -->
+    <div class="nd-node crit" style="left:770px; top:465px;">
+      <div class="nid">ID 8 · 2d</div>
+      <div class="nname">Entrevistas interesados</div>
+      <div class="ndur">2 días · CRÍTICA</div>
+    </div>
+    <!-- ID9 crítica -->
+    <div class="nd-node crit" style="left:970px; top:465px;">
+      <div class="nid">ID 9 · 1d</div>
+      <div class="nname">Documentar flujo AS-IS</div>
+      <div class="ndur">1 día · CRÍTICA</div>
+    </div>
+    <!-- ID18 paralela (desde ID10) -->
+    <div class="nd-node par" style="left:970px; top:295px;">
+      <div class="nid">ID 18 · 1d</div>
+      <div class="nname">Mapear zonas muertas Wi-Fi</div>
+      <div class="ndur">Holgura +</div>
+    </div>
+    <!-- ID11 crítica -->
+    <div class="nd-node crit" style="left:1170px; top:465px;">
+      <div class="nid">ID 11 · 4d</div>
+      <div class="nname">Fichas Requisitos REQ-01/10</div>
+      <div class="ndur">4 días · CRÍTICA</div>
+    </div>
+    <!-- ID19 paralela -->
+    <div class="nd-node par" style="left:1070px; top:295px;">
+      <div class="nid">ID 19 · 1d</div>
+      <div class="nname">Seleccionar solución red</div>
+      <div class="ndur">Holgura +</div>
+    </div>
+    <!-- ID12 crítica -->
+    <div class="nd-node crit" style="left:1370px; top:465px;">
+      <div class="nid">ID 12 · 1d</div>
+      <div class="nname">Validar fichas requisitos</div>
+      <div class="ndur">1 día · CRÍTICA</div>
+    </div>
+    <!-- ID20 paralela -->
+    <div class="nd-node par" style="left:1270px; top:295px;">
+      <div class="nid">ID 20 · 2d</div>
+      <div class="nname">Implementar solución red</div>
+      <div class="ndur">Holgura +</div>
+    </div>
+    <!-- ID13 crítica -->
+    <div class="nd-node crit" style="left:1570px; top:465px;">
+      <div class="nid">ID 13 · 2d</div>
+      <div class="nname">Matriz de Trazabilidad</div>
+      <div class="ndur">2 días · CRÍTICA</div>
+    </div>
+    <!-- ID21 paralela -->
+    <div class="nd-node par" style="left:1470px; top:295px;">
+      <div class="nid">ID 21 · 1d</div>
+      <div class="nname">Verificar acceso 4G/5G</div>
+      <div class="ndur">Holgura +</div>
+    </div>
+    <!-- ID14 crítica -->
+    <div class="nd-node crit" style="left:1770px; top:465px;">
+      <div class="nid">ID 14 · 1d</div>
+      <div class="nname">Aprobar Matriz Trazabilidad</div>
+      <div class="ndur">1 día · CRÍTICA</div>
+    </div>
+
+    <!-- ============================================================
+         GRUPO 3 — FASE 1 CIMENTAR (X: 2020–3250px)
+    ============================================================ -->
+    <!-- ID15 resumen -->
+    <div class="nd-node summ" style="left:2020px; top:40px;">
+      <div class="nid">ID 15 — RESUMEN</div>
+      <div class="nname">Fase 1 · Cimentar</div>
+      <div class="ndur">—</div>
+    </div>
+    <!-- ID16 crítica -->
+    <div class="nd-node crit" style="left:2020px; top:465px;">
+      <div class="nid">ID 16 · 3d</div>
+      <div class="nname">Diseñar modelo de datos</div>
+      <div class="ndur">3 días · CRÍTICA</div>
+    </div>
+    <!-- ID26 paralela (CC desde ID16) -->
+    <div class="nd-node par" style="left:2220px; top:585px;">
+      <div class="nid">ID 26 · 3d</div>
+      <div class="nname">Redactar SOPs</div>
+      <div class="ndur">Holgura + (CC)</div>
+    </div>
+    <!-- ID17 crítica -->
+    <div class="nd-node crit" style="left:2220px; top:465px;">
+      <div class="nid">ID 17 · 1d</div>
+      <div class="nname">Validar compatibilidad Odoo</div>
+      <div class="ndur">1 día · CRÍTICA</div>
+    </div>
+    <!-- ID28 paralela (CC desde ID26) -->
+    <div class="nd-node par" style="left:2420px; top:725px;">
+      <div class="nid">ID 28 · 2d</div>
+      <div class="nname">Política respaldo datos</div>
+      <div class="ndur">Holgura + (CC)</div>
+    </div>
+    <!-- ID22 crítica -->
+    <div class="nd-node crit" style="left:2420px; top:465px;">
+      <div class="nid">ID 22 · 3d</div>
+      <div class="nname">Desplegar base datos ligera</div>
+      <div class="ndur">3 días · CRÍTICA</div>
+    </div>
+    <!-- ID27 crítica -->
+    <div class="nd-node crit" style="left:2420px; top:585px;">
+      <div class="nid">ID 27 · 1d</div>
+      <div class="nname">Firmar SOPs</div>
+      <div class="ndur">1 día · CRÍTICA</div>
+    </div>
+    <!-- ID29 paralela -->
+    <div class="nd-node par" style="left:2620px; top:725px;">
+      <div class="nid">ID 29 · 1d</div>
+      <div class="nname">Firmar política respaldo</div>
+      <div class="ndur">Holgura +</div>
+    </div>
+    <!-- ID23 crítica -->
+    <div class="nd-node crit" style="left:2620px; top:465px;">
+      <div class="nid">ID 23 · 2d</div>
+      <div class="nname">Config. reglas validación</div>
+      <div class="ndur">2 días · CRÍTICA</div>
+    </div>
+    <!-- ID30 crítica -->
+    <div class="nd-node crit" style="left:2620px; top:585px;">
+      <div class="nid">ID 30 · 1d</div>
+      <div class="nname">Protocolo coexistencia Excel</div>
+      <div class="ndur">1 día · CRÍTICA</div>
+    </div>
+    <!-- ID24 crítica -->
+    <div class="nd-node crit" style="left:2820px; top:465px;">
+      <div class="nid">ID 24 · 2d</div>
+      <div class="nname">Consulta stock desde celular</div>
+      <div class="ndur">2 días · CRÍTICA</div>
+    </div>
+    <!-- ID25 crítica -->
+    <div class="nd-node crit" style="left:3020px; top:465px;">
+      <div class="nid">ID 25 · 1d</div>
+      <div class="nname">Prueba cronometrada stock</div>
+      <div class="ndur">1 día · CRÍTICA</div>
+    </div>
+
+    <!-- ── GATE 1 (diamante) ── -->
+    <!-- Rombo centrado en (2870, 750) → left = 2870-30=2840, top=720 -->
+    <div class="nd-gate" style="left:2840px; top:720px;" title="GATE 1"></div>
+    <div class="nd-gate-label" style="left:2830px; top:718px; width:60px;">GATE<br/>1</div>
+
+    <!-- ============================================================
+         GRUPO 4 — FASE 2 INTEGRAR (X: 3300–4850px)
+    ============================================================ -->
+    <!-- (Nodos compactos para mantener el diagrama legible) -->
+
+    <!-- ID32 resumen -->
+    <div class="nd-node summ" style="left:3350px; top:40px;">
+      <div class="nid">ID 32 — RESUMEN</div>
+      <div class="nname">Fase 2 · Integrar</div>
+      <div class="ndur">—</div>
+    </div>
+    <!-- ID33 -->
+    <div class="nd-node crit" style="left:3350px; top:465px;">
+      <div class="nid">ID 33 · 1d</div>
+      <div class="nname">Contratar servidor</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID39 paralela (CC desde GATE1) -->
+    <div class="nd-node par" style="left:3350px; top:355px;">
+      <div class="nid">ID 39 · 1d</div>
+      <div class="nname">Solicitar catálogo prods.</div>
+      <div class="ndur">Holgura + (CC)</div>
+    </div>
+    <!-- ID34 -->
+    <div class="nd-node crit" style="left:3510px; top:465px;">
+      <div class="nid">ID 34 · 1d</div>
+      <div class="nname">Instalar SO y dependencias</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID35 -->
+    <div class="nd-node crit" style="left:3670px; top:465px;">
+      <div class="nid">ID 35 · 2d</div>
+      <div class="nname">Instalar Odoo Community</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID36 -->
+    <div class="nd-node crit" style="left:3830px; top:465px;">
+      <div class="nid">ID 36 · 1d</div>
+      <div class="nname">Config. inicial Odoo</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID37 -->
+    <div class="nd-node crit" style="left:3990px; top:465px;">
+      <div class="nid">ID 37 · 1d</div>
+      <div class="nname">Crear perfiles acceso</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID38 -->
+    <div class="nd-node crit" style="left:4150px; top:465px;">
+      <div class="nid">ID 38 · 1d</div>
+      <div class="nname">Verificar acceso cruzado</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID40 -->
+    <div class="nd-node crit" style="left:4310px; top:465px;">
+      <div class="nid">ID 40 · 2d</div>
+      <div class="nname">Cargar catálogo en Odoo</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID41 -->
+    <div class="nd-node crit" style="left:4470px; top:465px;">
+      <div class="nid">ID 41 · 2d</div>
+      <div class="nname">Migración datos Fase 1</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID42 -->
+    <div class="nd-node crit" style="left:4630px; top:465px;">
+      <div class="nid">ID 42 · 1d</div>
+      <div class="nname">Verificar integridad migración</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID43 -->
+    <div class="nd-node crit" style="left:4790px; top:465px;">
+      <div class="nid">ID 43 · 2d</div>
+      <div class="nname">Config. rebaja automática</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID44 -->
+    <div class="nd-node crit" style="left:4950px; top:465px;">
+      <div class="nid">ID 44 · 1d</div>
+      <div class="nname">Prueba rebaja automática</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID45 -->
+    <div class="nd-node crit" style="left:5110px; top:465px;">
+      <div class="nid">ID 45 · 2d</div>
+      <div class="nname">Config. talleres duales</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID46 -->
+    <div class="nd-node crit" style="left:5270px; top:465px;">
+      <div class="nid">ID 46 · 1d</div>
+      <div class="nname">Verificar consolidación</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID47 -->
+    <div class="nd-node crit" style="left:5430px; top:465px;">
+      <div class="nid">ID 47 · 2d</div>
+      <div class="nname">Formulario ventas + valid.</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID51 paralela (CC desde ID47) -->
+    <div class="nd-node par" style="left:5430px; top:355px;">
+      <div class="nid">ID 51 · 2d</div>
+      <div class="nname">Redactar casos prueba UAT</div>
+      <div class="ndur">Holgura + (CC)</div>
+    </div>
+    <!-- ID48 -->
+    <div class="nd-node crit" style="left:5590px; top:465px;">
+      <div class="nid">ID 48 · 3d</div>
+      <div class="nname">Flujo Venta-Stock-Despacho</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID49 -->
+    <div class="nd-node crit" style="left:5750px; top:465px;">
+      <div class="nid">ID 49 · 1d</div>
+      <div class="nname">Verificar bloqueo técnico</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID50 -->
+    <div class="nd-node crit" style="left:5910px; top:465px;">
+      <div class="nid">ID 50 · 1d</div>
+      <div class="nname">Vista despacho motorizado</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID52 -->
+    <div class="nd-node crit" style="left:6070px; top:465px;">
+      <div class="nid">ID 52 · 1d</div>
+      <div class="nname">Prueba técnica conectividad</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID53 -->
+    <div class="nd-node crit" style="left:6230px; top:390px;">
+      <div class="nid">ID 53 · 1d</div>
+      <div class="nname">UAT Personal Ventas</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID54 -->
+    <div class="nd-node crit" style="left:6230px; top:465px;">
+      <div class="nid">ID 54 · 1d</div>
+      <div class="nname">UAT Socio Producción</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID55 -->
+    <div class="nd-node crit" style="left:6230px; top:540px;">
+      <div class="nid">ID 55 · 1d</div>
+      <div class="nname">UAT Gerencia Natalie</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID56 -->
+    <div class="nd-node crit" style="left:6390px; top:465px;">
+      <div class="nid">ID 56 · 2d</div>
+      <div class="nname">Corregir incidencias UAT</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID57 -->
+    <div class="nd-node crit" style="left:6550px; top:465px;">
+      <div class="nid">ID 57 · 1d</div>
+      <div class="nname">Cert. Cero Errores Críticos</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+
+    <!-- ── GATE 2 ── -->
+    <div class="nd-gate" style="left:6720px; top:720px;"></div>
+    <div class="nd-gate-label" style="left:6710px; top:718px; width:60px;">GATE<br/>2</div>
+
+    <!-- ============================================================
+         GRUPO 5 — FASE 3 OPTIMIZAR (X: 6950–8400px)
+    ============================================================ -->
+    <!-- ID59 resumen -->
+    <div class="nd-node summ" style="left:6950px; top:40px;">
+      <div class="nid">ID 59 — RESUMEN</div>
+      <div class="nname">Fase 3 · Optimizar</div>
+      <div class="ndur">—</div>
+    </div>
+    <!-- ID60 -->
+    <div class="nd-node crit" style="left:6950px; top:465px;">
+      <div class="nid">ID 60 · 3d</div>
+      <div class="nname">Panel KPIs y reportes</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID63 paralela (CC desde GATE2) -->
+    <div class="nd-node par" style="left:6950px; top:355px;">
+      <div class="nid">ID 63 · 3d</div>
+      <div class="nname">Manuales usuario por rol</div>
+      <div class="ndur">Holgura + (CC)</div>
+    </div>
+    <!-- ID61 -->
+    <div class="nd-node crit" style="left:7110px; top:465px;">
+      <div class="nid">ID 61 · 2d</div>
+      <div class="nname">Reporte ganancia neta auto.</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID64 paralela (CC desde ID63) -->
+    <div class="nd-node par" style="left:7110px; top:355px;">
+      <div class="nid">ID 64 · 2d</div>
+      <div class="nname">Guía auto-recuperación</div>
+      <div class="ndur">Holgura + (CC)</div>
+    </div>
+    <!-- ID62 -->
+    <div class="nd-node crit" style="left:7270px; top:465px;">
+      <div class="nid">ID 62 · 1d</div>
+      <div class="nname">Verificar acceso panel/rol</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID65 -->
+    <div class="nd-node crit" style="left:7430px; top:390px;">
+      <div class="nid">ID 65 · 1d</div>
+      <div class="nname">Taller capac. Ventas</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID66 -->
+    <div class="nd-node crit" style="left:7430px; top:465px;">
+      <div class="nid">ID 66 · 1d</div>
+      <div class="nname">Taller capac. Producción</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID67 -->
+    <div class="nd-node crit" style="left:7430px; top:540px;">
+      <div class="nid">ID 67 · 1d</div>
+      <div class="nname">Sesión capac. Gerencia</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID68 -->
+    <div class="nd-node crit" style="left:7590px; top:465px;">
+      <div class="nid">ID 68 · 1d</div>
+      <div class="nname">Despliegue 100% dispositivos</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID69 -->
+    <div class="nd-node crit" style="left:7750px; top:465px;">
+      <div class="nid">ID 69 · 5d</div>
+      <div class="nname">Monitoreo operaciones reales</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID70 -->
+    <div class="nd-node crit" style="left:7910px; top:465px;">
+      <div class="nid">ID 70 · 1d</div>
+      <div class="nname">Verificar reportes gerenciales</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID71 -->
+    <div class="nd-node crit" style="left:8070px; top:465px;">
+      <div class="nid">ID 71 · 1d</div>
+      <div class="nname">Lecciones aprendidas</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID72 -->
+    <div class="nd-node crit" style="left:8230px; top:465px;">
+      <div class="nid">ID 72 · 2d</div>
+      <div class="nname">Informe final proyecto</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID73 paralela (CC desde ID72) -->
+    <div class="nd-node par" style="left:8230px; top:355px;">
+      <div class="nid">ID 73 · 1d</div>
+      <div class="nname">Verificar criterios aceptación</div>
+      <div class="ndur">Holgura + (CC)</div>
+    </div>
+
+    <!-- ── GATE 3 ── -->
+    <div class="nd-gate" style="left:8420px; top:720px;"></div>
+    <div class="nd-gate-label" style="left:8410px; top:718px; width:60px;">GATE<br/>3</div>
+
+    <!-- ID75 -->
+    <div class="nd-node crit" style="left:8510px; top:465px;">
+      <div class="nid">ID 75 · 1d</div>
+      <div class="nname">Consolidar lecciones aprendidas</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+    <!-- ID76 -->
+    <div class="nd-node crit" style="left:8670px; top:465px;">
+      <div class="nid">ID 76 · 1d</div>
+      <div class="nname">Acta de Cierre Formal</div>
+      <div class="ndur">CRÍTICA</div>
+    </div>
+
+    <!-- ── NODO FIN ── -->
+    <div class="nd-terminal end" style="left:8835px; top:480px;">FIN</div>
+
+  </div><!-- /.nd-diagram -->
+</div><!-- /.nd-outer -->
