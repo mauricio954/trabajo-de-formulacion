@@ -16,101 +16,1704 @@ import GanttChart from '../components/GanttChart.astro';
     .section-card p, .section-card ul, .section-card ol { color: #334155; line-height: 1.75; margin: .85rem 0; }
     .section-card ul, .section-card ol { padding-left: 1.25rem; }
     .section-card hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, #93c5fd, transparent); margin: 1.5rem 0; }
-    .note-card { border-color: #d0e8ff; background: #eef6ff; padding: 1rem; border-radius: 12px; }
+    .note-card { border-color: #d0e8ff; background: #eef6ff; }
     .note-card strong { display: block; color: #1e40af; margin-bottom: .4rem; }
     .note-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
     .chapter-toolbar { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 1.5rem; }
     .ct-btn { display: inline-flex; align-items: center; justify-content: center; padding: .85rem 1.2rem; border-radius: 999px; border: 1px solid rgba(15,23,42,.14); background: #fff; color: #1e3a8a; font-weight: 700; text-decoration: none; transition: transform .18s ease, background .18s ease, border-color .18s ease; box-shadow: 0 12px 28px rgba(15,23,42,.08); }
     .ct-btn:hover { transform: translateY(-1px); background: #e0e7ff; border-color: #93c5fd; }
     .ct-btn-primary { background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; border-color: transparent; }
+    .artifact-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); margin: 1.25rem 0 1.5rem; }
+    .artifact-card { background: #f8fbff; border: 1px solid #dbeafe; border-radius: 18px; padding: 1rem 1.1rem; }
+    .artifact-card strong { display: block; color: #1d4ed8; margin-bottom: .35rem; font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; }
+    .artifact-card span { display: block; color: #0f172a; line-height: 1.7; }
+    .guidance-group { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); margin-bottom: 1.5rem; }
+    .guidance-card { border: 1px solid #dbeafe; border-radius: 18px; background: #eff6ff; padding: 1.2rem; }
+    .guidance-card strong { display: block; margin-bottom: .55rem; color: #1e3a8a; }
+    .activity-list { display: grid; gap: 1rem; }
+    .activity-note { background: #f8fbff; border: 1px solid #dbeafe; border-radius: 18px; padding: 1.1rem 1.2rem; }
+    .activity-note strong { display: block; margin-bottom: .6rem; color: #1e3a8a; }
+    .activity-note ul { margin: 0; padding-left: 1.25rem; color: #334155; line-height: 1.7; }
+    .activity-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    .activity-card { display: flex; flex-direction: column; gap: .85rem; background: #ffffff; border: 1px solid #dbeafe; border-radius: 20px; padding: 1.2rem; box-shadow: 0 18px 30px rgba(15,23,42,.06); }
+    .activity-card-header { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; justify-content: space-between; margin-bottom: .85rem; }
+    .activity-number { font-weight: 700; color: #1e3a8a; font-size: .98rem; }
+    .activity-code { font-size: .95rem; padding: .35rem .8rem; background: #eef2ff; border-radius: 999px; color: #2563eb; }
+    .activity-card h4 { margin: 0; font-size: 1rem; color: #0f172a; line-height: 1.4; }
+    .activity-meta { display: grid; gap: .45rem; margin-top: .9rem; padding-top: .9rem; border-top: 1px solid #e2e8f0; }
+    .activity-meta span { color: #475569; font-size: .94rem; }
+    .activity-meta strong { color: #1e3a8a; }
+    .activity-grid .activity-card:nth-child(odd) { background: #f8fbff; }
+    .list-panel { border-color: #c7d2fe; }
+    .list-panel h2 { margin-top: 0; color: #1e3a8a; }
+    .list-panel .list-meta { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); margin-bottom: 1.25rem; }
+    .list-panel .list-meta div { background: #f8fbff; border: 1px solid #dbeafe; border-radius: 16px; padding: 1rem; }
+    .list-panel .list-meta div strong { display: block; color: #1e40af; margin-bottom: .35rem; }
+    @media (max-width: 900px) { .activity-grid { grid-template-columns: 1fr; } }
+
+    /* ── INTRO HERO ── */
+    .intro-hero { background: linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 50%,#2563eb 100%); border-radius: 24px; padding: 2.2rem 2rem; margin-bottom: 1.6rem; color: #fff; box-shadow: 0 28px 56px rgba(15,23,42,.18); }
+    .intro-hero h2 { margin: 0 0 .5rem; font-size: 1.85rem; color: #fff; }
+    .intro-hero .ih-sub { color: #bfdbfe; font-size: .95rem; margin: 0 0 1.4rem; }
+    .intro-hero .ih-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
+    .intro-hero .ih-card { background: rgba(255,255,255,.12); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.2); border-radius: 18px; padding: 1.1rem 1.3rem; }
+    .intro-hero .ih-card strong { display: block; color: #93c5fd; font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .5rem; }
+    .intro-hero .ih-card p { margin: 0; font-size: .9rem; color: #e0f2fe; line-height: 1.65; }
+
+    /* ── SECTION HEADERS ── */
+    .sec-header { display: flex; align-items: center; gap: .75rem; margin: 2.2rem 0 1.2rem; }
+    .sec-header .sec-num { font-size: 2rem; font-weight: 800; color: #dbeafe; line-height: 1; }
+    .sec-header h2 { margin: 0; font-size: 1.4rem; color: #1e3a8a; }
+
+    /* ── ENTRADA CARDS ── */
+    .entrada-grid { display: grid; gap: 1.1rem; }
+    .entrada-card { background: #fff; border: 1px solid #dbeafe; border-radius: 20px; padding: 1.3rem 1.5rem; box-shadow: 0 8px 24px rgba(15,23,42,.06); }
+    .entrada-card .en-tag { display: inline-block; font-size: .72rem; font-weight: 700; color: #1d4ed8; background: #dbeafe; border-radius: 999px; padding: .2rem .65rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
+    .entrada-card h4 { margin: 0 0 .55rem; color: #0f172a; font-size: 1rem; }
+    .entrada-card p { margin: 0 0 .6rem; color: #475569; font-size: .93rem; line-height: 1.7; }
+    .entrada-card ul { margin: .5rem 0 0; padding-left: 1.15rem; color: #475569; font-size: .9rem; line-height: 1.7; }
+
+    /* ── TECNICA CARDS ── */
+    .tecnica-card { background: #fff; border: 1px solid #dbeafe; border-radius: 20px; padding: 1.4rem 1.5rem; margin-bottom: 1.1rem; box-shadow: 0 8px 24px rgba(15,23,42,.06); }
+    .tecnica-card .tc-badge { display: inline-block; background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; font-size: .72rem; font-weight: 700; border-radius: 999px; padding: .25rem .7rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .7rem; }
+    .tecnica-card h4 { margin: 0 0 .55rem; color: #1e3a8a; font-size: 1.05rem; }
+    .tecnica-card p { margin: 0 0 .6rem; color: #334155; line-height: 1.75; }
+    .tecnica-card ul { margin: .5rem 0 0; padding-left: 1.15rem; color: #475569; line-height: 1.7; }
+    .tecnica-result { display: inline-block; background: #dcfce7; color: #166534; border-radius: 10px; padding: .5rem 1rem; font-size: .88rem; font-weight: 600; margin-top: .75rem; }
+
+    /* ── CALENDARIO CARD ── */
+    .calendar-card { background: linear-gradient(135deg,#f0f9ff,#eff6ff); border: 1px solid #bae6fd; border-radius: 20px; padding: 1.4rem 1.5rem; margin-bottom: 1.1rem; }
+    .calendar-card h4 { margin: 0 0 1rem; color: #0369a1; font-size: 1.05rem; }
+    .holiday-list { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); margin-top: .75rem; }
+    .holiday-item { display: flex; gap: .65rem; align-items: flex-start; background: #fff; border: 1px solid #bae6fd; border-radius: 12px; padding: .6rem .9rem; }
+    .holiday-date { font-size: .82rem; font-weight: 700; color: #0369a1; white-space: nowrap; }
+    .holiday-name { font-size: .88rem; color: #334155; }
+
+    /* ── RUTA CRÍTICA ── */
+    .critical-path { background: #fff; border: 2px solid #ef4444; border-radius: 20px; padding: 1.4rem 1.5rem; margin-bottom: 1.1rem; box-shadow: 0 8px 24px rgba(239,68,68,.12); }
+    .critical-path h4 { margin: 0 0 .75rem; color: #b91c1c; font-size: 1.05rem; display: flex; align-items: center; gap: .5rem; }
+    .critical-path p { margin: 0 0 .85rem; color: #334155; line-height: 1.7; }
+    .cp-flow { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin-top: .75rem; }
+    .cp-step { background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: .3rem .65rem; font-size: .82rem; color: #991b1b; font-weight: 600; }
+    .cp-arrow { color: #ef4444; font-weight: 700; font-size: 1rem; }
+    .cp-gate { background: #ef4444; color: #fff; border-radius: 8px; padding: .3rem .7rem; font-size: .82rem; font-weight: 700; }
+
+    /* ── HOLGURA TABLE ── */
+    .holgura-table { width: 100%; border-collapse: collapse; margin-top: .75rem; font-size: .88rem; }
+    .holgura-table th { background: #eff6ff; color: #1e3a8a; padding: .5rem .75rem; text-align: left; font-size: .8rem; border-bottom: 2px solid #dbeafe; }
+    .holgura-table td { padding: .45rem .75rem; border-bottom: 1px solid #f1f5f9; color: #334155; }
+    .holgura-table tr:hover td { background: #f8fbff; }
+    .holgura-id { font-weight: 700; color: #2563eb; }
+    .holgura-days { font-weight: 700; color: #16a34a; }
+
+    /* ── GATE CARDS ── */
+    .gates-grid { display: grid; gap: 1.2rem; }
+    .gate-card { border-radius: 22px; padding: 1.5rem 1.6rem; box-shadow: 0 16px 40px rgba(15,23,42,.1); }
+    .gate-1 { background: linear-gradient(135deg,#f0f9ff,#e0f2fe); border: 2px solid #0ea5e9; }
+    .gate-2 { background: linear-gradient(135deg,#f0fdf4,#dcfce7); border: 2px solid #22c55e; }
+    .gate-3 { background: linear-gradient(135deg,#fdf4ff,#f3e8ff); border: 2px solid #a855f7; }
+    .gate-card .gate-title { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
+    .gate-card .gate-diamond { font-size: 1.5rem; }
+    .gate-card h4 { margin: 0; font-size: 1.05rem; }
+    .gate-1 h4 { color: #0369a1; }
+    .gate-2 h4 { color: #15803d; }
+    .gate-3 h4 { color: #7e22ce; }
+    .gate-card .gate-criteria { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+    .gate-card .gate-criteria li { display: flex; gap: .6rem; align-items: flex-start; font-size: .9rem; color: #334155; line-height: 1.55; }
+    .gate-card .gate-criteria li .chk { flex-shrink: 0; font-size: 1rem; }
+    .gate-1 .chk { color: #0ea5e9; }
+    .gate-2 .chk { color: #22c55e; }
+    .gate-3 .chk { color: #a855f7; }
+    .gate-card .gate-firmantes { margin-top: 1rem; padding-top: .75rem; border-top: 1px solid rgba(0,0,0,.08); font-size: .82rem; font-weight: 600; }
+    .gate-1 .gate-firmantes { color: #0369a1; }
+    .gate-2 .gate-firmantes { color: #15803d; }
+    .gate-3 .gate-firmantes { color: #7e22ce; }
+
+    /* ── CONTROL SECTION ── */
+    .control-card { background: #fff; border: 1px solid #dbeafe; border-radius: 22px; padding: 1.5rem 1.6rem; margin-bottom: 1.2rem; box-shadow: 0 12px 32px rgba(15,23,42,.08); }
+    .control-card h4 { margin: 0 0 1rem; color: #1e3a8a; font-size: 1.08rem; border-bottom: 2px solid #dbeafe; padding-bottom: .65rem; }
+    .evm-grid { display: grid; gap: .85rem; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); margin: .75rem 0 1rem; }
+    .evm-item { background: #eff6ff; border: 1px solid #dbeafe; border-radius: 14px; padding: .9rem 1rem; }
+    .evm-item .evm-formula { font-family: monospace; font-size: 1rem; font-weight: 700; color: #1e3a8a; margin-bottom: .35rem; }
+    .evm-item .evm-desc { font-size: .85rem; color: #475569; line-height: 1.55; }
+    .alert-box { border-radius: 14px; padding: .85rem 1rem; font-size: .9rem; margin: .5rem 0; display: flex; gap: .6rem; align-items: flex-start; }
+    .alert-warning { background: #fefce8; border: 1px solid #fde047; color: #713f12; }
+    .alert-danger  { background: #fef2f2; border: 1px solid #fca5a5; color: #7f1d1d; }
+    .alert-box .alert-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .proceso-steps { list-style: none; margin: .75rem 0 0; padding: 0; display: grid; gap: .6rem; }
+    .proceso-steps li { display: flex; gap: .75rem; align-items: flex-start; font-size: .91rem; color: #334155; line-height: 1.6; }
+    .step-num { flex-shrink: 0; width: 26px; height: 26px; background: #1d4ed8; color: #fff; border-radius: 50%; font-size: .78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: .1rem; }
+    .reservas-grid { display: grid; gap: .85rem; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); margin-top: 1rem; }
+    .reserva-item { border-radius: 14px; padding: 1rem; text-align: center; }
+    .reserva-cont { background: #fef9c3; border: 1px solid #fde047; }
+    .reserva-gest { background: #f0f9ff; border: 1px solid #7dd3fc; }
+    .reserva-max  { background: #fdf4ff; border: 1px solid #d8b4fe; }
+    .reserva-item strong { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .35rem; }
+    .reserva-cont strong { color: #713f12; }
+    .reserva-gest strong { color: #075985; }
+    .reserva-max  strong { color: #6b21a8; }
+    .reserva-item .rv-val { font-size: 1.25rem; font-weight: 800; display: block; margin-bottom: .2rem; }
+    .reserva-cont .rv-val { color: #92400e; }
+    .reserva-gest .rv-val { color: #0369a1; }
+    .reserva-max  .rv-val { color: #7e22ce; }
+    .reserva-item .rv-note { font-size: .82rem; color: #64748b; }
+
+    /* Gantt wrapper spacing */
+    .gantt-section { margin-top: 1.5rem; }
   </style>
 
-  <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
-  
-  <div class="chapter-toolbar">
-    <a href="#entradas" class="ct-btn ct-btn-primary">7.1 Entradas</a>
-    <a href="#herramientas" class="ct-btn">7.2 Herramientas y Técnicas</a>
-    <a href="#salidas" class="ct-btn">7.3 Salidas</a>
-  </div>
+  <section class="sec" id="capitulo7">
 
-  <section class="sec" id="entradas">
-    <div class="hero-card">
-      <h2>7.1 Entradas para el Cronograma</h2>
+    <!-- ══════════════════════════════════════════════════════════
+         HERO PRINCIPAL
+    ══════════════════════════════════════════════════════════ -->
+    <div class="hero-card" id="plan">
+      <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
       <div class="meta-grid">
-        <div class="meta-item"><strong>Fase</strong><span>Planificación</span></div>
-        <div class="meta-item"><strong>Propósito</strong><span>Proveer base documental y alcance</span></div>
+        <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>1.0</span></div>
+        <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
+        <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
+        <div class="meta-item"><strong>Aprobado por</strong><span>Líder del Proyecto</span></div>
+      </div>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN RÁPIDA -->
+    <div class="chapter-toolbar">
+      <a href="#plan"         class="ct-btn ct-btn-primary">7.0 Plan</a>
+      <a href="#entradas"     class="ct-btn">7.1 Entradas</a>
+      <a href="#herramientas" class="ct-btn">7.2 Herramientas</a>
+      <a href="#salidas"      class="ct-btn">7.3 Salidas</a>
+      <a href="#control"      class="ct-btn">7.4 Control</a>
+      <a href="#lista"        class="ct-btn">Lista de Actividades</a>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         BLOQUE 2A — HERO INTRODUCTORIO
+    ══════════════════════════════════════════════════════════ -->
+    <div class="intro-hero">
+      <h2>Plan de Gestión del Cronograma</h2>
+      <p class="ih-sub">Transformación Digital Roma Bag's · Equipo Consultor UNTELS · PMBOK 8</p>
+      <div class="ih-grid">
+        <div class="ih-card">
+          <strong>Propósito del Plan</strong>
+          <p>Establece las políticas, procedimientos y documentación necesarios para planificar, desarrollar, gestionar, ejecutar y controlar el cronograma del proyecto. Define cómo se medirá y controlará el avance temporal y qué acciones se tomarán ante desviaciones. Todo lo establecido es vinculante para el equipo consultor UNTELS durante todo el ciclo de vida del proyecto.</p>
+        </div>
+        <div class="ih-card">
+          <strong>Enfoque de Desarrollo</strong>
+          <p>Híbrido predictivo por fases con gates de decisión formales. La planificación es en cascada dentro de cada fase y el paso entre fases depende de una decisión formal de la Gerencia basada en resultados medibles. Responde al Principio de Navegar la Complejidad del PMBOK 8: el director adapta el enfoque a las características específicas del entorno.</p>
+        </div>
+        <div class="ih-card">
+          <strong>Herramienta PMIS Seleccionada</strong>
+          <p>Microsoft Project. Justificación: calcula el CPM automáticamente, genera el Gantt con barras y flechas conectoras, permite asignar recursos, soporta el seguimiento del Valor Ganado y exporta en formato .mpp estándar de la industria. El PMBOK 8 reconoce el PMIS como herramienta habilitante del Dominio de Planificación.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         7.1 ENTRADAS
+    ══════════════════════════════════════════════════════════ -->
+    <div class="sec-header" id="entradas">
+      <span class="sec-num">7.1</span>
+      <h2>Entradas</h2>
+    </div>
+
+    <div class="section-card">
+      <h3>Entradas del Proceso: Planificar la Gestión del Cronograma</h3>
+      <p>El proceso de planificación del cronograma requiere las siguientes entradas del PMBOK 8. Cada una aporta información crítica que delimita el margen de maniobra para la planificación temporal del proyecto.</p>
+
+      <div class="entrada-grid">
+
+        <!-- ENTRADA 1 -->
+        <div class="entrada-card">
+          <span class="en-tag">Entrada 1</span>
+          <h4>Plan de Gestión del Alcance</h4>
+          <p>Define los entregables y paquetes de trabajo de la EDT. Cada paquete de trabajo se traduce en una o más actividades con duración estimable. El alcance delimitado en el Capítulo 06 (EDT aprobada con 5 entregables de Nivel 1 y 77 actividades) es el insumo directo para construir el cronograma.</p>
+          <ul>
+            <li>EDT aprobada con 5 entregables de Nivel 1 descompuestos en 77 actividades</li>
+            <li>Enunciado del Alcance con criterios de aceptación verificables por gate</li>
+            <li>Diccionario EDT con descripción y criterios de cada paquete de trabajo</li>
+          </ul>
+        </div>
+
+        <!-- ENTRADA 2 -->
+        <div class="entrada-card">
+          <span class="en-tag">Entrada 2</span>
+          <h4>Acta de Constitución del Proyecto</h4>
+          <p>Proporciona las restricciones de tiempo de alto nivel: fecha de inicio, recursos disponibles y umbrales de riesgo aceptable. La restricción de completar el proyecto en un máximo de 75 días hábiles proviene directamente del Acta firmada por la Gerencia de Roma Bag's.</p>
+          <ul>
+            <li>Fecha de inicio autorizada: lunes 7 de septiembre de 2026</li>
+            <li>Restricción de duración: máximo 75 días hábiles sin reservas</li>
+            <li>Equipo asignado: Consultor UNTELS (3 integrantes)</li>
+          </ul>
+        </div>
+
+        <!-- ENTRADA 3 (BLOQUE 2B) -->
+        <div class="entrada-card">
+          <span class="en-tag">Entrada 3</span>
+          <h4>Registro de Interesados</h4>
+          <p>Define la disponibilidad y el rol de cada interesado en las validaciones y hitos gate del cronograma. La no-disponibilidad de un interesado clave puede bloquear un gate y retrasar el proyecto.</p>
+          <ul>
+            <li><strong>Natalie (Gerencia General):</strong> firma requerida en los 3 gates. Alta disponibilidad condicionada a agenda ejecutiva. Plazo máximo de respuesta: 48 h.</li>
+            <li><strong>Socio de Producción:</strong> aprobación en UAT Fase 2 y Gate 2. Baja tolerancia al error; requiere pre-prueba informal antes de la UAT formal.</li>
+            <li><strong>Personal de Ventas:</strong> disponibilidad para UAT y capacitación en horarios de no-pico del taller.</li>
+            <li><strong>Equipo Consultor UNTELS:</strong> responsable de la ejecución de todas las actividades técnicas durante las 3 fases.</li>
+          </ul>
+        </div>
+
+        <!-- ENTRADA 4 (BLOQUE 2B) -->
+        <div class="entrada-card">
+          <span class="en-tag">Entrada 4</span>
+          <h4>Factores Ambientales de la Empresa</h4>
+          <p>Las condiciones del entorno de Roma Bag's impactan directamente las estimaciones y la secuenciación:</p>
+          <ul>
+            <li><strong>Ausencia de área de TI:</strong> obliga a incluir actividades de auto-recuperación y capacitación intensiva que no existirían en una empresa con soporte técnico interno.</li>
+            <li><strong>Conectividad Wi-Fi irregular:</strong> el taller tiene zonas muertas documentadas, lo que justifica las actividades de diagnóstico de red (ID 18–21) como prerequisito técnico de la configuración del sistema.</li>
+            <li><strong>Resistencia al cambio documentada:</strong> agrega un buffer de gestión del cambio en las estimaciones de capacitación y explica la necesidad del protocolo de coexistencia con Excel (ID 30) antes del Gate 1.</li>
+          </ul>
+        </div>
+
+        <!-- ENTRADA 5 (BLOQUE 2B) -->
+        <div class="entrada-card">
+          <span class="en-tag">Entrada 5</span>
+          <h4>Registro de Riesgos</h4>
+          <p>Los riesgos con impacto directo sobre el cronograma son:</p>
+          <ul>
+            <li><strong>R1 — Disponibilidad de Natalie para los gates:</strong> Probabilidad alta · Impacto alto. Respuesta: plazo máximo de 48 h y suplente autorizado.</li>
+            <li><strong>R2 — Rechazo del Socio de Producción en UAT:</strong> Probabilidad media · Impacto muy alto. Respuesta: pre-prueba informal antes de la UAT formal para filtrar errores críticos.</li>
+            <li><strong>R3 — Complejidad de migración de datos Fase 1 a Odoo:</strong> Probabilidad media · Impacto alto. Respuesta: validar compatibilidad del modelo de datos al cierre del paquete 1.3.1.1 antes de cerrar la Fase 1.</li>
+            <li><strong>R4 — Feriados de nov-dic concentrados en el período de la Fase 3:</strong> Respuesta: planificar capacitaciones antes del 5 de diciembre para dejar margen ante feriados de fin de año.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         7.2 HERRAMIENTAS Y TÉCNICAS
+    ══════════════════════════════════════════════════════════ -->
+    <div class="sec-header" id="herramientas">
+      <span class="sec-num">7.2</span>
+      <h2>Herramientas y Técnicas</h2>
+    </div>
+
+    <div class="section-card">
+      <h3>Técnicas aplicadas para el desarrollo del cronograma</h3>
+      <p>El cronograma se desarrolló siguiendo la secuencia de procesos del Dominio de Planificación del PMBOK 8, con la ruta crítica como técnica central y el fast-tracking como estrategia de optimización. El resultado: 75 días hábiles desde un escenario de secuencia estricta de ~90 días.</p>
+
+      <!-- Técnica 1 -->
+      <div class="tecnica-card">
+        <span class="tc-badge">Técnica 1</span>
+        <h4>Método de la Ruta Crítica (CPM)</h4>
+        <p>El CPM calcula las fechas más tempranas y tardías de inicio y fin de cada actividad, determinando la holgura total. Las actividades con holgura total = 0 forman la ruta crítica: cualquier retraso en ellas retrasa el proyecto en la misma proporción. En MS Project la ruta crítica se resalta automáticamente en rojo. Se calculó el CPM completo sobre las 77 actividades del proyecto.</p>
+      </div>
+
+      <!-- Técnica 2 -->
+      <div class="tecnica-card">
+        <span class="tc-badge">Técnica 2</span>
+        <h4>Método de Diagramación de Precedencia (PDM)</h4>
+        <p>Se usó el PDM para definir las dependencias entre actividades. Se priorizó la relación Fin-Inicio (FI) como estándar. La relación Inicio-Inicio (II) se aplicó cuando dos actividades podían comenzar simultáneamente sin que la primera necesitara completarse (base del fast-tracking).</p>
+      </div>
+
+      <!-- Técnica 3 -->
+      <div class="tecnica-card">
+        <span class="tc-badge">Técnica 3</span>
+        <h4>Estimación Análoga y Juicio de Expertos</h4>
+        <p>Las duraciones se calcularon en días hábiles (8 horas, lunes a viernes) mediante juicio de expertos del equipo consultor y estimación análoga basada en proyectos de implementación de ERP similares en PYMES peruanas. La estimación fue conservadora para actividades críticas (diagnóstico, UAT) y ajustada para actividades de baja variabilidad (instalación de software, redacción de documentos).</p>
+      </div>
+
+      <!-- Técnica 4 -->
+      <div class="tecnica-card">
+        <span class="tc-badge">Técnica 4</span>
+        <h4>Microsoft Project como PMIS</h4>
+        <p>Herramienta de Información para la Gestión del Proyecto. Funciones utilizadas: (75 días hábiles) cálculo automático del CPM, visualización del diagrama de Gantt con barras y flechas, asignación de recursos, configuración del calendario con feriados del Perú, generación de la línea base y seguimiento del Valor Ganado (EVM). El PMBOK 8 reconoce el PMIS como herramienta habilitante del Dominio de Planificación.</p>
+      </div>
+
+      <!-- Técnica 5 (BLOQUE 2C) -->
+      <div class="tecnica-card">
+        <span class="tc-badge">Técnica 5</span>
+        <h4>Compresión del Cronograma por Fast-Tracking</h4>
+        <p>El fast-tracking consiste en ejecutar en paralelo actividades que en secuencia estricta irían una después de la otra, cuando sus entradas no son dependientes entre sí. Se aplica para reducir la duración total sin agregar recursos ni costos adicionales.</p>
+        <p><strong>5 casos documentados en este proyecto:</strong></p>
+        <ul>
+          <li><strong>(1)</strong> Auditoría de infraestructura (ID 10) en paralelo con observación directa del flujo (ID 7) — relación II.</li>
+          <li><strong>(2)</strong> Redacción de SOPs (ID 26) en paralelo con diseño del modelo de datos (ID 16) — relación II.</li>
+          <li><strong>(3)</strong> Solicitud del catálogo de productos (ID 39) en paralelo desde Gate 1 (ID 31) — relación II.</li>
+          <li><strong>(4)</strong> Redacción de casos de prueba UAT (ID 51) en paralelo con configuración del formulario de ventas (ID 47) — relación II.</li>
+          <li><strong>(5)</strong> Elaboración de manuales de usuario (ID 63) en paralelo desde Gate 2 (ID 58) — relación II.</li>
+        </ul>
+        <div class="tecnica-result">
+          ✓ Resultado: reducción de ~90 días (secuencia estricta) a 75 días hábiles sin agregar recursos ni costos adicionales.
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         7.3 SALIDAS
+    ══════════════════════════════════════════════════════════ -->
+    <div class="sec-header" id="salidas">
+      <span class="sec-num">7.3</span>
+      <h2>Salidas</h2>
+    </div>
+
+    <!-- Línea Base -->
+    <div class="hero-card">
+      <h2>Línea Base del Cronograma</h2>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <strong>Inicio</strong>
+          <span>7 de Septiembre 2026</span>
+        </div>
+        <div class="meta-item">
+          <strong>Fin</strong>
+          <span>15 de Diciembre 2026</span>
+        </div>
+        <div class="meta-item">
+          <strong>Duración Total</strong>
+          <span>75 días hábiles</span>
+        </div>
+        <div class="meta-item">
+          <strong>Actividades</strong>
+          <span>77 actividades (resúmenes, trabajo e hitos)</span>
+        </div>
+        <div class="meta-item">
+          <strong>Hitos / Gates</strong>
+          <span>3 gates de aprobación formal</span>
+        </div>
+        <div class="meta-item">
+          <strong>Programación</strong>
+          <span>Automática en MS Project (CPM)</span>
+        </div>
       </div>
     </div>
 
     <div class="section-card">
-      <h3>1. PLAN DE GESTIÓN DEL ALCANCE</h3>
-      <p>Establece cómo se definirá, validará y controlará el alcance. Contiene la <strong>Línea Base del Alcance</strong>, que incluye:</p>
-      <ul>
-        <li><strong>Enunciado del Alcance del Proyecto:</strong> Detalla los entregables, restricciones (ej. presupuesto bajo, falta de conectividad) y supuestos (ej. disposición al cambio).</li>
-        <li><strong>Estructura de Desglose del Trabajo (EDT/WBS):</strong> La descomposición jerárquica de todo el trabajo, incluyendo las 3 fases (Cimentar, Integrar, Optimizar) y los entregables de gestión.</li>
-        <li><strong>Diccionario de la EDT:</strong> Proporciona la descripción detallada de cada paquete de trabajo, que sirve como base para definir las actividades a secuenciar.</li>
-      </ul>
-    </div>
-    
-    <div class="section-card">
-      <h3>2. OTROS DOCUMENTOS DEL PROYECTO</h3>
-      <ul>
-        <li><strong>Registro de Riesgos:</strong> Identifica riesgos que pueden impactar el cronograma (ej. falla en la instalación de red, rechazo de la capacitación por el equipo de ventas).</li>
-        <li><strong>Registro de Interesados:</strong> Define la disponibilidad y rol de la Gerencia (Natalie) y el Socio de Producción en las validaciones y Hitos Gate.</li>
-        <li><strong>Atributos de las Actividades:</strong> Descripciones y predecesoras necesarias para la secuenciación (documentadas en la tabla de Salidas).</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="sec" id="herramientas">
-    <div class="hero-card">
-      <h2>7.2 Herramientas y Técnicas</h2>
-      <div class="meta-grid">
-        <div class="meta-item"><strong>Método</strong><span>Ruta Crítica (CPM)</span></div>
-        <div class="meta-item"><strong>Herramienta</strong><span>MS Project</span></div>
-      </div>
+      <h3>Sobre la Línea Base</h3>
+      <p>La línea base del cronograma es la versión aprobada del modelo de programación aceptada por el Líder del Proyecto. Sirve como referencia para medir el desempeño real. Solo puede modificarse mediante el proceso formal de control de cambios documentado en el Registro de Control de Cambios (paquete 1.1.4 de la EDT).</p>
+      <p>Incluye fechas de inicio temprano, fin temprano, inicio tardío y fin tardío calculadas por CPM. La holgura total de cada actividad resulta de la diferencia entre las fechas tardías y tempranas.</p>
     </div>
 
-    <div class="section-card">
-      <h3>1. DESCOMPOSICIÓN (DEFINIR ACTIVIDADES)</h3>
-      <p>La técnica de descomposición se utilizó para dividir los paquetes de trabajo de la EDT en actividades más pequeñas y manejables que puedan ser estimadas, programadas, monitoreadas y controladas. La EDT incluye 5 entregables de Nivel 1 descompuestos en 77 actividades y 3 hitos de gate.</p>
-    </div>
-
-    <div class="section-card">
-      <h3>2. MÉTODO DE DIAGRAMACIÓN DE PRECEDENCIA (PDM)</h3>
-      <p>Se usó para <strong>Secuenciar las Actividades</strong>. Se establecieron relaciones lógicas entre las tareas. Predominó la relación <strong>Fin-Inicio (FI)</strong> y se usaron dependencias <strong>Inicio-Inicio (II)</strong> cuando fue necesario ejecutar tareas en paralelo (ej. redactar SOPs mientras se diseña el modelo de datos).</p>
-    </div>
-
-    <div class="section-card">
-      <h3>3. TÉCNICAS DE ESTIMACIÓN</h3>
+    <!-- SUB-BLOQUE 2D-1 — Calendario del Proyecto -->
+    <div class="calendar-card">
+      <h4>📅 Calendario del Proyecto</h4>
       <div class="note-grid">
-        <div class="note-card"><strong>Juicio de Expertos</strong><br> Consultas con el equipo implementador sobre los tiempos de configuración técnica en Odoo y despliegue del servidor.</div>
-        <div class="note-card"><strong>Estimación Análoga</strong><br> Basada en la experiencia de implementaciones ERP similares para calcular tiempos de capacitación y migración de datos (estimados en días).</div>
+        <div class="note-card"><strong>Días laborables</strong> Lunes a viernes (5 días/semana, 8 horas/día).</div>
+        <div class="note-card"><strong>Días no laborables</strong> Sábados y domingos.</div>
+      </div>
+      <p style="margin: 1rem 0 .5rem; color: #334155; font-size: .93rem;"><strong>Feriados oficiales del Perú configurados en MS Project</strong> para el período septiembre–diciembre 2026:</p>
+      <div class="holiday-list">
+        <div class="holiday-item">
+          <span class="holiday-date">08 Oct 2026<br/>Jueves</span>
+          <span class="holiday-name">Combate de Angamos</span>
+        </div>
+        <div class="holiday-item">
+          <span class="holiday-date">30 Oct 2026<br/>Viernes</span>
+          <span class="holiday-name">Día de la Canción Criolla</span>
+        </div>
+        <div class="holiday-item">
+          <span class="holiday-date">02 Nov 2026<br/>Lunes</span>
+          <span class="holiday-name">Día de Todos los Santos</span>
+        </div>
+        <div class="holiday-item">
+          <span class="holiday-date">08 Dic 2026<br/>Martes</span>
+          <span class="holiday-name">Inmaculada Concepción</span>
+        </div>
+        <div class="holiday-item">
+          <span class="holiday-date">25 Dic 2026<br/>Viernes</span>
+          <span class="holiday-name">Navidad</span>
+        </div>
       </div>
     </div>
-    
-    <div class="section-card">
-      <h3>4. MÉTODO DE LA RUTA CRÍTICA (CPM)</h3>
-      <p>Técnica utilizada en MS Project para analizar la red del cronograma y calcular las fechas de inicio y fin tempranas y tardías para todas las actividades, sin tener en cuenta las limitaciones de recursos. Permite identificar la secuencia de actividades con menor holgura, determinando la duración mínima posible del proyecto (81 días hábiles).</p>
-    </div>
-  </section>
 
-  <section class="sec" id="salidas">
-    <div class="hero-card">
-      <h2>7.3 Salidas (Cronograma y Gantt)</h2>
-      <div class="meta-grid">
-        <div class="meta-item"><strong>Duración Total</strong><span>81 días hábiles</span></div>
-        <div class="meta-item"><strong>Inicio</strong><span>31 de Agosto 2026</span></div>
-        <div class="meta-item"><strong>Fin</strong><span>24 de Diciembre 2026</span></div>
+    <!-- SUB-BLOQUE 2D-2 — Ruta Crítica -->
+    <div class="critical-path">
+      <h4>🔴 Ruta Crítica del Proyecto</h4>
+      <p>La ruta crítica es la secuencia de actividades con holgura total = 0. Cualquier retraso en una actividad crítica retrasa el proyecto en la misma proporción. Calculada por MS Project y resaltada en rojo en el diagrama de Gantt.</p>
+      <div class="cp-flow">
+        <span class="cp-step">Acta de Constitución</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Plan de Gestión</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Observación AS-IS</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Entrevistas</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Flujo AS-IS</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Fichas Requisitos</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Matriz Trazabilidad</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Diseño modelo datos</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Validación Odoo</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Base centralizada</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Reglas validación</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Consulta stock</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Prueba cronometrada</span><span class="cp-arrow">→</span>
+        <span class="cp-step">SOPs firmados</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Protocolo Excel</span><span class="cp-arrow">→</span>
+        <span class="cp-gate">◆ GATE 1</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Servidor configurado</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Odoo instalado</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Config. inicial</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Perfiles acceso</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Catálogo cargado</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Migración verificada</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Rebaja stock</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Formulario ventas</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Flujo Venta-Stock</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Bloqueo técnico</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Prueba conectividad</span><span class="cp-arrow">→</span>
+        <span class="cp-step">UAT Ventas</span><span class="cp-arrow">→</span>
+        <span class="cp-step">UAT Producción</span><span class="cp-arrow">→</span>
+        <span class="cp-step">UAT Gerencia</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Corrección incidencias</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Certificado Cero Errores</span><span class="cp-arrow">→</span>
+        <span class="cp-gate">◆ GATE 2</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Panel KPIs</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Reporte ganancia neta</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Verif. acceso por rol</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Talleres capacitación</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Despliegue dispositivos</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Monitoreo</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Verif. reportes</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Lecciones aprendidas</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Informe final</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Criterios aceptación</span><span class="cp-arrow">→</span>
+        <span class="cp-gate">◆ GATE 3</span><span class="cp-arrow">→</span>
+        <span class="cp-step">Acta de Cierre Formal</span>
       </div>
     </div>
 
+    <!-- SUB-BLOQUE 2D-3 — Holguras -->
     <div class="section-card">
-      <h3>LÍNEA BASE DEL CRONOGRAMA</h3>
-      <p>La versión aprobada del modelo del cronograma que se utiliza como base para la comparación con los resultados reales. Solo puede modificarse a través de procedimientos formales de control de cambios.</p>
-      
-      <!-- Inclusión del componente Gantt extraído -->
+      <h3>Actividades con Holgura Positiva (Fast-Tracking en Paralelo)</h3>
+      <p>Las siguientes actividades pueden retrasarse sin afectar la fecha de fin del proyecto. Su holgura positiva fue calculada por MS Project mediante CPM:</p>
+      <table class="holgura-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Actividad</th>
+            <th>Holgura estimada</th>
+            <th>Motivo del paralelismo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="holgura-id">10</td>
+            <td>Auditoría de infraestructura tecnológica</td>
+            <td class="holgura-days">2 días</td>
+            <td>Inicia en paralelo con la observación del flujo AS-IS (ID 7)</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">26</td>
+            <td>Redacción de SOPs del flujo venta-stock-despacho</td>
+            <td class="holgura-days">3 días</td>
+            <td>Inicia en paralelo con el diseño del modelo de datos (ID 16)</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">28</td>
+            <td>Política de respaldo y seguridad</td>
+            <td class="holgura-days">2 días</td>
+            <td>Inicia en paralelo con la redacción de SOPs (ID 26)</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">39</td>
+            <td>Solicitud del catálogo de productos</td>
+            <td class="holgura-days">1 día</td>
+            <td>Inicia desde el Gate 1 (ID 31) en paralelo con la configuración del servidor</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">51</td>
+            <td>Redacción de casos de prueba UAT CP-01 a CP-06</td>
+            <td class="holgura-days">2 días</td>
+            <td>Inicia en paralelo con la configuración del formulario de ventas (ID 47)</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">63</td>
+            <td>Manual de usuario por rol</td>
+            <td class="holgura-days">3 días</td>
+            <td>Inicia desde el Gate 2 (ID 58) en paralelo con la configuración del panel KPIs</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">64</td>
+            <td>Guía de auto-recuperación de incidencias</td>
+            <td class="holgura-days">2 días</td>
+            <td>Inicia en paralelo con la elaboración del manual (ID 63)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SUB-BLOQUE 2D-4 — Hitos con Criterios de Salida (más importante) -->
+    <div class="section-card">
+      <h3>Hitos con Criterios de Salida — Gates de Aprobación</h3>
+      <p>Los gates son hitos de duración cero que marcan puntos de control formales. <strong>Todos los criterios de salida deben cumplirse</strong> para firmar el acta y avanzar a la siguiente fase. Ningún gate puede aprobarse parcialmente.</p>
+
+      <div class="gates-grid">
+
+        <!-- GATE 1 -->
+        <div class="gate-card gate-1">
+          <div class="gate-title">
+            <span class="gate-diamond">◆</span>
+            <h4>GATE 1 — Acta de Aprobación Fase Cimentar (fin Fase 1)</h4>
+          </div>
+          <ul class="gate-criteria">
+            <li><span class="chk">✓</span> 100% del inventario y ventas registrados en la base de datos centralizada</li>
+            <li><span class="chk">✓</span> Consulta de stock desde celular en menos de 2 minutos (prueba cronometrada aprobada)</li>
+            <li><span class="chk">✓</span> Cero zonas muertas de Wi-Fi en todas las áreas de trabajo del taller</li>
+            <li><span class="chk">✓</span> SOPs del flujo venta-stock-despacho firmados por todos los usuarios</li>
+            <li><span class="chk">✓</span> Política de respaldo activa y verificada con primera copia de seguridad exitosa</li>
+          </ul>
+          <div class="gate-firmantes">👤 Firmante requerido: Natalie — Gerencia General</div>
+        </div>
+
+        <!-- GATE 2 -->
+        <div class="gate-card gate-2">
+          <div class="gate-title">
+            <span class="gate-diamond">◆</span>
+            <h4>GATE 2 — Acta de Aprobación Fase Integrar (fin Fase 2)</h4>
+          </div>
+          <ul class="gate-criteria">
+            <li><span class="chk">✓</span> Flujo Venta-Stock-Despacho en Odoo sin errores críticos en período de prueba</li>
+            <li><span class="chk">✓</span> Pedidos incompletos reducidos a cero durante el período de prueba de la UAT</li>
+            <li><span class="chk">✓</span> Personal de ventas y producción capacitado y operando en Odoo de forma autónoma</li>
+            <li><span class="chk">✓</span> Certificado de Cero Errores Críticos emitido tras corrección de todas las incidencias UAT</li>
+          </ul>
+          <div class="gate-firmantes">👤 Firmantes requeridos: Natalie (Gerencia) y Socio de Producción</div>
+        </div>
+
+        <!-- GATE 3 -->
+        <div class="gate-card gate-3">
+          <div class="gate-title">
+            <span class="gate-diamond">◆</span>
+            <h4>GATE 3 — Acta de Conformidad y Cierre Formal (fin del proyecto)</h4>
+          </div>
+          <ul class="gate-criteria">
+            <li><span class="chk">✓</span> Reportes de rentabilidad generados automáticamente en Odoo sin intervención manual</li>
+            <li><span class="chk">✓</span> Cuadre semanal reducido de 1 día a menos de 1 hora (medido y documentado)</li>
+            <li><span class="chk">✓</span> Natalie resuelve incidencias básicas de Odoo de forma autónoma sin apoyo del consultor</li>
+            <li><span class="chk">✓</span> Todos los criterios de aceptación del Enunciado del Alcance verificados y documentados</li>
+          </ul>
+          <div class="gate-firmantes">👤 Firmante requerido: Natalie — Gerencia General</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DIAGRAMA DE GANTT (debe ser el último elemento dentro de #salidas) -->
+    <div class="gantt-section">
       <GanttChart />
     </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         BLOQUE 2E — 7.4 CONTROL DEL CRONOGRAMA (nueva sección)
+    ══════════════════════════════════════════════════════════ -->
+    <div class="sec-header" id="control">
+      <span class="sec-num">7.4</span>
+      <h2>Control del Cronograma</h2>
+    </div>
+
+    <!-- SUB-BLOQUE CONTROL 1 — Proceso de Control -->
+    <div class="control-card">
+      <h4>Proceso de Control del Cronograma</h4>
+      <p style="color:#334155;margin:0 0 1rem;line-height:1.7;">
+        <strong>Frecuencia de revisión:</strong> Semanal — reunión de 30 minutos al inicio de cada semana con el equipo consultor. En esta reunión se compara el avance real vs. la línea base y se calculan los indicadores de Valor Ganado (EVM).
+      </p>
+
+      <div class="evm-grid">
+        <div class="evm-item">
+          <div class="evm-formula">SV = EV − PV</div>
+          <div class="evm-desc"><strong>Variación del Cronograma</strong><br/>Positivo = adelantado respecto al plan<br/>Negativo = atrasado respecto al plan</div>
+        </div>
+        <div class="evm-item">
+          <div class="evm-formula">SPI = EV / PV</div>
+          <div class="evm-desc"><strong>Índice de Desempeño del Cronograma</strong><br/>Mayor a 1.0 = avanza más rápido que lo planeado<br/>Menor a 1.0 = avanza más lento que lo planeado</div>
+        </div>
+      </div>
+
+      <div class="alert-box alert-warning">
+        <span class="alert-icon">⚠️</span>
+        <span><strong>Umbral de alerta:</strong> SPI &lt; 0.85 → activar plan de acción correctivo. El Líder del Proyecto evalúa opciones de compresión del cronograma en la reunión semanal siguiente.</span>
+      </div>
+      <div class="alert-box alert-danger">
+        <span class="alert-icon">🚨</span>
+        <span><strong>Umbral de escalamiento:</strong> SPI &lt; 0.70 o proyección de desvío en hito gate → el Líder del Proyecto escala a la Gerencia de Roma Bag's y propone:<br/>
+          <strong>Opción 1:</strong> Fast-tracking (más actividades en paralelo) |
+          <strong>Opción 2:</strong> Crashing (agregar recursos temporales) |
+          <strong>Opción 3:</strong> Ajuste formal de la línea base (control de cambios)
+        </span>
+      </div>
+    </div>
+
+    <!-- SUB-BLOQUE CONTROL 2 — Cambios y Reservas -->
+    <div class="control-card">
+      <h4>Proceso de Control de Cambios al Cronograma</h4>
+      <p style="color:#334155;margin:0 0 .75rem;line-height:1.7;">Ningún cambio a la línea base puede ejecutarse sin pasar por este proceso de 5 pasos:</p>
+
+      <ol class="proceso-steps">
+        <li>
+          <span class="step-num">1</span>
+          <span>Registrar el cambio solicitado en el <strong>Registro de Control de Cambios</strong> (paquete 1.1.4 de la EDT) con descripción del cambio, impacto estimado y solicitante.</span>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <span>El <strong>Líder del Proyecto</strong> evalúa el impacto en alcance, cronograma y presupuesto dentro de las 24 h hábiles siguientes.</span>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <span>Cambios con impacto <strong>≤ 2 días en ruta crítica y sin afectación de hito gate</strong> → aprueba directamente el Líder del Proyecto.</span>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <span>Cambios con impacto <strong>&gt; 2 días en ruta crítica o que afectan un hito gate</strong> → requieren aprobación formal de la Gerencia de Roma Bag's con reunión presencial o virtual.</span>
+        </li>
+        <li>
+          <span class="step-num">5</span>
+          <span>Todo cambio aprobado se refleja en <strong>EDT y cronograma antes del inicio de la siguiente semana de trabajo</strong>, actualizando la línea base si corresponde.</span>
+        </li>
+      </ol>
+
+      <h4 style="margin-top:1.5rem;">Reservas de Tiempo</h4>
+      <div class="reservas-grid">
+        <div class="reserva-item reserva-cont">
+          <strong>Reserva de Contingencia</strong>
+          <span class="rv-val">5 días hábiles</span>
+          <span class="rv-note">Fase 2 (mayor riesgo técnico). Se activa sin control de cambios si SPI &lt; 0.85 en Fase 2.</span>
+        </div>
+        <div class="reserva-item reserva-gest">
+          <strong>Reserva de Gestión</strong>
+          <span class="rv-val">3 días hábiles</span>
+          <span class="rv-note">Para riesgos no identificados (unknown unknowns). Requiere documentación en Registro de Cambios.</span>
+        </div>
+        <div class="reserva-item reserva-max">
+          <strong>Duración Máxima con Reservas</strong>
+          <span class="rv-val">83 días hábiles</span>
+          <span class="rv-note">Fecha de cierre máxima con todas las reservas: viernes 9 de enero de 2027.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         LISTA DE ACTIVIDADES (sección existente preservada)
+    ══════════════════════════════════════════════════════════ -->
+    <div class="list-panel" id="lista">
+      <h2>LISTA DE ACTIVIDADES DEL EDT</h2>
+      <div class="artifact-grid">
+        <div class="artifact-card"><strong>Área de conocimiento</strong><span>Gestión del Cronograma</span></div>
+        <div class="artifact-card"><strong>Proceso</strong><span>Definir las Actividades</span></div>
+        <div class="artifact-card"><strong>Dominio</strong><span>Planificación (PMBOK 8)</span></div>
+        <div class="artifact-card"><strong>Artefacto</strong><span>Lista de Actividades para MS Project</span></div>
+      </div>
+      <div class="guidance-group">
+        <div class="guidance-card"><strong>Fundamento</strong><p>La Lista de Actividades traduce cada paquete de trabajo de la EDT en acciones concretas y ejecutables. La EDT usa sustantivos (entregables); la Lista de Actividades usa verbos (acciones). Cada actividad contiene identificador, descripción, duración y predecesoras que definen la secuencia lógica.</p></div>
+        <div class="guidance-card"><strong>Instrucción para MS Project</strong><p>Crea las tareas en el mismo orden numérico. Marca las tareas resumen con RESUMEN. Usa el número de fila como predecesora, separa múltiples predecesoras con coma y modela los hitos como duración 0.</p></div>
+      </div>
+      <div class="list-meta">
+        <div><strong>Proyecto</strong> Transformación Digital Roma Bag's</div>
+        <div><strong>Fecha de inicio</strong> Lunes 7 de septiembre de 2026</div>
+        <div><strong>Duración estimada</strong> 75 días hábiles</div>
+        <div><strong>Cierre estimado</strong> Martes 15 de diciembre de 2026</div>
+      </div>
+      <div class="activity-list">
+        <div class="activity-note">
+          <strong>FERIADOS A CONFIGURAR EN MS PROJECT</strong>
+          <ul>
+            <li>8 de octubre de 2026, jueves, Combate de Angamos</li>
+            <li>30 de octubre de 2026, viernes, Día de la Canción Criolla</li>
+            <li>2 de noviembre de 2026, lunes, Día de Todos los Santos</li>
+            <li>8 de diciembre de 2026, martes, Inmaculada Concepción</li>
+            <li>25 de diciembre de 2026, viernes, Navidad</li>
+          </ul>
+        </div>
+        <div class="activity-note">
+          <strong>TIPO DE RELACIONES USADAS</strong>
+          <ul>
+            <li>FI: Fin-Inicio. La predecesora debe terminar para que esta comience.</li>
+            <li>II: Inicio-Inicio. Ambas actividades pueden empezar al mismo tiempo.</li>
+          </ul>
+        </div>
+       <article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 1</span>
+    <span class="activity-code">1.1</span>
+  </div>
+  <h4>RESUMEN Gestión del Proyecto</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea resumen</span>
+    <span><strong>Duración:</strong> automática</span>
+    <span><strong>Predecesora:</strong> ninguna</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 2</span>
+    <span class="activity-code">1.1.1</span>
+  </div>
+  <h4>Redactar y firmar el Acta de Constitución del Proyecto</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 4 días</span>
+    <span><strong>Predecesora:</strong> ninguna</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 3</span>
+    <span class="activity-code">1.1.2</span>
+  </div>
+  <h4>Elaborar el Plan de Gestión del Alcance y Cronograma</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 3 días</span>
+    <span><strong>Predecesora:</strong> 2 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 4</span>
+    <span class="activity-code">1.1.3</span>
+  </div>
+  <h4>Emitir informes de avance semanales (recurrente)</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea recurrente</span>
+    <span><strong>Duración:</strong> 1 día/semana</span>
+    <span><strong>Predecesora:</strong> 2 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 5</span>
+    <span class="activity-code">1.1.4</span>
+  </div>
+  <h4>Mantener el Registro de Control de Cambios</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea recurrente</span>
+    <span><strong>Duración:</strong> continua</span>
+    <span><strong>Predecesora:</strong> 3 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 6</span>
+    <span class="activity-code">1.2</span>
+  </div>
+  <h4>RESUMEN Diagnóstico y Requisitos AS-IS</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea resumen</span>
+    <span><strong>Duración:</strong> automática</span>
+    <span><strong>Predecesora:</strong> 3 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 7</span>
+    <span class="activity-code">1.2.1-A</span>
+  </div>
+  <h4>Realizar observación directa del flujo de trabajo actual</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 3 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 8</span>
+    <span class="activity-code">1.2.1-B</span>
+  </div>
+  <h4>Ejecutar entrevistas semiestructuradas con interesados clave</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 7 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 9</span>
+    <span class="activity-code">1.2.1-C</span>
+  </div>
+  <h4>Documentar el flujo actual AS-IS y validar con Gerencia</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 8 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 10</span>
+    <span class="activity-code">1.2.2-A</span>
+  </div>
+  <h4>Ejecutar auditoría de infraestructura tecnológica</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 7 II</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 11</span>
+    <span class="activity-code">1.2.3-A</span>
+  </div>
+  <h4>Redactar fichas de requisitos REQ-01 a REQ-05</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 4 días</span>
+    <span><strong>Predecesora:</strong> 9 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 12</span>
+    <span class="activity-code">1.2.3-B</span>
+  </div>
+  <h4>Validar y obtener firma de fichas de requisitos</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 11 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 13</span>
+    <span class="activity-code">1.2.4-A</span>
+  </div>
+  <h4>Elaborar la Matriz de Trazabilidad de Requisitos</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 12 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 14</span>
+    <span class="activity-code">1.2.4-B</span>
+  </div>
+  <h4>Aprobar la Matriz de Trazabilidad</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 13 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 15</span>
+    <span class="activity-code">1.3</span>
+  </div>
+  <h4>RESUMEN Fase 1 Cimentar Centralización</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea resumen</span>
+    <span><strong>Duración:</strong> automática</span>
+    <span><strong>Predecesora:</strong> 14 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 16</span>
+    <span class="activity-code">1.3.1.1-A</span>
+  </div>
+  <h4>Diseñar modelo de datos</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 3 días</span>
+    <span><strong>Predecesora:</strong> 14 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 17</span>
+    <span class="activity-code">1.3.1.1-B</span>
+  </div>
+  <h4>Validar modelo con Odoo</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 16 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 18</span>
+    <span class="activity-code">1.3.2.1-A</span>
+  </div>
+  <h4>Mapear zonas muertas WiFi</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 10 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 19</span>
+    <span class="activity-code">1.3.2.2-A</span>
+  </div>
+  <h4>Evaluar solución de red</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 18 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 20</span>
+    <span class="activity-code">1.3.2.2-B</span>
+  </div>
+  <h4>Implementar solución de red</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 19 FI</span>
+  </div>
+</article>
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 21</span>
+    <span class="activity-code">1.3.2.3-A</span>
+  </div>
+  <h4>Verificar acceso a Odoo desde celular</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 20 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 22</span>
+    <span class="activity-code">1.3.1.2-A</span>
+  </div>
+  <h4>Configurar base de datos centralizada ligera</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 3 días</span>
+    <span><strong>Predecesora:</strong> 17 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 23</span>
+    <span class="activity-code">1.3.1.3-A</span>
+  </div>
+  <h4>Configurar reglas de validación de datos</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 22 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 24</span>
+    <span class="activity-code">1.3.1.4-A</span>
+  </div>
+  <h4>Configurar consulta de stock desde celular</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 23 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 25</span>
+    <span class="activity-code">1.3.1.4-B</span>
+  </div>
+  <h4>Prueba de consulta de stock con vendedor</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 24 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 26</span>
+    <span class="activity-code">1.3.3.1-A</span>
+  </div>
+  <h4>Redactar SOPs flujo venta-stock-despacho</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 3 días</span>
+    <span><strong>Predecesora:</strong> 16 II</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 27</span>
+    <span class="activity-code">1.3.3.1-B</span>
+  </div>
+  <h4>Firma de SOPs con gerencia</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 26 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 28</span>
+    <span class="activity-code">1.3.3.2-A</span>
+  </div>
+  <h4>Redactar política de respaldo</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 26 II</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 29</span>
+    <span class="activity-code">1.3.3.2-B</span>
+  </div>
+  <h4>Firma política de respaldo</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 28 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 30</span>
+    <span class="activity-code">1.3.3.3-A</span>
+  </div>
+  <h4>Definir protocolo de coexistencia con Excel</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 27 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 31</span>
+    <span class="activity-code">1.3.4</span>
+  </div>
+  <h4>HITO Gate 1 - Aprobación Fase Cimentar</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Hito</span>
+    <span><strong>Duración:</strong> 0 días</span>
+    <span><strong>Predecesora:</strong> 21 FI, 25 FI, 27 FI, 29 FI, 30 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 32</span>
+    <span class="activity-code">1.4</span>
+  </div>
+  <h4>RESUMEN Fase 2 - Implementación ERP Odoo</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea resumen</span>
+    <span><strong>Duración:</strong> automática</span>
+    <span><strong>Predecesora:</strong> 31 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 33</span>
+    <span class="activity-code">1.4.1.1-A</span>
+  </div>
+  <h4>Seleccionar servidor de despliegue</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 31 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 34</span>
+    <span class="activity-code">1.4.1.2-A</span>
+  </div>
+  <h4>Instalar sistema operativo</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 33 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 35</span>
+    <span class="activity-code">1.4.1.2-B</span>
+  </div>
+  <h4>Instalar Odoo Community</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 34 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 36</span>
+    <span class="activity-code">1.4.1.2-C</span>
+  </div>
+  <h4>Configuración inicial Odoo</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 35 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 37</span>
+    <span class="activity-code">1.4.1.3-A</span>
+  </div>
+  <h4>Crear usuarios y roles</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 36 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 38</span>
+    <span class="activity-code">1.4.1.3-B</span>
+  </div>
+  <h4>Verificar permisos de acceso</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 37 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 39</span>
+    <span class="activity-code">1.4.2.1-A</span>
+  </div>
+  <h4>Solicitar catálogo de productos</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 31 II</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 40</span>
+    <span class="activity-code">1.4.2.1-B</span>
+  </div>
+  <h4>Cargar productos en Odoo</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 38 FI, 39 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 41</span>
+    <span class="activity-code">1.4.2.2-A</span>
+  </div>
+  <h4>Migración de datos Fase 1 → Odoo</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 40 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 42</span>
+    <span class="activity-code">1.4.2.2-B</span>
+  </div>
+  <h4>Verificar integridad de datos</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 41 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 43</span>
+    <span class="activity-code">1.4.2.3-A</span>
+  </div>
+  <h4>Configurar rebaja automática de stock</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 42 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 44</span>
+    <span class="activity-code">1.4.2.3-B</span>
+  </div>
+  <h4>Prueba de rebaja de stock</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 43 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 45</span>
+    <span class="activity-code">1.4.2.4-A</span>
+  </div>
+  <h4>Configurar ubicaciones de taller</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 44 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 46</span>
+    <span class="activity-code">1.4.2.4-B</span>
+  </div>
+  <h4>Verificar consolidación de registros</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 45 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 47</span>
+    <span class="activity-code">1.4.3.1-A</span>
+  </div>
+  <h4>Configurar formulario de ventas</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 46 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 48</span>
+    <span class="activity-code">1.4.3.2-A</span>
+  </div>
+  <h4>Flujo Venta-Stock-Despacho</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 3 días</span>
+    <span><strong>Predecesora:</strong> 47 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 49</span>
+    <span class="activity-code">1.4.3.2-B</span>
+  </div>
+  <h4>Verificar bloqueo de despacho</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 48 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 50</span>
+    <span class="activity-code">1.4.3.3-A</span>
+  </div>
+  <h4>Configurar vista de despacho</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 49 FI</span>
+  </div>
+</article>
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 51</span>
+    <span class="activity-code">1.4.4.1-A</span>
+  </div>
+  <h4>Redactar casos de prueba UAT CP-01 a CP-06</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 47 II</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 52</span>
+    <span class="activity-code">1.4.4.2-A</span>
+  </div>
+  <h4>Prueba de conectividad y caída de red</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 50 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 53</span>
+    <span class="activity-code">1.4.4.3-A</span>
+  </div>
+  <h4>UAT con personal de ventas</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Prueba UAT</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 51 FI, 52 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 54</span>
+    <span class="activity-code">1.4.4.4-A</span>
+  </div>
+  <h4>UAT con producción</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Prueba UAT</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 51 FI, 52 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 55</span>
+    <span class="activity-code">1.4.4.5-A</span>
+  </div>
+  <h4>UAT con gerencia</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Prueba UAT</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 51 FI, 52 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 56</span>
+    <span class="activity-code">1.4.4.6-A</span>
+  </div>
+  <h4>Registro y corrección de incidencias</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 53 FI, 54 FI, 55 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 57</span>
+    <span class="activity-code">1.4.4.6-B</span>
+  </div>
+  <h4>Certificado de cero errores críticos</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Hito</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 56 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 58</span>
+    <span class="activity-code">1.4.5</span>
+  </div>
+  <h4>HITO Gate 2 - Aprobación Fase Integrar</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Hito</span>
+    <span><strong>Duración:</strong> 0 días</span>
+    <span><strong>Predecesora:</strong> 57 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 59</span>
+    <span class="activity-code">1.5</span>
+  </div>
+  <h4>RESUMEN Fase 3 - Optimización y Cierre</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea resumen</span>
+    <span><strong>Duración:</strong> automática</span>
+    <span><strong>Predecesora:</strong> 58 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 60</span>
+    <span class="activity-code">1.5.1.1-A</span>
+  </div>
+  <h4>Configurar panel de KPIs</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 3 días</span>
+    <span><strong>Predecesora:</strong> 58 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 61</span>
+    <span class="activity-code">1.5.1.2-A</span>
+  </div>
+  <h4>Reporte de ganancia neta mensual</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 60 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 62</span>
+    <span class="activity-code">1.5.1.3-A</span>
+  </div>
+  <h4>Restricción de acceso a reportes</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 61 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 63</span>
+    <span class="activity-code">1.5.2.1-A</span>
+  </div>
+  <h4>Manual de usuario por rol</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Documento</span>
+    <span><strong>Duración:</strong> 3 días</span>
+    <span><strong>Predecesora:</strong> 58 II</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 64</span>
+    <span class="activity-code">1.5.2.2-A</span>
+  </div>
+  <h4>Guía de recuperación de incidencias</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Documento</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 63 II</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 65</span>
+    <span class="activity-code">1.5.2.3-A</span>
+  </div>
+  <h4>Capacitación personal de ventas</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Capacitación</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 62 FI, 63 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 66</span>
+    <span class="activity-code">1.5.2.4-A</span>
+  </div>
+  <h4>Capacitación producción</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Capacitación</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 62 FI, 63 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 67</span>
+    <span class="activity-code">1.5.2.5-A</span>
+  </div>
+  <h4>Capacitación gerencia</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Capacitación</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 62 FI, 64 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 68</span>
+    <span class="activity-code">1.5.2.6-A</span>
+  </div>
+  <h4>Despliegue final operativo</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 65 FI, 66 FI, 67 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 69</span>
+    <span class="activity-code">1.5.3.1-A</span>
+  </div>
+  <h4>Monitoreo de operación real</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 5 días</span>
+    <span><strong>Predecesora:</strong> 68 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 70</span>
+    <span class="activity-code">1.5.3.2-A</span>
+  </div>
+  <h4>Verificación de eliminación del cuadre manual</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Tarea</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 69 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 71</span>
+    <span class="activity-code">1.5.4.1-A</span>
+  </div>
+  <h4>Lecciones aprendidas</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Documento</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 70 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 72</span>
+    <span class="activity-code">1.5.4.2-A</span>
+  </div>
+  <h4>Informe final del proyecto</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Documento</span>
+    <span><strong>Duración:</strong> 2 días</span>
+    <span><strong>Predecesora:</strong> 71 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 73</span>
+    <span class="activity-code">1.5.4.3-A</span>
+  </div>
+  <h4>Cumplimiento de criterios de aceptación</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Validación</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 70 FI, 72 II</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 74</span>
+    <span class="activity-code">1.5.4.4</span>
+  </div>
+  <h4>HITO Gate 3 - Cierre del proyecto</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Hito</span>
+    <span><strong>Duración:</strong> 0 días</span>
+    <span><strong>Predecesora:</strong> 72 FI, 73 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 75</span>
+    <span class="activity-code">1.1.5</span>
+  </div>
+  <h4>Lecciones aprendidas consolidadas</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Documento</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 74 FI</span>
+  </div>
+</article>
+
+<article class="activity-card">
+  <div class="activity-card-header">
+    <span class="activity-number">N 76</span>
+    <span class="activity-code">1.1.6</span>
+  </div>
+  <h4>Acta de cierre formal del proyecto</h4>
+  <div class="activity-meta">
+    <span><strong>Tipo:</strong> Cierre</span>
+    <span><strong>Duración:</strong> 1 día</span>
+    <span><strong>Predecesora:</strong> 75 FI</span>
+  </div>
+</article>
+
+      </div>
+    </div>
+
   </section>
 </Layout>

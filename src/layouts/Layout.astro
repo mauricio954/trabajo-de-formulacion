@@ -79,22 +79,25 @@ import '../styles/global.css';
     </ul>
 </li>
 
-<!-- CAPÍTULO 07: GESTIÓN DEL CRONOGRAMA -->
+<!-- CAPÍTULO 07: CALENDARIO -->
 <li class="acc-item">
     <button class="acc-btn">Cap. 07: Gestión del Cronograma <span class="arr">▼</span></button>
     <ul class="acc-content">
+        <li><a href="/capitulo7#plan" class="nl sub-link">7.0 Plan de Gestión</a></li>
         <li><a href="/capitulo7#entradas" class="nl sub-link">7.1 Entradas</a></li>
         <li><a href="/capitulo7#herramientas" class="nl sub-link">7.2 Herramientas y Técnicas</a></li>
-        <li><a href="/capitulo7#salidas" class="nl sub-link">7.3 Salidas (Cronograma y Gantt)</a></li>
+        <li><a href="/capitulo7#salidas" class="nl sub-link">7.3 Salidas</a></li>
+        <li><a href="/capitulo7#control" class="nl sub-link">7.4 Control del Cronograma</a></li>
+        <li><a href="/capitulo7#lista" class="nl sub-link">Lista de Actividades</a></li>
     </ul>
 </li>
 <!-- ANEXOS Y REFERENCIAS -->
 <li class="acc-item">
     <button class="acc-btn">Anexos y Referencias <span class="arr">▼</span></button>
     <ul class="acc-content">
-        <li><a href="/anexo1" class="nl sub-link">Anexo 1: Instrumentos</a></li>
-        <li><a href="/anexo2" class="nl sub-link">Anexo 2: Evidencias</a></li>
-        <li><a href="/anexo3" class="nl sub-link">Anexo 3: Transcripciones</a></li>
+        <li><a href="/anexos#instru" class="nl sub-link">Anexo 1: Instrumentos</a></li>
+        <li><a href="/anexos#eviden" class="nl sub-link">Anexo 2: Evidencias</a></li>
+        <li><a href="/anexos#trans" class="nl sub-link">Anexo 3: Transcripciones</a></li>
         <li><a href="/referencias" class="nl sub-link">Referencias</a></li>
     </ul>
 </li>
@@ -130,17 +133,18 @@ import '../styles/global.css';
 
                         const url = new URL(link.href, location.href);
                         const normalize = (path) => path.replace(/\/+$/, '') || '/';
-                        
-                        // Si el link apunta a la misma ruta (solo hash), procesar comportamiento SPA
+                        // Si el link apunta a la misma ruta (solo hash), hacer scroll suave
                         if (normalize(url.pathname) === normalize(location.pathname) && url.hash) {
                             e.preventDefault();
-                            history.replaceState(null, '', url.hash);
-                            
-                            // Disparar evento hashchange manualmente para actualizar vista
-                            window.dispatchEvent(new Event('hashchange'));
-                            
+                            const id = url.hash.slice(1);
+                            const target = document.getElementById(id);
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                // Actualizar el hash sin recargar ni resetear el menú
+                                history.replaceState(null, '', url.hash);
+                            }
                             // cerrar sidebar en móvil
-                            if (typeof side !== 'undefined' && side && window.innerWidth <= 900) side.classList.remove('open');
+                            if (side && window.innerWidth <= 900) side.classList.remove('open');
                         }
                         // En otro caso, permitir la navegación normal (recarga/ruta nueva)
                     } catch (err) {
@@ -148,43 +152,6 @@ import '../styles/global.css';
                     }
                 });
             });
-
-            // SPA Router: Mostrar solo la sección activa basada en el hash
-            const pageHashes = Array.from(document.querySelectorAll('.nm a'))
-                .map(link => new URL(link.href, window.location.href))
-                .filter(url => url.pathname.replace(/\/+$/, '') === window.location.pathname.replace(/\/+$/, '') && url.hash)
-                .map(url => url.hash.slice(1));
-
-            if (pageHashes.length > 0) {
-                const updateView = () => {
-                    let currentHash = window.location.hash.slice(1);
-                    
-                    // Si no hay hash o no es válido para esta página, usar el primero
-                    if (!currentHash || !pageHashes.includes(currentHash)) {
-                        currentHash = pageHashes[0];
-                    }
-
-                    pageHashes.forEach(id => {
-                        const el = document.getElementById(id);
-                        if (el) {
-                            if (id === currentHash) {
-                                el.style.display = 'block';
-                                setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; }, 10);
-                            } else {
-                                el.style.display = 'none';
-                                el.style.opacity = '0';
-                                el.style.transform = 'translateY(15px)';
-                            }
-                        }
-                    });
-                    
-                    // Scroll al inicio suavemente
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                };
-                
-                updateView();
-                window.addEventListener('hashchange', updateView);
-            }
 
             // Barra de progreso simple al hacer scroll
             const prog = document.getElementById('prog');
