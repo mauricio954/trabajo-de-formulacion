@@ -2,181 +2,309 @@
 // NetworkDiagram.astro
 // Diagrama de Red del Cronograma — PDM (Precedence Diagramming Method)
 // PMBOK 8 · Ruta Crítica por CPM · 75 días hábiles
-// Técnica: tabla HTML por columnas de fase + SVG superpuesto para flechas
+// Inicio de Proyecto: 31/08/2026 · Fin: 15/12/2026
 ---
 
 <style>
   /* ── CONTENEDOR PRINCIPAL ── */
   .nd-outer {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     background: #fff;
-    border-radius: 16px;
+    border-radius: 20px;
     border: 1px solid #dbeafe;
-    box-shadow: 0 4px 24px rgba(15,23,42,.08);
+    box-shadow: 0 10px 30px rgba(15,23,42,.06);
+    overflow: hidden;
+    margin-bottom: 2rem;
   }
 
   /* ── ENCABEZADO ── */
   .nd-header {
-    padding: 1.2rem 1.5rem 1rem;
+    padding: 1.5rem 1.8rem 1.2rem;
     border-bottom: 1px solid #e2e8f0;
-    background: linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 100%);
-    border-radius: 16px 16px 0 0;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+    color: #fff;
   }
   .nd-header h3 {
-    margin: 0 0 .25rem;
-    font-size: 1.1rem;
+    margin: 0 0 .35rem;
+    font-size: 1.25rem;
     font-weight: 800;
     color: #fff;
     letter-spacing: .02em;
   }
   .nd-header .nd-subtitle {
-    margin: 0 0 .85rem;
-    font-size: .8rem;
+    margin: 0 0 1rem;
+    font-size: .85rem;
     color: #bfdbfe;
+    line-height: 1.4;
   }
 
   /* ── LEYENDA ── */
   .nd-legend {
     display: flex;
     flex-wrap: wrap;
-    gap: .55rem .9rem;
+    gap: .75rem 1.2rem;
     align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 0.85rem;
   }
   .leg-item {
     display: flex;
     align-items: center;
-    gap: .35rem;
-    font-size: .75rem;
+    gap: .45rem;
+    font-size: .78rem;
     color: #e0f2fe;
     white-space: nowrap;
   }
   .leg-box {
     display: inline-block;
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
     flex-shrink: 0;
   }
-  .leg-box.crit   { background:#fef2f2; border: 2px solid #ef4444; }
-  .leg-box.par    { background:#eff6ff; border: 2px solid #3b82f6; }
-  .leg-box.summ   { background:#1e3a8a; border: 2px solid #60a5fa; }
-  .leg-diamond    { display:inline-block; color:#f59e0b; font-size:1rem; line-height:1; }
-  .leg-arrow-fc   { font-size:.85rem; color:#94a3b8; font-weight:700; }
-  .leg-arrow-cc   { font-size:.85rem; color:#3b82f6; font-weight:700; letter-spacing:-.5px; }
+  .leg-box.crit   { background: #fef2f2; border: 2px solid #ef4444; }
+  .leg-box.par    { background: #eff6ff; border: 1.5px solid #3b82f6; }
+  .leg-box.summ   { background: #1e3a8a; border: 1.5px solid #60a5fa; }
+  .leg-diamond    { display: inline-block; color: #f59e0b; font-size: 1.15rem; line-height: 1; }
+  .leg-arrow-fc   { font-size: .9rem; color: #94a3b8; font-weight: 700; }
+  .leg-arrow-cc   { font-size: .9rem; color: #3b82f6; font-weight: 700; letter-spacing: -0.5px; }
 
-  /* ── CONTENEDOR DEL DIAGRAMA ── */
-  .nd-diagram {
-    position: relative;
-    min-width: 2500px;
-    height: 980px;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+  /* ── CONTENEDOR SCROLLABLE ── */
+  .nd-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background: #fafbfd;
   }
 
-  /* ── SVG DE FLECHAS (superpuesto) ── */
+  /* ── CANVAS DEL DIAGRAMA ── */
+  .nd-canvas {
+    position: relative;
+    width: 10300px;
+    height: 900px;
+    background-color: #fafbfd;
+    background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+    background-size: 20px 20px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  /* ── SVG DE FLECHAS (absoluto sobre todo el lienzo) ── */
   .nd-svg {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     overflow: visible;
+    z-index: 1;
   }
 
   /* ── CABECERAS DE FASE ── */
   .phase-label {
     position: absolute;
-    top: 10px;
-    font-size: .68rem;
+    top: 15px;
+    font-size: .72rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: .1em;
-    color: #64748b;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    letter-spacing: .12em;
+    color: #475569;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
     border-radius: 6px;
-    padding: .2rem .5rem;
+    padding: .3rem .7rem;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
   }
 
-  /* ── NODOS ── */
+  /* ── NODOS AON (Activity-on-Node) ── */
   .nd-node {
     position: absolute;
-    width: 150px;
-    border-radius: 6px;
+    width: 155px;
+    border-radius: 8px;
     border: 1.5px solid #94a3b8;
     background: #fff;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(15,23,42,.08);
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    box-shadow: 0 4px 10px rgba(15,23,42,.04);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    z-index: 2;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .nd-node .nid {
-    background: #1e293b;
-    color: #fff;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 6px;
-    line-height: 1.6;
+  .nd-node:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(15,23,42,.08);
   }
-  .nd-node .nname {
-    font-size: 9px;
-    color: #1e293b;
-    padding: 3px 5px 2px;
-    line-height: 1.35;
-    text-align: center;
-    font-weight: 600;
-  }
-  .nd-node .ndur {
+
+  /* Formato interno AON */
+  .aon-table {
+    width: 100%;
+    border-collapse: collapse;
     font-size: 8px;
-    color: #64748b;
-    padding: 0 5px 3px;
+    background: #fff;
+    table-layout: fixed;
+  }
+  .aon-table td {
+    border: 0.5px solid #cbd5e1;
     text-align: center;
+    padding: 3px 2px;
+    height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+  }
+  .aon-es, .aon-ls {
+    color: #166534;
+    font-weight: bold;
+  }
+  .aon-ef, .aon-lf {
+    color: #991b1b;
+    font-weight: bold;
+  }
+  .aon-dur, .aon-tf {
+    color: #1e293b;
+    font-weight: bold;
+    background: #f8fafc;
+  }
+  .aon-name {
+    font-size: 9px;
+    font-weight: bold;
+    height: 34px !important;
+    color: #0f172a;
+    background: #fafbfd;
+    padding: 4px 3px;
+    white-space: normal !important;
+    word-break: break-word;
+    line-height: 1.2;
+    display: table-cell;
+    vertical-align: middle;
   }
 
-  /* Crítica */
+  /* Nodos Críticos */
   .nd-node.crit {
-    border: 2.5px solid #ef4444;
-    background: #fef2f2;
+    border: 2.2px solid #ef4444;
+    box-shadow: 0 4px 15px rgba(239,68,68,0.12);
   }
-  .nd-node.crit .nid { background: #b91c1c; }
+  .nd-node.crit .aon-table td {
+    border-color: #fca5a5;
+  }
+  .nd-node.crit .aon-name {
+    background: #fef2f2;
+    color: #b91c1c;
+  }
 
-  /* Paralela */
+  /* Nodos Paralelos / Holgura positiva */
   .nd-node.par {
     border: 1.5px solid #3b82f6;
+    box-shadow: 0 4px 12px rgba(59,130,246,0.08);
+  }
+  .nd-node.par .aon-table td {
+    border-color: #bfdbfe;
+  }
+  .nd-node.par .aon-name {
     background: #eff6ff;
+    color: #1d4ed8;
   }
 
-  /* Tarea resumen */
+  /* Nodos Resumen */
   .nd-node.summ {
-    width: 170px;
-    background: #1e3a8a;
+    width: 200px;
     border: 2px solid #60a5fa;
+    background: #1e3a8a;
+    box-shadow: 0 4px 10px rgba(30,58,138,0.1);
   }
-  .nd-node.summ .nid  { background: #0f172a; color: #93c5fd; }
-  .nd-node.summ .nname { color: #e0f2fe; font-size: 8px; }
-  .nd-node.summ .ndur  { color: #93c5fd; }
-
-  /* Gate (diamante) — se posiciona sobre un pseudo-rombo HTML */
-  .nd-gate {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    transform: rotate(45deg);
-    background: #fef9c3;
-    border: 2.5px solid #f59e0b;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(245,158,11,.25);
+  .nd-node.summ .nid {
+    background: #0f172a;
+    color: #93c5fd;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 6px;
+    letter-spacing: .03em;
   }
-  .nd-gate-label {
-    position: absolute;
-    transform: none;
-    font-size: 9px;
-    font-weight: 800;
-    color: #92400e;
+  .nd-node.summ .nbody {
+    padding: 8px 10px;
     text-align: center;
-    line-height: 1.2;
-    pointer-events: none;
+    color: #e0f2fe;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.35;
   }
 
-  /* Nodos INICIO / FIN */
+  /* Hitos de Gate (Diamante) */
+  .nd-node.gate {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: none;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+  .nd-node.gate:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .gate-diamond-bg {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: #fef9c3;
+    border: 2px solid #f59e0b;
+    transform: rotate(45deg);
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(245,158,11,0.15);
+    z-index: 1;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .nd-node.gate:hover .gate-diamond-bg {
+    transform: rotate(45deg) scale(1.05);
+    border-color: #d97706;
+  }
+  .gate-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gate-table {
+    width: 72px;
+    font-size: 8px;
+    background: transparent;
+  }
+  .gate-table td {
+    border: none !important;
+    text-align: center;
+    padding: 1.5px 1px;
+    height: auto;
+    color: #78350f;
+  }
+  .gate-table .aon-es, .gate-table .aon-ls {
+    color: #15803d;
+    font-weight: bold;
+  }
+  .gate-table .aon-ef, .gate-table .aon-lf {
+    color: #b91c1c;
+    font-weight: bold;
+  }
+  .gate-table .aon-dur, .gate-table .aon-tf {
+    background: transparent;
+    font-weight: 700;
+  }
+  .gate-table .aon-name {
+    color: #92400e;
+    font-size: 9px;
+    font-weight: 850;
+    background: transparent;
+    padding: 2px 0;
+    height: auto !important;
+  }
+
+  /* Nodos Terminales */
   .nd-terminal {
     position: absolute;
     width: 70px;
@@ -188,14 +316,15 @@
     font-size: 10px;
     font-weight: 800;
     color: #fff;
-    box-shadow: 0 2px 8px rgba(15,23,42,.15);
+    box-shadow: 0 4px 10px rgba(15,23,42,.12);
+    z-index: 2;
   }
   .nd-terminal.start { background: #16a34a; border: 2px solid #15803d; }
   .nd-terminal.end   { background: #dc2626; border: 2px solid #b91c1c; }
 </style>
 
-<!-- ── ENCABEZADO ── -->
 <div class="nd-outer">
+  <!-- ── ENCABEZADO Y LEYENDA ── -->
   <div class="nd-header">
     <h3>Diagrama de Red del Cronograma</h3>
     <p class="nd-subtitle">
@@ -212,630 +341,805 @@
     </div>
   </div>
 
-  <!-- ── DIAGRAMA ── -->
-  <div class="nd-diagram" id="nd-main">
+  <!-- ── CONTENEDOR CON SCROLL HORIZONTAL ── -->
+  <div class="nd-scroll">
+    <div class="nd-canvas" id="nd-canvas">
 
-    <!-- SVG PARA FLECHAS -->
-    <svg class="nd-svg" id="nd-svg" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <!-- Punta de flecha gris FC -->
-        <marker id="arr-fc" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-          <path d="M0,0 L8,3 L0,6 Z" fill="#475569"/>
-        </marker>
-        <!-- Punta de flecha azul CC -->
-        <marker id="arr-cc" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-          <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
-        </marker>
-        <!-- Punta de flecha roja crítica -->
-        <marker id="arr-crit" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-          <path d="M0,0 L8,3 L0,6 Z" fill="#ef4444"/>
-        </marker>
-      </defs>
+      <!-- LIENZO SVG PARA DIBUJAR FLECHAS -->
+      <svg class="nd-svg" id="nd-svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Flecha FC Normal -->
+          <marker id="mfc" markerWidth="7" markerHeight="7" refX="6.5" refY="3" orient="auto">
+            <path d="M0,0 L7,3 L0,6 Z" fill="#64748b"/>
+          </marker>
+          <!-- Flecha CC Normal -->
+          <marker id="mcc" markerWidth="7" markerHeight="7" refX="6.5" refY="3" orient="auto">
+            <path d="M0,0 L7,3 L0,6 Z" fill="#3b82f6"/>
+          </marker>
+          <!-- Flecha Ruta Crítica -->
+          <marker id="mcrit" markerWidth="8" markerHeight="8" refX="7.5" refY="3" orient="auto">
+            <path d="M0,0 L8,3 L0,6 Z" fill="#ef4444"/>
+          </marker>
+        </defs>
+      </svg>
 
-      <!--
-        ==========================================
-        FLECHAS — Conexiones entre actividades
-        Coordenadas: centro-derecho del nodo origen → centro-izquierdo del nodo destino
-        Nodo normal: 150px ancho, altura ~70px → centro = x+150, y+35
-        Nodo summ:   170px ancho             → centro = x+170, y+35
-        Gate:        rombo 60px centrado en (gx+30, gy+30)
-        Terminal:    70px ancho, 36px alto   → cx=x+70, cy=y+18
-        ==========================================
+      <!-- ETIQUETAS DE LAS FASES -->
+      <div class="phase-label" style="left: 100px;">Gestión de Proyecto</div>
+      <div class="phase-label" style="left: 480px;">Diagnóstico y Req. AS-IS</div>
+      <div class="phase-label" style="left: 1880px;">Fase 1 · Cimentar</div>
+      <div class="phase-label" style="left: 3250px;">Fase 2 · Integrar</div>
+      <div class="phase-label" style="left: 7650px;">Fase 3 · Optimizar y Cierre</div>
 
-        Abreviaturas:
-          crit  = flecha de ruta crítica (rojo)
-          fc    = Fin-Inicio normal (gris)
-          cc    = Inicio-Inicio (azul punteado)
+      <!-- NODOS DEL DIAGRAMA -->
 
-        GRUPO 1 → GRUPO 2
-      -->
+      <!-- INICIO -->
+      <div class="nd-terminal start" data-id="start" style="left: 10px; top: 480px;">INICIO</div>
 
-      <!-- INICIO → ID2 (crítica) -->
-      <line x1="88" y1="498" x2="170" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <!-- GRUPO 1: GESTIÓN (X: 100px - 450px) -->
+      <div class="nd-node summ" data-id="1" style="left: 100px; top: 75px;">
+        <div class="nid">ID 1 · RESUMEN</div>
+        <div class="nbody">Gestión del Proyecto<br/>(Transversal)</div>
+      </div>
 
-      <!-- ID2 → ID3 (crítica) -->
-      <line x1="320" y1="498" x2="370" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node crit" data-id="2" style="left: 100px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">31/08</td><td class="aon-dur">4d</td><td class="aon-ef">03/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 2 · Acta de Constitución</td></tr>
+          <tr><td class="aon-ls">31/08</td><td class="aon-tf">0d</td><td class="aon-lf">03/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID2 → ID4 (normal) -->
-      <polyline points="320,498 345,498 345,390 370,390" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+      <div class="nd-node par" data-id="4" style="left: 290px; top: 320px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">04/09</td><td class="aon-dur">1d</td><td class="aon-ef">04/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 4 · Informes de Avance</td></tr>
+          <tr><td class="aon-ls">09/09</td><td class="aon-tf">7d</td><td class="aon-lf">09/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID3 → ID5 (normal) -->
-      <polyline points="520,498 545,498 545,600 370,600" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+      <div class="nd-node crit" data-id="3" style="left: 290px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">04/09</td><td class="aon-dur">3d</td><td class="aon-ef">08/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 3 · Plan de Gestión</td></tr>
+          <tr><td class="aon-ls">04/09</td><td class="aon-tf">0d</td><td class="aon-lf">08/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID3 → ID7 (crítica) -->
-      <line x1="520" y1="498" x2="570" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node par" data-id="5" style="left: 290px; top: 575px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">09/09</td><td class="aon-dur">1d</td><td class="aon-ef">09/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 5 · Registro de Cambios</td></tr>
+          <tr><td class="aon-ls">15/09</td><td class="aon-tf">5d</td><td class="aon-lf">15/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID7 → ID10 CC (paralela, punteada azul) -->
-      <polyline points="570,498 570,440 720,440" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-cc)"/>
+      <!-- GRUPO 2: DIAGNÓSTICO (X: 480px - 1770px) -->
+      <div class="nd-node summ" data-id="6" style="left: 480px; top: 75px;">
+        <div class="nid">ID 6 · RESUMEN</div>
+        <div class="nbody">Diagnóstico y Req. AS-IS</div>
+      </div>
 
-      <!-- ID7 → ID8 (crítica) -->
-      <line x1="720" y1="498" x2="770" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node crit" data-id="7" style="left: 480px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">09/09</td><td class="aon-dur">2d</td><td class="aon-ef">10/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 7 · Observación directa</td></tr>
+          <tr><td class="aon-ls">09/09</td><td class="aon-tf">0d</td><td class="aon-lf">10/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID8 → ID9 (crítica) -->
-      <line x1="920" y1="498" x2="970" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node par" data-id="10" style="left: 680px; top: 310px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">09/09</td><td class="aon-dur">2d</td><td class="aon-ef">10/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 10 · Auditoría Infraest.</td></tr>
+          <tr><td class="aon-ls">11/09</td><td class="aon-tf">2d</td><td class="aon-lf">12/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID9 → ID11 (crítica) -->
-      <line x1="1120" y1="498" x2="1170" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node crit" data-id="8" style="left: 680px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">11/09</td><td class="aon-dur">2d</td><td class="aon-ef">14/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 8 · Entrevistas Interesados</td></tr>
+          <tr><td class="aon-ls">11/09</td><td class="aon-tf">0d</td><td class="aon-lf">14/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID10 → ID18 FC (paralela) -->
-      <polyline points="870,440 970,440 970,330" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+      <div class="nd-node crit" data-id="9" style="left: 880px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">15/09</td><td class="aon-dur">1d</td><td class="aon-ef">15/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 9 · Documentar AS-IS</td></tr>
+          <tr><td class="aon-ls">15/09</td><td class="aon-tf">0d</td><td class="aon-lf">15/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID11 → ID12 (crítica) -->
-      <line x1="1320" y1="498" x2="1370" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node par" data-id="18" style="left: 880px; top: 200px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">16/09</td><td class="aon-dur">1d</td><td class="aon-ef">16/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 18 · Zonas Muertas WiFi</td></tr>
+          <tr><td class="aon-ls">18/09</td><td class="aon-tf">2d</td><td class="aon-lf">18/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID12 → ID13 (crítica) -->
-      <line x1="1520" y1="498" x2="1570" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node par" data-id="19" style="left: 1080px; top: 200px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">17/09</td><td class="aon-dur">1d</td><td class="aon-ef">17/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 19 · Evaluar Solución Red</td></tr>
+          <tr><td class="aon-ls">19/09</td><td class="aon-tf">2d</td><td class="aon-lf">19/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID13 → ID14 (crítica) -->
-      <line x1="1720" y1="498" x2="1770" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node crit" data-id="11" style="left: 1080px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">16/09</td><td class="aon-dur">4d</td><td class="aon-ef">21/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 11 · Fichas de Requisitos</td></tr>
+          <tr><td class="aon-ls">16/09</td><td class="aon-tf">0d</td><td class="aon-lf">21/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID14 → ID16 (crítica) — salto a Fase 1 -->
-      <polyline points="1920,498 1970,498 1970,498 2020,498" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node par" data-id="20" style="left: 1280px; top: 200px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">18/09</td><td class="aon-dur">2d</td><td class="aon-ef">21/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 20 · Implementar Red</td></tr>
+          <tr><td class="aon-ls">22/09</td><td class="aon-tf">3d</td><td class="aon-lf">25/09</td></tr>
+        </table>
+      </div>
 
-      <!-- GRUPO 3 – FASE 1 CIMENTAR -->
+      <div class="nd-node crit" data-id="12" style="left: 1280px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">22/09</td><td class="aon-dur">1d</td><td class="aon-ef">22/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 12 · Validar Requisitos</td></tr>
+          <tr><td class="aon-ls">22/09</td><td class="aon-tf">0d</td><td class="aon-lf">22/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID16 → ID17 (crítica) -->
-      <line x1="2170" y1="498" x2="2220" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node par" data-id="21" style="left: 1480px; top: 200px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">22/09</td><td class="aon-dur">1d</td><td class="aon-ef">22/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 21 · Acceso Odoo 4G/5G</td></tr>
+          <tr><td class="aon-ls">25/09</td><td class="aon-tf">3d</td><td class="aon-lf">25/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID16 → ID26 CC (paralela punteada) -->
-      <polyline points="2020,498 2020,620 2220,620" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-cc)"/>
+      <div class="nd-node crit" data-id="13" style="left: 1480px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">23/09</td><td class="aon-dur">2d</td><td class="aon-ef">24/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 13 · Matriz Trazabilidad</td></tr>
+          <tr><td class="aon-ls">23/09</td><td class="aon-tf">0d</td><td class="aon-lf">24/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID17 → ID22 (crítica) -->
-      <line x1="2370" y1="498" x2="2420" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node crit" data-id="14" style="left: 1680px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">25/09</td><td class="aon-dur">1d</td><td class="aon-ef">25/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 14 · Aprobar Matriz</td></tr>
+          <tr><td class="aon-ls">25/09</td><td class="aon-tf">0d</td><td class="aon-lf">25/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID18 → ID19 (paralela) -->
-      <line x1="1020" y1="330" x2="1070" y2="330" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+      <!-- GRUPO 3: FASE 1 CIMENTAR (X: 1880px - 3080px) -->
+      <div class="nd-node summ" data-id="15" style="left: 1880px; top: 75px;">
+        <div class="nid">ID 15 · RESUMEN</div>
+        <div class="nbody">Fase 1 · Cimentar</div>
+      </div>
 
-      <!-- ID19 → ID20 (paralela) -->
-      <line x1="1220" y1="330" x2="1270" y2="330" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+      <div class="nd-node crit" data-id="16" style="left: 1880px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">26/09</td><td class="aon-dur">3d</td><td class="aon-ef">30/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 16 · Diseño modelo datos</td></tr>
+          <tr><td class="aon-ls">26/09</td><td class="aon-tf">0d</td><td class="aon-lf">30/09</td></tr>
+        </table>
+      </div>
 
-      <!-- ID20 → ID21 (paralela) -->
-      <line x1="1420" y1="330" x2="1470" y2="330" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+      <div class="nd-node par" data-id="26" style="left: 2080px; top: 580px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">26/09</td><td class="aon-dur">3d</td><td class="aon-ef">30/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 26 · Redactar SOPs</td></tr>
+          <tr><td class="aon-ls">28/10</td><td class="aon-tf">3d</td><td class="aon-lf">30/10</td></tr>
+        </table>
+      </div>
 
-      <!-- ID21 → GATE1 (paralela) -->
-      <polyline points="1620,330 1650,330 1650,650 2840,650 2840,720" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+      <div class="nd-node crit" data-id="17" style="left: 2080px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">01/10</td><td class="aon-dur">1d</td><td class="aon-ef">01/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 17 · Validar con Odoo</td></tr>
+          <tr><td class="aon-ls">01/10</td><td class="aon-tf">0d</td><td class="aon-lf">01/10</td></tr>
+        </table>
+      </div>
 
-      <!-- ID22 → ID23 (crítica) -->
-      <line x1="2570" y1="498" x2="2620" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node par" data-id="28" style="left: 2480px; top: 700px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">26/09</td><td class="aon-dur">2d</td><td class="aon-ef">29/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 28 · Política respaldo</td></tr>
+          <tr><td class="aon-ls">28/10</td><td class="aon-tf">2d</td><td class="aon-lf">29/10</td></tr>
+        </table>
+      </div>
 
-      <!-- ID23 → ID24 (crítica) -->
-      <line x1="2770" y1="498" x2="2820" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node crit" data-id="22" style="left: 2280px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">02/10</td><td class="aon-dur">3d</td><td class="aon-ef">06/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 22 · BD centralizada</td></tr>
+          <tr><td class="aon-ls">02/10</td><td class="aon-tf">0d</td><td class="aon-lf">06/10</td></tr>
+        </table>
+      </div>
 
-      <!-- ID24 → ID25 (crítica) -->
-      <line x1="2970" y1="498" x2="3020" y2="498" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node crit" data-id="27" style="left: 2280px; top: 580px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">01/10</td><td class="aon-dur">1d</td><td class="aon-ef">01/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 27 · Firmar SOPs</td></tr>
+          <tr><td class="aon-ls">15/10</td><td class="aon-tf">0d</td><td class="aon-lf">15/10</td></tr>
+        </table>
+      </div>
 
-      <!-- ID25 → GATE1 (crítica) -->
-      <polyline points="3170,498 3200,498 3200,720 2870,720" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node par" data-id="29" style="left: 2680px; top: 700px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">30/09</td><td class="aon-dur">1d</td><td class="aon-ef">30/09</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 29 · Firmar Respaldo</td></tr>
+          <tr><td class="aon-ls">02/11</td><td class="aon-tf">2d</td><td class="aon-lf">02/11</td></tr>
+        </table>
+      </div>
 
-      <!-- ID26 → ID27 (crítica) -->
-      <line x1="2370" y1="620" x2="2420" y2="620" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node crit" data-id="23" style="left: 2480px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">07/10</td><td class="aon-dur">2d</td><td class="aon-ef">09/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 23 · Reglas validación</td></tr>
+          <tr><td class="aon-ls">07/10</td><td class="aon-tf">0d</td><td class="aon-lf">09/10</td></tr>
+        </table>
+      </div>
 
-      <!-- ID26 → ID28 CC (paralela) -->
-      <polyline points="2220,620 2220,760 2420,760" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-cc)"/>
+      <div class="nd-node crit" data-id="30" style="left: 2480px; top: 580px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">02/10</td><td class="aon-dur">1d</td><td class="aon-ef">02/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 30 · Coexistencia Excel</td></tr>
+          <tr><td class="aon-ls">15/10</td><td class="aon-tf">0d</td><td class="aon-lf">15/10</td></tr>
+        </table>
+      </div>
 
-      <!-- ID27 → ID30 (crítica) -->
-      <line x1="2570" y1="620" x2="2620" y2="620" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node crit" data-id="24" style="left: 2680px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">13/10</td><td class="aon-dur">2d</td><td class="aon-ef">14/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 24 · Consulta stock</td></tr>
+          <tr><td class="aon-ls">13/10</td><td class="aon-tf">0d</td><td class="aon-lf">14/10</td></tr>
+        </table>
+      </div>
 
-      <!-- ID27 → GATE1 (crítica) -->
-      <polyline points="2770,620 2870,620 2870,720" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node crit" data-id="25" style="left: 2880px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">15/10</td><td class="aon-dur">1d</td><td class="aon-ef">15/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 25 · Prueba cronometrada</td></tr>
+          <tr><td class="aon-ls">15/10</td><td class="aon-tf">0d</td><td class="aon-lf">15/10</td></tr>
+        </table>
+      </div>
 
-      <!-- ID28 → ID29 (paralela) -->
-      <line x1="2570" y1="760" x2="2620" y2="760" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+      <!-- GATE 1 (X: 3080px) -->
+      <div class="nd-node gate" data-id="31" style="left: 3080px; top: 450px;">
+        <div class="gate-diamond-bg"></div>
+        <div class="gate-content">
+          <table class="gate-table">
+            <tr><td class="aon-es">15/10</td><td class="aon-dur">0d</td><td class="aon-ef">15/10</td></tr>
+            <tr><td class="aon-name">GATE 1</td></tr>
+            <tr><td class="aon-ls">15/10</td><td class="aon-tf">0d</td><td class="aon-lf">15/10</td></tr>
+          </table>
+        </div>
+      </div>
 
-      <!-- ID29 → GATE1 (paralela) -->
-      <polyline points="2770,760 2870,760 2870,750" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-fc)"/>
+      <!-- GRUPO 4: FASE 2 INTEGRAR (X: 3250px - 7450px) -->
+      <div class="nd-node summ" data-id="32" style="left: 3250px; top: 75px;">
+        <div class="nid">ID 32 · RESUMEN</div>
+        <div class="nbody">Fase 2 · Integrar</div>
+      </div>
 
-      <!-- ID30 → GATE1 (crítica) -->
-      <polyline points="2770,620 2800,620 2800,720 2870,720" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arr-crit)"/>
+      <div class="nd-node crit" data-id="33" style="left: 3250px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">16/10</td><td class="aon-dur">1d</td><td class="aon-ef">16/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 33 · Contratar Servidor</td></tr>
+          <tr><td class="aon-ls">16/10</td><td class="aon-tf">0d</td><td class="aon-lf">16/10</td></tr>
+        </table>
+      </div>
 
-    </svg>
+      <div class="nd-node par" data-id="39" style="left: 3250px; top: 310px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">16/10</td><td class="aon-dur">1d</td><td class="aon-ef">16/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 39 · Catálogo prods.</td></tr>
+          <tr><td class="aon-ls">21/10</td><td class="aon-tf">1d</td><td class="aon-lf">21/10</td></tr>
+        </table>
+      </div>
 
-    <!-- ── ETIQUETAS DE FASE ── -->
-    <div class="phase-label" style="left:160px; top:10px;">Gestión Proyecto</div>
-    <div class="phase-label" style="left:560px; top:10px;">Diagnóstico AS-IS</div>
-    <div class="phase-label" style="left:2010px; top:10px;">Fase 1 · Cimentar</div>
-    <div class="phase-label" style="left:3300px; top:10px;">Fase 2 · Integrar</div>
-    <div class="phase-label" style="left:4900px; top:10px;">Fase 3 · Optimizar</div>
+      <div class="nd-node crit" data-id="34" style="left: 3450px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">19/10</td><td class="aon-dur">1d</td><td class="aon-ef">19/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 34 · Instalar SO</td></tr>
+          <tr><td class="aon-ls">19/10</td><td class="aon-tf">0d</td><td class="aon-lf">19/10</td></tr>
+        </table>
+      </div>
 
-    <!-- ── NODO INICIO ── -->
-    <div class="nd-terminal start" style="left:18px; top:480px;">INICIO</div>
+      <div class="nd-node crit" data-id="35" style="left: 3650px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">20/10</td><td class="aon-dur">2d</td><td class="aon-ef">21/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 35 · Instalar Odoo</td></tr>
+          <tr><td class="aon-ls">20/10</td><td class="aon-tf">0d</td><td class="aon-lf">21/10</td></tr>
+        </table>
+      </div>
 
-    <!-- ============================================================
-         GRUPO 1 — GESTIÓN DEL PROYECTO (X: 160–530px)
-    ============================================================ -->
-    <!-- ID1 resumen (transversal) -->
-    <div class="nd-node summ" style="left:160px; top:40px;">
-      <div class="nid">ID 1 — RESUMEN</div>
-      <div class="nname">Gestión del Proyecto</div>
-      <div class="ndur">Transversal</div>
-    </div>
-    <!-- ID2 crítica -->
-    <div class="nd-node crit" style="left:170px; top:465px;">
-      <div class="nid">ID 2 · 4d</div>
-      <div class="nname">Acta de Constitución</div>
-      <div class="ndur">4 días · CRÍTICA</div>
-    </div>
-    <!-- ID4 paralela -->
-    <div class="nd-node par" style="left:370px; top:355px;">
-      <div class="nid">ID 4 · 1d</div>
-      <div class="nname">Informes avance (recurrente)</div>
-      <div class="ndur">Holgura +</div>
-    </div>
-    <!-- ID3 crítica -->
-    <div class="nd-node crit" style="left:370px; top:465px;">
-      <div class="nid">ID 3 · 3d</div>
-      <div class="nname">Plan de Gestión</div>
-      <div class="ndur">3 días · CRÍTICA</div>
-    </div>
-    <!-- ID5 paralela -->
-    <div class="nd-node par" style="left:370px; top:565px;">
-      <div class="nid">ID 5 · 1d</div>
-      <div class="nname">Registro de Cambios</div>
-      <div class="ndur">Holgura +</div>
-    </div>
+      <div class="nd-node crit" data-id="36" style="left: 3850px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">22/10</td><td class="aon-dur">1d</td><td class="aon-ef">22/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 36 · Config. Inicial Odoo</td></tr>
+          <tr><td class="aon-ls">22/10</td><td class="aon-tf">0d</td><td class="aon-lf">22/10</td></tr>
+        </table>
+      </div>
 
-    <!-- ============================================================
-         GRUPO 2 — DIAGNÓSTICO AS-IS (X: 570–1970px)
-    ============================================================ -->
-    <!-- ID6 resumen -->
-    <div class="nd-node summ" style="left:570px; top:40px;">
-      <div class="nid">ID 6 — RESUMEN</div>
-      <div class="nname">Diagnóstico y Req. AS-IS</div>
-      <div class="ndur">—</div>
-    </div>
-    <!-- ID7 crítica -->
-    <div class="nd-node crit" style="left:570px; top:465px;">
-      <div class="nid">ID 7 · 2d</div>
-      <div class="nname">Observación directa flujo</div>
-      <div class="ndur">2 días · CRÍTICA</div>
-    </div>
-    <!-- ID10 paralela (CC desde ID7) -->
-    <div class="nd-node par" style="left:720px; top:405px;">
-      <div class="nid">ID 10 · 2d</div>
-      <div class="nname">Auditoría infraestructura</div>
-      <div class="ndur">Holgura + (CC)</div>
-    </div>
-    <!-- ID8 crítica -->
-    <div class="nd-node crit" style="left:770px; top:465px;">
-      <div class="nid">ID 8 · 2d</div>
-      <div class="nname">Entrevistas interesados</div>
-      <div class="ndur">2 días · CRÍTICA</div>
-    </div>
-    <!-- ID9 crítica -->
-    <div class="nd-node crit" style="left:970px; top:465px;">
-      <div class="nid">ID 9 · 1d</div>
-      <div class="nname">Documentar flujo AS-IS</div>
-      <div class="ndur">1 día · CRÍTICA</div>
-    </div>
-    <!-- ID18 paralela (desde ID10) -->
-    <div class="nd-node par" style="left:970px; top:295px;">
-      <div class="nid">ID 18 · 1d</div>
-      <div class="nname">Mapear zonas muertas Wi-Fi</div>
-      <div class="ndur">Holgura +</div>
-    </div>
-    <!-- ID11 crítica -->
-    <div class="nd-node crit" style="left:1170px; top:465px;">
-      <div class="nid">ID 11 · 4d</div>
-      <div class="nname">Fichas Requisitos REQ-01/10</div>
-      <div class="ndur">4 días · CRÍTICA</div>
-    </div>
-    <!-- ID19 paralela -->
-    <div class="nd-node par" style="left:1070px; top:295px;">
-      <div class="nid">ID 19 · 1d</div>
-      <div class="nname">Seleccionar solución red</div>
-      <div class="ndur">Holgura +</div>
-    </div>
-    <!-- ID12 crítica -->
-    <div class="nd-node crit" style="left:1370px; top:465px;">
-      <div class="nid">ID 12 · 1d</div>
-      <div class="nname">Validar fichas requisitos</div>
-      <div class="ndur">1 día · CRÍTICA</div>
-    </div>
-    <!-- ID20 paralela -->
-    <div class="nd-node par" style="left:1270px; top:295px;">
-      <div class="nid">ID 20 · 2d</div>
-      <div class="nname">Implementar solución red</div>
-      <div class="ndur">Holgura +</div>
-    </div>
-    <!-- ID13 crítica -->
-    <div class="nd-node crit" style="left:1570px; top:465px;">
-      <div class="nid">ID 13 · 2d</div>
-      <div class="nname">Matriz de Trazabilidad</div>
-      <div class="ndur">2 días · CRÍTICA</div>
-    </div>
-    <!-- ID21 paralela -->
-    <div class="nd-node par" style="left:1470px; top:295px;">
-      <div class="nid">ID 21 · 1d</div>
-      <div class="nname">Verificar acceso 4G/5G</div>
-      <div class="ndur">Holgura +</div>
-    </div>
-    <!-- ID14 crítica -->
-    <div class="nd-node crit" style="left:1770px; top:465px;">
-      <div class="nid">ID 14 · 1d</div>
-      <div class="nname">Aprobar Matriz Trazabilidad</div>
-      <div class="ndur">1 día · CRÍTICA</div>
-    </div>
+      <div class="nd-node crit" data-id="37" style="left: 4050px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">23/10</td><td class="aon-dur">1d</td><td class="aon-ef">23/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 37 · Perfiles de Acceso</td></tr>
+          <tr><td class="aon-ls">23/10</td><td class="aon-tf">0d</td><td class="aon-lf">23/10</td></tr>
+        </table>
+      </div>
 
-    <!-- ============================================================
-         GRUPO 3 — FASE 1 CIMENTAR (X: 2020–3250px)
-    ============================================================ -->
-    <!-- ID15 resumen -->
-    <div class="nd-node summ" style="left:2020px; top:40px;">
-      <div class="nid">ID 15 — RESUMEN</div>
-      <div class="nname">Fase 1 · Cimentar</div>
-      <div class="ndur">—</div>
-    </div>
-    <!-- ID16 crítica -->
-    <div class="nd-node crit" style="left:2020px; top:465px;">
-      <div class="nid">ID 16 · 3d</div>
-      <div class="nname">Diseñar modelo de datos</div>
-      <div class="ndur">3 días · CRÍTICA</div>
-    </div>
-    <!-- ID26 paralela (CC desde ID16) -->
-    <div class="nd-node par" style="left:2220px; top:585px;">
-      <div class="nid">ID 26 · 3d</div>
-      <div class="nname">Redactar SOPs</div>
-      <div class="ndur">Holgura + (CC)</div>
-    </div>
-    <!-- ID17 crítica -->
-    <div class="nd-node crit" style="left:2220px; top:465px;">
-      <div class="nid">ID 17 · 1d</div>
-      <div class="nname">Validar compatibilidad Odoo</div>
-      <div class="ndur">1 día · CRÍTICA</div>
-    </div>
-    <!-- ID28 paralela (CC desde ID26) -->
-    <div class="nd-node par" style="left:2420px; top:725px;">
-      <div class="nid">ID 28 · 2d</div>
-      <div class="nname">Política respaldo datos</div>
-      <div class="ndur">Holgura + (CC)</div>
-    </div>
-    <!-- ID22 crítica -->
-    <div class="nd-node crit" style="left:2420px; top:465px;">
-      <div class="nid">ID 22 · 3d</div>
-      <div class="nname">Desplegar base datos ligera</div>
-      <div class="ndur">3 días · CRÍTICA</div>
-    </div>
-    <!-- ID27 crítica -->
-    <div class="nd-node crit" style="left:2420px; top:585px;">
-      <div class="nid">ID 27 · 1d</div>
-      <div class="nname">Firmar SOPs</div>
-      <div class="ndur">1 día · CRÍTICA</div>
-    </div>
-    <!-- ID29 paralela -->
-    <div class="nd-node par" style="left:2620px; top:725px;">
-      <div class="nid">ID 29 · 1d</div>
-      <div class="nname">Firmar política respaldo</div>
-      <div class="ndur">Holgura +</div>
-    </div>
-    <!-- ID23 crítica -->
-    <div class="nd-node crit" style="left:2620px; top:465px;">
-      <div class="nid">ID 23 · 2d</div>
-      <div class="nname">Config. reglas validación</div>
-      <div class="ndur">2 días · CRÍTICA</div>
-    </div>
-    <!-- ID30 crítica -->
-    <div class="nd-node crit" style="left:2620px; top:585px;">
-      <div class="nid">ID 30 · 1d</div>
-      <div class="nname">Protocolo coexistencia Excel</div>
-      <div class="ndur">1 día · CRÍTICA</div>
-    </div>
-    <!-- ID24 crítica -->
-    <div class="nd-node crit" style="left:2820px; top:465px;">
-      <div class="nid">ID 24 · 2d</div>
-      <div class="nname">Consulta stock desde celular</div>
-      <div class="ndur">2 días · CRÍTICA</div>
-    </div>
-    <!-- ID25 crítica -->
-    <div class="nd-node crit" style="left:3020px; top:465px;">
-      <div class="nid">ID 25 · 1d</div>
-      <div class="nname">Prueba cronometrada stock</div>
-      <div class="ndur">1 día · CRÍTICA</div>
-    </div>
+      <div class="nd-node crit" data-id="38" style="left: 4250px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">26/10</td><td class="aon-dur">1d</td><td class="aon-ef">26/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 38 · Verificar Permisos</td></tr>
+          <tr><td class="aon-ls">26/10</td><td class="aon-tf">0d</td><td class="aon-lf">26/10</td></tr>
+        </table>
+      </div>
 
-    <!-- ── GATE 1 (diamante) ── -->
-    <!-- Rombo centrado en (2870, 750) → left = 2870-30=2840, top=720 -->
-    <div class="nd-gate" style="left:2840px; top:720px;" title="GATE 1"></div>
-    <div class="nd-gate-label" style="left:2830px; top:718px; width:60px;">GATE<br/>1</div>
+      <div class="nd-node crit" data-id="40" style="left: 4450px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">27/10</td><td class="aon-dur">2d</td><td class="aon-ef">28/10</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 40 · Cargar Catálogo</td></tr>
+          <tr><td class="aon-ls">27/10</td><td class="aon-tf">0d</td><td class="aon-lf">28/10</td></tr>
+        </table>
+      </div>
 
-    <!-- ============================================================
-         GRUPO 4 — FASE 2 INTEGRAR (X: 3300–4850px)
-    ============================================================ -->
-    <!-- (Nodos compactos para mantener el diagrama legible) -->
+      <div class="nd-node crit" data-id="41" style="left: 4650px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">29/10</td><td class="aon-dur">2d</td><td class="aon-ef">03/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 41 · Migrar Datos F1</td></tr>
+          <tr><td class="aon-ls">29/10</td><td class="aon-tf">0d</td><td class="aon-lf">03/11</td></tr>
+        </table>
+      </div>
 
-    <!-- ID32 resumen -->
-    <div class="nd-node summ" style="left:3350px; top:40px;">
-      <div class="nid">ID 32 — RESUMEN</div>
-      <div class="nname">Fase 2 · Integrar</div>
-      <div class="ndur">—</div>
-    </div>
-    <!-- ID33 -->
-    <div class="nd-node crit" style="left:3350px; top:465px;">
-      <div class="nid">ID 33 · 1d</div>
-      <div class="nname">Contratar servidor</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID39 paralela (CC desde GATE1) -->
-    <div class="nd-node par" style="left:3350px; top:355px;">
-      <div class="nid">ID 39 · 1d</div>
-      <div class="nname">Solicitar catálogo prods.</div>
-      <div class="ndur">Holgura + (CC)</div>
-    </div>
-    <!-- ID34 -->
-    <div class="nd-node crit" style="left:3510px; top:465px;">
-      <div class="nid">ID 34 · 1d</div>
-      <div class="nname">Instalar SO y dependencias</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID35 -->
-    <div class="nd-node crit" style="left:3670px; top:465px;">
-      <div class="nid">ID 35 · 2d</div>
-      <div class="nname">Instalar Odoo Community</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID36 -->
-    <div class="nd-node crit" style="left:3830px; top:465px;">
-      <div class="nid">ID 36 · 1d</div>
-      <div class="nname">Config. inicial Odoo</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID37 -->
-    <div class="nd-node crit" style="left:3990px; top:465px;">
-      <div class="nid">ID 37 · 1d</div>
-      <div class="nname">Crear perfiles acceso</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID38 -->
-    <div class="nd-node crit" style="left:4150px; top:465px;">
-      <div class="nid">ID 38 · 1d</div>
-      <div class="nname">Verificar acceso cruzado</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID40 -->
-    <div class="nd-node crit" style="left:4310px; top:465px;">
-      <div class="nid">ID 40 · 2d</div>
-      <div class="nname">Cargar catálogo en Odoo</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID41 -->
-    <div class="nd-node crit" style="left:4470px; top:465px;">
-      <div class="nid">ID 41 · 2d</div>
-      <div class="nname">Migración datos Fase 1</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID42 -->
-    <div class="nd-node crit" style="left:4630px; top:465px;">
-      <div class="nid">ID 42 · 1d</div>
-      <div class="nname">Verificar integridad migración</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID43 -->
-    <div class="nd-node crit" style="left:4790px; top:465px;">
-      <div class="nid">ID 43 · 2d</div>
-      <div class="nname">Config. rebaja automática</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID44 -->
-    <div class="nd-node crit" style="left:4950px; top:465px;">
-      <div class="nid">ID 44 · 1d</div>
-      <div class="nname">Prueba rebaja automática</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID45 -->
-    <div class="nd-node crit" style="left:5110px; top:465px;">
-      <div class="nid">ID 45 · 2d</div>
-      <div class="nname">Config. talleres duales</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID46 -->
-    <div class="nd-node crit" style="left:5270px; top:465px;">
-      <div class="nid">ID 46 · 1d</div>
-      <div class="nname">Verificar consolidación</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID47 -->
-    <div class="nd-node crit" style="left:5430px; top:465px;">
-      <div class="nid">ID 47 · 2d</div>
-      <div class="nname">Formulario ventas + valid.</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID51 paralela (CC desde ID47) -->
-    <div class="nd-node par" style="left:5430px; top:355px;">
-      <div class="nid">ID 51 · 2d</div>
-      <div class="nname">Redactar casos prueba UAT</div>
-      <div class="ndur">Holgura + (CC)</div>
-    </div>
-    <!-- ID48 -->
-    <div class="nd-node crit" style="left:5590px; top:465px;">
-      <div class="nid">ID 48 · 3d</div>
-      <div class="nname">Flujo Venta-Stock-Despacho</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID49 -->
-    <div class="nd-node crit" style="left:5750px; top:465px;">
-      <div class="nid">ID 49 · 1d</div>
-      <div class="nname">Verificar bloqueo técnico</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID50 -->
-    <div class="nd-node crit" style="left:5910px; top:465px;">
-      <div class="nid">ID 50 · 1d</div>
-      <div class="nname">Vista despacho motorizado</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID52 -->
-    <div class="nd-node crit" style="left:6070px; top:465px;">
-      <div class="nid">ID 52 · 1d</div>
-      <div class="nname">Prueba técnica conectividad</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID53 -->
-    <div class="nd-node crit" style="left:6230px; top:390px;">
-      <div class="nid">ID 53 · 1d</div>
-      <div class="nname">UAT Personal Ventas</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID54 -->
-    <div class="nd-node crit" style="left:6230px; top:465px;">
-      <div class="nid">ID 54 · 1d</div>
-      <div class="nname">UAT Socio Producción</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID55 -->
-    <div class="nd-node crit" style="left:6230px; top:540px;">
-      <div class="nid">ID 55 · 1d</div>
-      <div class="nname">UAT Gerencia Natalie</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID56 -->
-    <div class="nd-node crit" style="left:6390px; top:465px;">
-      <div class="nid">ID 56 · 2d</div>
-      <div class="nname">Corregir incidencias UAT</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID57 -->
-    <div class="nd-node crit" style="left:6550px; top:465px;">
-      <div class="nid">ID 57 · 1d</div>
-      <div class="nname">Cert. Cero Errores Críticos</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
+      <div class="nd-node crit" data-id="42" style="left: 4850px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">04/11</td><td class="aon-dur">1d</td><td class="aon-ef">04/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 42 · Verificar Integridad</td></tr>
+          <tr><td class="aon-ls">04/11</td><td class="aon-tf">0d</td><td class="aon-lf">04/11</td></tr>
+        </table>
+      </div>
 
-    <!-- ── GATE 2 ── -->
-    <div class="nd-gate" style="left:6720px; top:720px;"></div>
-    <div class="nd-gate-label" style="left:6710px; top:718px; width:60px;">GATE<br/>2</div>
+      <div class="nd-node crit" data-id="43" style="left: 5050px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">05/11</td><td class="aon-dur">2d</td><td class="aon-ef">06/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 43 · Rebaja automática</td></tr>
+          <tr><td class="aon-ls">05/11</td><td class="aon-tf">0d</td><td class="aon-lf">06/11</td></tr>
+        </table>
+      </div>
 
-    <!-- ============================================================
-         GRUPO 5 — FASE 3 OPTIMIZAR (X: 6950–8400px)
-    ============================================================ -->
-    <!-- ID59 resumen -->
-    <div class="nd-node summ" style="left:6950px; top:40px;">
-      <div class="nid">ID 59 — RESUMEN</div>
-      <div class="nname">Fase 3 · Optimizar</div>
-      <div class="ndur">—</div>
-    </div>
-    <!-- ID60 -->
-    <div class="nd-node crit" style="left:6950px; top:465px;">
-      <div class="nid">ID 60 · 3d</div>
-      <div class="nname">Panel KPIs y reportes</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID63 paralela (CC desde GATE2) -->
-    <div class="nd-node par" style="left:6950px; top:355px;">
-      <div class="nid">ID 63 · 3d</div>
-      <div class="nname">Manuales usuario por rol</div>
-      <div class="ndur">Holgura + (CC)</div>
-    </div>
-    <!-- ID61 -->
-    <div class="nd-node crit" style="left:7110px; top:465px;">
-      <div class="nid">ID 61 · 2d</div>
-      <div class="nname">Reporte ganancia neta auto.</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID64 paralela (CC desde ID63) -->
-    <div class="nd-node par" style="left:7110px; top:355px;">
-      <div class="nid">ID 64 · 2d</div>
-      <div class="nname">Guía auto-recuperación</div>
-      <div class="ndur">Holgura + (CC)</div>
-    </div>
-    <!-- ID62 -->
-    <div class="nd-node crit" style="left:7270px; top:465px;">
-      <div class="nid">ID 62 · 1d</div>
-      <div class="nname">Verificar acceso panel/rol</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID65 -->
-    <div class="nd-node crit" style="left:7430px; top:390px;">
-      <div class="nid">ID 65 · 1d</div>
-      <div class="nname">Taller capac. Ventas</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID66 -->
-    <div class="nd-node crit" style="left:7430px; top:465px;">
-      <div class="nid">ID 66 · 1d</div>
-      <div class="nname">Taller capac. Producción</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID67 -->
-    <div class="nd-node crit" style="left:7430px; top:540px;">
-      <div class="nid">ID 67 · 1d</div>
-      <div class="nname">Sesión capac. Gerencia</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID68 -->
-    <div class="nd-node crit" style="left:7590px; top:465px;">
-      <div class="nid">ID 68 · 1d</div>
-      <div class="nname">Despliegue 100% dispositivos</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID69 -->
-    <div class="nd-node crit" style="left:7750px; top:465px;">
-      <div class="nid">ID 69 · 5d</div>
-      <div class="nname">Monitoreo operaciones reales</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID70 -->
-    <div class="nd-node crit" style="left:7910px; top:465px;">
-      <div class="nid">ID 70 · 1d</div>
-      <div class="nname">Verificar reportes gerenciales</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID71 -->
-    <div class="nd-node crit" style="left:8070px; top:465px;">
-      <div class="nid">ID 71 · 1d</div>
-      <div class="nname">Lecciones aprendidas</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID72 -->
-    <div class="nd-node crit" style="left:8230px; top:465px;">
-      <div class="nid">ID 72 · 2d</div>
-      <div class="nname">Informe final proyecto</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
-    <!-- ID73 paralela (CC desde ID72) -->
-    <div class="nd-node par" style="left:8230px; top:355px;">
-      <div class="nid">ID 73 · 1d</div>
-      <div class="nname">Verificar criterios aceptación</div>
-      <div class="ndur">Holgura + (CC)</div>
-    </div>
+      <div class="nd-node crit" data-id="44" style="left: 5250px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">09/11</td><td class="aon-dur">1d</td><td class="aon-ef">09/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 44 · Prueba de Rebaja</td></tr>
+          <tr><td class="aon-ls">09/11</td><td class="aon-tf">0d</td><td class="aon-lf">09/11</td></tr>
+        </table>
+      </div>
 
-    <!-- ── GATE 3 ── -->
-    <div class="nd-gate" style="left:8420px; top:720px;"></div>
-    <div class="nd-gate-label" style="left:8410px; top:718px; width:60px;">GATE<br/>3</div>
+      <div class="nd-node crit" data-id="45" style="left: 5450px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">10/11</td><td class="aon-dur">2d</td><td class="aon-ef">11/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 45 · Config. Talleres</td></tr>
+          <tr><td class="aon-ls">10/11</td><td class="aon-tf">0d</td><td class="aon-lf">11/11</td></tr>
+        </table>
+      </div>
 
-    <!-- ID75 -->
-    <div class="nd-node crit" style="left:8510px; top:465px;">
-      <div class="nid">ID 75 · 1d</div>
-      <div class="nname">Consolidar lecciones aprendidas</div>
-      <div class="ndur">CRÍTICA</div>
+      <div class="nd-node crit" data-id="46" style="left: 5650px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">12/11</td><td class="aon-dur">1d</td><td class="aon-ef">12/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 46 · Verificar Talleres</td></tr>
+          <tr><td class="aon-ls">12/11</td><td class="aon-tf">0d</td><td class="aon-lf">12/11</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="47" style="left: 5850px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">13/11</td><td class="aon-dur">2d</td><td class="aon-ef">16/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 47 · Formulario Ventas</td></tr>
+          <tr><td class="aon-ls">13/11</td><td class="aon-tf">0d</td><td class="aon-lf">16/11</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node par" data-id="51" style="left: 5850px; top: 310px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">13/11</td><td class="aon-dur">2d</td><td class="aon-ef">16/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 51 · Casos prueba UAT</td></tr>
+          <tr><td class="aon-ls">17/11</td><td class="aon-tf">2d</td><td class="aon-lf">18/11</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="48" style="left: 6050px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">17/11</td><td class="aon-dur">3d</td><td class="aon-ef">19/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 48 · Flujo Venta-Stock</td></tr>
+          <tr><td class="aon-ls">17/11</td><td class="aon-tf">0d</td><td class="aon-lf">19/11</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="49" style="left: 6250px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">20/11</td><td class="aon-dur">1d</td><td class="aon-ef">20/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 49 · Bloqueo Despacho</td></tr>
+          <tr><td class="aon-ls">20/11</td><td class="aon-tf">0d</td><td class="aon-lf">20/11</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="50" style="left: 6450px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">23/11</td><td class="aon-dur">1d</td><td class="aon-ef">23/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 50 · Despacho Motorizado</td></tr>
+          <tr><td class="aon-ls">23/11</td><td class="aon-tf">0d</td><td class="aon-lf">23/11</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="52" style="left: 6650px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">24/11</td><td class="aon-dur">1d</td><td class="aon-ef">24/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 52 · Prueba Conectividad</td></tr>
+          <tr><td class="aon-ls">24/11</td><td class="aon-tf">0d</td><td class="aon-lf">24/11</td></tr>
+        </table>
+      </div>
+
+      <!-- Ramas de UAT (Ventas, Producción, Gerencia) -->
+      <div class="nd-node crit" data-id="53" style="left: 6850px; top: 335px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">25/11</td><td class="aon-dur">1d</td><td class="aon-ef">25/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 53 · UAT Ventas</td></tr>
+          <tr><td class="aon-ls">25/11</td><td class="aon-tf">0d</td><td class="aon-lf">25/11</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="54" style="left: 6850px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">25/11</td><td class="aon-dur">1d</td><td class="aon-ef">25/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 54 · UAT Producción</td></tr>
+          <tr><td class="aon-ls">25/11</td><td class="aon-tf">0d</td><td class="aon-lf">25/11</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="55" style="left: 6850px; top: 595px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">25/11</td><td class="aon-dur">1d</td><td class="aon-ef">25/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 55 · UAT Gerencia</td></tr>
+          <tr><td class="aon-ls">25/11</td><td class="aon-tf">0d</td><td class="aon-lf">25/11</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="56" style="left: 7050px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">26/11</td><td class="aon-dur">2d</td><td class="aon-ef">27/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 56 · Corregir Incidencias</td></tr>
+          <tr><td class="aon-ls">26/11</td><td class="aon-tf">0d</td><td class="aon-lf">27/11</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="57" style="left: 7250px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">28/11</td><td class="aon-dur">1d</td><td class="aon-ef">28/11</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 57 · Cert. Cero Errores</td></tr>
+          <tr><td class="aon-ls">28/11</td><td class="aon-tf">0d</td><td class="aon-lf">28/11</td></tr>
+        </table>
+      </div>
+
+      <!-- GATE 2 (X: 7450px) -->
+      <div class="nd-node gate" data-id="58" style="left: 7450px; top: 450px;">
+        <div class="gate-diamond-bg"></div>
+        <div class="gate-content">
+          <table class="gate-table">
+            <tr><td class="aon-es">01/12</td><td class="aon-dur">0d</td><td class="aon-ef">01/12</td></tr>
+            <tr><td class="aon-name">GATE 2</td></tr>
+            <tr><td class="aon-ls">01/12</td><td class="aon-tf">0d</td><td class="aon-lf">01/12</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- GRUPO 5: FASE 3 OPTIMIZAR (X: 7650px - 9900px) -->
+      <div class="nd-node summ" data-id="59" style="left: 7650px; top: 75px;">
+        <div class="nid">ID 59 · RESUMEN</div>
+        <div class="nbody">Fase 3 · Optimizar y Cierre</div>
+      </div>
+
+      <div class="nd-node crit" data-id="60" style="left: 7650px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">02/12</td><td class="aon-dur">3d</td><td class="aon-ef">04/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 60 · Panel KPIs y reportes</td></tr>
+          <tr><td class="aon-ls">02/12</td><td class="aon-tf">0d</td><td class="aon-lf">04/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node par" data-id="63" style="left: 7650px; top: 310px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">02/12</td><td class="aon-dur">3d</td><td class="aon-ef">04/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 63 · Manuales por Rol</td></tr>
+          <tr><td class="aon-ls">05/12</td><td class="aon-tf">3d</td><td class="aon-lf">09/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="61" style="left: 7850px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">05/12</td><td class="aon-dur">2d</td><td class="aon-ef">09/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 61 · Reporte Ganancia Neta</td></tr>
+          <tr><td class="aon-ls">05/12</td><td class="aon-tf">0d</td><td class="aon-lf">09/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node par" data-id="64" style="left: 7850px; top: 200px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">02/12</td><td class="aon-dur">2d</td><td class="aon-ef">03/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 64 · Guía Auto-recuperación</td></tr>
+          <tr><td class="aon-ls">08/12</td><td class="aon-tf">3d</td><td class="aon-lf">09/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="62" style="left: 8050px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">10/12</td><td class="aon-dur">1d</td><td class="aon-ef">10/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 62 · Control Acceso Reportes</td></tr>
+          <tr><td class="aon-ls">10/12</td><td class="aon-tf">0d</td><td class="aon-lf">10/12</td></tr>
+        </table>
+      </div>
+
+      <!-- Ramas de Capacitación -->
+      <div class="nd-node crit" data-id="65" style="left: 8250px; top: 335px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">11/12</td><td class="aon-dur">1d</td><td class="aon-ef">11/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 65 · Capacitación Ventas</td></tr>
+          <tr><td class="aon-ls">11/12</td><td class="aon-tf">0d</td><td class="aon-lf">11/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="66" style="left: 8250px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">11/12</td><td class="aon-dur">1d</td><td class="aon-ef">11/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 66 · Capacitación Taller</td></tr>
+          <tr><td class="aon-ls">11/12</td><td class="aon-tf">0d</td><td class="aon-lf">11/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="67" style="left: 8250px; top: 595px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">11/12</td><td class="aon-dur">1d</td><td class="aon-ef">11/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 67 · Capacitación Gerencia</td></tr>
+          <tr><td class="aon-ls">11/12</td><td class="aon-tf">0d</td><td class="aon-lf">11/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="68" style="left: 8450px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">12/12</td><td class="aon-dur">1d</td><td class="aon-ef">12/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 68 · Despliegue Dispositivos</td></tr>
+          <tr><td class="aon-ls">12/12</td><td class="aon-tf">0d</td><td class="aon-lf">12/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="69" style="left: 8650px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">13/12</td><td class="aon-dur">5d</td><td class="aon-ef">19/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 69 · Monitoreo Operación</td></tr>
+          <tr><td class="aon-ls">13/12</td><td class="aon-tf">0d</td><td class="aon-lf">19/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="70" style="left: 8850px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">20/12</td><td class="aon-dur">1d</td><td class="aon-ef">20/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 70 · Verificar Reportes</td></tr>
+          <tr><td class="aon-ls">20/12</td><td class="aon-tf">0d</td><td class="aon-lf">20/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="71" style="left: 9050px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">21/12</td><td class="aon-dur">1d</td><td class="aon-ef">21/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 71 · Lecciones Aprendidas</td></tr>
+          <tr><td class="aon-ls">21/12</td><td class="aon-tf">0d</td><td class="aon-lf">21/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="72" style="left: 9250px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">22/12</td><td class="aon-dur">2d</td><td class="aon-ef">24/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 72 · Informe Final</td></tr>
+          <tr><td class="aon-ls">22/12</td><td class="aon-tf">0d</td><td class="aon-lf">24/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node par" data-id="73" style="left: 9250px; top: 310px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">22/12</td><td class="aon-dur">1d</td><td class="aon-ef">22/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 73 · Criterios aceptación</td></tr>
+          <tr><td class="aon-ls">23/12</td><td class="aon-tf">1d</td><td class="aon-lf">23/12</td></tr>
+        </table>
+      </div>
+
+      <!-- GATE 3 (X: 9500px) -->
+      <div class="nd-node gate" data-id="74" style="left: 9500px; top: 450px;">
+        <div class="gate-diamond-bg"></div>
+        <div class="gate-content">
+          <table class="gate-table">
+            <tr><td class="aon-es">26/12</td><td class="aon-dur">0d</td><td class="aon-ef">26/12</td></tr>
+            <tr><td class="aon-name">GATE 3</td></tr>
+            <tr><td class="aon-ls">26/12</td><td class="aon-tf">0d</td><td class="aon-lf">26/12</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="nd-node crit" data-id="75" style="left: 9700px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">27/12</td><td class="aon-dur">1d</td><td class="aon-ef">27/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 75 · Consolidar Lecciones</td></tr>
+          <tr><td class="aon-ls">27/12</td><td class="aon-tf">0d</td><td class="aon-lf">27/12</td></tr>
+        </table>
+      </div>
+
+      <div class="nd-node crit" data-id="76" style="left: 9900px; top: 465px;">
+        <table class="aon-table">
+          <tr><td class="aon-es">28/12</td><td class="aon-dur">1d</td><td class="aon-ef">28/12</td></tr>
+          <tr><td class="aon-name" colspan="3">ID 76 · Cierre Formal</td></tr>
+          <tr><td class="aon-ls">28/12</td><td class="aon-tf">0d</td><td class="aon-lf">28/12</td></tr>
+        </table>
+      </div>
+
+      <!-- FIN -->
+      <div class="nd-terminal end" data-id="end" style="left: 10120px; top: 480px;">FIN</div>
+
     </div>
-    <!-- ID76 -->
-    <div class="nd-node crit" style="left:8670px; top:465px;">
-      <div class="nid">ID 76 · 1d</div>
-      <div class="nname">Acta de Cierre Formal</div>
-      <div class="ndur">CRÍTICA</div>
-    </div>
+  </div>
+</div>
 
-    <!-- ── NODO FIN ── -->
-    <div class="nd-terminal end" style="left:8835px; top:480px;">FIN</div>
+<script is:inline>
+  function drawArrow(svg, fromId, toId, type) {
+    const from = document.querySelector(`[data-id="${fromId}"]`);
+    const to = document.querySelector(`[data-id="${toId}"]`);
+    if (!from || !to) return;
+    
+    const canvas = document.getElementById('nd-canvas');
+    const cr = canvas.getBoundingClientRect();
+    const fr = from.getBoundingClientRect();
+    const tr = to.getBoundingClientRect();
+    
+    let x1, y1, x2, y2, d;
+    
+    if (type === 'CC') {
+      x1 = fr.left - cr.left + fr.width / 2;
+      y1 = fr.top - cr.top;
+      x2 = tr.left - cr.left + tr.width / 2;
+      y2 = tr.top - cr.top;
+      
+      const h = Math.abs(x2 - x1) * 0.25 + 30; // dynamic height for loop curvature
+      d = `M${x1},${y1} C${x1},${y1 - h} ${x2},${y2 - h} ${x2},${y2}`;
+    } else {
+      x1 = fr.left - cr.left + fr.width;
+      y1 = fr.top - cr.top + fr.height / 2;
+      x2 = tr.left - cr.left;
+      y2 = tr.top - cr.top + tr.height / 2;
+      
+      const cx1 = x1 + (x2 - x1) * 0.5;
+      const cy1 = y1;
+      const cx2 = x1 + (x2 - x1) * 0.5;
+      const cy2 = y2;
+      d = `M${x1},${y1} C${cx1},${cy1} ${cx2},${cy2} ${x2},${y2}`;
+    }
+    
+    const isCrit = from.classList.contains('crit') && to.classList.contains('crit');
+    const color = type === 'CC' ? '#3b82f6' : (isCrit ? '#ef4444' : '#64748b');
+    const marker = type === 'CC' ? 'url(#mcc)' : (isCrit ? 'url(#mcrit)' : 'url(#mfc)');
+    const dash = type === 'CC' ? '5,3' : 'none';
+    
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', color);
+    path.setAttribute('stroke-width', isCrit ? '2.2' : '1.5');
+    path.setAttribute('stroke-dasharray', dash);
+    path.setAttribute('marker-end', marker);
+    svg.appendChild(path);
+  }
 
-  </div><!-- /.nd-diagram -->
-</div><!-- /.nd-outer -->
+  window.addEventListener('load', () => {
+    const svg = document.getElementById('nd-svg');
+    if (!svg) return;
+    
+    // FC críticas
+    drawArrow(svg, 'start', '2', 'FC');
+    drawArrow(svg, '2', '3', 'FC');
+    drawArrow(svg, '3', '7', 'FC');
+    drawArrow(svg, '7', '8', 'FC');
+    drawArrow(svg, '8', '9', 'FC');
+    drawArrow(svg, '9', '11', 'FC');
+    drawArrow(svg, '11', '12', 'FC');
+    drawArrow(svg, '12', '13', 'FC');
+    drawArrow(svg, '13', '14', 'FC');
+    drawArrow(svg, '14', '16', 'FC');
+    drawArrow(svg, '16', '17', 'FC');
+    drawArrow(svg, '17', '22', 'FC');
+    drawArrow(svg, '22', '23', 'FC');
+    drawArrow(svg, '23', '24', 'FC');
+    drawArrow(svg, '24', '25', 'FC');
+    drawArrow(svg, '25', '27', 'FC');
+    drawArrow(svg, '27', '30', 'FC');
+    drawArrow(svg, '21', '31', 'FC');
+    drawArrow(svg, '25', '31', 'FC');
+    drawArrow(svg, '27', '31', 'FC');
+    drawArrow(svg, '29', '31', 'FC');
+    drawArrow(svg, '30', '31', 'FC');
+    drawArrow(svg, '31', '33', 'FC');
+    drawArrow(svg, '33', '34', 'FC');
+    drawArrow(svg, '34', '35', 'FC');
+    drawArrow(svg, '35', '36', 'FC');
+    drawArrow(svg, '36', '37', 'FC');
+    drawArrow(svg, '37', '38', 'FC');
+    drawArrow(svg, '38', '40', 'FC');
+    drawArrow(svg, '39', '40', 'FC');
+    drawArrow(svg, '40', '41', 'FC');
+    drawArrow(svg, '41', '42', 'FC');
+    drawArrow(svg, '42', '43', 'FC');
+    drawArrow(svg, '43', '44', 'FC');
+    drawArrow(svg, '44', '45', 'FC');
+    drawArrow(svg, '45', '46', 'FC');
+    drawArrow(svg, '46', '47', 'FC');
+    drawArrow(svg, '47', '48', 'FC');
+    drawArrow(svg, '48', '49', 'FC');
+    drawArrow(svg, '49', '50', 'FC');
+    drawArrow(svg, '50', '52', 'FC');
+    drawArrow(svg, '51', '53', 'FC');
+    drawArrow(svg, '51', '54', 'FC');
+    drawArrow(svg, '51', '55', 'FC');
+    drawArrow(svg, '52', '53', 'FC');
+    drawArrow(svg, '52', '54', 'FC');
+    drawArrow(svg, '52', '55', 'FC');
+    drawArrow(svg, '53', '56', 'FC');
+    drawArrow(svg, '54', '56', 'FC');
+    drawArrow(svg, '55', '56', 'FC');
+    drawArrow(svg, '56', '57', 'FC');
+    drawArrow(svg, '57', '58', 'FC');
+    drawArrow(svg, '58', '60', 'FC');
+    drawArrow(svg, '60', '61', 'FC');
+    drawArrow(svg, '61', '62', 'FC');
+    drawArrow(svg, '62', '65', 'FC');
+    drawArrow(svg, '63', '65', 'FC');
+    drawArrow(svg, '62', '66', 'FC');
+    drawArrow(svg, '63', '66', 'FC');
+    drawArrow(svg, '62', '67', 'FC');
+    drawArrow(svg, '64', '67', 'FC');
+    drawArrow(svg, '65', '68', 'FC');
+    drawArrow(svg, '66', '68', 'FC');
+    drawArrow(svg, '67', '68', 'FC');
+    drawArrow(svg, '68', '69', 'FC');
+    drawArrow(svg, '69', '70', 'FC');
+    drawArrow(svg, '70', '71', 'FC');
+    drawArrow(svg, '71', '72', 'FC');
+    drawArrow(svg, '72', '74', 'FC');
+    drawArrow(svg, '73', '74', 'FC');
+    drawArrow(svg, '74', '75', 'FC');
+    drawArrow(svg, '75', '76', 'FC');
+    drawArrow(svg, '76', 'end', 'FC');
+
+    // FC no críticas
+    drawArrow(svg, '2', '4', 'FC');
+    drawArrow(svg, '3', '5', 'FC');
+    drawArrow(svg, '18', '19', 'FC');
+    drawArrow(svg, '19', '20', 'FC');
+    drawArrow(svg, '20', '21', 'FC');
+    drawArrow(svg, '26', '27', 'FC');
+    drawArrow(svg, '28', '29', 'FC');
+
+    // CC (Inicio-Inicio)
+    drawArrow(svg, '7', '10', 'CC');
+    drawArrow(svg, '9', '18', 'CC');
+    drawArrow(svg, '16', '26', 'CC');
+    drawArrow(svg, '26', '28', 'CC');
+    drawArrow(svg, '31', '39', 'CC');
+    drawArrow(svg, '47', '51', 'CC');
+    drawArrow(svg, '58', '63', 'CC');
+    drawArrow(svg, '63', '64', 'CC');
+    drawArrow(svg, '72', '73', 'CC');
+  });
+</script>
