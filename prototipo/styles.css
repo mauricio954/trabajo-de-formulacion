@@ -276,14 +276,13 @@ body {
 /* Forms */
 .form-wrap { padding: 16px; }
 .form-group { margin-bottom: 16px; }
-.form-label { display: block; font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+.form-label { display: block; font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
 .form-input, .form-select {
-  width: 100%; background: var(--bg); border: none;
-  border-bottom: 1px dashed var(--border); 
-  border-radius: 0; padding: 8px 4px; font-size: 14px; color: var(--text); outline: none;
+  width: 100%; background: #ffffff; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 10px 12px; font-size: 14px; color: var(--text); outline: none;
 }
-.form-input:focus, .form-select:focus { border-bottom-style: solid; border-bottom-color: var(--odoo-purple); }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-input:focus, .form-select:focus { border-color: var(--odoo-purple); }
+.form-row { display: flex; gap: 16px; }
 
 /* Buttons */
 .btn {
@@ -294,6 +293,7 @@ body {
 }
 .btn-primary { background: var(--odoo-purple); border-color: var(--odoo-purple); color: #fff; }
 .btn-success { background: var(--odoo-accent); border-color: var(--odoo-accent); color: #fff; }
+.btn-danger { background: var(--danger); border-color: var(--danger); color: #fff; }
 .btn-outline { background: transparent; color: var(--text); }
 
 /* Users Profile */

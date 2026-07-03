@@ -28,6 +28,12 @@
     { productId: 2, type: 'entry', qty: +5, date: '29 Jun', client: 'Producción' },
   ];
 
+  const AUTH_USERS = [
+    { email: 'gerente@romabags.com', pass: '123', role: 'gerencia' },
+    { email: 'ventas@romabags.com', pass: '123', role: 'ventas' },
+    { email: 'produccion@romabags.com', pass: '123', role: 'produccion' }
+  ];
+
   let currentUser = null;
   let selectedProduct = null;
   let salesLog = [];
@@ -240,16 +246,47 @@
     `).join('');
   }
 
+  function applyPermissions() {
+    // Reset displays
+    $('#mod-inventory').style.display = 'flex';
+    $('#mod-sales').style.display = 'flex';
+    $('#mod-users').style.display = 'flex';
+    $('#btn-excel').style.display = 'flex';
+    $('#nav-inventory').style.display = 'flex';
+    $('#nav-sales').style.display = 'flex';
+
+    if (currentUser === 'ventas') {
+      $('#btn-excel').style.display = 'none'; // Vendedor no exporta a Excel
+    }
+    else if (currentUser === 'produccion') {
+      $('#mod-sales').style.display = 'none'; // Producción no registra ventas
+      $('#btn-excel').style.display = 'none'; // Producción no exporta a Excel
+      $('#nav-sales').style.display = 'none';
+    }
+  }
+
   // ─── Event Binding ───
   function init() {
-    // Role selection (login)
-    $$('.role-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        currentUser = btn.dataset.role;
-        renderHome();
-        showScreen('scr-home');
+    // Login
+    const loginBtn = $('#btn-login');
+    if (loginBtn) {
+      loginBtn.addEventListener('click', () => {
+        const email = $('#login-email').value.trim().toLowerCase();
+        const pass = $('#login-pass').value;
+        const user = AUTH_USERS.find(u => u.email === email && u.pass === pass);
+        
+        if (user) {
+          currentUser = user.role;
+          applyPermissions();
+          renderHome();
+          showScreen('scr-home');
+          $('#login-email').value = '';
+          $('#login-pass').value = '';
+        } else {
+          showToast('Credenciales incorrectas', true);
+        }
       });
-    });
+    }
 
     // Module cards navigation
     $$('[data-goto]').forEach(el => {
