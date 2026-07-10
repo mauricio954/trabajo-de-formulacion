@@ -629,3 +629,138 @@ html { scroll-behavior: smooth; }
 
     /* --- Design Thinking Tabbed Layout --- */
 
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE IMPROVEMENTS — julio 2026
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Tablet ancho (1024px–1200px) ── */
+@media (max-width: 1200px) {
+  .mc { padding: 2.5rem 2.5rem; }
+}
+
+/* ── Tablet (768px–900px) ── */
+@media (max-width: 900px) and (min-width: 601px) {
+  .mc { padding: 4.5rem 2rem 2rem; }
+  .gr { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .tr table { min-width: 600px; }
+}
+
+/* ── Móvil grande (481px–600px) ── */
+@media (max-width: 600px) {
+  .mc { padding: 4.5rem 1rem 2rem; }
+
+  /* Grillas de contenido: una columna en móvil */
+  .gr { grid-template-columns: 1fr; }
+  .fx { flex-direction: column; }
+
+  /* Tablas: scroll horizontal siempre visible */
+  .tr { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tr table { min-width: 560px; }
+  .tr::after {
+    content: '← Desliza para ver más →';
+    display: block;
+    text-align: center;
+    font-size: .72rem;
+    color: #94a3b8;
+    padding: .35rem 0 .1rem;
+  }
+
+  /* Encabezados de capítulo */
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1rem; }
+  .mc h3 { font-size: 1rem; }
+  .mc h4 { font-size: .9rem; }
+
+  /* Cards y bloques de contenido */
+  .hl, .cd { padding: .8rem; }
+  .section-card { padding: 1rem; }
+
+  /* Fichas del diccionario: ancho completo en móvil */
+  .dic-grid { grid-template-columns: 1fr !important; }
+
+  /* Hero-card meta-grid: dos columnas en móvil */
+  .hero-card .meta-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Note-grid: una columna */
+  .note-grid { grid-template-columns: 1fr; }
+
+  /* Chapter toolbar: wrap y botones más pequeños */
+  .chapter-toolbar { gap: .5rem; }
+  .ct-btn { padding: .6rem .8rem; font-size: .82rem; }
+}
+
+/* ── Móvil pequeño (hasta 480px) ── */
+@media (max-width: 480px) {
+  .mc { padding: 4rem .75rem 2rem; }
+
+  /* Hero-card meta-grid: una columna en móvil pequeño */
+  .hero-card .meta-grid { grid-template-columns: 1fr; }
+
+  /* Tablas */
+  .tr table { min-width: 480px; }
+
+  /* Badges y spans */
+  .bg { font-size: .7rem; padding: .15rem .4rem; }
+}
+
+/* ── EDT / WBS (#wbs-tree) — scroll horizontal en todos los tamaños ── */
+#wbs-tree {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#wbs-tree .edt-wrap {
+  min-width: 1100px;
+}
+#wbs-tree::after {
+  content: '← Desliza para ver el árbol completo →';
+  display: block;
+  text-align: center;
+  font-size: .72rem;
+  color: #94a3b8;
+  padding: .4rem 0 0;
+}
+
+/* ── Gantt y Diagrama de Red (cap 7) — scroll horizontal ── */
+.gantt-outer,
+.nd-outer {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.gantt-outer::after,
+.nd-outer::after {
+  content: '← Desliza para ver el diagrama completo →';
+  display: block;
+  text-align: center;
+  font-size: .72rem;
+  color: #94a3b8;
+  padding: .35rem 0 0;
+}
+
+/* ── Holgura table (cap 7 salidas) ── */
+@media (max-width: 768px) {
+  .holgura-table { font-size: .8rem; }
+  .holgura-table th, .holgura-table td { padding: .35rem .5rem; }
+}
+
+/* ── Control cards (cap 7 control) ── */
+@media (max-width: 600px) {
+  .evm-grid { grid-template-columns: 1fr; }
+  .reservas-grid { grid-template-columns: 1fr; }
+  .note-grid { grid-template-columns: 1fr; }
+  .gates-grid { gap: .9rem; }
+  .gate-card { padding: 1.1rem 1.2rem; }
+  .proceso-steps li { font-size: .85rem; }
+}
+
+/* ── Cap 1: Cubo de interesados y tablas de análisis ── */
+@media (max-width: 600px) {
+  .cube-wrap svg { max-width: 100%; height: auto; }
+}
+
+/* ── Cap 5: Prototipo móvil (ya es responsive, verificar centrado) ── */
+@media (max-width: 480px) {
+  .rb-proto-wrap { margin: 1rem 0; }
+  .rb-phone { width: 260px; height: 520px; }
+}
+

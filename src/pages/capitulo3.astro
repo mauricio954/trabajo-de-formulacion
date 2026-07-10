@@ -495,15 +495,25 @@ import Layout from '../layouts/Layout.astro';
     flex-direction: column;
     align-items: center;
     gap: 25px;
-    overflow-x: auto;
     min-width: 900px;
     margin: 1.5rem 0;
   }
 
   .tree-scroll-wrapper {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     width: 100%;
     padding-bottom: 1rem;
+    cursor: grab;
+  }
+
+  .tree-scroll-wrapper::after {
+    content: '← Desliza para ver el árbol completo →';
+    display: block;
+    text-align: center;
+    font-size: .72rem;
+    color: #94a3b8;
+    padding: .4rem 0 0;
   }
 
   /* Estilos base para todas las tarjetas */
@@ -657,4 +667,22 @@ import Layout from '../layouts/Layout.astro';
   .connector.green::after { border-bottom: 7px solid #15803d; }
   .connector.blue::after { border-bottom: 7px solid #2563eb; top: auto; bottom: 0; border-bottom: none; border-top: 7px solid #2563eb; }
 
+  /* ── Responsive árboles cap 3 ── */
+  @media (max-width: 768px) {
+    .card { font-size: 12px; padding: 14px; }
+    .efecto-final, .problema-central,
+    .fin-final, .objetivo-central { width: 95%; }
+    .grid-4 { grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+  }
+
+  @media (max-width: 480px) {
+    .tree-container-flex { padding: 20px; gap: 18px; }
+    .card { font-size: 11.5px; padding: 12px; }
+    .grid-4 { grid-template-columns: repeat(2, minmax(140px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(2, minmax(140px, 1fr)); }
+    .connector { width: 2px; }
+  }
+
 </style>
+
