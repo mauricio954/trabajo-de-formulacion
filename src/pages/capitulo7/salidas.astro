@@ -85,7 +85,7 @@ import NetworkDiagram from '../../components/NetworkDiagram.astro';
       <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
       <div class="meta-grid">
         <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
-        <div class="meta-item"><strong>Versión</strong><span>1.0</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>2.0 (corregida, julio 2026)</span></div>
         <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
         <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
         <div class="meta-item"><strong>Aprobado por</strong><span>Líder del Proyecto</span></div>
@@ -118,23 +118,27 @@ import NetworkDiagram from '../../components/NetworkDiagram.astro';
         </div>
         <div class="meta-item">
           <strong>Fin</strong>
-          <span>08 de Abril 2027</span>
+          <span>8 de Abril 2027</span>
         </div>
         <div class="meta-item">
           <strong>Duración Total</strong>
-          <span>158 días hábiles</span>
+          <span>220 días calendario (7.2 meses)</span>
         </div>
         <div class="meta-item">
           <strong>Actividades</strong>
-          <span>77 actividades (resúmenes, trabajo e hitos)</span>
+          <span>99 actividades (74 tareas + 21 grupos + 1 raíz + 3 hitos gate)</span>
         </div>
         <div class="meta-item">
           <strong>Hitos / Gates</strong>
           <span>3 gates de aprobación formal</span>
         </div>
         <div class="meta-item">
+          <strong>Horas totales</strong>
+          <span>1,699 horas estimadas</span>
+        </div>
+        <div class="meta-item">
           <strong>Programación</strong>
-          <span>Automática en MS Project (CPM)</span>
+          <span>GanttPRO (elaboración) + MS Project (CPM)</span>
         </div>
       </div>
     </div>
@@ -152,7 +156,7 @@ import NetworkDiagram from '../../components/NetworkDiagram.astro';
         <div class="note-card"><strong>Días laborables</strong> Lunes a viernes (5 días/semana, 8 horas/día).</div>
         <div class="note-card"><strong>Días no laborables</strong> Sábados y domingos.</div>
       </div>
-      <p style="margin: 1rem 0 .5rem; color: #334155; font-size: .93rem;"><strong>Feriados oficiales del Perú configurados en MS Project</strong> para el período septiembre 2026 – abril 2027:</p>
+      <p style="margin: 1rem 0 .5rem; color: #334155; font-size: .93rem;"><strong>Feriados oficiales del Perú configurados en el calendario del proyecto</strong> para el período agosto 2026 – abril 2027:</p>
       <div class="holiday-list">
         <div class="holiday-item">
           <span class="holiday-date">08 Oct 2026<br/>Jueves</span>
@@ -175,20 +179,25 @@ import NetworkDiagram from '../../components/NetworkDiagram.astro';
           <span class="holiday-name">Navidad</span>
         </div>
         <div class="holiday-item">
-          <span class="holiday-date">01 Ene 2027<br/>Viernes</span>
-          <span class="holiday-name">Año Nuevo</span>
+          <span class="holiday-date">31 Dic 2026<br/>Jueves ⚠️</span>
+          <span class="holiday-name">Fin de año (no laborable) — <strong>Verificar bloqueo en GanttPRO</strong>. Afecta actividad 1.4.4.1</span>
+        </div>
+        <div class="holiday-item">
+          <span class="holiday-date">01 Ene 2027<br/>Viernes ⚠️</span>
+          <span class="holiday-name">Año Nuevo — <strong>Verificar bloqueo en GanttPRO</strong>. Afecta actividad 1.4.4.1</span>
         </div>
         <div class="holiday-item">
           <span class="holiday-date">25-26 Mar 2027<br/>Jue/Vie</span>
           <span class="holiday-name">Semana Santa</span>
         </div>
       </div>
+      <p style="margin: .75rem 0 0; color: #475569; font-size: .88rem;"><em>No hay feriados adicionales en el período enero–abril 2027 que afecten el cronograma.</em></p>
     </div>
 
     <!-- Ruta Crítica -->
     <div class="critical-path">
-      <h4>🔴 Ruta Crítica del Proyecto</h4>
-      <p>La ruta crítica es la secuencia de actividades con holgura total = 0. Cualquier retraso en una actividad crítica retrasa el proyecto en la misma proporción. Calculada por MS Project y resaltada en rojo en el diagrama de Gantt.</p>
+      <h4>🔴 Ruta Crítica del Proyecto (31/08/2026 → 08/04/2027)</h4>
+      <p>La ruta crítica es la secuencia de actividades con holgura total = 0 que cubre las tres fases del proyecto. Cualquier retraso en una actividad crítica retrasa el proyecto en la misma proporción. Calculada en MS Project y resaltada en rojo en el diagrama de Gantt. Las actividades de fast-tracking (paralelismo) son las que tienen holgura positiva — pueden retrasarse dentro de su holgura sin afectar la fecha de cierre (08/04/2027).</p>
       <div class="cp-flow">
         <span class="cp-step">Acta de Constitución</span><span class="cp-arrow">→</span>
         <span class="cp-step">Plan de Gestión</span><span class="cp-arrow">→</span>
@@ -241,11 +250,11 @@ import NetworkDiagram from '../../components/NetworkDiagram.astro';
     <!-- Holguras -->
     <div class="section-card">
       <h3>Actividades con Holgura Positiva (Fast-Tracking en Paralelo)</h3>
-      <p>Las siguientes actividades pueden retrasarse sin afectar la fecha de fin del proyecto. Su holgura positiva fue calculada por MS Project mediante CPM:</p>
+      <p>Las siguientes actividades pueden retrasarse sin afectar la fecha de fin del proyecto (08/04/2027). Su holgura positiva fue calculada en MS Project mediante CPM:</p>
       <table class="holgura-table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>EDT</th>
             <th>Actividad</th>
             <th>Holgura estimada</th>
             <th>Motivo del paralelismo</th>
@@ -253,46 +262,46 @@ import NetworkDiagram from '../../components/NetworkDiagram.astro';
         </thead>
         <tbody>
           <tr>
-            <td class="holgura-id">10</td>
+            <td class="holgura-id">1.2.4</td>
             <td>Auditoría de infraestructura tecnológica</td>
             <td class="holgura-days">2 días</td>
-            <td>Inicia en paralelo con la observación del flujo AS-IS (ID 7)</td>
+            <td>Inicia en paralelo (II) con la observación directa del flujo AS-IS (1.2.1)</td>
           </tr>
           <tr>
-            <td class="holgura-id">26</td>
+            <td class="holgura-id">1.3.4.1</td>
             <td>Redacción de SOPs del flujo venta-stock-despacho</td>
             <td class="holgura-days">3 días</td>
-            <td>Inicia en paralelo con el diseño del modelo de datos (ID 16)</td>
+            <td>Inicia en paralelo (II) con el diseño del modelo de datos (1.3.1.1)</td>
           </tr>
           <tr>
-            <td class="holgura-id">28</td>
+            <td class="holgura-id">1.3.4.3</td>
             <td>Política de respaldo y seguridad</td>
             <td class="holgura-days">2 días</td>
-            <td>Inicia en paralelo con la redacción de SOPs (ID 26)</td>
+            <td>Inicia en paralelo con la redacción de SOPs (1.3.4.1)</td>
           </tr>
           <tr>
-            <td class="holgura-id">39</td>
+            <td class="holgura-id">1.4.3.1</td>
             <td>Solicitud del catálogo de productos</td>
             <td class="holgura-days">1 día</td>
-            <td>Inicia desde el Gate 1 (ID 31) en paralelo con la configuración del servidor</td>
+            <td>Inicia desde Gate 1 en paralelo (II) con la configuración del servidor (1.4.1)</td>
           </tr>
           <tr>
-            <td class="holgura-id">51</td>
+            <td class="holgura-id">1.4.5.1</td>
             <td>Redacción de casos de prueba UAT CP-01 a CP-06</td>
             <td class="holgura-days">2 días</td>
-            <td>Inicia en paralelo con la configuración del formulario de ventas (ID 47)</td>
+            <td>Inicia en paralelo (II) con la prueba interna rebaja automática (1.4.4.2)</td>
           </tr>
           <tr>
-            <td class="holgura-id">63</td>
-            <td>Manual de usuario por rol</td>
-            <td class="holgura-days">3 días</td>
-            <td>Inicia desde el Gate 2 (ID 58) en paralelo con la configuración del panel KPIs</td>
-          </tr>
-          <tr>
-            <td class="holgura-id">64</td>
+            <td class="holgura-id">1.5.1.1</td>
             <td>Guía de auto-recuperación de incidencias</td>
-            <td class="holgura-days">2 días</td>
-            <td>Inicia en paralelo con la elaboración del manual (ID 63)</td>
+            <td class="holgura-days">3 días</td>
+            <td>Inicia en paralelo (II) con la etapa final UAT Fase 2 (1.4.5.8) — paralelismo intencional 29/01/2027</td>
+          </tr>
+          <tr>
+            <td class="holgura-id">1.5.1.2</td>
+            <td>Manuales de usuario por rol</td>
+            <td class="holgura-days">3 días</td>
+            <td>Inicia en paralelo con la guía de auto-recuperación (1.5.1.1) — relación II</td>
           </tr>
         </tbody>
       </table>
@@ -309,13 +318,13 @@ import NetworkDiagram from '../../components/NetworkDiagram.astro';
         <div class="gate-card gate-1">
           <div class="gate-title">
             <span class="gate-diamond">◆</span>
-            <h4>GATE 1 — Acta de Aprobación Fase Cimentar (fin Fase 1)</h4>
+            <h4>GATE 1 — Aprobación Fase Cimentar · 06/11/2026</h4>
           </div>
           <ul class="gate-criteria">
-            <li><span class="chk">✓</span> 100% del inventario y ventas registrados en la base de datos centralizada</li>
-            <li><span class="chk">✓</span> Consulta de stock desde celular en menos de 2 minutos (prueba cronometrada aprobada)</li>
-            <li><span class="chk">✓</span> Cero zonas muertas de Wi-Fi en todas las áreas de trabajo del taller</li>
-            <li><span class="chk">✓</span> SOPs del flujo venta-stock-despacho firmados por todos los usuarios</li>
+            <li><span class="chk">✓</span> Red Wi-Fi estable sin zonas muertas en todas las áreas del taller</li>
+            <li><span class="chk">✓</span> 100% de registros de inventario y ventas en la base de datos centralizada única</li>
+            <li><span class="chk">✓</span> SOPs del flujo venta-stock-despacho firmados por Gerencia y Socio de Producción</li>
+            <li><span class="chk">✓</span> Hábito digital confirmado en el equipo (uso autosuficiente de la base centralizada)</li>
             <li><span class="chk">✓</span> Política de respaldo activa y verificada con primera copia de seguridad exitosa</li>
           </ul>
           <div class="gate-firmantes">👤 Firmante requerido: Natalie — Gerencia General</div>
@@ -325,12 +334,13 @@ import NetworkDiagram from '../../components/NetworkDiagram.astro';
         <div class="gate-card gate-2">
           <div class="gate-title">
             <span class="gate-diamond">◆</span>
-            <h4>GATE 2 — Acta de Aprobación Fase Integrar (fin Fase 2)</h4>
+            <h4>GATE 2 — Aprobación Fase Integrar · 27/02/2027</h4>
           </div>
           <ul class="gate-criteria">
-            <li><span class="chk">✓</span> Flujo Venta-Stock-Despacho en Odoo sin errores críticos en período de prueba</li>
-            <li><span class="chk">✓</span> Pedidos incompletos reducidos a cero durante el período de prueba de la UAT</li>
-            <li><span class="chk">✓</span> Personal de ventas y producción capacitado y operando en Odoo de forma autónoma</li>
+            <li><span class="chk">✓</span> Odoo Community operativo en servidor, accesible desde dispositivos del taller</li>
+            <li><span class="chk">✓</span> Datos migrados íntegros verificados (inventario, clientes, proveedores, catálogo)</li>
+            <li><span class="chk">✓</span> Flujo mandatorio Venta-Stock-Despacho activo sin errores críticos</li>
+            <li><span class="chk">✓</span> UAT aprobado sin errores críticos por los 3 usuarios clave (Ventas, Producción, Gerencia)</li>
             <li><span class="chk">✓</span> Certificado de Cero Errores Críticos emitido tras corrección de todas las incidencias UAT</li>
           </ul>
           <div class="gate-firmantes">👤 Firmantes requeridos: Natalie (Gerencia) y Socio de Producción</div>
@@ -340,15 +350,16 @@ import NetworkDiagram from '../../components/NetworkDiagram.astro';
         <div class="gate-card gate-3">
           <div class="gate-title">
             <span class="gate-diamond">◆</span>
-            <h4>GATE 3 — Acta de Conformidad y Cierre Formal (fin del proyecto)</h4>
+            <h4>GATE 3 — Acta de Conformidad y Cierre Formal · 06/04/2027</h4>
           </div>
           <ul class="gate-criteria">
-            <li><span class="chk">✓</span> Reportes de rentabilidad generados automáticamente en Odoo sin intervención manual</li>
-            <li><span class="chk">✓</span> Cuadre semanal reducido de 1 día a menos de 1 hora (medido y documentado)</li>
-            <li><span class="chk">✓</span> Natalie resuelve incidencias básicas de Odoo de forma autónoma sin apoyo del consultor</li>
             <li><span class="chk">✓</span> Todos los criterios de aceptación del Enunciado del Alcance verificados y documentados</li>
+            <li><span class="chk">✓</span> Lecciones aprendidas documentadas (documento 1.5.5.4 firmado antes del Gate 3)</li>
+            <li><span class="chk">✓</span> Informe final del proyecto aprobado por la Gerencia Natalie</li>
+            <li><span class="chk">✓</span> Reportes de rentabilidad generados automáticamente en Odoo sin intervención manual</li>
+            <li><span class="chk">✓</span> Natalie resuelve incidencias básicas de Odoo de forma autónoma sin apoyo del consultor</li>
           </ul>
-          <div class="gate-firmantes">👤 Firmante requerido: Natalie — Gerencia General</div>
+          <div class="gate-firmantes">👤 Firmante requerido: Natalie — Gerencia General. El Acta de Cierre Formal (1.5.5.6) se emite DESPUÉS del Gate 3: 06/04 → 08/04/2027</div>
         </div>
 
       </div>

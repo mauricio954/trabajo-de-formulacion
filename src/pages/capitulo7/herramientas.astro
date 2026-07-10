@@ -40,7 +40,7 @@ import Layout from '../../layouts/Layout.astro';
       <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
       <div class="meta-grid">
         <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
-        <div class="meta-item"><strong>Versión</strong><span>1.0</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>2.0 (corregida, julio 2026)</span></div>
         <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
         <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
         <div class="meta-item"><strong>Aprobado por</strong><span>Líder del Proyecto</span></div>
@@ -65,51 +65,75 @@ import Layout from '../../layouts/Layout.astro';
 
     <div class="section-card">
       <h3>Técnicas aplicadas para el desarrollo del cronograma</h3>
-      <p>El cronograma se desarrolló siguiendo la secuencia de procesos del Dominio de Planificación del PMBOK 8, con la ruta crítica como técnica central y el fast-tracking como estrategia de optimización. El resultado: 75 días hábiles desde un escenario de secuencia estricta de ~90 días.</p>
+      <p>El cronograma se desarrolló siguiendo la secuencia de procesos del Dominio de Planificación del PMBOK 8, con la ruta crítica como técnica central y el fast-tracking como estrategia de optimización. Resultado: 220 días calendario con paralelismo deliberado en 5 puntos del cronograma, frente a una secuencia estricta estimada de ~270 días.</p>
 
       <!-- Técnica 1 -->
       <div class="tecnica-card">
-        <span class="tc-badge">Técnica 1</span>
-        <h4>Método de la Ruta Crítica (CPM)</h4>
-        <p>El CPM calcula las fechas más tempranas y tardías de inicio y fin de cada actividad, determinando la holgura total. Las actividades con holgura total = 0 forman la ruta crítica: cualquier retraso en ellas retrasa el proyecto en la misma proporción. En MS Project la ruta crítica se resalta automáticamente en rojo. Se calculó el CPM completo sobre las 77 actividades del proyecto.</p>
+        <span class="tc-badge">Técnica 1 — PMIS Principal</span>
+        <h4>GanttPRO — Herramienta PMIS del Equipo</h4>
+        <p>Herramienta de Información para la Gestión del Proyecto usada por el equipo UNTELS para elaborar el cronograma real del proyecto. Seleccionada por colaboración en tiempo real, acceso web sin instalación e interfaz visual intuitiva compatible con el nivel de experiencia del equipo.</p>
+        <p><strong>Funciones utilizadas:</strong></p>
+        <ul>
+          <li>Creación de tareas jerárquicas (EDT integrada en la herramienta)</li>
+          <li>Asignación de predecesores con tipos Fin-Inicio (FI) e Inicio-Inicio (II)</li>
+          <li>Configuración del calendario con los 8 feriados oficiales del Perú aplicables al proyecto</li>
+          <li>Cálculo automático de duración y fechas de inicio/fin</li>
+          <li>Generación del diagrama de Gantt visual exportable</li>
+          <li>Exportación en formato .xlsx para registro y revisión</li>
+        </ul>
+        <p><strong>Limitación documentada:</strong> GanttPRO no calcula el CPM automáticamente ni genera el diagrama de red formal como MS Project. Por este motivo, MS Project se usa como herramienta complementaria para el análisis CPM y la validación académica de la ruta crítica.</p>
       </div>
 
       <!-- Técnica 2 -->
       <div class="tecnica-card">
-        <span class="tc-badge">Técnica 2</span>
-        <h4>Método de Diagramación de Precedencia (PDM)</h4>
-        <p>Se usó el PDM para definir las dependencias entre actividades. Se priorizó la relación Fin-Inicio (FI) como estándar. La relación Inicio-Inicio (II) se aplicó cuando dos actividades podían comenzar simultáneamente sin que la primera necesitara completarse (base del fast-tracking).</p>
+        <span class="tc-badge">Técnica 2 — Referencia Académica CPM</span>
+        <h4>Microsoft Project — Análisis CPM y Ruta Crítica</h4>
+        <p>Herramienta de referencia para el cálculo formal del CPM, la ruta crítica y el diagrama de red exigidos por la metodología del curso. Recomendada por el docente; estándar de la industria reconocido por el PMBOK 8 como PMIS habilitante del Dominio de Planificación.</p>
+        <ul>
+          <li>Cálculo automático del CPM (fechas ES, EF, LS, LF y holgura total)</li>
+          <li>Visualización de Gantt con barras y flechas conectoras entre actividades</li>
+          <li>Diagrama de red con ruta crítica resaltada en rojo</li>
+          <li>Asignación de recursos y seguimiento del Valor Ganado (EVM)</li>
+          <li>Exportación en formato .mpp estándar de la industria</li>
+        </ul>
+        <p><strong>Nota de uso:</strong> El cronograma maestro del proyecto se mantuvo en GanttPRO por colaboración en tiempo real. MS Project se usó para el análisis CPM formal y la validación de la ruta crítica como exige la asignatura.</p>
       </div>
-
       <!-- Técnica 3 -->
       <div class="tecnica-card">
         <span class="tc-badge">Técnica 3</span>
-        <h4>Estimación Análoga y Juicio de Expertos</h4>
-        <p>Las duraciones se calcularon en días hábiles (8 horas, lunes a viernes) mediante juicio de expertos del equipo consultor y estimación análoga basada en proyectos de implementación de ERP similares en PYMES peruanas. La estimación fue conservadora para actividades críticas (diagnóstico, UAT) y ajustada para actividades de baja variabilidad (instalación de software, redacción de documentos).</p>
+        <h4>Método de la Ruta Crítica (CPM)</h4>
+        <p>El CPM calcula las fechas más tempranas y tardías de inicio y fin de cada actividad, determinando la holgura total. Las actividades con holgura total = 0 forman la ruta crítica: cualquier retraso en ellas retrasa el proyecto en la misma proporción. En MS Project la ruta crítica se resalta automáticamente en rojo. Se calculó el CPM completo sobre las 99 actividades del proyecto, cubriendo el período 31/08/2026 → 08/04/2027.</p>
       </div>
 
       <!-- Técnica 4 -->
       <div class="tecnica-card">
         <span class="tc-badge">Técnica 4</span>
-        <h4>Microsoft Project como PMIS</h4>
-        <p>Herramienta de Información para la Gestión del Proyecto. Funciones utilizadas: (75 días hábiles) cálculo automático del CPM, visualización del diagrama de Gantt con barras y flechas, asignación de recursos, configuración del calendario con feriados del Perú, generación de la línea base y seguimiento del Valor Ganado (EVM). El PMBOK 8 reconoce el PMIS como herramienta habilitante del Dominio de Planificación.</p>
+        <h4>Método de Diagramación de Precedencia (PDM)</h4>
+        <p>Se usó el PDM para definir las dependencias entre actividades. Se priorizó la relación Fin-Inicio (FI) como estándar. La relación Inicio-Inicio (II) se aplicó cuando dos actividades podían comenzar simultáneamente sin que la primera necesitara completarse (base del fast-tracking).</p>
       </div>
 
       <!-- Técnica 5 -->
       <div class="tecnica-card">
         <span class="tc-badge">Técnica 5</span>
+        <h4>Estimación Análoga y Juicio de Expertos</h4>
+        <p>Las duraciones se calcularon en días hábiles (8 horas, lunes a viernes) mediante juicio de expertos del equipo consultor y estimación análoga basada en proyectos de implementación de ERP similares en PYMES peruanas. La estimación fue conservadora para actividades críticas (diagnóstico, UAT) y ajustada para actividades de baja variabilidad (instalación de software, redacción de documentos).</p>
+      </div>
+
+      <!-- Técnica 6 -->
+      <div class="tecnica-card">
+        <span class="tc-badge">Técnica 6</span>
         <h4>Compresión del Cronograma por Fast-Tracking</h4>
         <p>El fast-tracking consiste en ejecutar en paralelo actividades que en secuencia estricta irían una después de la otra, cuando sus entradas no son dependientes entre sí. Se aplica para reducir la duración total sin agregar recursos ni costos adicionales.</p>
         <p><strong>5 casos documentados en este proyecto:</strong></p>
         <ul>
-          <li><strong>(1)</strong> Auditoría de infraestructura (ID 10) en paralelo con observación directa del flujo (ID 7) — relación II.</li>
-          <li><strong>(2)</strong> Redacción de SOPs (ID 26) en paralelo con diseño del modelo de datos (ID 16) — relación II.</li>
-          <li><strong>(3)</strong> Solicitud del catálogo de productos (ID 39) en paralelo desde Gate 1 (ID 31) — relación II.</li>
-          <li><strong>(4)</strong> Redacción de casos de prueba UAT (ID 51) en paralelo con configuración del formulario de ventas (ID 47) — relación II.</li>
-          <li><strong>(5)</strong> Elaboración de manuales de usuario (ID 63) en paralelo desde Gate 2 (ID 58) — relación II.</li>
+          <li><strong>(1)</strong> Auditoría de infraestructura (1.2.4) en paralelo con observación directa del flujo AS-IS (1.2.1) — relación II.</li>
+          <li><strong>(2)</strong> Redacción de SOPs (1.3.4.1) en paralelo con diseño del modelo de datos (1.3.1.1) — relación II.</li>
+          <li><strong>(3)</strong> Solicitud del catálogo de productos (1.4.3.1) desde Gate 1 en paralelo con configuración del servidor (1.4.1) — relación II.</li>
+          <li><strong>(4)</strong> Redacción de casos UAT (1.4.5.1) en paralelo con prueba interna rebaja automática (1.4.4.2) — relación II.</li>
+          <li><strong>(5)</strong> Documentación de soporte Fase 3 (1.5.1) en paralelo con la etapa final UAT Fase 2 — relación II. <em>Paralelismo intencional documentado explícitamente: la relación Inicio-Inicio deliberada entre 1.5.1.1 y 1.4.5.8 adelanta la redacción de manuales sin afectar la ruta crítica.</em></li>
         </ul>
         <div class="tecnica-result">
-          ✓ Resultado: reducción de ~90 días (secuencia estricta) a 75 días hábiles sin agregar recursos ni costos adicionales.
+          ✓ Resultado: 220 días calendario con paralelismo deliberado en 5 puntos del cronograma, reduciendo la secuencia estricta estimada de ~270 días sin agregar recursos ni costos adicionales.
         </div>
       </div>
     </div>

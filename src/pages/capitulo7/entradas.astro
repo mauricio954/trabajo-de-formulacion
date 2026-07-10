@@ -40,7 +40,7 @@ import Layout from '../../layouts/Layout.astro';
       <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
       <div class="meta-grid">
         <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
-        <div class="meta-item"><strong>Versión</strong><span>1.0</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>2.0 (corregida, julio 2026)</span></div>
         <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
         <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
         <div class="meta-item"><strong>Aprobado por</strong><span>Líder del Proyecto</span></div>
@@ -75,7 +75,7 @@ import Layout from '../../layouts/Layout.astro';
           <h4>Plan de Gestión del Alcance</h4>
           <p>Define los entregables y paquetes de trabajo de la EDT. Cada paquete de trabajo se traduce en una o más actividades con duración estimable. El alcance delimitado en el Capítulo 06 (EDT aprobada con 5 entregables de Nivel 1 y 77 actividades) es el insumo directo para construir el cronograma.</p>
           <ul>
-            <li>EDT aprobada con 5 entregables de Nivel 1 descompuestos en 77 actividades</li>
+            <li>EDT aprobada con 5 entregables de Nivel 1 descompuestos en 99 actividades (74 tareas hoja + 21 grupos + 3 hitos gate)</li>
             <li>Enunciado del Alcance con criterios de aceptación verificables por gate</li>
             <li>Diccionario EDT con descripción y criterios de cada paquete de trabajo</li>
           </ul>
@@ -85,10 +85,10 @@ import Layout from '../../layouts/Layout.astro';
         <div class="entrada-card">
           <span class="en-tag">Entrada 2</span>
           <h4>Acta de Constitución del Proyecto</h4>
-          <p>Proporciona las restricciones de tiempo de alto nivel: fecha de inicio, recursos disponibles y umbrales de riesgo aceptable. La restricción de completar el proyecto en un máximo de 75 días hábiles proviene directamente del Acta firmada por la Gerencia de Roma Bag's.</p>
+          <p>Proporciona las restricciones de tiempo de alto nivel: fecha de inicio, recursos disponibles y umbrales de riesgo aceptable. La restricción temporal del proyecto cubre 220 días calendario (7.2 meses) para las tres fases completas, con cierre en el 8 de abril de 2027.</p>
           <ul>
             <li>Fecha de inicio autorizada: lunes 31 de agosto de 2026</li>
-            <li>Restricción de duración: máximo 75 días hábiles sin reservas</li>
+            <li>Duración total: 220 días calendario / 7.2 meses (fin: 8 de abril de 2027)</li>
             <li>Equipo asignado: Consultor UNTELS (3 integrantes)</li>
           </ul>
         </div>
@@ -127,7 +127,23 @@ import Layout from '../../layouts/Layout.astro';
             <li><strong>R1 — Disponibilidad de Natalie para los gates:</strong> Probabilidad alta · Impacto alto. Respuesta: plazo máximo de 48 h y suplente autorizado.</li>
             <li><strong>R2 — Rechazo del Socio de Producción en UAT:</strong> Probabilidad media · Impacto muy alto. Respuesta: pre-prueba informal antes de la UAT formal para filtrar errores críticos.</li>
             <li><strong>R3 — Complejidad de migración de datos Fase 1 a Odoo:</strong> Probabilidad media · Impacto alto. Respuesta: validar compatibilidad del modelo de datos al cierre del paquete 1.3.1.1 antes de cerrar la Fase 1.</li>
-            <li><strong>R4 — Feriados de nov-dic concentrados en el período de la Fase 3:</strong> Respuesta: planificar capacitaciones antes del 5 de diciembre para dejar margen ante feriados de fin de año.</li>
+            <li><strong>R4 — Feriados de nov 2026 – ene 2027 concentrados en período crítico:</strong> 8 feriados configurados en el calendario del proyecto incluyendo 31/12 y 01/01 (pendientes de verificar en GanttPRO). Respuesta: planificar actividades críticas antes del 24 de diciembre; verificar que 31/12 y 01/01 estén bloqueados en GanttPRO para evitar que la actividad 1.4.4.1 (rebaja automática de stock) cruce esos días sin bloqueo.</li>
+          </ul>
+        </div>
+
+        <!-- ENTRADA 6 -->
+        <div class="entrada-card">
+          <span class="en-tag">Entrada 6</span>
+          <h4>Documentos del Proyecto — Correcciones de Versión anterior</h4>
+          <p>Esta es la <strong>versión 2.0</strong> del Plan de Gestión del Cronograma (julio 2026). Se corrigieron 7 errores de predecesores identificados en la revisión de calidad de la versión 1.0:</p>
+          <ul>
+            <li><strong>C1:</strong> 1.3.5.1 y 1.3.5.2: dependencia circular resuelta — ambas dependen ahora de 1.3.3.4 directamente.</li>
+            <li><strong>C2:</strong> 1.3.4.1 (SOPs flujo) y 1.3.4.3 (política de respaldo): predecesores asignados a 1.2.8 — antes podían iniciar sin predecesor definido.</li>
+            <li><strong>C3:</strong> 1.4.5.1 (casos de prueba UAT): predecesor corregido a 1.4.4.2 — antes iniciaba el 4 de enero sin el sistema configurado.</li>
+            <li><strong>C4:</strong> 1.5.1.1 (guía auto-recuperación): predecesor asignado a 1.4.5.8 — antes sin predecesor.</li>
+            <li><strong>C5:</strong> 1.5.5.1 (verificar criterios de aceptación): predecesor asignado a 1.5.4.3 — antes sin predecesor.</li>
+            <li><strong>C6:</strong> 1.5.5.4 y 1.5.5.6: reordenados — lecciones aprendidas van ANTES del Gate 3; Acta de Cierre va DESPUÉS del Gate 3.</li>
+            <li><strong>C7:</strong> Nodo 1.3.7 (antes llamado "1.3.5 Monitoreo Post-Gate 1"): nombre y numeración corregidos.</li>
           </ul>
         </div>
 
