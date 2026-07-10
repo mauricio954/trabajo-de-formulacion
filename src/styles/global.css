@@ -715,7 +715,7 @@ html { scroll-behavior: smooth; }
   width: 100%;
 }
 #wbs-tree .edt-wrap {
-  min-width: max-content;
+  min-width: min-content;
   width: 100%;
 }
 #wbs-tree::after {
