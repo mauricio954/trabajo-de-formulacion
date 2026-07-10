@@ -43,7 +43,7 @@ body {
 .nm .sub-link { padding-left: 1.2rem; font-size: .78rem; }
 
 /* CONTENEDOR PRINCIPAL - IMPORTANTE: Usamos clase .mc */
-.mc { margin-left: 300px; padding: 3rem 4rem; width: calc(100% - 300px); max-width: 1100px; min-height: 100vh; }
+.mc { margin-left: 300px; padding: 3rem 3rem; width: calc(100% - 300px); max-width: none; min-height: 100vh; }
 h2 { font-family: 'Inter', sans-serif; font-size: 1.3rem; color: var(--ac); margin: 2.5rem 0 1.2rem; padding-bottom: .5rem; border-bottom: 2px solid var(--bd); text-transform: uppercase; font-weight: 700; }
 
 /* Barra de progreso superior */
@@ -634,9 +634,13 @@ html { scroll-behavior: smooth; }
    RESPONSIVE IMPROVEMENTS — julio 2026
    ═══════════════════════════════════════════════════════ */
 
-/* ── Tablet ancho (1024px–1200px) ── */
+/* ── Tablet ancho (1024px–1400px) ── */
+@media (max-width: 1400px) {
+  .mc { padding: 3rem 2.5rem; }
+}
+
 @media (max-width: 1200px) {
-  .mc { padding: 2.5rem 2.5rem; }
+  .mc { padding: 2.5rem 2rem; }
 }
 
 /* ── Tablet (768px–900px) ── */
@@ -708,9 +712,11 @@ html { scroll-behavior: smooth; }
 #wbs-tree {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
 }
 #wbs-tree .edt-wrap {
-  min-width: 1100px;
+  min-width: max-content;
+  width: 100%;
 }
 #wbs-tree::after {
   content: '← Desliza para ver el árbol completo →';
