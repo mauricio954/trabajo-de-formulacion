@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Capítulo 08: Gestión Económica del Proyecto">
+  <style>
+    .hero-card, .section-card, .note-card { background: #ffffff; border: 1px solid #dbeafe; border-radius: 24px; padding: 1.6rem; margin-bottom: 1.6rem; box-shadow: 0 22px 48px rgba(15,23,42,.09); }
+    .hero-card { background: linear-gradient(180deg, #eff6ff 0%, #f8fbff 100%); border-color: #c7d2fe; }
+    .hero-card h2 { margin: 0; color: #1e40af; font-size: 2rem; letter-spacing: .02em; }
+    .hero-card .meta-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); margin-top: 1.25rem; }
+    .hero-card .meta-item { background: #f8fbff; border: 1px solid #dbeafe; border-radius: 16px; padding: 1rem; }
+    .hero-card .meta-item strong { display: block; color: #2563eb; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .35rem; }
+    .hero-card .meta-item span { color: #0f172a; font-size: .96rem; line-height: 1.5; }
+    .section-card h3 { margin-top: 0; color: #1e3a8a; }
+    .section-card p, .section-card ul, .section-card ol { color: #334155; line-height: 1.75; margin: .85rem 0; }
+    .section-card ul, .section-card ol { padding-left: 1.25rem; }
+    .note-card { border-color: #d0e8ff; background: #eef6ff; }
+    .note-card strong { display: block; color: #1e40af; margin-bottom: .4rem; }
+    .note-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
+    .chapter-toolbar { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 1.5rem; }
+    .ct-btn { display: inline-flex; align-items: center; justify-content: center; padding: .85rem 1.2rem; border-radius: 999px; border: 1px solid rgba(15,23,42,.14); background: #fff; color: #1e3a8a; font-weight: 700; text-decoration: none; transition: transform .18s ease, background .18s ease, border-color .18s ease; box-shadow: 0 12px 28px rgba(15,23,42,.08); }
+    .ct-btn:hover { transform: translateY(-1px); background: #e0e7ff; border-color: #93c5fd; }
+    .ct-btn-primary { background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; border-color: transparent; }
+    .intro-hero { background: linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 50%,#2563eb 100%); border-radius: 24px; padding: 2.2rem 2rem; margin-bottom: 1.6rem; color: #fff; box-shadow: 0 28px 56px rgba(15,23,42,.18); }
+    .intro-hero h2 { margin: 0 0 .5rem; font-size: 1.85rem; color: #fff; }
+    .intro-hero .ih-sub { color: #bfdbfe; font-size: .95rem; margin: 0 0 1.4rem; }
+    .intro-hero .ih-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
+    .intro-hero .ih-grid .ih-card { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); border-radius: 18px; padding: 1.1rem 1.3rem; }
+    .intro-hero .ih-grid .ih-card strong { display: block; color: #93c5fd; font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .5rem; }
+    .intro-hero .ih-grid .ih-card p { margin: 0; font-size: .9rem; color: #e0f2fe; line-height: 1.65; }
+    .sec-header { display: flex; align-items: center; gap: .75rem; margin: 2.2rem 0 1.2rem; }
+    .sec-header .sec-num { font-size: 2rem; font-weight: 800; color: #dbeafe; line-height: 1; }
+    .sec-header h2 { margin: 0; font-size: 1.4rem; color: #1e3a8a; }
+    .wip-banner { background: linear-gradient(135deg,#fefce8,#fef9c3); border: 2px dashed #ca8a04; border-radius: 20px; padding: 2rem 2rem; text-align: center; margin: 2rem 0; }
+    .wip-banner .wip-icon { font-size: 2.5rem; margin-bottom: .75rem; }
+    .wip-banner h3 { color: #92400e; margin: 0 0 .5rem; font-size: 1.2rem; }
+    .wip-banner p { color: #78350f; margin: 0; font-size: .93rem; line-height: 1.7; }
+  </style>
+
+  <section class="sec" id="cap8">
+
+    <!-- HERO PRINCIPAL -->
+    <div class="hero-card">
+      <h2>GESTIÓN ECONÓMICA DEL PROYECTO</h2>
+      <div class="meta-grid">
+        <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>1.0 (en elaboración)</span></div>
+        <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
+        <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
+        <div class="meta-item"><strong>Marco de referencia</strong><span>PMBOK 8 — Dominio de Desempeño de las Finanzas</span></div>
+      </div>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN RÁPIDA -->
+    <div class="chapter-toolbar">
+      <a href="#presupuesto"  class="ct-btn ct-btn-primary">8.1 Presupuesto</a>
+      <a href="#estimacion"   class="ct-btn">8.2 Estimación de Costos</a>
+      <a href="#lineabase"    class="ct-btn">8.3 Línea Base de Costos</a>
+      <a href="#viabilidad"   class="ct-btn">8.4 Viabilidad Financiera</a>
+    </div>
+
+    <!-- INTRO HERO -->
+    <div class="intro-hero">
+      <h2>Plan de Gestión Económica</h2>
+      <p class="ih-sub">Transformación Digital Roma Bag's · Equipo Consultor UNTELS · PMBOK 8</p>
+      <div class="ih-grid">
+        <div class="ih-card">
+          <strong>Propósito del Capítulo</strong>
+          <p>Documenta la estimación de costos, el presupuesto por fases y la línea base de costos autorizada del proyecto. Permite evaluar si la inversión requerida es comercialmente viable para Roma Bag's y comparar el gasto real contra lo planificado durante la ejecución.</p>
+        </div>
+        <div class="ih-card">
+          <strong>Proceso PMBOK 8</strong>
+          <p>Aplica los procesos del Dominio de Desempeño de las Finanzas: Planificar la Gestión Financiera, Estimar los Costos, Desarrollar el Presupuesto y Monitorear y Controlar las Finanzas.</p>
+        </div>
+        <div class="ih-card">
+          <strong>Técnica de Estimación</strong>
+          <p>Estimación Ascendente (Bottom-Up): cada paquete de trabajo de la EDT se valorizó individualmente según horas estimadas y tarifa del rol asignado, agregando luego por fase y por proyecto.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANNER EN ELABORACIÓN -->
+    <div class="wip-banner">
+      <div class="wip-icon">🚧</div>
+      <h3>Capítulo en elaboración</h3>
+      <p>Este capítulo está siendo desarrollado por el equipo consultor UNTELS. Aquí se documentará la estimación detallada de costos por paquete de trabajo, el presupuesto distribuido por fases, la línea base de costos autorizada y el análisis de viabilidad financiera para Roma Bag's.</p>
+    </div>
+
+    <!-- SECCIÓN 8.1 PLACEHOLDER -->
+    <div class="sec-header" id="presupuesto">
+      <span class="sec-num">8.1</span>
+      <h2>Presupuesto del Proyecto</h2>
+    </div>
+    <div class="section-card">
+      <h3>Estructura de Costos por Fase</h3>
+      <p>El presupuesto total del proyecto se distribuye en las tres fases de la Transformación Digital, siguiendo la estructura de la EDT aprobada (Capítulo 06). Cada fase tiene su propio presupuesto aprobado como condición del gate que la habilita.</p>
+      <div class="note-grid">
+        <div class="note-card"><strong>Fase 1 — Cimentar</strong>Estimación de costos de infraestructura de red, base de datos, gobierno de datos y gestión del cambio. <em>(Contenido pendiente de desarrollo)</em></div>
+        <div class="note-card"><strong>Fase 2 — Integrar</strong>Estimación de costos de servidor, instalación Odoo Community, migración de datos, configuración del flujo operativo y pruebas UAT. <em>(Contenido pendiente de desarrollo)</em></div>
+        <div class="note-card"><strong>Fase 3 — Optimizar</strong>Estimación de costos de analítica gerencial, capacitación por rol, despliegue final y cierre formal. <em>(Contenido pendiente de desarrollo)</em></div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 8.2 PLACEHOLDER -->
+    <div class="sec-header" id="estimacion">
+      <span class="sec-num">8.2</span>
+      <h2>Estimación de Costos</h2>
+    </div>
+    <div class="section-card">
+      <h3>Categorías de Costo</h3>
+      <p>La estimación considera todas las categorías de recursos que se cargarán al proyecto, conforme al proceso Estimar los Costos del PMBOK 8.</p>
+      <div class="note-grid">
+        <div class="note-card"><strong>Recursos Humanos</strong>Honorarios del equipo consultor UNTELS valorizado por horas estimadas en el cronograma (1,699 horas totales) y tarifa por rol. <em>(Tabla detallada pendiente)</em></div>
+        <div class="note-card"><strong>Infraestructura Tecnológica</strong>Servidor VPS, solución de red Wi-Fi, dominio y SSL. <em>(Tabla detallada pendiente)</em></div>
+        <div class="note-card"><strong>Licencias de Software</strong>Odoo Community: S/. 0 (open-source). Herramientas de gestión del equipo. <em>(Detalle pendiente)</em></div>
+        <div class="note-card"><strong>Capacitación y Materiales</strong>Materiales de los talleres de capacitación por rol (Fase 3). <em>(Detalle pendiente)</em></div>
+        <div class="note-card"><strong>Reserva de Contingencia</strong>10% del subtotal base para riesgos conocidos identificados en el Registro de Riesgos. <em>(Cálculo pendiente)</em></div>
+        <div class="note-card"><strong>Reserva de Gestión</strong>Provisión adicional para riesgos no identificados (unknown unknowns), a discreción del Líder del Proyecto. <em>(Cálculo pendiente)</em></div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 8.3 PLACEHOLDER -->
+    <div class="sec-header" id="lineabase">
+      <span class="sec-num">8.3</span>
+      <h2>Línea Base de Costos</h2>
+    </div>
+    <div class="section-card">
+      <h3>Presupuesto por Fases de Tiempo (Curva S)</h3>
+      <p>La línea base de costos es la versión aprobada del presupuesto por fases de tiempo, sin incluir las reservas de gestión. Se usa como base de comparación con los costos reales durante el monitoreo y control financiero del proyecto (PMBOK 8, Dominio de Finanzas).</p>
+      <p><em>La tabla de distribución de costos por fase y la curva S se desarrollarán en esta sección.</em></p>
+    </div>
+
+    <!-- SECCIÓN 8.4 PLACEHOLDER -->
+    <div class="sec-header" id="viabilidad">
+      <span class="sec-num">8.4</span>
+      <h2>Viabilidad Financiera</h2>
+    </div>
+    <div class="section-card">
+      <h3>Análisis Costo-Beneficio para Roma Bag's</h3>
+      <p>Este análisis evalúa si la inversión total del proyecto se justifica frente a los beneficios cuantificables documentados en el diagnóstico: recuperación de 1 día gerencial semanal, eliminación de 9 pedidos incompletos mensuales (S/. 10–20 de sobrecosto cada uno) y acceso a información de rentabilidad en tiempo real.</p>
+      <p><em>El análisis costo-beneficio completo, el período de recuperación de la inversión y las conclusiones de viabilidad se desarrollarán en esta sección.</em></p>
+    </div>
+
+  </section>
+</Layout>

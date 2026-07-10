@@ -520,6 +520,18 @@ import Layout from '../layouts/Layout.astro';
     <p><strong>Duración estimada:</strong> Recurrente durante todo el proyecto</p>
   </div>
 
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.1.5</h5>
+    <p><strong>Nombre:</strong> Acta de Cierre Formal firmada</p>
+    <p><strong>Código EDT:</strong> 1.5.5.6</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.5 Cierre del proyecto / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Redacción y firma del acta que cierra oficialmente el proyecto después del Gate 3 (06/04/2027). Verifica el cumplimiento de todos los criterios de aceptación. Libera formalmente al equipo consultor UNTELS de sus responsabilidades. Fecha: 06/04/2027 → 08/04/2027.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> Firmada por Natalie (Gerencia General / Sponsor) después de que Gate 3 esté aprobado. Es el ÚLTIMO entregable del proyecto.</p>
+    <p><strong>Supuestos:</strong> Todos los criterios de aceptación del Gate 3 están verificados.</p>
+    <p><strong>Restricciones:</strong> No puede firmarse antes del Gate 3. Ninguna actividad del proyecto puede quedar abierta al momento de la firma.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles (06/04 → 08/04/2027)</p>
+  </div>
 
   <div class="dic-item">
     <h5>PAQUETE DE TRABAJO 1.2.1</h5>
@@ -873,6 +885,19 @@ import Layout from '../layouts/Layout.astro';
   </div>
 
   <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.4.5.3</h5>
+    <p><strong>Nombre:</strong> Pre-prueba informal con Socio de Producción ejecutada</p>
+    <p><strong>Código EDT:</strong> 1.4.5.3</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.4.5 Calidad y pruebas UAT / 1.4 Fase 2 Integrar</p>
+    <p><strong>Descripción del trabajo:</strong> Sesión informal previa a la UAT formal con el Socio de Producción, realizada en entorno de pruebas separado del productivo. Permite detectar y corregir errores críticos antes de la UAT formal (1.4.5.5), eliminando el riesgo de que el Socio vea un fallo durante la sesión oficial y rechace el sistema. Esta actividad existe específicamente porque el Socio de Producción es el Influyente Bloqueador identificado en el análisis de interesados (Cap. 01 §1.4.1): una sola falla en su presencia puede llevar al veto del sistema.</p>
+    <p><strong>Responsable:</strong> Analista de Calidad y Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> El Socio completa el flujo principal de registro de lote sin errores bloqueantes. Las incidencias encontradas se documentan y corrigen antes de la UAT formal.</p>
+    <p><strong>Supuestos:</strong> La sesión se agenda con al menos 5 días hábiles de anticipación respecto a la UAT formal.</p>
+    <p><strong>Restricciones:</strong> Esta sesión no reemplaza la UAT formal (1.4.5.5); es un filtro previo. Debe realizarse en entorno de pruebas, no en producción.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
     <h5>PAQUETE DE TRABAJO 1.4.5.4</h5>
     <p><strong>Nombre:</strong> UAT con Personal de Ventas ejecutada y aprobada</p>
     <p><strong>Código EDT:</strong> 1.4.5.4</p>
@@ -981,7 +1006,7 @@ import Layout from '../layouts/Layout.astro';
     <p><strong>Nombre:</strong> Manuales de usuario por rol elaborados</p>
     <p><strong>Código EDT:</strong> 1.5.1.2</p>
     <p><strong>Fase / Entregable padre:</strong> 1.5.1 Documentación de soporte / 1.5 Fase 3 Optimizar</p>
-    <p><strong>Descripción del trabajo:</strong> Redacción de manuales visuales y simples de uso del sistema, uno por cada rol de usuario: Manual de Ventas (cómo registrar una venta, consultar stock y confirmar despacho desde el celular), Manual de Producción (cómo registrar el consumo de insumos en máximo 3 pasos), y Manual de Gerencia (cómo visualizar reportes, interpretar KPIs y exportar el reporte de ganancia neta). Los manuales deben ser accesibles desde el celular en formato PDF o equivalente, sin necesidad de impresión. Esta actividad inicia en paralelo (relación II) con la etapa final de UAT de la Fase 2, el 29/01/2027.</p>
+    <p><strong>Descripción del trabajo:</strong> Esta actividad inicia en paralelo (relación Inicio-Inicio) con la etapa final de UAT de la Fase 2, el 29/01/2027. Depende de 1.5.1.1 (guía de auto-recuperación) que es su predecesora directa.<br/><br/>Redacción de manuales visuales y simples de uso del sistema, uno por cada rol de usuario: Manual de Ventas (cómo registrar una venta, consultar stock y confirmar despacho desde el celular), Manual de Producción (cómo registrar el consumo de insumos en máximo 3 pasos), y Manual de Gerencia (cómo visualizar reportes, interpretar KPIs y exportar el reporte de ganancia neta). Los manuales deben ser accesibles desde el celular en formato PDF o equivalente, sin necesidad de impresión. Esta actividad inicia en paralelo (relación II) con la etapa final de UAT de la Fase 2, el 29/01/2027.</p>
     <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
     <p><strong>Criterio de aceptación:</strong> Un usuario nuevo que nunca usó Odoo debe poder completar la tarea principal de su rol siguiendo el manual, sin ayuda adicional.</p>
     <p><strong>Supuestos:</strong> Los módulos de Odoo están estables y sin cambios pendientes antes de redactar los manuales.</p>
@@ -994,7 +1019,7 @@ import Layout from '../layouts/Layout.astro';
     <p><strong>Nombre:</strong> Guía de auto-recuperación ante incidencias básicas elaborada</p>
     <p><strong>Código EDT:</strong> 1.5.1.1</p>
     <p><strong>Fase / Entregable padre:</strong> 1.5.1 Documentación de soporte / 1.5 Fase 3 Optimizar</p>
-    <p><strong>Descripción del trabajo:</strong> Redacción de una guía práctica que permite a Natalie resolver las incidencias más frecuentes de Odoo sin depender del equipo consultor: qué hacer si el sistema no carga, cómo recuperar una sesión cerrada, cómo verificar si un registro se guardó correctamente, y qué hacer ante una desincronización de datos. Esta guía es la respuesta formal a la restricción de que Roma Bag's no tiene área de TI y el equipo consultor no estará disponible permanentemente. Esta actividad inicia en paralelo (relación II) con la etapa final de UAT de la Fase 2, el 29/01/2027. Es el predecesor de 1.5.1.2.</p>
+    <p><strong>Descripción del trabajo:</strong> Esta actividad inicia en paralelo (relación Inicio-Inicio) con la etapa final de UAT de la Fase 2, el 29/01/2027, sin esperar el cierre del Gate 2. Es el primer entregable de la Fase 3 y predecesor directo de 1.5.1.2.<br/><br/>Redacción de una guía práctica que permite a Natalie resolver las incidencias más frecuentes de Odoo sin depender del equipo consultor: qué hacer si el sistema no carga, cómo recuperar una sesión cerrada, cómo verificar si un registro se guardó correctamente, y qué hacer ante una desincronización de datos. Esta guía es la respuesta formal a la restricción de que Roma Bag's no tiene área de TI y el equipo consultor no estará disponible permanentemente. Esta actividad inicia en paralelo (relación II) con la etapa final de UAT de la Fase 2, el 29/01/2027. Es el predecesor de 1.5.1.2.</p>
     <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
     <p><strong>Criterio de aceptación:</strong> Natalie puede resolver la incidencia simulada del CP-06 usando solo la guía, sin contactar al equipo consultor.</p>
     <p><strong>Supuestos:</strong> Las incidencias incluidas en la guía son las identificadas durante las sesiones UAT como las más probables en el uso real.</p>
@@ -1130,32 +1155,6 @@ import Layout from '../layouts/Layout.astro';
     <p><strong>Supuestos:</strong> Los criterios de aceptación del paquete 1.5.4.3 están todos verificados y cumplidos antes de la reunión de cierre.</p>
     <p><strong>Restricciones:</strong> Esta es la única firma que cierra formalmente el proyecto. Sin ella, el proyecto no puede considerarse cerrado.</p>
     <p><strong>Duración estimada:</strong> 0 días (hito de duración cero — 06/04/2027)</p>
-  </div>
-
-  <div class="dic-item">
-    <h5>PAQUETE DE TRABAJO 1.1.5</h5>
-    <p><strong>Nombre:</strong> Acta de Cierre Formal firmada</p>
-    <p><strong>Código EDT:</strong> 1.5.5.6</p>
-    <p><strong>Fase / Entregable padre:</strong> 1.5.5 Cierre del proyecto / 1.5 Fase 3 Optimizar</p>
-    <p><strong>Descripción del trabajo:</strong> Redacción y firma del acta que cierra oficialmente el proyecto después del Gate 3 (06/04/2027). Verifica el cumplimiento de todos los criterios de aceptación. Libera formalmente al equipo consultor UNTELS de sus responsabilidades. Fecha: 06/04/2027 → 08/04/2027.</p>
-    <p><strong>Responsable:</strong> Líder del Proyecto</p>
-    <p><strong>Criterio de aceptación:</strong> Firmada por Natalie (Gerencia General / Sponsor) después de que Gate 3 esté aprobado. Es el ÚLTIMO entregable del proyecto.</p>
-    <p><strong>Supuestos:</strong> Todos los criterios de aceptación del Gate 3 están verificados.</p>
-    <p><strong>Restricciones:</strong> No puede firmarse antes del Gate 3. Ninguna actividad del proyecto puede quedar abierta al momento de la firma.</p>
-    <p><strong>Duración estimada:</strong> 2 días hábiles (06/04 → 08/04/2027)</p>
-  </div>
-
-  <div class="dic-item">
-    <h5>PAQUETE DE TRABAJO 1.4.5.3</h5>
-    <p><strong>Nombre:</strong> Pre-prueba informal con Socio de Producción ejecutada</p>
-    <p><strong>Código EDT:</strong> 1.4.5.3</p>
-    <p><strong>Fase / Entregable padre:</strong> 1.4.5 Calidad y pruebas UAT / 1.4 Fase 2 Integrar</p>
-    <p><strong>Descripción del trabajo:</strong> Sesión informal previa a la UAT formal con el Socio de Producción, realizada en entorno de pruebas separado del productivo. Permite detectar y corregir errores críticos antes de la UAT formal (1.4.5.5), eliminando el riesgo de que el Socio vea un fallo durante la sesión oficial y rechace el sistema. Esta actividad existe específicamente porque el Socio de Producción es el Influyente Bloqueador identificado en el análisis de interesados (Cap. 01 §1.4.1): una sola falla en su presencia puede llevar al veto del sistema.</p>
-    <p><strong>Responsable:</strong> Analista de Calidad y Líder del Proyecto / Equipo Consultor UNTELS</p>
-    <p><strong>Criterio de aceptación:</strong> El Socio completa el flujo principal de registro de lote sin errores bloqueantes. Las incidencias encontradas se documentan y corrigen antes de la UAT formal.</p>
-    <p><strong>Supuestos:</strong> La sesión se agenda con al menos 5 días hábiles de anticipación respecto a la UAT formal.</p>
-    <p><strong>Restricciones:</strong> Esta sesión no reemplaza la UAT formal (1.4.5.5); es un filtro previo. Debe realizarse en entorno de pruebas, no en producción.</p>
-    <p><strong>Duración estimada:</strong> 1 día hábil</p>
   </div>
   </div>
 </section>
