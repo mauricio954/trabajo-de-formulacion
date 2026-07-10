@@ -710,12 +710,10 @@ html { scroll-behavior: smooth; }
 
 /* ── EDT / WBS (#wbs-tree) — scroll horizontal en todos los tamaños ── */
 #wbs-tree {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   width: 100%;
+  overflow-x: hidden;
 }
 #wbs-tree .edt-wrap {
-  min-width: min-content;
   width: 100%;
 }
 #wbs-tree::after {
