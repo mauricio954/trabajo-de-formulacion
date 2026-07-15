@@ -31,10 +31,49 @@ import Layout from '../layouts/Layout.astro';
     .sec-header { display: flex; align-items: center; gap: .75rem; margin: 2.2rem 0 1.2rem; }
     .sec-header .sec-num { font-size: 2rem; font-weight: 800; color: #dbeafe; line-height: 1; }
     .sec-header h2 { margin: 0; font-size: 1.4rem; color: #1e3a8a; }
-    .wip-banner { background: linear-gradient(135deg,#fefce8,#fef9c3); border: 2px dashed #ca8a04; border-radius: 20px; padding: 2rem 2rem; text-align: center; margin: 2rem 0; }
-    .wip-banner .wip-icon { font-size: 2.5rem; margin-bottom: .75rem; }
-    .wip-banner h3 { color: #92400e; margin: 0 0 .5rem; font-size: 1.2rem; }
-    .wip-banner p { color: #78350f; margin: 0; font-size: .93rem; line-height: 1.7; }
+    .tr { overflow-x: auto; margin: 1rem 0; }
+    .tr table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .tr th { background: #eff6ff; color: #1e3a8a; padding: .6rem .75rem; text-align: left; font-size: .8rem; border-bottom: 2px solid #dbeafe; white-space: nowrap; }
+    .tr td { padding: .5rem .75rem; border-bottom: 1px solid #f1f5f9; color: #334155; }
+    .tr tr:hover td { background: #f8fbff; }
+    .tr .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .tr .code { font-weight: 700; color: #2563eb; white-space: nowrap; }
+    .tr .subtotal td { background: #eff6ff; font-weight: 700; color: #1e3a8a; border-top: 2px solid #dbeafe; }
+    .tr .grandtotal td { background: linear-gradient(135deg,#1e3a8a,#1d4ed8); color: #fff; font-weight: 800; font-size: .92rem; }
+    .budget-hierarchy { background: #fff; border: 2px solid #dbeafe; border-radius: 20px; padding: 1.5rem; margin: 1.2rem 0; }
+    .bh-row { display: flex; justify-content: space-between; align-items: center; padding: .65rem .8rem; border-radius: 12px; margin-bottom: .4rem; }
+    .bh-row .bh-label { font-size: .92rem; color: #334155; }
+    .bh-row .bh-amount { font-size: 1rem; font-weight: 700; color: #1e3a8a; font-variant-numeric: tabular-nums; }
+    .bh-indent { margin-left: 1.5rem; }
+    .bh-subtotal { background: #eff6ff; border: 1px solid #dbeafe; }
+    .bh-subtotal .bh-label { font-weight: 700; color: #1e3a8a; }
+    .bh-bac { background: linear-gradient(135deg,#dcfce7,#d1fae5); border: 2px solid #22c55e; }
+    .bh-bac .bh-label { font-weight: 800; color: #15803d; }
+    .bh-bac .bh-amount { color: #15803d; font-size: 1.1rem; }
+    .bh-total { background: linear-gradient(135deg,#1e3a8a,#1d4ed8); border: none; padding: .85rem 1rem; }
+    .bh-total .bh-label { font-weight: 800; color: #fff; font-size: 1rem; }
+    .bh-total .bh-amount { color: #fff; font-size: 1.15rem; }
+    .dl-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.2rem; border-radius: 14px; background: linear-gradient(135deg,#1d4ed8,#2563eb); color: #fff; text-decoration: none; font-weight: 700; font-size: .88rem; margin-top: .75rem; transition: transform .18s ease; box-shadow: 0 8px 20px rgba(30,64,175,.25); }
+    .dl-btn:hover { transform: translateY(-2px); }
+    .risk-grid { display: grid; gap: .85rem; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); margin: 1rem 0; }
+    .risk-item { background: #fff; border: 1px solid #fde68a; border-radius: 16px; padding: 1rem 1.1rem; box-shadow: 0 6px 16px rgba(250,204,21,.12); }
+    .risk-item .ri-id { font-weight: 800; color: #92400e; font-size: .82rem; margin-bottom: .35rem; }
+    .risk-item .ri-desc { font-size: .88rem; color: #475569; line-height: 1.6; }
+    .pago-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); margin: 1rem 0; }
+    .pago-card { border-radius: 18px; padding: 1.2rem; text-align: center; }
+    .pago-card strong { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
+    .pago-card .pago-val { font-size: 1.2rem; font-weight: 800; display: block; margin-bottom: .3rem; }
+    .pago-card .pago-note { font-size: .82rem; color: #64748b; line-height: 1.5; }
+    .pago-1 { background: #f0f9ff; border: 2px solid #0ea5e9; }
+    .pago-1 strong { color: #0369a1; }
+    .pago-1 .pago-val { color: #0369a1; }
+    .pago-2 { background: #f0fdf4; border: 2px solid #22c55e; }
+    .pago-2 strong { color: #15803d; }
+    .pago-2 .pago-val { color: #15803d; }
+    .pago-3 { background: #fdf4ff; border: 2px solid #a855f7; }
+    .pago-3 strong { color: #7e22ce; }
+    .pago-3 .pago-val { color: #7e22ce; }
+    .analogy-tag { display: inline-block; font-size: .68rem; background: #fef3c7; color: #92400e; border-radius: 6px; padding: .15rem .45rem; font-weight: 600; vertical-align: middle; margin-left: .3rem; }
   </style>
 
   <section class="sec" id="cap8">
@@ -44,7 +83,7 @@ import Layout from '../layouts/Layout.astro';
       <h2>GESTIÓN ECONÓMICA DEL PROYECTO</h2>
       <div class="meta-grid">
         <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
-        <div class="meta-item"><strong>Versión</strong><span>1.0 (en elaboración)</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>2.0 (julio 2026)</span></div>
         <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
         <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
         <div class="meta-item"><strong>Marco de referencia</strong><span>PMBOK 8 — Dominio de Desempeño de las Finanzas</span></div>
@@ -66,7 +105,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="ih-grid">
         <div class="ih-card">
           <strong>Propósito del Capítulo</strong>
-          <p>Documenta la estimación de costos, el presupuesto por fases y la línea base de costos autorizada del proyecto. Permite evaluar si la inversión requerida es comercialmente viable para Roma Bag's y comparar el gasto real contra lo planificado durante la ejecución.</p>
+          <p>Documenta la estimación de costos bottom-up, el presupuesto desglosado por fases y la línea base de costos autorizada. Permite evaluar si la inversión requerida es comercialmente viable para Roma Bag's y comparar el gasto real contra lo planificado durante la ejecución.</p>
         </div>
         <div class="ih-card">
           <strong>Proceso PMBOK 8</strong>
@@ -74,71 +113,451 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="ih-card">
           <strong>Técnica de Estimación</strong>
-          <p>Estimación Ascendente (Bottom-Up): cada paquete de trabajo de la EDT se valorizó individualmente según horas estimadas y tarifa del rol asignado, agregando luego por fase y por proyecto.</p>
+          <p>Estimación Ascendente (Bottom-Up): cada uno de los 74 paquetes de trabajo de la EDT se valorizó individualmente según horas estimadas y tarifa del rol asignado, agregando luego por fase y por proyecto.</p>
         </div>
       </div>
     </div>
 
-    <!-- BANNER EN ELABORACIÓN -->
-    <div class="wip-banner">
-      <div class="wip-icon">🚧</div>
-      <h3>Capítulo en elaboración</h3>
-      <p>Este capítulo está siendo desarrollado por el equipo consultor UNTELS. Aquí se documentará la estimación detallada de costos por paquete de trabajo, el presupuesto distribuido por fases, la línea base de costos autorizada y el análisis de viabilidad financiera para Roma Bag's.</p>
-    </div>
-
-    <!-- SECCIÓN 8.1 PLACEHOLDER -->
+    <!-- ════════════════════════════════════════════════════════════
+         8.1 PRESUPUESTO DEL PROYECTO
+    ════════════════════════════════════════════════════════════ -->
     <div class="sec-header" id="presupuesto">
       <span class="sec-num">8.1</span>
       <h2>Presupuesto del Proyecto</h2>
     </div>
     <div class="section-card">
-      <h3>Estructura de Costos por Fase</h3>
-      <p>El presupuesto total del proyecto se distribuye en las tres fases de la Transformación Digital, siguiendo la estructura de la EDT aprobada (Capítulo 06). Cada fase tiene su propio presupuesto aprobado como condición del gate que la habilita.</p>
+      <h3>Estructura de Costos por Fase / Entregable</h3>
+      <p>El presupuesto total del proyecto se distribuye en las cinco fases/entregables de la EDT aprobada (Capítulo 06), calculado de abajo hacia arriba (bottom-up) desde las 74 actividades hoja. Cada fase tiene su presupuesto aprobado como condición del gate que la habilita. Los montos incluyen recursos humanos y materiales/servicios vinculados a cada actividad.</p>
+
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Fase / Entregable</th>
+              <th>Actividades</th>
+              <th class="num">Horas</th>
+              <th class="num">Costo RRHH (S/.)</th>
+              <th class="num">Materiales (S/.)</th>
+              <th class="num">Costo Total (S/.)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="code">1.1</td>
+              <td>Gestión del Proyecto</td>
+              <td>4</td>
+              <td class="num">236</td>
+              <td class="num">7,080.00</td>
+              <td class="num">0.00</td>
+              <td class="num">7,080.00</td>
+            </tr>
+            <tr>
+              <td class="code">1.2</td>
+              <td>Diagnóstico y Requisitos (AS-IS)</td>
+              <td>8</td>
+              <td class="num">120</td>
+              <td class="num">3,112.00</td>
+              <td class="num">60.00</td>
+              <td class="num">3,172.00</td>
+            </tr>
+            <tr>
+              <td class="code">1.3</td>
+              <td>Fase 1 — Cimentar</td>
+              <td>20</td>
+              <td class="num">320</td>
+              <td class="num">8,480.00</td>
+              <td class="num">195.00</td>
+              <td class="num">8,675.00</td>
+            </tr>
+            <tr>
+              <td class="code">1.4</td>
+              <td>Fase 2 — Integrar</td>
+              <td>26</td>
+              <td class="num">288</td>
+              <td class="num">7,336.00</td>
+              <td class="num">260.00</td>
+              <td class="num">7,596.00</td>
+            </tr>
+            <tr>
+              <td class="code">1.5</td>
+              <td>Fase 3 — Optimizar</td>
+              <td>16</td>
+              <td class="num">208</td>
+              <td class="num">5,796.00</td>
+              <td class="num">170.00</td>
+              <td class="num">5,966.00</td>
+            </tr>
+            <tr class="subtotal">
+              <td></td>
+              <td>Subtotal Costos Directos</td>
+              <td>74</td>
+              <td class="num">1,172</td>
+              <td class="num">31,804.00</td>
+              <td class="num">685.00</td>
+              <td class="num">32,489.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <div class="note-grid">
-        <div class="note-card"><strong>Fase 1 — Cimentar</strong>Estimación de costos de infraestructura de red, base de datos, gobierno de datos y gestión del cambio. <em>(Contenido pendiente de desarrollo)</em></div>
-        <div class="note-card"><strong>Fase 2 — Integrar</strong>Estimación de costos de servidor, instalación Odoo Community, migración de datos, configuración del flujo operativo y pruebas UAT. <em>(Contenido pendiente de desarrollo)</em></div>
-        <div class="note-card"><strong>Fase 3 — Optimizar</strong>Estimación de costos de analítica gerencial, capacitación por rol, despliegue final y cierre formal. <em>(Contenido pendiente de desarrollo)</em></div>
+        <div class="note-card"><strong>Fase 1 — Cimentar (S/. 8,675)</strong>Base de datos centralizada, infraestructura de red, gobierno de datos, adopción digital y monitoreo post-Gate 1. Incluye cable de red/repetidor (S/. 120), impresión de SOPs (S/. 30) y política de respaldo (S/. 15).</div>
+        <div class="note-card"><strong>Fase 2 — Integrar (S/. 7,596)</strong>Servidor Odoo, instalación, migración, configuración del flujo operativo, UAT y certificación. Incluye VPS/hosting 5 meses (S/. 200) y dominio+SSL (S/. 60).</div>
+        <div class="note-card"><strong>Fase 3 — Optimizar (S/. 5,966)</strong>Analítica gerencial, capacitación por rol, despliegue final, monitoreo y cierre. Incluye materiales de capacitación (S/. 95), manuales impresos (S/. 45) y pasajes despliegue (S/. 30).</div>
       </div>
     </div>
 
-    <!-- SECCIÓN 8.2 PLACEHOLDER -->
+    <!-- ════════════════════════════════════════════════════════════
+         8.2 ESTIMACIÓN DE COSTOS
+    ════════════════════════════════════════════════════════════ -->
     <div class="sec-header" id="estimacion">
       <span class="sec-num">8.2</span>
       <h2>Estimación de Costos</h2>
     </div>
     <div class="section-card">
-      <h3>Categorías de Costo</h3>
-      <p>La estimación considera todas las categorías de recursos que se cargarán al proyecto, conforme al proceso Estimar los Costos del PMBOK 8.</p>
-      <div class="note-grid">
-        <div class="note-card"><strong>Recursos Humanos</strong>Honorarios del equipo consultor UNTELS valorizado por horas estimadas en el cronograma (1,699 horas totales) y tarifa por rol. <em>(Tabla detallada pendiente)</em></div>
-        <div class="note-card"><strong>Infraestructura Tecnológica</strong>Servidor VPS, solución de red Wi-Fi, dominio y SSL. <em>(Tabla detallada pendiente)</em></div>
-        <div class="note-card"><strong>Licencias de Software</strong>Odoo Community: S/. 0 (open-source). Herramientas de gestión del equipo. <em>(Detalle pendiente)</em></div>
-        <div class="note-card"><strong>Capacitación y Materiales</strong>Materiales de los talleres de capacitación por rol (Fase 3). <em>(Detalle pendiente)</em></div>
-        <div class="note-card"><strong>Reserva de Contingencia</strong>10% del subtotal base para riesgos conocidos identificados en el Registro de Riesgos. <em>(Cálculo pendiente)</em></div>
-        <div class="note-card"><strong>Reserva de Gestión</strong>Provisión adicional para riesgos no identificados (unknown unknowns), a discreción del Líder del Proyecto. <em>(Cálculo pendiente)</em></div>
+      <h3>Metodología: Estimación Ascendente (Bottom-Up)</h3>
+      <p>Cada uno de los 74 paquetes de trabajo de la EDT/WBS (Capítulo 06) fue valorizado individualmente siguiendo el proceso <strong>Estimar los Costos</strong> del PMBOK 8. El procedimiento aplicado fue:</p>
+      <ol>
+        <li><strong>Identificar la actividad hoja</strong> — los 74 paquetes con código de nivel 4 (ej. 1.3.4.1) más los paquetes recurrentes de gestión (1.1.3, 1.1.4).</li>
+        <li><strong>Tomar la duración estimada</strong> — del Diccionario EDT (Cap. 06, sección 6.3). Las actividades sin ficha en el diccionario se estimaron por analogía con actividades hermanas del mismo tipo y complejidad dentro de la misma fase, marcándose explícitamente como <span class="analogy-tag">estimado por analogía</span>.</li>
+        <li><strong>Convertir a horas</strong> — jornada de 8 horas/día, conforme al Plan de Gestión del Cronograma (Cap. 07).</li>
+        <li><strong>Aplicar la tarifa del rol asignado</strong> — según la tabla de tarifas definida abajo.</li>
+        <li><strong>Sumar materiales y servicios</strong> — vinculados al código EDT específico de cada actividad (no como genéricos).</li>
+      </ol>
+
+      <h3>Tabla de Tarifas por Rol</h3>
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>Rol</th>
+              <th class="num">Tarifa (S/. / hora)</th>
+              <th>Actividades asignadas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Líder del Proyecto</strong></td>
+              <td class="num">30.00</td>
+              <td>Gestión, gates, firma de documentos, capacitaciones, monitoreo, cierre</td>
+            </tr>
+            <tr>
+              <td><strong>Analista de Sistemas</strong></td>
+              <td class="num">25.00</td>
+              <td>Modelo de datos, base centralizada, configuración Odoo, migración, reportes</td>
+            </tr>
+            <tr>
+              <td><strong>Analista de Calidad</strong></td>
+              <td class="num">25.00</td>
+              <td>Casos de prueba UAT, pre-pruebas, ejecución UAT, certificación, SOPs *</td>
+            </tr>
+            <tr>
+              <td><strong>Analista de Infraestructura</strong></td>
+              <td class="num">27.00</td>
+              <td>Red Wi-Fi, servidor, instalación Odoo, conectividad, despliegue</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note-card" style="margin-top:1rem;">
+        <strong>* Nota sobre el Analista de Procesos</strong>
+        El Diccionario EDT (Cap. 06) usa la etiqueta "Analista de Procesos" para el paquete 1.3.4.1 (SOPs del flujo venta-stock-despacho). En el presente presupuesto, este perfil se consolida con el <strong>Analista de Calidad</strong> (misma tarifa de S/. 25.00/hora), dado que ambos roles cubren gobierno de procesos y calidad dentro del equipo consultor UNTELS.
+      </div>
+
+      <h3>Extracto de la Matriz Actividad × Recurso</h3>
+      <p>Se muestra un extracto representativo de la matriz completa (3–4 actividades por fase). La matriz completa con las 74 actividades está disponible para descarga al final de esta sección.</p>
+
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Actividad</th>
+              <th>Rol</th>
+              <th class="num">Días</th>
+              <th class="num">Horas</th>
+              <th class="num">Tarifa</th>
+              <th class="num">RRHH (S/.)</th>
+              <th class="num">Mat. (S/.)</th>
+              <th class="num">Total (S/.)</th>
+              <th>Origen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 1.1 Gestión -->
+            <tr><td colspan="10" style="background:#eff6ff;font-weight:700;color:#1e3a8a;">1.1 Gestión del Proyecto</td></tr>
+            <tr>
+              <td class="code">1.1.1</td><td>Redactar y firmar Acta de Constitución</td><td>Líder</td>
+              <td class="num">4</td><td class="num">32</td><td class="num">30</td><td class="num">960</td><td class="num">—</td><td class="num">960</td><td>EDT Cap. 6</td>
+            </tr>
+            <tr>
+              <td class="code">1.1.3</td><td>Informes de avance semanales</td><td>Líder</td>
+              <td class="num">15</td><td class="num">120</td><td class="num">30</td><td class="num">3,600</td><td class="num">—</td><td class="num">3,600</td><td>EDT Cap. 6</td>
+            </tr>
+            <!-- 1.2 Diagnóstico -->
+            <tr><td colspan="10" style="background:#f0fdf4;font-weight:700;color:#15803d;">1.2 Diagnóstico y Requisitos</td></tr>
+            <tr>
+              <td class="code">1.2.1</td><td>Observación directa del flujo actual</td><td>Analista Sist.</td>
+              <td class="num">2</td><td class="num">16</td><td class="num">25</td><td class="num">400</td><td class="num">30</td><td class="num">430</td><td>Lista Cap. 7</td>
+            </tr>
+            <tr>
+              <td class="code">1.2.4</td><td>Auditoría de infraestructura tecnológica</td><td>Analista Infra.</td>
+              <td class="num">2</td><td class="num">16</td><td class="num">27</td><td class="num">432</td><td class="num">30</td><td class="num">462</td><td>Lista Cap. 7</td>
+            </tr>
+            <tr>
+              <td class="code">1.2.5</td><td>Redactar fichas de requisitos REQ-01 a REQ-10</td><td>Analista Sist.</td>
+              <td class="num">4</td><td class="num">32</td><td class="num">25</td><td class="num">800</td><td class="num">—</td><td class="num">800</td><td>Lista Cap. 7</td>
+            </tr>
+            <!-- 1.3 Fase 1 -->
+            <tr><td colspan="10" style="background:#fff7ed;font-weight:700;color:#ea580c;">1.3 Fase 1 — Cimentar</td></tr>
+            <tr>
+              <td class="code">1.3.1.1</td><td>Diseñar el modelo de datos</td><td>Analista Sist.</td>
+              <td class="num">3</td><td class="num">24</td><td class="num">25</td><td class="num">600</td><td class="num">—</td><td class="num">600</td><td>EDT Cap. 6</td>
+            </tr>
+            <tr>
+              <td class="code">1.3.2.3</td><td>Implementar solución de red</td><td>Analista Infra.</td>
+              <td class="num">2</td><td class="num">16</td><td class="num">27</td><td class="num">432</td><td class="num">120</td><td class="num">552</td><td>EDT Cap. 6</td>
+            </tr>
+            <tr>
+              <td class="code">1.3.4.1</td><td>Redactar SOPs flujo venta-stock-despacho</td><td>Analista Cal.</td>
+              <td class="num">3</td><td class="num">24</td><td class="num">25</td><td class="num">600</td><td class="num">30</td><td class="num">630</td><td>EDT Cap. 6</td>
+            </tr>
+            <tr>
+              <td class="code">1.3.5.1</td><td>Período de adopción real</td><td>Analista Sist.</td>
+              <td class="num">5</td><td class="num">40</td><td class="num">25</td><td class="num">1,000</td><td class="num">—</td><td class="num">1,000</td><td><span class="analogy-tag">analogía</span></td>
+            </tr>
+            <!-- 1.4 Fase 2 -->
+            <tr><td colspan="10" style="background:#faf5ff;font-weight:700;color:#7c4dff;">1.4 Fase 2 — Integrar</td></tr>
+            <tr>
+              <td class="code">1.4.1.1</td><td>Seleccionar servidor de despliegue</td><td>Analista Infra.</td>
+              <td class="num">1</td><td class="num">8</td><td class="num">27</td><td class="num">216</td><td class="num">200</td><td class="num">416</td><td>EDT Cap. 6</td>
+            </tr>
+            <tr>
+              <td class="code">1.4.4.6</td><td>Flujo mandatorio Venta-Stock-Despacho</td><td>Analista Sist.</td>
+              <td class="num">3</td><td class="num">24</td><td class="num">25</td><td class="num">600</td><td class="num">—</td><td class="num">600</td><td>EDT Cap. 6</td>
+            </tr>
+            <tr>
+              <td class="code">1.4.5.3</td><td>Pre-prueba con Socio de Producción</td><td>Analista Cal.</td>
+              <td class="num">1</td><td class="num">8</td><td class="num">25</td><td class="num">200</td><td class="num">—</td><td class="num">200</td><td>EDT Cap. 6</td>
+            </tr>
+            <tr>
+              <td class="code">1.4.5.8</td><td>Certificado de Cero Errores Críticos</td><td>Analista Cal.</td>
+              <td class="num">1</td><td class="num">8</td><td class="num">25</td><td class="num">200</td><td class="num">—</td><td class="num">200</td><td>EDT Cap. 6</td>
+            </tr>
+            <!-- 1.5 Fase 3 -->
+            <tr><td colspan="10" style="background:#ecfeff;font-weight:700;color:#00a9b7;">1.5 Fase 3 — Optimizar</td></tr>
+            <tr>
+              <td class="code">1.5.2.1</td><td>Panel de reportes de rentabilidad y KPIs</td><td>Analista Sist.</td>
+              <td class="num">3</td><td class="num">24</td><td class="num">25</td><td class="num">600</td><td class="num">—</td><td class="num">600</td><td>EDT Cap. 6</td>
+            </tr>
+            <tr>
+              <td class="code">1.5.3.1</td><td>Capacitación Personal de Ventas</td><td>Líder</td>
+              <td class="num">0.5</td><td class="num">4</td><td class="num">30</td><td class="num">120</td><td class="num">40</td><td class="num">160</td><td>EDT Cap. 6</td>
+            </tr>
+            <tr>
+              <td class="code">1.5.4.2</td><td>Monitoreo operaciones reales 1ª semana</td><td>Líder</td>
+              <td class="num">5</td><td class="num">40</td><td class="num">30</td><td class="num">1,200</td><td class="num">—</td><td class="num">1,200</td><td>EDT Cap. 6</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <a href="/matriz_costos.csv" download class="dl-btn">📥 Descargar matriz completa (74 actividades) — CSV</a>
+
+      <h3 style="margin-top:2rem;">Materiales, Servicios y Logística vinculados por código EDT</h3>
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>Código EDT</th>
+              <th>Concepto</th>
+              <th>Fase</th>
+              <th class="num">Costo (S/.)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="code">1.2.1</td><td>Pasajes visita de campo — observación directa (2 personas)</td><td>Diagnóstico</td><td class="num">30.00</td></tr>
+            <tr><td class="code">1.2.4</td><td>Pasajes visita de campo — auditoría infraestructura (2 personas)</td><td>Diagnóstico</td><td class="num">30.00</td></tr>
+            <tr><td class="code">1.3.2.1</td><td>Pasajes visita de campo — diagnóstico Wi-Fi (2 personas)</td><td>Fase 1</td><td class="num">30.00</td></tr>
+            <tr><td class="code">1.3.2.3</td><td>Cable de red / repetidor Wi-Fi para eliminar zonas muertas</td><td>Fase 1</td><td class="num">120.00</td></tr>
+            <tr><td class="code">1.3.4.1</td><td>Impresión de SOPs del flujo venta-stock-despacho (2 juegos)</td><td>Fase 1</td><td class="num">30.00</td></tr>
+            <tr><td class="code">1.3.4.3</td><td>Impresión de política de respaldo y seguridad</td><td>Fase 1</td><td class="num">15.00</td></tr>
+            <tr><td class="code">1.4.1.1</td><td>VPS / hosting para Odoo Community (5 meses: nov 2026 – abr 2027)</td><td>Fase 2</td><td class="num">200.00</td></tr>
+            <tr><td class="code">1.4.1.2</td><td>Dominio web + certificado SSL</td><td>Fase 2</td><td class="num">60.00</td></tr>
+            <tr><td class="code">1.5.1.1</td><td>Manuales de usuario impresos por rol (3 juegos)</td><td>Fase 3</td><td class="num">45.00</td></tr>
+            <tr><td class="code">1.5.3.1</td><td>Materiales de capacitación — Personal de Ventas (fichas, guías)</td><td>Fase 3</td><td class="num">40.00</td></tr>
+            <tr><td class="code">1.5.3.2</td><td>Materiales de capacitación — Producción y operarios</td><td>Fase 3</td><td class="num">30.00</td></tr>
+            <tr><td class="code">1.5.3.3</td><td>Materiales de capacitación — Gerencia Natalie</td><td>Fase 3</td><td class="num">25.00</td></tr>
+            <tr><td class="code">1.5.4.1</td><td>Pasajes visita despliegue final (2 personas)</td><td>Fase 3</td><td class="num">30.00</td></tr>
+            <tr class="subtotal">
+              <td></td><td colspan="2"><strong>Total Materiales, Servicios y Logística</strong></td><td class="num">685.00</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <!-- SECCIÓN 8.3 PLACEHOLDER -->
+    <!-- ════════════════════════════════════════════════════════════
+         8.3 LÍNEA BASE DE COSTOS
+    ════════════════════════════════════════════════════════════ -->
     <div class="sec-header" id="lineabase">
       <span class="sec-num">8.3</span>
       <h2>Línea Base de Costos</h2>
     </div>
     <div class="section-card">
-      <h3>Presupuesto por Fases de Tiempo (Curva S)</h3>
-      <p>La línea base de costos es la versión aprobada del presupuesto por fases de tiempo, sin incluir las reservas de gestión. Se usa como base de comparación con los costos reales durante el monitoreo y control financiero del proyecto (PMBOK 8, Dominio de Finanzas).</p>
-      <p><em>La tabla de distribución de costos por fase y la curva S se desarrollarán en esta sección.</em></p>
+      <h3>Jerarquía del Presupuesto (PMBOK 8)</h3>
+      <p>La jerarquía correcta del presupuesto, conforme a la corrección del docente en la Semana 15, es la siguiente. El <strong>BAC (Budget At Completion)</strong> es la Línea Base de Costos autorizada y <strong>no incluye</strong> la Reserva de Gestión. Este es un error frecuente que la versión anterior de este capítulo cometía al llamar "BAC" al presupuesto total con la reserva de gestión ya incluida.</p>
+
+      <div class="budget-hierarchy">
+        <div class="bh-row">
+          <span class="bh-label">Subtotal RRHH (74 actividades × tarifa por rol)</span>
+          <span class="bh-amount">S/. 31,804.00</span>
+        </div>
+        <div class="bh-row">
+          <span class="bh-label">Subtotal Materiales, Servicios y Logística</span>
+          <span class="bh-amount">S/. 685.00</span>
+        </div>
+        <div class="bh-row bh-subtotal">
+          <span class="bh-label">= Subtotal Costos Directos</span>
+          <span class="bh-amount">S/. 32,489.00</span>
+        </div>
+        <div class="bh-row bh-indent">
+          <span class="bh-label">+ Reserva de Contingencia (8% sobre Costos Directos)</span>
+          <span class="bh-amount">S/. 2,599.12</span>
+        </div>
+        <div class="bh-row bh-bac">
+          <span class="bh-label">= LÍNEA BASE DE COSTOS = BAC (Budget At Completion)</span>
+          <span class="bh-amount">S/. 35,088.12</span>
+        </div>
+        <div class="bh-row bh-indent">
+          <span class="bh-label">+ Gastos de representación del Líder del Proyecto</span>
+          <span class="bh-amount">S/. 450.00</span>
+        </div>
+        <div class="bh-row bh-indent">
+          <span class="bh-label">+ Reserva de Gestión (5% sobre BAC — riesgos no identificados)</span>
+          <span class="bh-amount">S/. 1,754.41</span>
+        </div>
+        <div class="bh-row bh-total">
+          <span class="bh-label">= PRESUPUESTO TOTAL DEL PROYECTO</span>
+          <span class="bh-amount">S/. 37,292.53</span>
+        </div>
+      </div>
+
+      <h3>Reserva de Contingencia: justificación contra riesgos identificados</h3>
+      <p>La Reserva de Contingencia (8% = S/. 2,599.12) es gestionable libremente por el Líder del Proyecto sin aprobación externa. Se justifica contra los 4 riesgos identificados en el Registro de Riesgos del Capítulo 07 (Entrada 5):</p>
+
+      <div class="risk-grid">
+        <div class="risk-item">
+          <div class="ri-id">R1 — Disponibilidad de Natalie</div>
+          <div class="ri-desc">Probabilidad alta / Impacto alto. Si Natalie no puede asistir a un gate en la fecha prevista, el equipo espera hasta 48h. El costo de espera (horas-hombre del equipo en stand-by) se cubre con esta reserva.</div>
+        </div>
+        <div class="risk-item">
+          <div class="ri-id">R2 — Rechazo del Socio en UAT</div>
+          <div class="ri-desc">Probabilidad media / Impacto muy alto. Si la pre-prueba informal (1.4.5.3) revela errores críticos, se requiere un ciclo adicional de corrección y re-prueba. El costo del retrabajo se cubre con esta reserva.</div>
+        </div>
+        <div class="risk-item">
+          <div class="ri-id">R3 — Complejidad de migración de datos</div>
+          <div class="ri-desc">Probabilidad media / Impacto alto. Si la migración de datos de Fase 1 a Odoo (1.4.3.3) requiere transformaciones no previstas, se asignan horas adicionales del Analista de Sistemas desde esta reserva.</div>
+        </div>
+        <div class="risk-item">
+          <div class="ri-id">R4 — Feriados en período crítico</div>
+          <div class="ri-desc">8 feriados entre noviembre 2026 y enero 2027 en período crítico del cronograma. Si una actividad de la ruta crítica cruza un feriado no bloqueado, el costo de reprogramación se cubre con esta reserva.</div>
+        </div>
+      </div>
+
+      <h3>Reserva de Gestión</h3>
+      <p>La Reserva de Gestión (S/. 2,204.41) cubre riesgos <strong>no identificados</strong> ("lo desconocido de lo desconocido") y requiere aprobación del control integrado de cambios para su uso. Incluye explícitamente:</p>
+      <ul>
+        <li><strong>Gastos de representación del Líder del Proyecto (S/. 450.00):</strong> 3 reuniones de gate con la Gerencia (coffee breaks, materiales de presentación, movilidad) + sesiones de capacitación. Sin este presupuesto, el Líder termina pagándolos de su bolsillo.</li>
+        <li><strong>Provisión para riesgos no identificados (5% sobre BAC = S/. 1,754.41):</strong> margen para eventos imprevistos que no figuran en el Registro de Riesgos actual.</li>
+      </ul>
+
+      <div class="note-card" style="margin-top:1rem;">
+        <strong>Nota sobre la Curva "S" y el EVM</strong>
+        La Curva "S" de distribución temporal del presupuesto y los indicadores de Valor Ganado (EVM: SV, SPI, CV, CPI) quedan fuera del alcance de esta etapa de formulación, por indicación explícita del docente. Estos instrumentos pertenecen a la fase de monitoreo y ejecución del proyecto y se activarán cuando el proyecto inicie su ejecución real en agosto de 2026.
+      </div>
     </div>
 
-    <!-- SECCIÓN 8.4 PLACEHOLDER -->
+    <!-- ════════════════════════════════════════════════════════════
+         8.4 VIABILIDAD FINANCIERA
+    ════════════════════════════════════════════════════════════ -->
     <div class="sec-header" id="viabilidad">
       <span class="sec-num">8.4</span>
       <h2>Viabilidad Financiera</h2>
     </div>
     <div class="section-card">
-      <h3>Análisis Costo-Beneficio para Roma Bag's</h3>
-      <p>Este análisis evalúa si la inversión total del proyecto se justifica frente a los beneficios cuantificables documentados en el diagnóstico: recuperación de 1 día gerencial semanal, eliminación de 9 pedidos incompletos mensuales (S/. 10–20 de sobrecosto cada uno) y acceso a información de rentabilidad en tiempo real.</p>
-      <p><em>El análisis costo-beneficio completo, el período de recuperación de la inversión y las conclusiones de viabilidad se desarrollarán en esta sección.</em></p>
+      <h3>Verificación del Piso Mínimo</h3>
+      <p>El docente estableció un piso mínimo de <strong>S/. 30,000</strong> como regla de viabilidad para un proyecto tecnológico real de ~6 meses pagando a profesionales. El Presupuesto Total del proyecto es <strong>S/. 37,292.53</strong>, superando el piso en S/. 7,292.53 (24.3% por encima), lo que confirma que las tarifas y horas estimadas son coherentes con un proyecto profesional de esta envergadura.</p>
+
+      <h3>Análisis Costo-Beneficio</h3>
+      <p>La inversión total de S/. 37,292.53 se justifica frente a los beneficios cuantificables documentados en los capítulos anteriores:</p>
+
+      <div class="tr">
+        <table>
+          <thead>
+            <tr>
+              <th>Beneficio</th>
+              <th>Situación actual (AS-IS)</th>
+              <th>Situación futura (TO-BE)</th>
+              <th class="num">Ahorro mensual estimado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Eliminación de pedidos incompletos</strong></td>
+              <td>9 pedidos incompletos/mes con sobrecosto de S/. 19 a S/. 24 por doble envío</td>
+              <td>Flujo mandatorio Venta-Stock-Despacho elimina la causa raíz</td>
+              <td class="num">S/. 171 – 216</td>
+            </tr>
+            <tr>
+              <td><strong>Recuperación de día gerencial</strong></td>
+              <td>1 día completo (sábado) dedicado al cuadre manual semanal</td>
+              <td>Cuadre automatizado en Odoo: de 1 día a menos de 1 hora</td>
+              <td class="num">S/. 840 *</td>
+            </tr>
+            <tr>
+              <td><strong>Acceso a rentabilidad real</strong></td>
+              <td>Natalie no conoce la ganancia neta de ningún modelo</td>
+              <td>Panel de KPIs con ganancia neta mensual automática</td>
+              <td class="num">Cualitativo **</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.82rem;color:#64748b;">* Valoración del día gerencial: 4 sábados/mes × 7 horas × S/. 30/hora = S/. 840/mes de costo de oportunidad recuperado.<br>** El beneficio de tomar decisiones basadas en datos de rentabilidad real no es cuantificable ex-ante, pero es el habilitador estratégico de mayor valor para Roma Bag's.</p>
+
+      <p><strong>Ahorro mensual estimado conservador:</strong> S/. 1,011 (S/. 171 + S/. 840). Con este ahorro, el período de recuperación de la inversión (payback) es:</p>
+      <p style="text-align:center;font-size:1.15rem;font-weight:700;color:#1e3a8a;padding:1rem;background:#eff6ff;border-radius:14px;">
+        Payback = S/. 37,292.53 ÷ S/. 1,011/mes ≈ <strong>37 meses (3 años y 1 mes)</strong>
+      </p>
+      <p>Si bien el payback es de mediano plazo, el proyecto es viable porque: (a) el beneficio cualitativo de información gerencial en tiempo real es el verdadero driver de decisión, (b) los costos operativos post-proyecto son mínimos (S/. 40/mes de VPS), y (c) la alternativa de no hacer nada implica seguir acumulando pérdidas y limitaciones de crecimiento documentadas en el diagnóstico.</p>
+
+      <h3>Esquema de Pago por Gates</h3>
+      <p>El pago del proyecto no es un desembolso único adelantado. Se vincula a los 3 gates de aprobación formal, de modo que Roma Bag's paga en función de resultados verificados:</p>
+
+      <div class="pago-grid">
+        <div class="pago-card pago-1">
+          <strong>Pago 1 — Inicio + Gate 1</strong>
+          <span class="pago-val">S/. 14,917.01</span>
+          <span class="pago-note">40% del presupuesto total. Se desembolsa: 50% al inicio del proyecto (anticipo para movilización) y 50% al cierre del Gate 1 — Fase Cimentar aprobada.</span>
+        </div>
+        <div class="pago-card pago-2">
+          <strong>Pago 2 — Gate 2</strong>
+          <span class="pago-val">S/. 13,063.39</span>
+          <span class="pago-note">35% del presupuesto total. Se desembolsa al cierre del Gate 2 — Fase Integrar aprobada, con Certificado de Cero Errores Críticos emitido.</span>
+        </div>
+        <div class="pago-card pago-3">
+          <strong>Pago 3 — Gate 3 y Cierre</strong>
+          <span class="pago-val">S/. 9,312.13</span>
+          <span class="pago-note">25% del presupuesto total. Se desembolsa al cierre del Gate 3, con Acta de Conformidad y Cierre Formal firmada por Natalie.</span>
+        </div>
+      </div>
+
+      <div class="note-card" style="margin-top:1rem;">
+        <strong>Ventaja del esquema de pago por gates</strong>
+        Este esquema protege a Roma Bag's: si el proyecto se detiene en cualquier gate por incumplimiento de criterios, solo se ha pagado la proporción correspondiente al trabajo efectivamente entregado y aprobado. No hay riesgo de pago adelantado sin contraprestación.
+      </div>
     </div>
 
   </section>

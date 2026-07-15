@@ -210,8 +210,8 @@ import Layout from '../layouts/Layout.astro';
   <h4>Criterios de Aceptación del Producto</h4>
   <div class="gr">
     <div class="cd"><strong>Gate 1 (cierre Fase 1 — 06/11/2026):</strong> 100% de inventario y ventas registrados en la base centralizada; consulta de stock desde celular en menos de 2 minutos (prueba cronometrada 1.3.3.4); cero zonas muertas de Wi‑Fi en áreas de trabajo; SOPs firmados por Gerencia y Socio de Producción (1.3.4.2); política de respaldo activa y verificada (1.3.4.4); hábito digital del equipo confirmado (1.3.5.2).</div>
-    <div class="cd"><strong>Gate 2 (cierre Fase 2 — 27/02/2027):</strong> Odoo Community operativo en servidor con datos migrados íntegros verificados (1.4.3.4); flujo mandatorio Venta‑Stock‑Despacho activo y bloqueo técnico confirmado (1.4.4.7); UAT aprobado sin errores críticos por Personal de Ventas, Socio de Producción y Gerencia Natalie (1.4.5.4 a 1.4.5.6); Certificado de Cero Errores Críticos emitido (1.4.5.8).</div>
-    <div class="cd"><strong>Gate 3 (cierre Fase 3 y proyecto — 06/04/2027):</strong> Reportes de rentabilidad y KPIs generados automáticamente en Odoo (1.5.2.1 y 1.5.2.2); cuadre semanal reducido de 1 día a menos de 1 hora confirmado por Natalie; Natalie resuelve incidencias básicas de forma autónoma usando la guía 1.5.1.1; criterios de aceptación verificados formalmente (1.5.5.1); lecciones aprendidas documentadas (1.5.5.4); Acta de Cierre Formal emitida y firmada (1.5.5.6).</div>
+    <div class="cd"><strong>Gate 2 (cierre Fase 2 — 22/02/2027):</strong> Odoo Community operativo en servidor con datos migrados íntegros verificados (1.4.3.4); flujo mandatorio Venta‑Stock‑Despacho activo y bloqueo técnico confirmado (1.4.4.7); UAT aprobado sin errores críticos por Personal de Ventas, Socio de Producción y Gerencia Natalie (1.4.5.4 a 1.4.5.6); Certificado de Cero Errores Críticos emitido (1.4.5.8).</div>
+    <div class="cd"><strong>Gate 3 (cierre Fase 3 y proyecto — 31/03/2027):</strong> Reportes de rentabilidad y KPIs generados automáticamente en Odoo (1.5.2.1 y 1.5.2.2); cuadre semanal reducido de 1 día a menos de 1 hora confirmado por Natalie; Natalie resuelve incidencias básicas de forma autónoma usando la guía 1.5.1.1; criterios de aceptación verificados formalmente (1.5.5.1); lecciones aprendidas documentadas (1.5.5.4); Acta de Cierre Formal emitida y firmada (1.5.5.5).</div>
   </div>
   <h4>Supuestos y Restricciones</h4>
   <div class="fx">
@@ -521,68 +521,107 @@ import Layout from '../layouts/Layout.astro';
   </div>
 
   <div class="dic-item">
-    <h5>PAQUETE DE TRABAJO 1.1.5</h5>
-    <p><strong>Nombre:</strong> Acta de Cierre Formal firmada</p>
-    <p><strong>Código EDT:</strong> 1.5.5.6</p>
-    <p><strong>Fase / Entregable padre:</strong> 1.5.5 Cierre del proyecto / 1.5 Fase 3 Optimizar</p>
-    <p><strong>Descripción del trabajo:</strong> Redacción y firma del acta que cierra oficialmente el proyecto después del Gate 3 (06/04/2027). Verifica el cumplimiento de todos los criterios de aceptación. Libera formalmente al equipo consultor UNTELS de sus responsabilidades. Fecha: 06/04/2027 → 08/04/2027.</p>
-    <p><strong>Responsable:</strong> Líder del Proyecto</p>
-    <p><strong>Criterio de aceptación:</strong> Firmada por Natalie (Gerencia General / Sponsor) después de que Gate 3 esté aprobado. Es el ÚLTIMO entregable del proyecto.</p>
-    <p><strong>Supuestos:</strong> Todos los criterios de aceptación del Gate 3 están verificados.</p>
-    <p><strong>Restricciones:</strong> No puede firmarse antes del Gate 3. Ninguna actividad del proyecto puede quedar abierta al momento de la firma.</p>
-    <p><strong>Duración estimada:</strong> 2 días hábiles (06/04 → 08/04/2027)</p>
-  </div>
-
-  <div class="dic-item">
     <h5>PAQUETE DE TRABAJO 1.2.1</h5>
-    <p><strong>Nombre:</strong> Documentación del flujo de información actual</p>
+    <p><strong>Nombre:</strong> Realizar observación directa del flujo actual</p>
     <p><strong>Código EDT:</strong> 1.2.1</p>
     <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
-    <p><strong>Descripción del trabajo:</strong> Observación directa y documentación del flujo actual de información en Roma Bag's: cómo se registran las ventas (6 celulares sin sincronización), cómo se controla el inventario (cuadernos físicos), cómo se realiza el cuadre de caja (proceso manual de un día completo los sábados), y cómo se coordina entre ventas y producción (comunicación informal). El resultado es un diagrama de flujo AS-IS que muestra los puntos de pérdida de datos, cuellos de botella y sobrecostos actuales documentados (S/.19 a S/.24 por pedido incompleto, 9 pedidos incompletos mensuales).</p>
+    <p><strong>Descripción del trabajo:</strong> Observación directa y mapeo del flujo real en el taller de Roma Bag's. Consiste en hacer seguimiento en tiempo real (Job Shadowing) a Natalie durante la toma de pedidos en las transmisiones en vivo, la consulta manual de cuadernos y la entrega al motorizado, registrando los puntos de falla y el sobrecosto logístico de S/. 19 a S/. 24 por doble envío.</p>
     <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
-    <p><strong>Criterio de aceptación:</strong> El diagrama AS-IS debe ser validado y firmado por Natalie como representación fiel del proceso actual antes de proceder con el diagnóstico técnico.</p>
-    <p><strong>Supuestos:</strong> Natalie y el Socio de Producción están disponibles para las sesiones de observación y entrevista en la Semana 2 del proyecto.</p>
-    <p><strong>Restricciones:</strong> Se trabaja sobre los procesos actuales reales; no se propone ninguna mejora en esta etapa.</p>
-    <p><strong>Duración estimada:</strong> 3 días hábiles</p>
+    <p><strong>Criterio de aceptación:</strong> El informe y mapeo deben describir al menos 5 puntos de ineficiencia identificados durante las operaciones diarias y ser validados por la gerencia.</p>
+    <p><strong>Supuestos:</strong> Natalie permite al equipo estar presente en el taller durante los días de mayor venta.</p>
+    <p><strong>Restricciones:</strong> No se debe alterar el flujo normal de trabajo durante la observación.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
   </div>
 
   <div class="dic-item">
     <h5>PAQUETE DE TRABAJO 1.2.2</h5>
-    <p><strong>Nombre:</strong> Auditoría de infraestructura tecnológica y conectividad</p>
+    <p><strong>Nombre:</strong> Ejecutar entrevistas con interesados clave</p>
     <p><strong>Código EDT:</strong> 1.2.2</p>
     <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
-    <p><strong>Descripción del trabajo:</strong> Inventario y evaluación técnica de los activos tecnológicos de Roma Bag's: 3 laptops Lenovo Core i5 12va generación con 24 GB RAM (subutilizadas), 6 celulares del personal, router Movistar con zonas muertas de Wi-Fi identificadas, y conectividad de datos móviles 4G/5G disponible. Incluye prueba de velocidad de red, mapeo de zonas sin cobertura Wi-Fi, y verificación de que los dispositivos existentes son suficientes para soportar el ERP Odoo Community sin adquirir hardware nuevo.</p>
-    <p><strong>Responsable:</strong> Analista de Infraestructura / Equipo Consultor UNTELS</p>
-    <p><strong>Criterio de aceptación:</strong> El informe de auditoría debe confirmar qué dispositivos son aptos para Odoo, cuáles zonas requieren solución de red, y si la conectividad existente (Wi-Fi + 4G/5G) garantiza operación continua del sistema.</p>
-    <p><strong>Supuestos:</strong> El acceso físico al taller para la auditoría está autorizado por la Gerencia desde el inicio del diagnóstico.</p>
-    <p><strong>Restricciones:</strong> No se adquiere hardware nuevo en ninguna fase del proyecto; la solución debe funcionar sobre los activos existentes.</p>
+    <p><strong>Descripción del trabajo:</strong> Diseño y realización de entrevistas semiestructuradas con los interesados clave (Natalie, personal de ventas, socio de producción y operarios) para relevar expectativas, dolores operativos, resistencia cultural y requisitos del sistema.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Transcripciones firmadas y resúmenes de hallazgos para cada entrevista realizada.</p>
+    <p><strong>Supuestos:</strong> Los interesados participan activamente y de manera honesta en las sesiones.</p>
+    <p><strong>Restricciones:</strong> Tiempo de entrevista limitado para no interferir con las labores del personal.</p>
     <p><strong>Duración estimada:</strong> 2 días hábiles</p>
   </div>
 
   <div class="dic-item">
     <h5>PAQUETE DE TRABAJO 1.2.3</h5>
-    <p><strong>Nombre:</strong> Fichas de Requisitos del sistema aprobadas</p>
+    <p><strong>Nombre:</strong> Documentar el flujo AS-IS y validar con Gerencia</p>
     <p><strong>Código EDT:</strong> 1.2.3</p>
     <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
-    <p><strong>Descripción del trabajo:</strong> Elaboración de las fichas formales de requisitos (REQ-01 a REQ-05 como mínimo) que documentan cada necesidad validada con los interesados. Cada ficha incluye: identificador, tipo (funcional o no funcional), descripción, justificación, fuente (interesado que lo propone), criterios de validación, grado de satisfacción e insatisfacción, dependencias entre requisitos y documentos de soporte (transcripciones de entrevistas, evidencias fotográficas). Los requisitos mínimos identificados son: reporte gerencial de utilidades (REQ-01), consulta de stock desde celular (REQ-02), registro digital de insumos y producción (REQ-03), resiliencia ante inestabilidad de red (REQ-04), y capacitación y auto-recuperación (REQ-05).</p>
+    <p><strong>Descripción del trabajo:</strong> Elaboración de diagramas de flujo del proceso AS-IS que consolidan el diagnóstico, mapeando cuellos de botella y fugas de información. Requiere validación y firma de conformidad de la Gerencia Natalie.</p>
     <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
-    <p><strong>Criterio de aceptación:</strong> Cada ficha debe estar validada y firmada por el interesado que la originó (Natalie para REQ-01, REQ-02 y REQ-05; Socio de Producción para REQ-03; Equipo Técnico para REQ-04).</p>
-    <p><strong>Supuestos:</strong> Las transcripciones de las tres sesiones de entrevista previas (21 abr, 4 may, 14 may 2026) son suficientes para fundamentar los requisitos sin necesidad de sesiones adicionales.</p>
-    <p><strong>Restricciones:</strong> Ningún requisito puede ser modificado unilateralmente por el equipo consultor sin aprobación formal del interesado que lo originó.</p>
-    <p><strong>Duración estimada:</strong> 4 días hábiles</p>
+    <p><strong>Criterio de aceptación:</strong> Diagrama de flujo AS-IS aprobado y firmado por Natalie.</p>
+    <p><strong>Supuestos:</strong> La Gerencia revisa el flujo AS-IS de forma rápida.</p>
+    <p><strong>Restricciones:</strong> Debe representarse únicamente el flujo actual sin incluir propuestas del modelo futuro (TO-BE).</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
   </div>
 
   <div class="dic-item">
     <h5>PAQUETE DE TRABAJO 1.2.4</h5>
-    <p><strong>Nombre:</strong> Matriz de Trazabilidad de Requisitos aprobada</p>
+    <p><strong>Nombre:</strong> Ejecutar auditoría de infraestructura tecnológica</p>
     <p><strong>Código EDT:</strong> 1.2.4</p>
     <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
-    <p><strong>Descripción del trabajo:</strong> Construcción de la matriz que vincula cada requisito con su necesidad de negocio, el objetivo del proyecto que satisface, el entregable de la EDT que lo materializa, y el caso de prueba que lo verifica. Garantiza que ningún requisito quede sin un entregable que lo cubra y que ningún entregable exista sin un requisito que lo justifique. La trazabilidad va desde la entrevista de campo hasta el caso de prueba de aceptación.</p>
-    <p><strong>Responsable:</strong> Líder del Proyecto / Analista de Sistemas UNTELS</p>
-    <p><strong>Criterio de aceptación:</strong> La matriz debe ser revisada y aprobada por la Gerencia de Roma Bag's. Toda modificación a un requisito debe rastrearse automáticamente en la matriz para evaluar su impacto en la EDT y el cronograma.</p>
-    <p><strong>Supuestos:</strong> Las fichas de requisitos (1.2.3) están completadas y aprobadas antes de iniciar la matriz.</p>
-    <p><strong>Restricciones:</strong> La matriz debe mantenerse actualizada durante todo el proyecto; no es un documento que se elabora una vez y se archiva.</p>
+    <p><strong>Descripción del trabajo:</strong> Inspección técnica in situ de los activos de hardware (3 laptops Lenovo, 6 celulares) y conectividad Wi-Fi/4G. Mapea la velocidad y cobertura de la señal en el taller para definir los requerimientos de la solución de red.</p>
+    <p><strong>Responsable:</strong> Analista de Infraestructura / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Informe de auditoría con la lista de dispositivos aptos y mapa de cobertura Wi-Fi.</p>
+    <p><strong>Supuestos:</strong> Acceso libre a las contraseñas de red y dispositivos para pruebas.</p>
+    <p><strong>Restricciones:</strong> La infraestructura actual debe reutilizarse; no se permite recomendar compra de computadoras o servidores de gama alta.</p>
     <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.2.5</h5>
+    <p><strong>Nombre:</strong> Redactar fichas de requisitos REQ-01 a REQ-10</p>
+    <p><strong>Código EDT:</strong> 1.2.5</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
+    <p><strong>Descripción del trabajo:</strong> Redacción formal de fichas técnicas para cada uno de los 10 requisitos del sistema, clasificándolos en funcionales y no funcionales, detallando criterios de aceptación y prioridad.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Fichas con estructura formal de requisitos que cubran los 10 requerimientos identificados.</p>
+    <p><strong>Supuestos:</strong> Las entrevistas y la observación previas proveen información suficiente para la especificación.</p>
+    <p><strong>Restricciones:</strong> Los requisitos deben ceñirse estrictamente a las necesidades reales del negocio.</p>
+    <p><strong>Duración estimada:</strong> 4 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.2.6</h5>
+    <p><strong>Nombre:</strong> Validar y obtener firma de fichas de requisitos</p>
+    <p><strong>Código EDT:</strong> 1.2.6</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
+    <p><strong>Descripción del trabajo:</strong> Reuniones de validación con cada interesado de sus respectivas fichas de requisitos, obteniendo su firma física o digital en señal de conformidad.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> 100% de las fichas de requisitos validadas y firmadas por sus respectivos originadores.</p>
+    <p><strong>Supuestos:</strong> Los interesados están disponibles para la firma de fichas.</p>
+    <p><strong>Restricciones:</strong> No se avanza a la matriz de trazabilidad hasta que las fichas estén firmadas.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.2.7</h5>
+    <p><strong>Nombre:</strong> Elaborar la Matriz de Trazabilidad de Requisitos</p>
+    <p><strong>Código EDT:</strong> 1.2.7</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
+    <p><strong>Descripción del trabajo:</strong> Construcción de la matriz que vincula cada requisito con su necesidad de negocio, objetivo SMART, entregables de la EDT y casos de prueba UAT.</p>
+    <p><strong>Responsable:</strong> Analista de Sistemas / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Documento de matriz de trazabilidad completo cubriendo REQ-01 a REQ-10.</p>
+    <p><strong>Supuestos:</strong> No hay cambios en los requisitos durante la elaboración de la matriz.</p>
+    <p><strong>Restricciones:</strong> Cada requisito debe mapearse a al menos un entregable de la EDT.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.2.8</h5>
+    <p><strong>Nombre:</strong> Aprobar la Matriz de Trazabilidad con la Gerencia</p>
+    <p><strong>Código EDT:</strong> 1.2.8</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.2 Diagnóstico y Requisitos AS-IS</p>
+    <p><strong>Descripción del trabajo:</strong> Presentación final de la Matriz de Trazabilidad de Requisitos a la Gerencia General (Natalie) para su revisión y aprobación formal mediante firma.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto / Equipo Consultor UNTELS</p>
+    <p><strong>Criterio de aceptación:</strong> Acta o firma de aprobación de la Matriz de Trazabilidad por Natalie.</p>
+    <p><strong>Supuestos:</strong> Natalie está satisfecha con la cobertura de sus requisitos.</p>
+    <p><strong>Restricciones:</strong> Hito crítico obligatorio antes de iniciar el diseño del modelo de datos de la Fase 1.</p>
+    <p><strong>Duración estimada:</strong> 1 día hábil</p>
   </div>
 
   <div class="dic-item">
@@ -959,7 +998,7 @@ import Layout from '../layouts/Layout.astro';
     <p><strong>Criterio de aceptación:</strong> Acta de aprobación firmada por Natalie y por el Socio de Producción, ambos como usuarios clave cuya aprobación es necesaria para validar que la Fase 2 cumplió sus objetivos.</p>
     <p><strong>Supuestos:</strong> Las actas de UAT de ventas, producción y gerencia están firmadas y el certificado de cero errores emitido antes de la reunión de gate.</p>
     <p><strong>Restricciones:</strong> No se inicia ninguna actividad de la Fase 3 sin la firma de este gate.</p>
-    <p><strong>Duración estimada:</strong> 0 días (hito de duración cero — 27/02/2027)</p>
+    <p><strong>Duración estimada:</strong> 0 días (hito de duración cero — 22/02/2027)</p>
   </div>
 
   <div class="dic-item">
@@ -1149,12 +1188,25 @@ import Layout from '../layouts/Layout.astro';
     <p><strong>Nombre:</strong> Gate 3 — Acta de Conformidad y Cierre firmada por Gerencia</p>
     <p><strong>Código EDT:</strong> Gate 3</p>
     <p><strong>Fase / Entregable padre:</strong> 1.5 Fase 3 Optimizar</p>
-    <p><strong>Descripción del trabajo:</strong> Reunión formal de cierre del proyecto con Natalie donde se presentan el informe final, las lecciones aprendidas y la lista de verificación de criterios cumplidos. Natalie firma el Acta de Conformidad y Cierre que libera formalmente al equipo consultor de sus responsabilidades sobre el proyecto y da por concluida la Transformación Digital Roma Bag's en su primera versión. Esta acta también marca el inicio formal del período de autosuficiencia tecnológica de la empresa. Después de este Gate, se emite el Acta de Cierre Formal (1.5.5.6) como último entregable del proyecto (06/04 → 08/04/2027).</p>
+    <p><strong>Descripción del trabajo:</strong> Reunión formal de cierre del proyecto con Natalie donde se presentan el informe final, las lecciones aprendidas y la lista de verificación de criterios cumplidos. Natalie firma el Acta de Conformidad y Cierre que libera formalmente al equipo consultor de sus responsabilidades sobre el proyecto y da por concluida la Transformación Digital Roma Bag's en su primera versión. Esta acta también marca el inicio formal del período de autosuficiencia tecnológica de la empresa. Después de este Gate, se emite el Acta de Cierre Formal (1.5.5.5) como último entregable del proyecto (31/03 → 09/04/2027).</p>
     <p><strong>Responsable:</strong> Líder del Proyecto</p>
     <p><strong>Criterio de aceptación:</strong> Acta de Conformidad y Cierre firmada por Natalie como patrocinadora y usuaria principal del proyecto.</p>
     <p><strong>Supuestos:</strong> Los criterios de aceptación del paquete 1.5.4.3 están todos verificados y cumplidos antes de la reunión de cierre.</p>
     <p><strong>Restricciones:</strong> Esta es la única firma que cierra formalmente el proyecto. Sin ella, el proyecto no puede considerarse cerrado.</p>
-    <p><strong>Duración estimada:</strong> 0 días (hito de duración cero — 06/04/2027)</p>
+    <p><strong>Duración estimada:</strong> 0 días (hito de duración cero — 31/03/2027)</p>
+  </div>
+
+  <div class="dic-item">
+    <h5>PAQUETE DE TRABAJO 1.5.5.5</h5>
+    <p><strong>Nombre:</strong> Acta de Cierre Formal firmada</p>
+    <p><strong>Código EDT:</strong> 1.5.5.5</p>
+    <p><strong>Fase / Entregable padre:</strong> 1.5.5 Cierre del proyecto / 1.5 Fase 3 Optimizar</p>
+    <p><strong>Descripción del trabajo:</strong> Redacción y firma del acta que cierra oficialmente el proyecto después del Gate 3 (31/03/2027). Verifica el cumplimiento de todos los criterios de aceptación. Libera formalmente al equipo consultor UNTELS de sus responsabilidades. Fecha: 31/03/2027 → 09/04/2027.</p>
+    <p><strong>Responsable:</strong> Líder del Proyecto</p>
+    <p><strong>Criterio de aceptación:</strong> Firmada por Natalie (Gerencia General / Sponsor) después de que Gate 3 esté aprobado. Es el ÚLTIMO entregable del proyecto.</p>
+    <p><strong>Supuestos:</strong> Todos los criterios de aceptación del Gate 3 están verificados.</p>
+    <p><strong>Restricciones:</strong> No puede firmarse antes del Gate 3. Ninguna actividad del proyecto puede quedar abierta al momento de la firma.</p>
+    <p><strong>Duración estimada:</strong> 2 días hábiles (31/03 → 09/04/2027)</p>
   </div>
   </div>
 </section>

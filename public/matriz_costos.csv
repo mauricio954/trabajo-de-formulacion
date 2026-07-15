@@ -1,0 +1,75 @@
+Código EDT,Nombre,Fase,Responsable (Rol),Duración (días),Horas,Tarifa (S/./h),Costo RRHH (S/.),Material/Servicio vinculado,Costo Material (S/.),Costo Total (S/.),Origen del dato
+1.1.1,Redactar y firmar el Acta de Constitución,1.1 Gestión,Líder del Proyecto,4,32,30.00,960.00,,0.00,960.00,EDT Cap. 6
+1.1.2,Elaborar Plan de Gestión del Alcance y Cronograma,1.1 Gestión,Líder del Proyecto,3,24,30.00,720.00,,0.00,720.00,EDT Cap. 6
+1.1.3,Emitir informes de avance semanales (recurrente),1.1 Gestión,Líder del Proyecto,15,120,30.00,3600.00,,0.00,3600.00,EDT Cap. 6 — 0.5 d/sem × 30 sem
+1.1.4,Mantener el Registro de Control de Cambios (recurrente),1.1 Gestión,Líder del Proyecto,7.5,60,30.00,1800.00,,0.00,1800.00,EDT Cap. 6 — 0.25 d/sem × 30 sem
+1.2.1,Realizar observación directa del flujo actual,1.2 Diagnóstico,Analista de Sistemas,2,16,25.00,400.00,Pasajes visita campo (2 pers.),30.00,430.00,Lista Act. Cap. 7
+1.2.2,Ejecutar entrevistas con interesados clave,1.2 Diagnóstico,Analista de Sistemas,2,16,25.00,400.00,,0.00,400.00,Lista Act. Cap. 7
+1.2.3,Documentar el flujo AS-IS y validar con Gerencia,1.2 Diagnóstico,Analista de Sistemas,1,8,25.00,200.00,,0.00,200.00,Lista Act. Cap. 7
+1.2.4,Ejecutar auditoría de infraestructura tecnológica,1.2 Diagnóstico,Analista de Infraestructura,2,16,27.00,432.00,Pasajes visita campo (2 pers.),30.00,462.00,Lista Act. Cap. 7
+1.2.5,Redactar fichas de requisitos REQ-01 a REQ-10,1.2 Diagnóstico,Analista de Sistemas,4,32,25.00,800.00,,0.00,800.00,Lista Act. Cap. 7
+1.2.6,Validar y obtener firma de fichas de requisitos,1.2 Diagnóstico,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,Lista Act. Cap. 7
+1.2.7,Elaborar la Matriz de Trazabilidad de Requisitos,1.2 Diagnóstico,Analista de Sistemas,2,16,25.00,400.00,,0.00,400.00,Lista Act. Cap. 7
+1.2.8,Aprobar la Matriz de Trazabilidad con la Gerencia,1.2 Diagnóstico,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,Lista Act. Cap. 7
+1.3.1.1,Diseñar el modelo de datos,1.3 Fase 1,Analista de Sistemas,3,24,25.00,600.00,,0.00,600.00,EDT Cap. 6
+1.3.1.2,Validar compatibilidad del modelo con Odoo,1.3 Fase 1,Analista de Sistemas,1,8,25.00,200.00,,0.00,200.00,Lista Act. Cap. 7
+1.3.2.1,Mapear zonas muertas de Wi-Fi en el taller,1.3 Fase 1,Analista de Infraestructura,1,8,27.00,216.00,Pasajes visita campo (2 pers.),30.00,246.00,EDT Cap. 6
+1.3.2.2,Evaluar y seleccionar solución de red,1.3 Fase 1,Analista de Infraestructura,1,8,27.00,216.00,,0.00,216.00,Lista Act. Cap. 7
+1.3.2.3,Implementar la solución de red seleccionada,1.3 Fase 1,Analista de Infraestructura,2,16,27.00,432.00,Cable red / repetidor Wi-Fi,120.00,552.00,EDT Cap. 6
+1.3.2.4,Verificar acceso por datos móviles 4G/5G,1.3 Fase 1,Analista de Infraestructura,1,8,27.00,216.00,,0.00,216.00,EDT Cap. 6
+1.3.3.1,Configurar y desplegar base de datos centralizada,1.3 Fase 1,Analista de Sistemas,3,24,25.00,600.00,,0.00,600.00,EDT Cap. 6
+1.3.3.2,Configurar reglas de validación de ingreso,1.3 Fase 1,Analista de Sistemas,2,16,25.00,400.00,,0.00,400.00,EDT Cap. 6
+1.3.3.3,Configurar consulta de stock desde celular,1.3 Fase 1,Analista de Sistemas,2,16,25.00,400.00,,0.00,400.00,EDT Cap. 6
+1.3.3.4,Prueba cronometrada de consulta de stock,1.3 Fase 1,Analista de Sistemas,1,8,25.00,200.00,,0.00,200.00,Estimado por analogía — prueba similar a 1.3.2.4
+1.3.4.1,Redactar SOPs del flujo venta-stock-despacho,1.3 Fase 1,Analista de Calidad,3,24,25.00,600.00,Impresión SOPs (2 juegos),30.00,630.00,EDT Cap. 6
+1.3.4.2,Obtener firma de SOPs con Gerencia y Producción,1.3 Fase 1,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,Lista Act. Cap. 7
+1.3.4.3,Redactar política de respaldo y seguridad,1.3 Fase 1,Analista de Sistemas,2,16,25.00,400.00,Impresión política de respaldo,15.00,415.00,EDT Cap. 6
+1.3.4.4,Obtener firma de política de respaldo con Gerencia,1.3 Fase 1,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,Lista Act. Cap. 7
+1.3.4.5,Definir protocolo de coexistencia con Excel,1.3 Fase 1,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,EDT Cap. 6
+1.3.5.1,Período de adopción: uso real de la base centralizada,1.3 Fase 1,Analista de Sistemas,5,40,25.00,1000.00,,0.00,1000.00,Estimado por analogía — 1 semana de adopción
+1.3.5.2,Verificar consistencia de registros semanas 1 y 2,1.3 Fase 1,Analista de Calidad,3,24,25.00,600.00,,0.00,600.00,Estimado por analogía — verificación 2 semanas parcial
+1.3.6.1,Monitoreo de operaciones reales en base Fase 1,1.3 Fase 1,Líder del Proyecto,5,40,30.00,1200.00,,0.00,1200.00,Estimado por analogía — similar a 1.5.4.2
+1.3.6.2,Confirmar hábito digital establecido en el equipo,1.3 Fase 1,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,Estimado por analogía — verificación simple
+1.3.6.3,Aprobación de Gerencia para inicio de Fase 2,1.3 Fase 1,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,Estimado por analogía — similar a firma de gate
+1.4.1.1,Seleccionar y contratar servidor de despliegue,1.4 Fase 2,Analista de Infraestructura,1,8,27.00,216.00,VPS/hosting Odoo (5 meses),200.00,416.00,EDT Cap. 6
+1.4.1.2,Instalar SO y dependencias en el servidor,1.4 Fase 2,Analista de Infraestructura,1,8,27.00,216.00,Dominio + SSL,60.00,276.00,Lista Act. Cap. 7
+1.4.1.3,Instalar y verificar Odoo Community,1.4 Fase 2,Analista de Infraestructura,2,16,27.00,432.00,,0.00,432.00,EDT Cap. 6
+1.4.1.4,Realizar configuración inicial de Odoo,1.4 Fase 2,Analista de Infraestructura,1,8,27.00,216.00,,0.00,216.00,Lista Act. Cap. 7
+1.4.2.1,Crear usuarios y perfiles de acceso por rol,1.4 Fase 2,Analista de Sistemas,1,8,25.00,200.00,,0.00,200.00,EDT Cap. 6
+1.4.2.2,Verificar restricciones de acceso cruzado,1.4 Fase 2,Analista de Sistemas,1,8,25.00,200.00,,0.00,200.00,Lista Act. Cap. 7
+1.4.3.1,Solicitar y recibir catálogo de productos,1.4 Fase 2,Analista de Sistemas,1,8,25.00,200.00,,0.00,200.00,Lista Act. Cap. 7
+1.4.3.2,Cargar catálogo de productos y variantes en Odoo,1.4 Fase 2,Analista de Sistemas,2,16,25.00,400.00,,0.00,400.00,EDT Cap. 6
+1.4.3.3,Migración de datos desde base Fase 1 a Odoo,1.4 Fase 2,Analista de Sistemas,2,16,25.00,400.00,,0.00,400.00,EDT Cap. 6
+1.4.3.4,Verificar integridad de datos post-migración,1.4 Fase 2,Analista de Sistemas,1,8,25.00,200.00,,0.00,200.00,Lista Act. Cap. 7
+1.4.4.1,Configurar rebaja automática de stock,1.4 Fase 2,Analista de Sistemas,2,16,25.00,400.00,,0.00,400.00,EDT Cap. 6
+1.4.4.2,Prueba interna de rebaja automática de stock,1.4 Fase 2,Analista de Sistemas,1,8,25.00,200.00,,0.00,200.00,Lista Act. Cap. 7
+1.4.4.3,Configurar talleres duales principal y alterno,1.4 Fase 2,Analista de Sistemas,2,16,25.00,400.00,,0.00,400.00,EDT Cap. 6
+1.4.4.4,Verificar consolidación de registros entre talleres,1.4 Fase 2,Analista de Sistemas,1,8,25.00,200.00,,0.00,200.00,Lista Act. Cap. 7
+1.4.4.5,Configurar formulario de ventas con validaciones,1.4 Fase 2,Analista de Sistemas,2,16,25.00,400.00,,0.00,400.00,EDT Cap. 6
+1.4.4.6,Configurar flujo mandatorio Venta-Stock-Despacho,1.4 Fase 2,Analista de Sistemas,3,24,25.00,600.00,,0.00,600.00,EDT Cap. 6
+1.4.4.7,Verificar bloqueo técnico de despacho sin venta,1.4 Fase 2,Analista de Sistemas,1,8,25.00,200.00,,0.00,200.00,Lista Act. Cap. 7
+1.4.4.8,Configurar vista de despacho para el motorizado,1.4 Fase 2,Analista de Sistemas,1,8,25.00,200.00,,0.00,200.00,EDT Cap. 6
+1.4.5.1,Redactar casos de prueba UAT CP-01 a CP-06,1.4 Fase 2,Analista de Calidad,2,16,25.00,400.00,,0.00,400.00,EDT Cap. 6
+1.4.5.2,Ejecutar prueba técnica de conectividad,1.4 Fase 2,Analista de Infraestructura,1,8,27.00,216.00,,0.00,216.00,EDT Cap. 6
+1.4.5.3,Pre-prueba informal con Socio de Producción,1.4 Fase 2,Analista de Calidad,1,8,25.00,200.00,,0.00,200.00,EDT Cap. 6
+1.4.5.4,Ejecutar UAT con Personal de Ventas,1.4 Fase 2,Analista de Calidad,1,8,25.00,200.00,,0.00,200.00,EDT Cap. 6
+1.4.5.5,Ejecutar UAT con Socio de Producción,1.4 Fase 2,Analista de Calidad,1,8,25.00,200.00,,0.00,200.00,EDT Cap. 6
+1.4.5.6,Ejecutar UAT con Gerencia Natalie,1.4 Fase 2,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,EDT Cap. 6
+1.4.5.7,Registrar y corregir incidencias críticas del UAT,1.4 Fase 2,Analista de Calidad,2,16,25.00,400.00,,0.00,400.00,Lista Act. Cap. 7
+1.4.5.8,Emitir Certificado de Cero Errores Críticos,1.4 Fase 2,Analista de Calidad,1,8,25.00,200.00,,0.00,200.00,EDT Cap. 6
+1.5.1.1,Elaborar manuales de usuario por rol,1.5 Fase 3,Analista de Sistemas,3,24,25.00,600.00,Manuales impresos (3 juegos),45.00,645.00,EDT Cap. 6
+1.5.1.2,Elaborar guía de auto-recuperación ante incidencias,1.5 Fase 3,Analista de Sistemas,2,16,25.00,400.00,,0.00,400.00,EDT Cap. 6
+1.5.2.1,Configurar panel de reportes de rentabilidad y KPIs,1.5 Fase 3,Analista de Sistemas,3,24,25.00,600.00,,0.00,600.00,EDT Cap. 6
+1.5.2.2,Configurar reporte de ganancia neta automatizado,1.5 Fase 3,Analista de Sistemas,2,16,25.00,400.00,,0.00,400.00,EDT Cap. 6
+1.5.2.3,Verificar restricción de acceso al panel por rol,1.5 Fase 3,Analista de Calidad,0.5,4,25.00,100.00,,0.00,100.00,EDT Cap. 6
+1.5.3.1,Taller de capacitación Personal de Ventas,1.5 Fase 3,Líder del Proyecto,0.5,4,30.00,120.00,Materiales capacitación ventas,40.00,160.00,EDT Cap. 6
+1.5.3.2,Taller de capacitación Socio de Producción y operarios,1.5 Fase 3,Líder del Proyecto,0.5,4,30.00,120.00,Materiales capacitación producción,30.00,150.00,EDT Cap. 6
+1.5.3.3,Sesión de capacitación Gerencia Natalie,1.5 Fase 3,Líder del Proyecto,0.5,4,30.00,120.00,Materiales capacitación gerencia,25.00,145.00,EDT Cap. 6
+1.5.4.1,Despliegue final en 100% de dispositivos,1.5 Fase 3,Analista de Infraestructura,1,8,27.00,216.00,Pasajes visita despliegue (2 pers.),30.00,246.00,EDT Cap. 6
+1.5.4.2,Monitoreo de operaciones reales primera semana,1.5 Fase 3,Líder del Proyecto,5,40,30.00,1200.00,,0.00,1200.00,EDT Cap. 6
+1.5.4.3,Verificar reportes gerenciales en uso real,1.5 Fase 3,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,EDT Cap. 6
+1.5.5.1,Verificar cumplimiento de criterios de aceptación,1.5 Fase 3,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,EDT Cap. 6
+1.5.5.2,Recopilar y documentar lecciones aprendidas,1.5 Fase 3,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,EDT Cap. 6
+1.5.5.3,Elaborar informe final del proyecto,1.5 Fase 3,Líder del Proyecto,2,16,30.00,480.00,,0.00,480.00,EDT Cap. 6
+1.5.5.4,Elaborar documento de lecciones aprendidas final,1.5 Fase 3,Líder del Proyecto,1,8,30.00,240.00,,0.00,240.00,Estimado por analogía — similar a 1.5.5.2
+1.5.5.5,Emitir y firmar el Acta de Cierre Formal,1.5 Fase 3,Líder del Proyecto,2,16,30.00,480.00,,0.00,480.00,EDT Cap. 6
