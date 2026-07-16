@@ -40,7 +40,7 @@ import Layout from '../../layouts/Layout.astro';
       <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
       <div class="meta-grid">
         <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
-        <div class="meta-item"><strong>Versión</strong><span>2.0 (corregida, julio 2026)</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>1.0 (julio 2026)</span></div>
         <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
         <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
         <div class="meta-item"><strong>Aprobado por</strong><span>Líder del Proyecto</span></div>
@@ -134,16 +134,16 @@ import Layout from '../../layouts/Layout.astro';
         <!-- ENTRADA 6 -->
         <div class="entrada-card">
           <span class="en-tag">Entrada 6</span>
-          <h4>Documentos del Proyecto — Correcciones de Versión anterior</h4>
-          <p>Esta es la <strong>versión 2.0</strong> del Plan de Gestión del Cronograma (julio 2026). Se corrigieron 7 errores de predecesores identificados en la revisión de calidad de la versión 1.0:</p>
+          <h4>Documentos del Proyecto — Validación de la Red de Precedencias</h4>
+          <p>El cronograma se sometió a una revisión de integridad de la red de precedencias antes de establecer la línea base. Esta validación confirmó la secuencia lógica de las siguientes relaciones críticas:</p>
           <ul>
-            <li><strong>C1:</strong> 1.3.5.1 y 1.3.5.2: dependencia circular resuelta — ambas dependen ahora de 1.3.3.4 directamente.</li>
-            <li><strong>C2:</strong> 1.3.4.1 (SOPs flujo) y 1.3.4.3 (política de respaldo): predecesores asignados a 1.2.8 — antes podían iniciar sin predecesor definido.</li>
-            <li><strong>C3:</strong> 1.4.5.1 (casos de prueba UAT): predecesor corregido a 1.4.4.2 — antes iniciaba el 4 de enero sin el sistema configurado.</li>
-            <li><strong>C4:</strong> 1.5.1.1 (guía auto-recuperación): predecesor asignado a 1.4.5.8 — antes sin predecesor.</li>
-            <li><strong>C5:</strong> 1.5.5.1 (verificar criterios de aceptación): predecesor asignado a 1.5.4.3 — antes sin predecesor.</li>
-            <li><strong>C6:</strong> 1.5.5.4 y 1.5.5.5: reordenados — lecciones aprendidas van ANTES del Gate 3; Acta de Cierre va DESPUÉS del Gate 3.</li>
-            <li><strong>C7:</strong> Nodo 1.3.7 (antes llamado "1.3.5 Monitoreo Post-Gate 1"): nombre y numeración corregidos.</li>
+            <li><strong>C1:</strong> Los paquetes de trabajo 1.3.5.1 y 1.3.5.2 dependen directamente de 1.3.3.4, garantizando una secuencia lineal sin dependencias circulares.</li>
+            <li><strong>C2:</strong> Las actividades 1.3.4.1 (SOPs flujo) y 1.3.4.3 (política de respaldo) tienen como predecesor mandatorio a 1.2.8, asegurando que inicien con los insumos previos requeridos.</li>
+            <li><strong>C3:</strong> El paquete 1.4.5.1 (casos de prueba UAT) tiene como predecesor a 1.4.4.2, garantizando que el diseño de pruebas inicie solo tras contar con el sistema debidamente configurado.</li>
+            <li><strong>C4:</strong> El desarrollo de la guía de auto-recuperación (1.5.1.1) tiene como predecesor al paquete 1.4.5.8, vinculando el inicio de la documentación a la culminación de la fase previa.</li>
+            <li><strong>C5:</strong> La verificación de criterios de aceptación (1.5.5.1) tiene como predecesor al paquete 1.5.4.3, asegurando la finalización de las actividades de cierre operativo previas.</li>
+            <li><strong>C6:</strong> La documentación de lecciones aprendidas (1.5.5.4) se programa antes del Gate 3, mientras que la firma del Acta de Cierre (1.5.5.5) se realiza como el hito final del proyecto posterior al Gate 3.</li>
+            <li><strong>C7:</strong> El nodo 1.3.7 está estructurado y designado formalmente como "Monitoreo Post-Gate 1", manteniendo la coherencia en la red.</li>
           </ul>
         </div>
 

@@ -45,7 +45,7 @@ import Layout from '../../layouts/Layout.astro';
       <h2>PLAN DE GESTIÓN DEL CRONOGRAMA</h2>
       <div class="meta-grid">
         <div class="meta-item"><strong>Proyecto</strong><span>Transformación Digital Roma Bag's</span></div>
-        <div class="meta-item"><strong>Versión</strong><span>2.0 (corregida, julio 2026)</span></div>
+        <div class="meta-item"><strong>Versión</strong><span>1.0 (julio 2026)</span></div>
         <div class="meta-item"><strong>Fecha</strong><span>Julio 2026</span></div>
         <div class="meta-item"><strong>Elaborado por</strong><span>Equipo Consultor UNTELS</span></div>
         <div class="meta-item"><strong>Aprobado por</strong><span>Líder del Proyecto</span></div>
@@ -77,7 +77,7 @@ import Layout from '../../layouts/Layout.astro';
         </div>
         <div class="ih-card">
           <strong>Herramientas PMIS</strong>
-          <p><strong>GanttPRO</strong> (principal): herramienta de elaboración del cronograma real — Gantt visual, predecesores FI/II, calendario con feriados, colaboración en tiempo real entre el equipo UNTELS.<br/><strong>MS Project</strong> (referencia académica): cálculo formal del CPM, diagrama de red y ruta crítica exigidos por la metodología del curso. Ambas herramientas se usan de forma complementaria: GanttPRO para gestionar y MS Project para el análisis CPM formal.</p>
+          <p><strong>GanttPRO</strong> (principal): herramienta de elaboración del cronograma real — Gantt visual, predecesores FI/II, calendario con feriados, colaboración en tiempo real entre el equipo UNTELS.<br/><strong>MS Project</strong> (análisis de red): cálculo formal del CPM, diagrama de red y ruta crítica. Ambas herramientas se usan de forma complementaria: GanttPRO para la gestión y seguimiento, y MS Project para el análisis del CPM formal.</p>
         </div>
         <div class="ih-card">
           <strong>Enfoque de Implementación</strong>
@@ -94,7 +94,7 @@ import Layout from '../../layouts/Layout.astro';
         <div class="note-card"><strong>Definición de actividades</strong> Cada paquete de trabajo de la EDT se tradujo en actividades ejecutables con verbo. La EDT incluye 5 entregables de Nivel 1 descompuestos en 99 actividades (74 tareas hoja + 21 grupos/paquetes + 1 raíz + 3 hitos gate).</div>
         <div class="note-card"><strong>Secuenciación</strong> Se usó el Método de Diagramación de Precedencia (PDM) con predominio Fin-Inicio (FI) y dependencias Inicio-Inicio (II) cuando fue necesario ejecutar tareas en paralelo.</div>
         <div class="note-card"><strong>Estimación</strong> Duraciones calculadas en días hábiles mediante juicio de expertos y estimación análoga, con jornada de 8 horas de lunes a viernes.</div>
-        <div class="note-card"><strong>Herramientas PMIS</strong> El cronograma se elaboró en GanttPRO (colaboración en tiempo real, Gantt visual con feriados). El análisis CPM formal y la ruta crítica se calcularon en MS Project como referencia académica exigida por el curso.</div>
+        <div class="note-card"><strong>Herramientas PMIS</strong> El cronograma se elaboró en GanttPRO (colaboración en tiempo real, Gantt visual con feriados). El análisis CPM formal y la ruta crítica se calcularon en MS Project para validar la integridad de la red del cronograma.</div>
       </div>
     </div>
 
@@ -102,7 +102,7 @@ import Layout from '../../layouts/Layout.astro';
     <div class="section-card">
       <h3>4. HERRAMIENTAS DE GESTIÓN DEL CRONOGRAMA</h3>
       <p><strong>Herramienta principal (PMIS del equipo):</strong> GanttPRO. Utilizada para elaborar el cronograma real del proyecto. Funciones: creación de tareas jerárquicas (EDT integrada), predecesores FI e II, calendario con feriados peruanos, cálculo automático de duración y exportación en .xlsx. Justificación: acceso web sin instalación, colaboración en tiempo real entre integrantes UNTELS, interfaz visual intuitiva. Limitación: no calcula CPM automáticamente.</p>
-      <p><strong>Herramienta de referencia académica (CPM):</strong> Microsoft Project. Recomendada por el docente del curso. Funciones: cálculo automático del CPM, visualización de Gantt con barras y flechas, diagrama de red, asignación de recursos, seguimiento del Valor Ganado (EVM), exportación .mpp. El PMBOK 8 reconoce el PMIS como herramienta habilitante del Dominio de Planificación. Nota: el cronograma maestro se mantuvo en GanttPRO; MS Project se usa para el análisis CPM y validación de la ruta crítica.</p>
+      <p><strong>Herramienta de análisis de red (CPM):</strong> Microsoft Project. Utilizada para el cálculo automático del CPM, visualización de Gantt con barras y flechas, diagrama de red, asignación de recursos, seguimiento del Valor Ganado (EVM) y exportación .mpp. El PMBOK 8 reconoce el PMIS como herramienta habilitante del Dominio de Planificación. Nota: el cronograma maestro se mantiene en GanttPRO; MS Project se usa para el análisis CPM y la validación de la ruta crítica.</p>
     </div>
 
     <!-- PARÁMETROS GENERALES -->
